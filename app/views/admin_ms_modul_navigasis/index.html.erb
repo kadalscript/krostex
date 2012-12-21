@@ -1,0 +1,32 @@
+<h1>Listing admin_ms_modul_navigasis</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead">
+    <tr>
+      <th>Id navigasi</th>
+      <th>Id modul</th>
+      <th>Is level1</th>
+      <th>Is level2</th>
+      <th>Is level3</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @admin_ms_modul_navigasis.each do |admin_ms_modul_navigasi| %>
+  <tr>
+    <td><%= admin_ms_modul_navigasi.id_navigasi %></td>
+    <td><%= admin_ms_modul_navigasi.id_modul %></td>
+    <td><%= admin_ms_modul_navigasi.is_level1 %></td>
+    <td><%= admin_ms_modul_navigasi.is_level2 %></td>
+    <td><%= admin_ms_modul_navigasi.is_level3 %></td>
+    <td><%= link_to 'Show', admin_ms_modul_navigasi %></td>
+    <td><%= link_to 'Edit', edit_admin_ms_modul_navigasi_path(admin_ms_modul_navigasi) %></td>
+    <td><%= link_to 'Destroy', admin_ms_modul_navigasi, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Admin ms modul navigasi', new_admin_ms_modul_navigasi_path %>

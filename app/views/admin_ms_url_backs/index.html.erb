@@ -1,0 +1,26 @@
+<h1>Listing admin_ms_url_backs</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead">
+    <tr>
+      <th>Kode</th>
+      <th>Url back</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @admin_ms_url_backs.each do |admin_ms_url_back| %>
+  <tr>
+    <td><%= admin_ms_url_back.kode %></td>
+    <td><%= admin_ms_url_back.url_back %></td>
+    <td><%= link_to 'Show', admin_ms_url_back %></td>
+    <td><%= link_to 'Edit', edit_admin_ms_url_back_path(admin_ms_url_back) %></td>
+    <td><%= link_to 'Destroy', admin_ms_url_back, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Admin ms url back', new_admin_ms_url_back_path %>

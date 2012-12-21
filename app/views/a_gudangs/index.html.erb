@@ -1,0 +1,49 @@
+<table class="table table-bordered table-hover" width="60%" align="center">
+  <thead class="thead">
+    <tr class="titleJudul" style="font-size : 12pt">
+      <th align="center" colspan="8">
+       DAFTAR GUDANG
+     </th> 
+   </tr>  
+   <tr class="blankSpot">
+    <th colspan="5" align="left">&nbsp;
+      <%= link_to 'Tambah Data', new_a_gudang_path, :class => "navigasi btn" %>
+      <a id="searchLink" class="navigasi btn" href="#" style="float:right" onclick="openSearchBar()">Cari Data</a>
+    </th>
+  </tr>
+  <%= form_tag a_gudangs_search_path, method: :get, style: "display: none" do %>
+  <tr id="searchRow" style="display:none">
+    <th align="center"><input type="text" name="kode"></th>
+    <th align="center"><input type="text" name="nama"></th>
+    <th align="center"><input type="text" name="status"></th>
+    <th align="center"><input type="text" name="diinput"></th>
+  </tr>
+  <tr style="display:none">
+    <th align="left" colspan="4">
+      <%= submit_tag "Cari", class: :btn %>
+    </th>
+  </tr>
+  <% end %>
+  <tr class="titleJudulTable">
+    <th align="center">KODE</th>
+    <th align="center">NAMA</th>
+    <th align="center">STATUS</th>
+    <th align="center">DIINPUT</th>
+  </tr>
+</thead>
+<% @a_gudangs.each do |a_gudang| %>
+<tr class="<%= 'status_red' if a_gudang.status1.eql?(99) %>" onclick="redirectTo('<%= a_gudang_path(a_gudang.id, page: params[:page]) %>')">
+  <td><%= a_gudang.simbol %></td>
+  <td><%= a_gudang.nama %></td>
+  <td><%= a_gudang.st_progress %></td>
+  <td><%= a_gudang.update_by %></td>
+</tr>
+<% end %>
+<thead class="thead">
+  <tr class="titleJudulTable">
+    <th colspan="5" align="right">
+      <%= paginate @a_gudangs %> 
+    </th>  
+  </tr>  
+</thread>
+</table>

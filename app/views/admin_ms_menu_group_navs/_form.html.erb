@@ -1,0 +1,29 @@
+<%= form_for(@admin_ms_menu_group_nav) do |f| %>
+  <% if @admin_ms_menu_group_nav.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_ms_menu_group_nav.errors.count, "error") %> prohibited this admin_ms_menu_group_nav from being saved:</h2>
+
+      <ul>
+      <% @admin_ms_menu_group_nav.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id_menu %><br />
+    <%= f.text_field :id_menu %>
+  </div>
+  <div class="field">
+    <%= f.label :id_group %><br />
+    <%= f.text_field :id_group %>
+  </div>
+  <div class="field">
+    <%= f.label :id_navigasi %><br />
+    <%= f.number_field :id_navigasi %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

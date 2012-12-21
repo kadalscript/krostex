@@ -1,0 +1,2 @@
+module AGudangsHelper
+end

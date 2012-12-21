@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id_navigasi: 1
+  id_modul: 1
+  is_level1: 1
+  is_level2: 1
+  is_level3: 1
+
+two:
+  id_navigasi: 1
+  id_modul: 1
+  is_level1: 1
+  is_level2: 1
+  is_level3: 1

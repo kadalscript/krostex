@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id_menu: MyString
+  id_group: MyString
+  id_product: MyString
+  statusmenu: 1
+
+two:
+  id_menu: MyString
+  id_group: MyString
+  id_product: MyString
+  statusmenu: 1

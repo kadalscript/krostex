@@ -1,0 +1,45 @@
+<%= form_for(@admin_ms_group) do |f| %>
+  <% if @admin_ms_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_ms_group.errors.count, "error") %> prohibited this admin_ms_group from being saved:</h2>
+
+      <ul>
+      <% @admin_ms_group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id_group %><br />
+    <%= f.text_field :id_group %>
+  </div>
+  <div class="field">
+    <%= f.label :id_product %><br />
+    <%= f.text_field :id_product %>
+  </div>
+  <div class="field">
+    <%= f.label :namagroup %><br />
+    <%= f.text_field :namagroup %>
+  </div>
+  <div class="field">
+    <%= f.label :statusgroup %><br />
+    <%= f.number_field :statusgroup %>
+  </div>
+  <div class="field">
+    <%= f.label :id_group_parent %><br />
+    <%= f.text_field :id_group_parent %>
+  </div>
+  <div class="field">
+    <%= f.label :viewadmin %><br />
+    <%= f.number_field :viewadmin %>
+  </div>
+  <div class="field">
+    <%= f.label :kduser %><br />
+    <%= f.text_field :kduser %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

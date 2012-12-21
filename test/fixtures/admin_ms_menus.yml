@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id_menu: MyString
+  id_menuref: MyString
+  status1: 1
+  nolist: 1
+  levelmenu: 1
+  id_modul: 1
+  addparam: MyString
+  namamenu: MyString
+  statusaplikasi: 1
+  nourut: 1
+  is_show_aplikasi: 1
+  is_show_buku: 1
+  is_show_laporan: 1
+
+two:
+  id_menu: MyString
+  id_menuref: MyString
+  status1: 1
+  nolist: 1
+  levelmenu: 1
+  id_modul: 1
+  addparam: MyString
+  namamenu: MyString
+  statusaplikasi: 1
+  nourut: 1
+  is_show_aplikasi: 1
+  is_show_buku: 1
+  is_show_laporan: 1

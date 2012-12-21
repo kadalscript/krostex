@@ -1,0 +1,2 @@
+module AdminMsMenuGroupNavsHelper
+end

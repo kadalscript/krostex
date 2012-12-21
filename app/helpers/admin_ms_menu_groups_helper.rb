@@ -1,0 +1,2 @@
+module AdminMsMenuGroupsHelper
+end

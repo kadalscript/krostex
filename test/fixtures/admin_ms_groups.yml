@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id_group: MyString
+  id_product: MyString
+  namagroup: MyString
+  statusgroup: 1
+  id_group_parent: MyString
+  viewadmin: 1
+  kduser: MyString
+
+two:
+  id_group: MyString
+  id_product: MyString
+  namagroup: MyString
+  statusgroup: 1
+  id_group_parent: MyString
+  viewadmin: 1
+  kduser: MyString

@@ -1,0 +1,69 @@
+<%= form_for(@admin_ms_menu) do |f| %>
+  <% if @admin_ms_menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_ms_menu.errors.count, "error") %> prohibited this admin_ms_menu from being saved:</h2>
+
+      <ul>
+      <% @admin_ms_menu.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id_menu %><br />
+    <%= f.text_field :id_menu, class: :required %>
+  </div>
+  <div class="field">
+    <%= f.label :id_menuref %><br />
+    <%= f.text_field :id_menuref %>
+  </div>
+  <div class="field">
+    <%= f.label :status1 %><br />
+    <%= f.number_field :status1 %>
+  </div>
+  <div class="field">
+    <%= f.label :nolist %><br />
+    <%= f.number_field :nolist %>
+  </div>
+  <div class="field">
+    <%= f.label :levelmenu %><br />
+    <%= f.number_field :levelmenu %>
+  </div>
+  <div class="field">
+    <%= f.label :id_modul %><br />
+    <%= f.number_field :id_modul %>
+  </div>
+  <div class="field">
+    <%= f.label :addparam %><br />
+    <%= f.text_field :addparam %>
+  </div>
+  <div class="field">
+    <%= f.label :namamenu %><br />
+    <%= f.text_field :namamenu %>
+  </div>
+  <div class="field">
+    <%= f.label :statusaplikasi %><br />
+    <%= f.number_field :statusaplikasi %>
+  </div>
+  <div class="field">
+    <%= f.label :nourut %><br />
+    <%= f.number_field :nourut %>
+  </div>
+  <div class="field">
+    <%= f.label :is_show_aplikasi %><br />
+    <%= f.number_field :is_show_aplikasi %>
+  </div>
+  <div class="field">
+    <%= f.label :is_show_buku %><br />
+    <%= f.number_field :is_show_buku %>
+  </div>
+  <div class="field">
+    <%= f.label :is_show_laporan %><br />
+    <%= f.number_field :is_show_laporan %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

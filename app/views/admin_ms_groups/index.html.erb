@@ -1,0 +1,36 @@
+<h1>Listing admin_ms_groups</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead">
+    <tr>
+      <th>Id group</th>
+      <th>Id product</th>
+      <th>Namagroup</th>
+      <th>Statusgroup</th>
+      <th>Id group parent</th>
+      <th>Viewadmin</th>
+      <th>Kduser</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @admin_ms_groups.each do |admin_ms_group| %>
+  <tr>
+    <td><%= admin_ms_group.id_group %></td>
+    <td><%= admin_ms_group.id_product %></td>
+    <td><%= admin_ms_group.namagroup %></td>
+    <td><%= admin_ms_group.statusgroup %></td>
+    <td><%= admin_ms_group.id_group_parent %></td>
+    <td><%= admin_ms_group.viewadmin %></td>
+    <td><%= admin_ms_group.kduser %></td>
+    <td><%= link_to 'Show', admin_ms_group %></td>
+    <td><%= link_to 'Edit', edit_admin_ms_group_path(admin_ms_group) %></td>
+    <td><%= link_to 'Destroy', admin_ms_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Admin ms group', new_admin_ms_group_path %>

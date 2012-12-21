@@ -1,0 +1,37 @@
+<%= form_for(@admin_ms_modul_navigasi) do |f| %>
+  <% if @admin_ms_modul_navigasi.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_ms_modul_navigasi.errors.count, "error") %> prohibited this admin_ms_modul_navigasi from being saved:</h2>
+
+      <ul>
+      <% @admin_ms_modul_navigasi.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id_navigasi %><br />
+    <%= f.number_field :id_navigasi %>
+  </div>
+  <div class="field">
+    <%= f.label :id_modul %><br />
+    <%= f.number_field :id_modul %>
+  </div>
+  <div class="field">
+    <%= f.label :is_level1 %><br />
+    <%= f.number_field :is_level1 %>
+  </div>
+  <div class="field">
+    <%= f.label :is_level2 %><br />
+    <%= f.number_field :is_level2 %>
+  </div>
+  <div class="field">
+    <%= f.label :is_level3 %><br />
+    <%= f.number_field :is_level3 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

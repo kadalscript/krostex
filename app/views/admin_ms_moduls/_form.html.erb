@@ -1,0 +1,61 @@
+<%= form_for(@admin_ms_modul) do |f| %>
+  <% if @admin_ms_modul.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_ms_modul.errors.count, "error") %> prohibited this admin_ms_modul from being saved:</h2>
+
+      <ul>
+      <% @admin_ms_modul.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id_modul %><br />
+    <%= f.number_field :id_modul %>
+  </div>
+  <div class="field">
+    <%= f.label :keterangan %><br />
+    <%= f.text_field :keterangan %>
+  </div>
+  <div class="field">
+    <%= f.label :modulname %><br />
+    <%= f.text_field :modulname %>
+  </div>
+  <div class="field">
+    <%= f.label :appname %><br />
+    <%= f.text_field :appname %>
+  </div>
+  <div class="field">
+    <%= f.label :status1 %><br />
+    <%= f.number_field :status1 %>
+  </div>
+  <div class="field">
+    <%= f.label :buttongroup %><br />
+    <%= f.text_field :buttongroup %>
+  </div>
+  <div class="field">
+    <%= f.label :nm_url %><br />
+    <%= f.text_field :nm_url %>
+  </div>
+  <div class="field">
+    <%= f.label :nm_url1 %><br />
+    <%= f.text_field :nm_url1 %>
+  </div>
+  <div class="field">
+    <%= f.label :nm_url2 %><br />
+    <%= f.text_field :nm_url2 %>
+  </div>
+  <div class="field">
+    <%= f.label :kduser %><br />
+    <%= f.text_field :kduser %>
+  </div>
+  <div class="field">
+    <%= f.label :tipemodul %><br />
+    <%= f.number_field :tipemodul %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

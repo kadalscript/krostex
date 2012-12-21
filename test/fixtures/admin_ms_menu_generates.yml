@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ip_address: MyString
+  string: MyString
+  no_urut: MyString
+  string: MyString
+  id_menu: MyString
+  string: MyString
+  simbol: MyString
+  string: MyString
+  keterangan: MyString
+  string: MyString
+  nm_url: MyString
+  string: MyString
+  status: MyString
+  integer: MyString
+  id_menuref: MyString
+  string: MyString
+  tipemenu: MyString
+  integer: MyString
+
+two:
+  ip_address: MyString
+  string: MyString
+  no_urut: MyString
+  string: MyString
+  id_menu: MyString
+  string: MyString
+  simbol: MyString
+  string: MyString
+  keterangan: MyString
+  string: MyString
+  nm_url: MyString
+  string: MyString
+  status: MyString
+  integer: MyString
+  id_menuref: MyString
+  string: MyString
+  tipemenu: MyString
+  integer: MyString

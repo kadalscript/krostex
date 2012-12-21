@@ -1,0 +1,114 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+/*body {
+  background-color: #D5FFFF;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-size  : 12px;
+  line-height: 24px;
+  color      : #000058;
+}
+
+legend {
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 24px;
+  color: #000058;
+}
+
+
+.BoxColorPrimary { border: 1px solid #00FF00; }
+.BoxColorPrimaryRedup { border: 1px solid #80FF80; }
+.BoxTable      { border: 1px solid #F0F0F0;
+ padding: 10px;
+ font-family: Arial, Verdana, Helvetica, sans-serif;
+ font-size  : 12px   ;
+ line-height: 24px   ;
+ color      : #000058;
+}
+
+table.BoxTable td, TABLE.BoxTable th { border: 1px solid #C0FFC0; }
+
+
+.titleJudul {
+  background-color: #585800;
+  font-family     : Arial, Verdana, Helvetica, sans-serif;
+  line-height     : 24px;
+  color           : #FFFFFF;
+}
+
+.titleJudulTable {
+  background-color: #585800;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  line-height: 20px;
+  color: #FFFFFF;
+}
+
+.titleJudulTableSummary {
+  background-color: #005800;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  line-height: 20px;
+  color: #FFFFFF;
+}
+
+.titleJudulTableEven {
+  background-color: #C0FFC0;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  line-height: 20px;
+  color: #000000;;
+}
+
+.titleJudulTableOdd {
+  background-color: #D5FFFF;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  line-height: 20px;
+  color: #000058;
+}
+
+.titleJudulTableClose {
+  background-color: #D0D0D0;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  line-height: 20px;
+  color: #000000;;
+}
+
+.titleJudulTableVoid {
+  background-color: #FF0000;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  line-height: 20px;
+  color: #FFFFFF;
+}
+
+
+.divDialog {
+  background-color: #008080;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+.navigasi {COLOR: #000058; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt;FONT-WEIGHT: bold; TEXT-DECORATION: none}
+a.navigasi:hover {COLOR: #0000FF; FONT-WEIGHT: bold; TEXT-DECORATION: underline}
+
+.navigasi_tree {COLOR: #000058; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt; TEXT-DECORATION: none}
+a.navigasi_tree:hover {COLOR: #0000FF;  TEXT-DECORATION: underline}
+
+.navigasi_close {COLOR: #000000; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt;FONT-WEIGHT: bold; TEXT-DECORATION: none}
+a.navigasi_close:hover {COLOR: #585800; FONT-WEIGHT: bold; TEXT-DECORATION: underline}
+
+
+
+
+*/

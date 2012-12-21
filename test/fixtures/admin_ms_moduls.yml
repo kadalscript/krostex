@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id_modul: 1
+  keterangan: MyString
+  modulname: MyString
+  appname: MyString
+  status1: 1
+  buttongroup: MyString
+  nm_url: MyString
+  nm_url1: MyString
+  nm_url2: MyString
+  kduser: MyString
+  tipemodul: 1
+
+two:
+  id_modul: 1
+  keterangan: MyString
+  modulname: MyString
+  appname: MyString
+  status1: 1
+  buttongroup: MyString
+  nm_url: MyString
+  nm_url1: MyString
+  nm_url2: MyString
+  kduser: MyString
+  tipemodul: 1

@@ -1,0 +1,48 @@
+<h1>Listing admin_ms_menus</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead">
+    <tr>
+      <th>Id menu</th>
+      <th>Id menuref</th>
+      <th>Status1</th>
+      <th>Nolist</th>
+      <th>Levelmenu</th>
+      <th>Id modul</th>
+      <th>Addparam</th>
+      <th>Namamenu</th>
+      <th>Statusaplikasi</th>
+      <th>Nourut</th>
+      <th>Is show aplikasi</th>
+      <th>Is show buku</th>
+      <th>Is show laporan</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @admin_ms_menus.each do |admin_ms_menu| %>
+  <tr>
+    <td><%= admin_ms_menu.id_menu %></td>
+    <td><%= admin_ms_menu.id_menuref %></td>
+    <td><%= admin_ms_menu.status1 %></td>
+    <td><%= admin_ms_menu.nolist %></td>
+    <td><%= admin_ms_menu.levelmenu %></td>
+    <td><%= admin_ms_menu.id_modul %></td>
+    <td><%= admin_ms_menu.addparam %></td>
+    <td><%= admin_ms_menu.namamenu %></td>
+    <td><%= admin_ms_menu.statusaplikasi %></td>
+    <td><%= admin_ms_menu.nourut %></td>
+    <td><%= admin_ms_menu.is_show_aplikasi %></td>
+    <td><%= admin_ms_menu.is_show_buku %></td>
+    <td><%= admin_ms_menu.is_show_laporan %></td>
+    <td><%= link_to 'Show', admin_ms_menu %></td>
+    <td><%= link_to 'Edit', edit_admin_ms_menu_path(admin_ms_menu) %></td>
+    <td><%= link_to 'Destroy', admin_ms_menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Admin ms menu', new_admin_ms_menu_path %>

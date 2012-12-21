@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>KROSTEX'S SYSTEM</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<!--
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">Title</a>
+			<ul class="nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#">Link</a></li>
+				<li><a href="#">Link</a></li>
+				<% if admin_ms_user_signed_in? %>
+			</ul>
+			<ul class="nav" style="float:right">
+				<li><%= link_to('Logout', destroy_admin_ms_user_session_path, :method => :delete) %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+-->
+	<div class="container" style="margin-top:10px">
+		<% if notice %><p class="alert"><%= notice %></p><% end %>
+		<% if alert %><p class="alert"><%= alert %></p><% end %>
+		<%= yield %>
+	</div>
+</body>
+</html>

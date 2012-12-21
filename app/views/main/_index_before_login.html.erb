@@ -1,0 +1,22 @@
+<div style="text-align:center;vertical-align:middel">
+  <a href="#myModal" role="button" class="btn btn-large" data-toggle="modal">Pembelian and Stok</a>
+  <a href="#myModal" role="button" class="btn btn-large" data-toggle="modal">Production</a>
+  <a href="#myModal" role="button" class="btn btn-large" data-toggle="modal">Marketing sales and development</a>
+  <a href="#myModal" role="button" class="btn btn-large" data-toggle="modal">Finance</a>
+  <a href="#myModal" role="button" class="btn btn-large" data-toggle="modal">Human Resource</a>
+  <a href="#myModal" role="button" class="btn btn-large" data-toggle="modal">Setup Configuration</a>
+</div>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-body">
+    <h2>Login</h2>
+    <%= form_for("admin_ms_user", :url => admin_ms_user_session_path) do |f| %>
+    <%= f.label :login_name %><br/>
+    <%= f.text_field :login_name %><br/>
+    <%= f.label :password %><br/>
+    <%= f.password_field :password %><br/><br/>
+    <%= f.submit 'Sign in' %>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <% end %>
+  </div>
+</div>

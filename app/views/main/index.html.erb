@@ -1,0 +1,5 @@
+<% unless admin_ms_user_signed_in? %>
+  <%= render partial: "index_before_login" %>
+<% else %>
+  <%= render partial: "index_after_login" %>
+<% end %>

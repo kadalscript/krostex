@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id menu:</b>
+  <%= @admin_ms_menu_group.id_menu %>
+</p>
+
+<p>
+  <b>Id group:</b>
+  <%= @admin_ms_menu_group.id_group %>
+</p>
+
+<p>
+  <b>Id product:</b>
+  <%= @admin_ms_menu_group.id_product %>
+</p>
+
+<p>
+  <b>Statusmenu:</b>
+  <%= @admin_ms_menu_group.statusmenu %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_ms_menu_group_path(@admin_ms_menu_group) %> |
+<%= link_to 'Back', admin_ms_menu_groups_path %>

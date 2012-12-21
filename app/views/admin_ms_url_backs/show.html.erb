@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Kode:</b>
+  <%= @admin_ms_url_back.kode %>
+</p>
+
+<p>
+  <b>Url back:</b>
+  <%= @admin_ms_url_back.url_back %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_ms_url_back_path(@admin_ms_url_back) %> |
+<%= link_to 'Back', admin_ms_url_backs_path %>

@@ -1,0 +1,2 @@
+module AdminMsUrlBacksHelper
+end

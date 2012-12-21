@@ -1,0 +1,30 @@
+<h1>Listing admin_ms_navigasis</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead">
+    <tr>
+      <th>Id navigasi</th>
+      <th>Nama navigasi</th>
+      <th>Nama button</th>
+      <th>Status1</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @admin_ms_navigasis.each do |admin_ms_navigasi| %>
+  <tr>
+    <td><%= admin_ms_navigasi.id_navigasi %></td>
+    <td><%= admin_ms_navigasi.nama_navigasi %></td>
+    <td><%= admin_ms_navigasi.nama_button %></td>
+    <td><%= admin_ms_navigasi.status1 %></td>
+    <td><%= link_to 'Show', admin_ms_navigasi %></td>
+    <td><%= link_to 'Edit', edit_admin_ms_navigasi_path(admin_ms_navigasi) %></td>
+    <td><%= link_to 'Destroy', admin_ms_navigasi, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Admin ms navigasi', new_admin_ms_navigasi_path %>

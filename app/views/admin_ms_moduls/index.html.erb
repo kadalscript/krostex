@@ -1,0 +1,44 @@
+<h1>Listing admin_ms_moduls</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead">
+    <tr>
+      <th>Id modul</th>
+      <th>Keterangan</th>
+      <th>Modulname</th>
+      <th>Appname</th>
+      <th>Status1</th>
+      <th>Buttongroup</th>
+      <th>Nm url</th>
+      <th>Nm url1</th>
+      <th>Nm url2</th>
+      <th>Kduser</th>
+      <th>Tipemodul</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @admin_ms_moduls.each do |admin_ms_modul| %>
+  <tr>
+    <td><%= admin_ms_modul.id_modul %></td>
+    <td><%= admin_ms_modul.keterangan %></td>
+    <td><%= admin_ms_modul.modulname %></td>
+    <td><%= admin_ms_modul.appname %></td>
+    <td><%= admin_ms_modul.status1 %></td>
+    <td><%= admin_ms_modul.buttongroup %></td>
+    <td><%= admin_ms_modul.nm_url %></td>
+    <td><%= admin_ms_modul.nm_url1 %></td>
+    <td><%= admin_ms_modul.nm_url2 %></td>
+    <td><%= admin_ms_modul.kduser %></td>
+    <td><%= admin_ms_modul.tipemodul %></td>
+    <td><%= link_to 'Show', admin_ms_modul %></td>
+    <td><%= link_to 'Edit', edit_admin_ms_modul_path(admin_ms_modul) %></td>
+    <td><%= link_to 'Destroy', admin_ms_modul, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Admin ms modul', new_admin_ms_modul_path %>

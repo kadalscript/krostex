@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  simbol: MyString
+  nama: MyString
+  status1: 1
+  st_progress: MyString
+  update_by: MyString
+
+two:
+  simbol: MyString
+  nama: MyString
+  status1: 1
+  st_progress: MyString
+  update_by: MyString

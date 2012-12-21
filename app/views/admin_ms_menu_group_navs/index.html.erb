@@ -1,0 +1,28 @@
+<h1>Listing admin_ms_menu_group_navs</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead">
+    <tr>
+      <th>Id menu</th>
+      <th>Id group</th>
+      <th>Id navigasi</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @admin_ms_menu_group_navs.each do |admin_ms_menu_group_nav| %>
+  <tr>
+    <td><%= admin_ms_menu_group_nav.id_menu %></td>
+    <td><%= admin_ms_menu_group_nav.id_group %></td>
+    <td><%= admin_ms_menu_group_nav.id_navigasi %></td>
+    <td><%= link_to 'Show', admin_ms_menu_group_nav %></td>
+    <td><%= link_to 'Edit', edit_admin_ms_menu_group_nav_path(admin_ms_menu_group_nav) %></td>
+    <td><%= link_to 'Destroy', admin_ms_menu_group_nav, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Admin ms menu group nav', new_admin_ms_menu_group_nav_path %>
