@@ -1,60 +1,102 @@
-<p id="notice"><%= notice %></p>
+<%= form_for(@admin_ms_modul) do |f| %>
+<table class="table-bordered" align="center" width="60%">
+  <tr class="titleJudulTable">
+    <th colspan="3">
+      FORM ADMIN MS MODUL
+    </th>
+  </tr>
+  <tr>
+    <th colspan="3">
+      <%= link_to 'Tambah', admin_ms_modul_path  %> |
+      <% if @admin_ms_modul.id %>
+      <%= link_to 'Koreksi', edit_admin_ms_modul_path(@admin_ms_modul) %> |
+      <% end %>
+      <%= link_to 'Hapus', :controller => a_gudangs_path, :action =>"destroy_show", :id => @admin_ms_modul.id %> |
+    </th>
+  </tr> 
+  <tr>
+    <th align="left">&nbsp;Id_modul</th>  
+    <th align="center"> :</th>
+    <th align="left"> 
+      <%= f.text_field :id_modul, :style => "width:300px", :readonly=>"true", class: :required %>
+    </th> 
+  </tr>
+  <tr>
+    <th align="left">&nbsp;Keterangan</th>  
+    <th align="center"> :</th>
+    <th align="left"> 
+      <%= f.text_field :keterangan, :style => "width:300px", :readonly=>"true", class: :required %>
+    </th> 
+  </tr>
+  <tr>
+    <th align="left">&nbsp;Modulname</th>  
+    <th align="center"> :</th>
+    <th align="left"> 
+      <%= f.text_field :modulname, :style => "width:300px", :readonly=>"true", class: :required %>
+    </th> 
+  </tr>
+  <tr>
+    <th align="left">&nbsp;Appname</th>  
+    <th align="center"> :</th>
+    <th align="left"> 
+      <%= f.text_field :appname, :style => "width:300px", :readonly=>"true", class: :required %>
+    </th> 
+  </tr>
+  <tr>
+    <th align="left">&nbsp;Status1</th>  
+    <th align="center"> :</th>
+    <th align="left"> 
+      <%= f.text_field :status1, :style => "width:300px", :readonly=>"true", class: :required %>
+    </th> 
+  </tr>
+  <tr>
+    <th align="left">&nbsp;Buttongroup</th>  
+    <th align="center"> :</th>
+    <th align="left"> 
+      <%= f.text_field :buttongroup, :style => "width:300px", :readonly=>"true", class: :required %>
+    </th> 
+  </tr>
+  <tr>
+    <th align="left">&nbsp;Nama URL</th>  
+    <th align="center"> :</th>
+    <th align="left"> 
+      <%= f.text_field :nm_url, :style => "width:300px", :readonly=>"true", class: :required %>
+    </th> 
+  </tr>
+  <tr>
+    <th align="left">&nbsp;Nama URL 1</th>  
+    <th align="center"> :</th>
+    <th align="left"> 
+      <%= f.text_field :nm_url1, :style => "width:300px", :readonly=>"true", class: :required %>
+    </th> 
+  </tr>
+  <tr>
+    <th align="left">&nbsp;Nama URL 2</th>  
+    <th align="center"> :</th>
+    <th align="left"> 
+      <%= f.text_field :nm_url2, :style => "width:300px", :readonly=>"true", class: :required %>
+    </th> 
+  </tr>
+  <tr>
+    <th align="left">&nbsp;Kode User</th>  
+    <th align="center"> :</th>
+    <th align="left"> 
+      <%= f.text_field :kduser, :style => "width:300px", :readonly=>"true", class: :required %>
+    </th> 
+  </tr>
+  <tr>
+    <th align="left">&nbsp;Tipe Modul</th>  
+    <th align="center"> :</th>
+    <th align="left"> 
+      <%= f.text_field :tipemodul, :style => "width:300px", :readonly=>"true", class: :required %>
+    </th> 
+  </tr>
+  <tr>
+    <th colspan="3" class="titleJudulTable" width="100%">
+      <%= link_to "Tutup", "#", onclick: "is_tutup()", class: :btn %>
+    </th>
+  </tr>
+</table>
+<% end %>
 
-<p>
-  <b>Id modul:</b>
-  <%= @admin_ms_modul.id_modul %>
-</p>
-
-<p>
-  <b>Keterangan:</b>
-  <%= @admin_ms_modul.keterangan %>
-</p>
-
-<p>
-  <b>Modulname:</b>
-  <%= @admin_ms_modul.modulname %>
-</p>
-
-<p>
-  <b>Appname:</b>
-  <%= @admin_ms_modul.appname %>
-</p>
-
-<p>
-  <b>Status1:</b>
-  <%= @admin_ms_modul.status1 %>
-</p>
-
-<p>
-  <b>Buttongroup:</b>
-  <%= @admin_ms_modul.buttongroup %>
-</p>
-
-<p>
-  <b>Nm url:</b>
-  <%= @admin_ms_modul.nm_url %>
-</p>
-
-<p>
-  <b>Nm url1:</b>
-  <%= @admin_ms_modul.nm_url1 %>
-</p>
-
-<p>
-  <b>Nm url2:</b>
-  <%= @admin_ms_modul.nm_url2 %>
-</p>
-
-<p>
-  <b>Kduser:</b>
-  <%= @admin_ms_modul.kduser %>
-</p>
-
-<p>
-  <b>Tipemodul:</b>
-  <%= @admin_ms_modul.tipemodul %>
-</p>
-
-
-<%= link_to 'Edit', edit_admin_ms_modul_path(@admin_ms_modul) %> |
-<%= link_to 'Back', admin_ms_moduls_path %>
+<input type="hidden" id="url_back" name="admin_ms_modul_back" value="<%= admin_ms_moduls_path %>">

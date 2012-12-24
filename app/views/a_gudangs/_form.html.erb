@@ -3,30 +3,9 @@
   <tr class="titleJudulTable">
     <th colspan="3">
       <%= title %>
-    </th>  
-  </tr>
-  <% if @a_gudang.errors.any? %>
-  <tr>
-    <th colspan="3" align="center">    
-      <table class="tableError">
-        <tr class="trTitleError">
-          <th align="left"> 
-           <%= pluralize(@a_gudang.errors.count, "Kesalahan") %> dalam pengisian data Gudang. sebagai berikut &nbsp;:&nbsp;
-         </th>
-       </tr>
-       <%
-       nomorUrutErr       = 0
-       @a_gudang.errors.full_messages.each do |msg| 
-        nomorUrutErr += 1 ;
-        %>
-        <tr> 
-          <th align="left">&nbsp;<%= nomorUrutErr %>.&nbsp;&nbsp;<%= msg %></th>
-        </tr>
-        <% end %>
-      </table>  
     </th>
   </tr>
-  <% end %>
+  <% render template: "/shared/errors", errors: @a_gudang.errors if @a_gudang.errors.any? %>
   <% if not action_name.eql?('new') %>
   <tr>
    <th colspan="3">
@@ -86,12 +65,12 @@
   <th colspan="3" class="titleJudulTable" width="100%">
     <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>
     <%= link_to "Hapus", a_gudang_path(@a_gudang.id), method: :delete, class: :btn, confirm: "Hapus data?" if action_name.eql?('destroy_show') %>
-    <%= link_to "Tutup", "#", onclick: "is_tutup_form_a_gudang()", class: :btn %>
+    <%= link_to "Tutup", "#", onclick: "is_tutup()", class: :btn %>
   </th>
 </tr>
 </table>
 <% end %>
 
-<input type="hidden" id="a_gudang_url_back" name="a_gudang_url_back" value="<%= a_gudangs_path %>">
+<input type="hidden" id="url_back" name="a_gudang_url_back" value="<%= a_gudangs_path %>">
 
 

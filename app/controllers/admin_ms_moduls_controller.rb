@@ -2,7 +2,7 @@ class AdminMsModulsController < ApplicationController
   # GET /admin_ms_moduls
   # GET /admin_ms_moduls.json
   def index
-    @admin_ms_moduls = AdminMsModul.all
+    @admin_ms_moduls = AdminMsModul.page(params[:page]).per(5)
 
     respond_to do |format|
       format.html # index.html.erb

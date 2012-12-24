@@ -13,3 +13,26 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+function is_tutup() {
+  isOk = confirm("Tutup Form !!!") ;
+  if (isOk) {
+    var urlBack = $("#url_back").val();
+    window.location = urlBack ; 
+  } 
+  return false ;   
+}
+
+function openSearchBar() {
+  $('#searchRow').show();
+  $('#searchRow').next().show();
+  $('#searchLink').hide();
+}
+
+function isSimpan() {
+  if (confirm("Simpan data?")) {
+    return true
+  } else {
+    return false
+  }
+}
