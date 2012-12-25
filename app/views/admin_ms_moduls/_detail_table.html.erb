@@ -1,0 +1,65 @@
+<table id="table_admin_ms_modul_navigasis" class="table table-bordered table-hover" align="center">
+  <thead class="thead">
+    <tr class="titleJudul" style="font-size : 12pt">
+      <th align="center" colspan="11">
+       ADMIN MASTER MODUL NAVIGASI
+      </th> 
+    </tr>
+    <tr class="blankSpot">
+      <%= form_for(@admin_ms_modul_navigasi) do |f| %>
+        <input type="hidden" value="put" name="_method">
+        <th><%= f.number_field :id_navigasi, class: "required", :style => "width:90%" %></th>
+        <th><%= f.number_field :id_modul, class: "required", :style => "width:90%" %></th>
+        <th><%= f.number_field :is_level1, class: "required", :style => "width:90%" %></th>
+        <th><%= f.number_field :is_level2, class: "required", :style => "width:90%" %></th>
+        <th><%= f.number_field :is_level3, class: "required", :style => "width:90%" %></th>
+        <th><%= f.submit "Simpan", class: :btn, onclick: "isSimpan()" %></th>
+      <% end %>
+    </tr>
+    <tr class="titleJudulTable">
+      <th align="center">Id navigasi</th>
+      <th align="center">Id modul</th>
+      <th align="center">Is level1</th>
+      <th align="center">Is level2</th>
+      <th align="center">Is level3</th>
+      <th align="center">Nav</th>
+    </tr>
+  </thead>
+  <% @admin_ms_modul_navigasis.each do |admin_ms_modul_navigasi| %>
+  <tr>
+    <td><%= admin_ms_modul_navigasi.id_navigasi %></td>
+    <td><%= admin_ms_modul_navigasi.id_modul %></td>
+    <td><%= admin_ms_modul_navigasi.is_level1 %></td>
+    <td><%= admin_ms_modul_navigasi.is_level2 %></td>
+    <td><%= admin_ms_modul_navigasi.is_level3 %></td>
+    <td>
+      <%= link_to "D", admin_ms_modul_navigasi_path(admin_ms_modul_navigasi), method: :delete, confirm: "Hapus Item?", class: :btn %>
+      <%= link_to "K", "#", data: admin_ms_modul_navigasi.to_json, class: "koreksiBtn btn" %>
+    </td>
+  </tr>
+  <% end %>
+  <thead class="thead">
+    <tr class="titleJudulTable">
+      <th colspan="11" align="right">
+        <%= paginate @admin_ms_modul_navigasis %> 
+      </th>  
+    </tr>  
+  </thread>
+</table>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.koreksiBtn').click(function(){
+      var form = $('#new_admin_ms_modul_navigasi'),
+      data = jQuery.parseJSON($(this).attr('data'));
+
+      $('#admin_ms_modul_navigasi_id_navigasi').val(data.id_navigasi);
+      $('#admin_ms_modul_navigasi_is_level1').val(data.is_level1);
+      $('#admin_ms_modul_navigasi_is_level2').val(data.is_level2);
+      $('#admin_ms_modul_navigasi_is_level3').val(data.is_level3);
+
+      form.attr('action', form.attr('action') + '/' + data.id );
+      form.data('method', 'pur')
+    });
+  });
+</script>

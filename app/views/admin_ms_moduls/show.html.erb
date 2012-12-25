@@ -7,11 +7,11 @@
   </tr>
   <tr>
     <th colspan="3">
-      <%= link_to 'Tambah', admin_ms_modul_path  %> |
+      <%= link_to 'Tambah', new_admin_ms_modul_path %> |
       <% if @admin_ms_modul.id %>
       <%= link_to 'Koreksi', edit_admin_ms_modul_path(@admin_ms_modul) %> |
       <% end %>
-      <%= link_to 'Hapus', :controller => a_gudangs_path, :action =>"destroy_show", :id => @admin_ms_modul.id %> |
+      <%= link_to 'Hapus', destroy_show_admin_ms_modul_path(@admin_ms_modul.id) %> |
     </th>
   </tr> 
   <tr>
@@ -100,3 +100,5 @@
 <% end %>
 
 <input type="hidden" id="url_back" name="admin_ms_modul_back" value="<%= admin_ms_moduls_path %>">
+
+<%= render partial: "admin_ms_moduls/detail_table" %>

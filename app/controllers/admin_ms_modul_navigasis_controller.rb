@@ -41,10 +41,11 @@ class AdminMsModulNavigasisController < ApplicationController
   # POST /admin_ms_modul_navigasis.json
   def create
     @admin_ms_modul_navigasi = AdminMsModulNavigasi.new(params[:admin_ms_modul_navigasi])
+    @admin_ms_modul = AdminMsModul.where(id_modul: @admin_ms_modul_navigasi.id_modul).first
 
     respond_to do |format|
       if @admin_ms_modul_navigasi.save
-        format.html { redirect_to @admin_ms_modul_navigasi, notice: 'Admin ms modul navigasi was successfully created.' }
+        format.html { redirect_to admin_ms_modul_path(@admin_ms_modul.id), notice: 'Admin ms modul navigasi was successfully created.' }
         format.json { render json: @admin_ms_modul_navigasi, status: :created, location: @admin_ms_modul_navigasi }
       else
         format.html { render action: "new" }
@@ -57,10 +58,11 @@ class AdminMsModulNavigasisController < ApplicationController
   # PUT /admin_ms_modul_navigasis/1.json
   def update
     @admin_ms_modul_navigasi = AdminMsModulNavigasi.find(params[:id])
+    @admin_ms_modul = AdminMsModul.where(id_modul: @admin_ms_modul_navigasi.id_modul).first
 
     respond_to do |format|
       if @admin_ms_modul_navigasi.update_attributes(params[:admin_ms_modul_navigasi])
-        format.html { redirect_to @admin_ms_modul_navigasi, notice: 'Admin ms modul navigasi was successfully updated.' }
+        format.html { redirect_to admin_ms_modul_path(@admin_ms_modul.id), notice: 'Admin ms modul navigasi was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,10 +75,11 @@ class AdminMsModulNavigasisController < ApplicationController
   # DELETE /admin_ms_modul_navigasis/1.json
   def destroy
     @admin_ms_modul_navigasi = AdminMsModulNavigasi.find(params[:id])
+    @admin_ms_modul = AdminMsModul.where(id_modul: @admin_ms_modul_navigasi.id_modul).first
     @admin_ms_modul_navigasi.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_ms_modul_navigasis_url }
+      format.html { redirect_to admin_ms_modul_path(@admin_ms_modul.id) }
       format.json { head :no_content }
     end
   end
