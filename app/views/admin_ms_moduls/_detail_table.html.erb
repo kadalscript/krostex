@@ -7,13 +7,13 @@
     </tr>
     <tr class="blankSpot">
       <%= form_for(@admin_ms_modul_navigasi) do |f| %>
-        <input type="hidden" value="put" name="_method">
+        <input id="form_detail_method" type="hidden" value="post" name="_method">
         <th><%= f.number_field :id_navigasi, class: "required", :style => "width:90%" %></th>
         <th><%= f.number_field :id_modul, class: "required", :style => "width:90%" %></th>
         <th><%= f.number_field :is_level1, class: "required", :style => "width:90%" %></th>
         <th><%= f.number_field :is_level2, class: "required", :style => "width:90%" %></th>
         <th><%= f.number_field :is_level3, class: "required", :style => "width:90%" %></th>
-        <th><%= f.submit "Simpan", class: :btn, onclick: "isSimpan()" %></th>
+        <th><%= f.submit "Tambah Detail", class: :btn, onclick: "isSimpan()", id: "form_detail_button" %></th>
       <% end %>
     </tr>
     <tr class="titleJudulTable">
@@ -59,7 +59,8 @@
       $('#admin_ms_modul_navigasi_is_level3').val(data.is_level3);
 
       form.attr('action', form.attr('action') + '/' + data.id );
-      form.data('method', 'pur')
+      $('#form_detail_method').val('put');
+      $('#form_detail_button').val('Update Detail');
     });
   });
 </script>
