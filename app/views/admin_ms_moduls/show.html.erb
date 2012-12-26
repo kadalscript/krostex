@@ -1,4 +1,4 @@
-<%= form_for(@admin_ms_modul) do |f| %>
+
 <table class="table-bordered" align="center" width="60%">
   <tr class="titleJudulTable">
     <th colspan="3">
@@ -18,77 +18,77 @@
     <th align="left">&nbsp;Id_modul</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :id_modul, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.id_modul, :style => "width:300px", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Keterangan</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :keterangan, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.keterangan, :style => "width:300px", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Modulname</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :modulname, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.modulname, :style => "width:300px", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Appname</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :appname, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.appname, :style => "width:300px", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Status1</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :status1, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.status1, :style => "width:300px", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Buttongroup</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :buttongroup, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.buttongroup, :style => "width:300px", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Nama URL</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :nm_url, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.nm_url, :style => "width:300px", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Nama URL 1</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :nm_url1, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.nm_url1, :style => "width:300px", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Nama URL 2</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :nm_url2, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.nm_url2, :style => "width:300px", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Kode User</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :kduser, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.kduser, :style => "width:300px", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Tipe Modul</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :tipemodul, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.tipemodul, :style => "width:300px", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
@@ -97,7 +97,7 @@
     </th>
   </tr>
 </table>
-<% end %>
+
 
 <input type="hidden" id="url_back" name="admin_ms_modul_back" value="<%= admin_ms_moduls_path %>">
 

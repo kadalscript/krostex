@@ -1,3 +1,4 @@
+<%= form_for(@admin_ms_modul_navigasi) do |f| %>
 <table id="table_admin_ms_modul_navigasis" class="table table-bordered table-hover" align="center">
   <thead class="thead">
     <tr class="titleJudul" style="font-size : 12pt">
@@ -6,15 +7,15 @@
       </th> 
     </tr>
     <tr class="blankSpot">
-      <%= form_for(@admin_ms_modul_navigasi) do |f| %>
+      
         <input id="form_detail_method" type="hidden" value="post" name="_method">
         <th><%= f.number_field :id_navigasi, class: "required", :style => "width:90%" %></th>
         <th><%= f.number_field :id_modul, class: "required", :style => "width:90%" %></th>
         <th><%= f.number_field :is_level1, class: "required", :style => "width:90%" %></th>
         <th><%= f.number_field :is_level2, class: "required", :style => "width:90%" %></th>
         <th><%= f.number_field :is_level3, class: "required", :style => "width:90%" %></th>
-        <th><%= f.submit "Tambah Detail", class: :btn, onclick: "isSimpan()", id: "form_detail_button" %></th>
-      <% end %>
+        <th><%= f.submit "Tambah Detail", class: :btn, onclick: "return isSimpan()", id: "form_detail_button" %></th>
+      
     </tr>
     <tr class="titleJudulTable">
       <th align="center">Id navigasi</th>
@@ -46,6 +47,7 @@
     </tr>  
   </thread>
 </table>
+<% end %>
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -61,6 +63,7 @@
       form.attr('action', form.attr('action') + '/' + data.id );
       $('#form_detail_method').val('put');
       $('#form_detail_button').val('Update Detail');
+      $('#form_detail_button').attr('onclick', 'isUpdate()')
     });
   });
 </script>

@@ -36,3 +36,11 @@ function isSimpan() {
     return false
   }
 }
+
+function isUpdate() {
+  if (confirm("Update data?")) {
+    return true
+  } else {
+    return false
+  }
+}
