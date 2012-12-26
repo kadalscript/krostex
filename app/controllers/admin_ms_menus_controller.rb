@@ -80,4 +80,23 @@ class AdminMsMenusController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def inisialisasiMenuAwal(prm_ip) 
+    @id_menu       = "0000"
+    @@prm_id_group = "00" 
+    
+    sqlTxtVar = "SELECT 
+    a.id_menu       , a.id_group  ,  b.namamenu  , 
+    b.id_menu_parent, b.nourut    ,  c.keterangan, 
+    c.nm_url 
+    FROM  admin_ms_menu_groups a 
+    INNER JOIN admin_ms_menus  b on a.id_menu =b.id_menu
+    INNER JOIN admin_ms_moduls c on b.id_modul=c.id_modul 
+    WHERE      
+    a.id_group  ='#{@@prm_id_group}' 
+    AND  b.id_menu_parent='#{@id_menu}' 
+    ORDER BY  b.nourut "
+
+    ActiveRecord::Base.connection.execute(sqlTxtVar) ;
+  end
 end

@@ -16,16 +16,12 @@
     <%= f.text_field :id_menu, class: :required %>
   </div>
   <div class="field">
-    <%= f.label :id_menuref %><br />
-    <%= f.text_field :id_menuref %>
+    <%= f.label :id_menu_parent %><br />
+    <%= f.text_field :id_menu_parent %>
   </div>
   <div class="field">
     <%= f.label :status1 %><br />
     <%= f.number_field :status1 %>
-  </div>
-  <div class="field">
-    <%= f.label :nolist %><br />
-    <%= f.number_field :nolist %>
   </div>
   <div class="field">
     <%= f.label :levelmenu %><br />
@@ -50,18 +46,6 @@
   <div class="field">
     <%= f.label :nourut %><br />
     <%= f.number_field :nourut %>
-  </div>
-  <div class="field">
-    <%= f.label :is_show_aplikasi %><br />
-    <%= f.number_field :is_show_aplikasi %>
-  </div>
-  <div class="field">
-    <%= f.label :is_show_buku %><br />
-    <%= f.number_field :is_show_buku %>
-  </div>
-  <div class="field">
-    <%= f.label :is_show_laporan %><br />
-    <%= f.number_field :is_show_laporan %>
   </div>
   <div class="actions">
     <%= f.submit %>

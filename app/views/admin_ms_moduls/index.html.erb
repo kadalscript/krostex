@@ -13,30 +13,16 @@
     <tr class="titleJudulTable">
       <th align="center">Id modul</th>
       <th align="center">Keterangan</th>
-      <th align="center">Modulname</th>
-      <th align="center">Appname</th>
       <th align="center">Status1</th>
-      <th align="center">Buttongroup</th>
       <th align="center">Nm url</th>
-      <th align="center">Nm url1</th>
-      <th align="center">Nm url2</th>
-      <th align="center">Kduser</th>
-      <th align="center">Tipemodul</th>
     </tr>
   </thead>
   <% @admin_ms_moduls.each do |admin_ms_modul| %>
   <tr onclick="redirectTo('<%= admin_ms_modul_path(admin_ms_modul.id, page: params[:page]) %>')">
     <td><%= admin_ms_modul.id_modul %></td>
     <td><%= admin_ms_modul.keterangan %></td>
-    <td><%= admin_ms_modul.modulname %></td>
-    <td><%= admin_ms_modul.appname %></td>
     <td><%= admin_ms_modul.status1 %></td>
-    <td><%= admin_ms_modul.buttongroup %></td>
     <td><%= admin_ms_modul.nm_url %></td>
-    <td><%= admin_ms_modul.nm_url1 %></td>
-    <td><%= admin_ms_modul.nm_url2 %></td>
-    <td><%= admin_ms_modul.kduser %></td>
-    <td><%= admin_ms_modul.tipemodul %></td>
   </tr>
   <% end %>
   <thead class="thead">
