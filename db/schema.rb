@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121227112117) do
+ActiveRecord::Schema.define(:version => 20121227161814) do
 
   create_table "a_badan_usahas", :force => true do |t|
     t.string   "kode",       :limit => 5
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20121227112117) do
     t.datetime "updated_at",               :null => false
   end
 
-  create_table "a_kota", :force => true do |t|
+  create_table "a_kotas", :force => true do |t|
     t.string   "kode",        :limit => 5
     t.string   "nama",        :limit => 30
     t.string   "simbol",      :limit => 5

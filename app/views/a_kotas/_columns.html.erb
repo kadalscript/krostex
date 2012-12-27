@@ -1,0 +1,9 @@
+<% AKota.column_names.each do |column_name| %>
+  <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
+    <tr>
+      <th align="left">&nbsp;<%= column_name %></th>
+      <th align="center">:</th>
+      <th align="left"><%= f.text_field column_name, attribute %></th>
+    </tr>
+  <% end %>
+<% end %>

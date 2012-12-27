@@ -1,7 +1,7 @@
 Hermanstartup::Application.routes.draw do
 
   ["a_gudangs", "a_company_profiles", "a_satuans", "a_badan_usahas", "a_kemasans",
-   "a_negaras", "a_provinsis"].each do |item|
+   "a_negaras", "a_provinsis", "a_kotas"].each do |item|
     get "#{item}/destroy_show"
     get "#{item}/search"
   end
@@ -9,7 +9,7 @@ Hermanstartup::Application.routes.draw do
   resources :a_gudangs
   resources :a_company_profiles
   resources :a_satuans
-  resources :a_kota
+  resources :a_kotas
   resources :a_provinsis
   resources :a_negaras
   resources :a_badan_usahas
