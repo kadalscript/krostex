@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kode: MyString
+  nama: MyString
+  no_urut: 1
+  updated_by: MyString
+
+two:
+  kode: MyString
+  nama: MyString
+  no_urut: 1
+  updated_by: MyString

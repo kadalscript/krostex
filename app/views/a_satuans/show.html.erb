@@ -1,0 +1,13 @@
+<%= form_for(@a_satuan) do |f| %>
+  <table class="table-bordered" align="center" width="60%">
+  <tr class="titleJudulTable"><th colspan="3">FORM DATA SATUAN</th></tr>
+  <%= render partial: "navigator" %>
+  <%= render partial: "columns", locals: { f: f, attribute: @attribute } %>
+  <tr>
+    <th colspan="3" class="titleJudulTable" width="100%">
+      <input type="button" id="a_company_profile_btn_back" name="a_company_profile_btn_back" value="Tutup" onclick="closingForm()" class="btn" />
+    </th>
+  </tr>
+  </table>
+<% end %>
+<%= hidden_value(a_satuans_path) %>

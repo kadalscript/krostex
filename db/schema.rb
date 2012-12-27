@@ -11,7 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121214151404) do
+ActiveRecord::Schema.define(:version => 20121227112117) do
+
+  create_table "a_badan_usahas", :force => true do |t|
+    t.string   "kode",       :limit => 5
+    t.string   "nama",       :limit => 15
+    t.integer  "no_urut"
+    t.string   "updated_by", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "a_company_profiles", :force => true do |t|
+    t.string   "kode",           :limit => 1
+    t.string   "nama_company",   :limit => 50
+    t.string   "contact_person", :limit => 50
+    t.string   "alamat_title",   :limit => 90
+    t.string   "alamat_01",      :limit => 90
+    t.string   "alamat_02",      :limit => 90
+    t.string   "alamat_03",      :limit => 90
+    t.string   "telepon",        :limit => 30
+    t.string   "fax",            :limit => 30
+    t.string   "email",          :limit => 30
+    t.string   "homepage",       :limit => 30
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
 
   create_table "a_gudangs", :force => true do |t|
     t.string   "simbol"
@@ -23,16 +48,62 @@ ActiveRecord::Schema.define(:version => 20121214151404) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "a_kemasans", :force => true do |t|
+    t.string   "kode",       :limit => 5
+    t.string   "nama",       :limit => 15
+    t.decimal  "isi_volume"
+    t.string   "id_satuan"
+    t.string   "updated_by", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "a_kota", :force => true do |t|
+    t.string   "kode",        :limit => 5
+    t.string   "nama",        :limit => 30
+    t.string   "simbol",      :limit => 5
+    t.string   "id_negara",   :limit => 5
+    t.string   "id_provinsi", :limit => 5
+    t.string   "updated_by",  :limit => 30
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "a_negaras", :force => true do |t|
+    t.string   "kode",       :limit => 5
+    t.string   "nama",       :limit => 30
+    t.string   "simbol",     :limit => 5
+    t.string   "updated_by", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "a_provinsis", :force => true do |t|
+    t.string   "kode",       :limit => 5
+    t.string   "nama",       :limit => 15
+    t.string   "simbol"
+    t.string   "id_negara"
+    t.string   "updated_by", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "a_satuans", :force => true do |t|
+    t.string   "simbol",     :limit => 5
+    t.string   "nama",       :limit => 15
+    t.integer  "no_urut"
+    t.string   "updated_by", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
   create_table "admin_ms_groups", :force => true do |t|
-    t.string   "id_group"
-    t.string   "id_product"
-    t.string   "namagroup"
+    t.string   "id_group",        :limit => 5
+    t.string   "namagroup",       :limit => 20
     t.integer  "statusgroup"
-    t.string   "id_group_parent"
-    t.integer  "viewadmin"
-    t.string   "kduser"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "id_group_parent", :limit => 5
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "admin_ms_menu_generates", :force => true do |t|
@@ -69,47 +140,32 @@ ActiveRecord::Schema.define(:version => 20121214151404) do
   end
 
   create_table "admin_ms_menus", :force => true do |t|
-    t.string   "id_menu"
-    t.string   "id_menuref"
+    t.string   "id_menu",        :limit => 4
+    t.string   "id_menu_parent", :limit => 4
     t.integer  "status1"
-    t.integer  "nolist"
     t.integer  "levelmenu"
-    t.integer  "id_modul"
-    t.string   "addparam"
-    t.string   "namamenu"
-    t.integer  "statusaplikasi"
+    t.integer  "id_modul",       :limit => 2
+    t.string   "addparam",       :limit => 99
+    t.string   "namamenu",       :limit => 99
     t.integer  "nourut"
-    t.integer  "is_show_aplikasi"
-    t.integer  "is_show_buku"
-    t.integer  "is_show_laporan"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "admin_ms_modul_navigasis", :force => true do |t|
     t.integer  "id_navigasi"
     t.integer  "id_modul"
-    t.integer  "is_level1"
-    t.integer  "is_level2"
-    t.integer  "is_level3"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
   create_table "admin_ms_moduls", :force => true do |t|
     t.integer  "id_modul"
-    t.string   "keterangan"
-    t.string   "modulname"
-    t.string   "appname"
-    t.integer  "status1"
-    t.string   "buttongroup"
-    t.string   "nm_url"
-    t.string   "nm_url1"
-    t.string   "nm_url2"
-    t.string   "kduser"
-    t.integer  "tipemodul"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "keterangan", :limit => 50
+    t.integer  "status1",    :limit => 2
+    t.string   "nm_url",     :limit => 99
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "admin_ms_navigasis", :force => true do |t|

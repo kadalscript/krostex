@@ -1,7 +1,19 @@
 Hermanstartup::Application.routes.draw do
-  get "a_gudangs/destroy_show"
-  get "a_gudangs/search"
+
+  ["a_gudangs", "a_company_profiles", "a_satuans", "a_badan_usahas", "a_kemasans",
+   "a_negaras", "a_provinsis"].each do |item|
+    get "#{item}/destroy_show"
+    get "#{item}/search"
+  end
+
   resources :a_gudangs
+  resources :a_company_profiles
+  resources :a_satuans
+  resources :a_kota
+  resources :a_provinsis
+  resources :a_negaras
+  resources :a_badan_usahas
+  resources :a_kemasans
 
   resources :admin_ms_url_backs
   resources :admin_ms_navigasis

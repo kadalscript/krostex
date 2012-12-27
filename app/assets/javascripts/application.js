@@ -44,3 +44,12 @@ function isUpdate() {
     return false
   }
 }
+
+function closingForm() {
+  isOk = confirm("Tutup form") ;
+  if (isOk) {
+    var urlBack = $("#url_back").val();
+    window.location = urlBack ;
+  }
+  return false ;
+}
