@@ -56,8 +56,6 @@ class AdminMsMenusController < ApplicationController
     AND  b.id_menu_parent='#{@id_menu}' 
     ORDER BY  b.nourut "
 
-    debugger
-
     ActiveRecord::Base.connection.execute(sqlTxtVar)
   end
 
