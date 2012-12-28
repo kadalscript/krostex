@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121227161814) do
+ActiveRecord::Schema.define(:version => 20121228085811) do
 
   create_table "a_badan_usahas", :force => true do |t|
     t.string   "kode",       :limit => 5
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(:version => 20121227161814) do
     t.string   "updated_by", :limit => 30
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+  end
+
+  create_table "a_cities", :force => true do |t|
+    t.string   "kode",        :limit => 5
+    t.string   "nama",        :limit => 30
+    t.string   "simbol",      :limit => 5
+    t.string   "id_negara",   :limit => 5
+    t.string   "id_provinsi", :limit => 5
+    t.string   "updated_by",  :limit => 30
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "a_company_profiles", :force => true do |t|
@@ -36,6 +47,25 @@ ActiveRecord::Schema.define(:version => 20121227161814) do
     t.string   "homepage",       :limit => 30
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "a_departments", :force => true do |t|
+    t.string   "kode",       :limit => 5
+    t.string   "nama",       :limit => 30
+    t.string   "simbol",     :limit => 5
+    t.string   "updated_by", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "a_golongans", :force => true do |t|
+    t.string   "kode",          :limit => 5
+    t.string   "nama",          :limit => 30
+    t.string   "simbol",        :limit => 5
+    t.string   "id_department", :limit => 5
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "a_gudangs", :force => true do |t|
@@ -69,6 +99,43 @@ ActiveRecord::Schema.define(:version => 20121227161814) do
     t.datetime "updated_at",                :null => false
   end
 
+  create_table "a_level_4s", :force => true do |t|
+    t.string   "kode",          :limit => 5
+    t.string   "nama",          :limit => 30
+    t.string   "simbol",        :limit => 5
+    t.string   "id_department", :limit => 5
+    t.string   "id_golongan",   :limit => 5
+    t.string   "id_type",       :limit => 5
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "a_level_fives", :force => true do |t|
+    t.string   "kode",          :limit => 5
+    t.string   "nama",          :limit => 30
+    t.string   "simbol",        :limit => 5
+    t.string   "id_department", :limit => 5
+    t.string   "id_golongan",   :limit => 5
+    t.string   "id_type",       :limit => 5
+    t.string   "id_level_four", :limit => 5
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "a_level_fours", :force => true do |t|
+    t.string   "kode",          :limit => 5
+    t.string   "nama",          :limit => 30
+    t.string   "simbol",        :limit => 5
+    t.string   "id_department", :limit => 5
+    t.string   "id_golongan",   :limit => 5
+    t.string   "id_type",       :limit => 5
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
   create_table "a_negaras", :force => true do |t|
     t.string   "kode",       :limit => 5
     t.string   "nama",       :limit => 30
@@ -95,6 +162,29 @@ ActiveRecord::Schema.define(:version => 20121227161814) do
     t.string   "updated_by", :limit => 30
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+  end
+
+  create_table "a_template_cats", :force => true do |t|
+    t.string   "kategori",    :limit => 20
+    t.string   "kode"
+    t.string   "nama",        :limit => 30
+    t.string   "simbol",      :limit => 20
+    t.integer  "status1"
+    t.string   "st_progress", :limit => 20
+    t.string   "updated_by",  :limit => 30
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "a_types", :force => true do |t|
+    t.string   "kode",          :limit => 5
+    t.string   "nama",          :limit => 30
+    t.string   "simbol",        :limit => 5
+    t.string   "id_department", :limit => 5
+    t.string   "id_golongan",   :limit => 5
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "admin_ms_groups", :force => true do |t|

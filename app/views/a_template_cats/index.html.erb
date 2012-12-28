@@ -1,0 +1,74 @@
+<table class="table table-bordered table-hover" width="60%" align="center">
+  <thead class="thead">
+    <tr class="titleJudul" style="font-size : 12pt">
+      <th align="center" colspan="11">DAFTAR TEMPLATE CAT</th>
+    </tr>
+    <tr class="blankSpot">
+      <th colspan="11" align="left">&nbsp;
+        <%= link_to 'Tambah Data', new_a_template_cat_path, :class => "navigasi btn" %>
+        <a id="searchLink" class="navigasi btn" href="javascript:void(0)" style="float:right">Cari Data</a>
+      </th>
+    </tr>
+    <tr class="titleJudulTable">
+      <% ATemplateCat.column_names.each do |column_name| %>
+        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
+          <th><%= column_name %></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+  <% @a_template_cats.each do |a_template_cat| %>
+    <tr onclick="redirectTo('<%= a_template_cat_path(a_template_cat) %>')">
+      <td><%= a_template_cat.kategori %></td>
+      <td><%= a_template_cat.kode %></td>
+      <td><%= a_template_cat.nama %></td>
+      <td><%= a_template_cat.simbol %></td>
+      <td><%= a_template_cat.status1 %></td>
+      <td><%= a_template_cat.st_progress %></td>
+      <td><%= a_template_cat.updated_by %></td>
+    </tr>
+  <% end %>
+  <thead class="thead">
+    <tr class="titleJudulTable">
+      <th colspan="11" align="right">
+        <%= paginate @a_template_cats %>
+      </th>
+    </tr>
+  </thead>
+</table>
+
+<!-- Modal -->
+<div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <%= form_tag a_template_cats_search_path, method: :get, class: 'form-horizontal' do %>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Search template cat</h3>
+    </div>
+    <div class="modal-body">
+      <% ATemplateCat.column_names.each do |column_name| %>
+        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
+          <div class="control-group">
+            <%= label_tag column_name, column_name.gsub('_', ' ').titleize, class: 'control-label' %>
+            <div class="controls">
+              <%= text_field_tag column_name %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary">Search</button>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Back", a_template_cats_path, class: 'btn btn-success' if action_name == 'search' %>
+
+<script>
+$(function() {
+  $('#searchLink').click(function() {
+    $('#searchModal').modal();
+  });
+});
+</script>

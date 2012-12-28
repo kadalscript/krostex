@@ -1,0 +1,2 @@
+module ATemplateCatsHelper
+end

@@ -2,6 +2,6 @@
   <th colspan="3">
     <%= link_to 'Tambah' , new_a_satuan_path  %>
     <%= link_to 'Koreksi', edit_a_satuan_path(@a_satuan) if @a_satuan.id %>
-    <%= link_to 'Hapus'  , controller: a_satuans_path, action: "destroy_show", id: @a_satuan if action_name != 'destroy_show' %>
+    <%= link_to 'Hapus'  , a_satuans_destroy_show_path(@a_satuan) if action_name != 'destroy_show' %>
   </th>
 </tr>

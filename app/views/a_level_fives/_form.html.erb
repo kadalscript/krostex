@@ -1,0 +1,16 @@
+<%= form_for(@a_level_fife) do |f| %>
+  <table class="table-bordered" align="center" width="60%">
+    <tr class="titleJudulTable"><th colspan="3"><%= title %></th></tr>
+    <%= render template: "/shared/errors", errors: @a_level_fife.errors if @a_level_fife.errors.any? %>
+    <%= render partial: "navigator" unless action_name == 'new' %>
+    <%= render partial: "columns", locals: { f: f, attribute: @attribute } %>
+    <tr>
+      <th colspan="3" class="titleJudulTable" width="100%">
+        <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>
+        <%= link_to "Hapus", a_level_fife_path(@a_level_fife), method: :delete, class: :btn, confirm: "Hapus data?" if action_name.eql?('destroy_show') %>
+        <%= link_to "Tutup", "javascript:void(0)", onclick: "closingForm()", class: :btn %>
+      </th>
+    </tr>
+  </table>
+<% end %>
+<%= hidden_value(a_level_fives_path) %>

@@ -1,11 +1,4 @@
-Hermanstartup::Application.routes.draw do
-
-  ["a_gudangs", "a_company_profiles", "a_satuans", "a_badan_usahas", "a_kemasans",
-   "a_negaras", "a_provinsis", "a_kotas"].each do |item|
-    get "#{item}/destroy_show"
-    get "#{item}/search"
-  end
-
+Hermanstartup::Application.routes.draw do    
   resources :a_gudangs
   resources :a_company_profiles
   resources :a_satuans
@@ -14,6 +7,20 @@ Hermanstartup::Application.routes.draw do
   resources :a_negaras
   resources :a_badan_usahas
   resources :a_kemasans
+  resources :a_types
+  resources :a_golongans
+  resources :a_departments
+  resources :a_template_cats
+  resources :a_cities
+  resources :a_level_fives
+  resources :a_level_fours
+
+  ["a_template_cats", "a_departments", "a_golongans", "a_types", "a_level_fours",
+   "a_level_fives", "a_cities", "a_gudangs", "a_company_profiles", "a_satuans",
+   "a_badan_usahas", "a_kemasans", "a_negaras", "a_provinsis"].each do |item|
+    match "#{item}/:id/destroy_show" => "#{item}#destroy_show", as: "#{item}_destroy_show"
+    get "#{item}/search"
+  end
 
   resources :admin_ms_url_backs
   resources :admin_ms_navigasis
