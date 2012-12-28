@@ -53,3 +53,15 @@ function closingForm() {
   }
   return false ;
 }
+
+function closingFormCloseWindow() {
+  isOk = confirm("Tutup form") ;
+  if (isOk) {
+    window.close();
+  }
+  return false ;
+}
+
+function callUrlJS(myUrl) {
+  window.open(myUrl) ;
+}

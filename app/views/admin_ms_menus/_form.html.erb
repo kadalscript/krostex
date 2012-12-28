@@ -1,53 +1,90 @@
 <%= form_for(@admin_ms_menu) do |f| %>
-  <% if @admin_ms_menu.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@admin_ms_menu.errors.count, "error") %> prohibited this admin_ms_menu from being saved:</h2>
-
-      <ul>
-      <% @admin_ms_menu.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :id_menu %><br />
-    <%= f.text_field :id_menu, class: :required %>
-  </div>
-  <div class="field">
-    <%= f.label :id_menu_parent %><br />
-    <%= f.text_field :id_menu_parent %>
-  </div>
-  <div class="field">
-    <%= f.label :status1 %><br />
-    <%= f.number_field :status1 %>
-  </div>
-  <div class="field">
-    <%= f.label :levelmenu %><br />
-    <%= f.number_field :levelmenu %>
-  </div>
-  <div class="field">
-    <%= f.label :id_modul %><br />
-    <%= f.number_field :id_modul %>
-  </div>
-  <div class="field">
-    <%= f.label :addparam %><br />
-    <%= f.text_field :addparam %>
-  </div>
-  <div class="field">
-    <%= f.label :namamenu %><br />
-    <%= f.text_field :namamenu %>
-  </div>
-  <div class="field">
-    <%= f.label :statusaplikasi %><br />
-    <%= f.number_field :statusaplikasi %>
-  </div>
-  <div class="field">
-    <%= f.label :nourut %><br />
-    <%= f.number_field :nourut %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <table class="table-bordered" align="center" width="60%">
+    <tr class="titleJudulTable"><th colspan="3"><%= title %></th>
+    </tr>
+    <%= render template: "/shared/errors", errors: @admin_ms_menu.errors if @admin_ms_menu.errors.any? %>
+    <tr>
+      <th align="left">&nbsp;Menu ID</th>
+      <th align="center">:</th>
+      <th align="left">
+        <% if action_name.eql? "new" %>
+          <%= f.text_field :id_menu, class: "required", value: AdminMsMenu.last.id_menu.succ, maxlength: 4, readonly: true %>
+        <% else %>
+          <%= f.text_field :id_menu, class: "required", maxlength: 4, readonly: true %>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Menu ID Root</th>
+      <th align="center">:</th>
+      <th align="left">
+        <% if @admin_ms_menu.id.nil? %>
+          <%= f.select :id_menu_parent, options_from_collection_for_select(@admin_ms_menus, 'id_menu', 'namamenu', params[:parent]), {include_blank: true} %>
+        <% else %>
+          <%= f.select :id_menu_parent, options_from_collection_for_select(@admin_ms_menus, 'id_menu', 'namamenu', @admin_ms_menu.id_menu_parent), {} %>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Description</th>
+      <th align="center">:</th>
+      <th align="left">
+        <%= f.text_field :namamenu, class: "required", maxlength: 30 %>
+      </th>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Parameter</th>
+      <th align="center">:</th>
+      <th align="left">
+        <%= f.text_field :addparam, class: "required", maxlength: 90 %>
+      </th>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Modul ID</th>
+      <th align="center">:</th>
+      <th align="left">
+        <% if @admin_ms_menu.id.nil? %>
+          <%= f.select :id_modul, options_from_collection_for_select(@admin_ms_moduls, 'id_modul', 'keterangan', @admin_ms_menu.id_menu), {include_blank: true} %>
+        <% else %>
+          <%= f.select :id_modul, options_from_collection_for_select(@admin_ms_moduls, 'id_modul', 'keterangan', @admin_ms_menu.id_menu), {} %>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Status</th>
+      <th align="center">:</th>
+      <th align="left">
+        <% if @admin_ms_menu.id.nil? %>
+          <%= f.select :status1, options_for_select([["Active", "0"], ["In-active", "99"]], @admin_ms_menu.status1), {include_blank: true}, class: "required", maxlength: 2 %>
+        <% else %>
+          <%= f.select :status1, options_for_select([["Active", "0"], ["In-active", "99"]], @admin_ms_menu.status1), class: "required", maxlength: 2 %>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Level Deep Menu</th>
+      <th align="center">:</th>
+      <th align="left">
+        <% if @admin_ms_menu %>
+          <%= f.select :levelmenu, options_for_select(["0","1","2","3","4","5","6"], "4"), {include_blank: true}, class: "required" %>
+        <% else %>
+          <%= f.select :levelmenu, options_for_select(["0","1","2","3","4","5","6"], "4"), class: "required" %>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Number</th>
+      <th align="center">:</th>
+      <th align="left">
+        <%= f.text_field :nourut, class: "required", maxlength: 4 %>
+      </th>
+    </tr>
+    <tr>
+      <th colspan="3" class="titleJudulTable" width="100%">
+        <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>
+        <%= link_to "Hapus", admin_ms_menu_path(@a_department), method: :delete, class: :btn, confirm: "Hapus data?" if action_name.eql?('destroy_show') %>
+        <%= link_to "Tutup", "javascript:void(0)", onclick: "closingFormCloseWindow()", class: :btn %>
+      </th>
+    </tr>
+  </table>
 <% end %>

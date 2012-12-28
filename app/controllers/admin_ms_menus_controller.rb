@@ -1,4 +1,6 @@
 class AdminMsMenusController < ApplicationController
+  before_filter :attribute, only: [:new, :show, :edit, :destroy_show]
+  
   # GET /admin_ms_menus
   # GET /admin_ms_menus.json
   def index
@@ -172,28 +174,32 @@ class AdminMsMenusController < ApplicationController
   # GET /admin_ms_menus/1
   # GET /admin_ms_menus/1.json
   def show
-    @admin_ms_menu = AdminMsMenu.find(params[:id])
+    @admin_ms_menu = AdminMsMenu.where(id_menu: params[:id]).first
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @admin_ms_menu }
+      format.js
     end
   end
 
   # GET /admin_ms_menus/new
   # GET /admin_ms_menus/new.json
   def new
-    @admin_ms_menu = AdminMsMenu.new
+    @admin_ms_menu = AdminMsMenu.new(id_menu_parent: params[:parent])
+    @admin_ms_menus = AdminMsMenu.all
+    @admin_ms_moduls = AdminMsModul.all
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @admin_ms_menu }
+      format.js
     end
   end
 
   # GET /admin_ms_menus/1/edit
   def edit
-    @admin_ms_menu = AdminMsMenu.find(params[:id])
+    @admin_ms_menu = AdminMsMenu.where(id_menu: params[:id]).first
+    @admin_ms_menus = AdminMsMenu.all
+    @admin_ms_moduls = AdminMsModul.all
   end
 
   # POST /admin_ms_menus
@@ -203,7 +209,10 @@ class AdminMsMenusController < ApplicationController
 
     respond_to do |format|
       if @admin_ms_menu.save
-        format.html { redirect_to @admin_ms_menu, notice: 'Admin ms menu was successfully created.' }
+        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        puts params
+        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        format.html { redirect_to admin_ms_menu_url(params[:admin_ms_menu][:id_menu]), notice: 'Admin ms menu was successfully created.' }
         format.json { render json: @admin_ms_menu, status: :created, location: @admin_ms_menu }
       else
         format.html { render action: "new" }
@@ -215,12 +224,18 @@ class AdminMsMenusController < ApplicationController
   # PUT /admin_ms_menus/1
   # PUT /admin_ms_menus/1.json
   def update
-    @admin_ms_menu = AdminMsMenu.find(params[:id])
+    @admin_ms_menu = AdminMsMenu.where(id_menu: params[:admin_ms_menu][:id_menu]).first
 
     respond_to do |format|
       if @admin_ms_menu.update_attributes(params[:admin_ms_menu])
-        format.html { redirect_to @admin_ms_menu, notice: 'Admin ms menu was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to admin_ms_menu_url(params[:admin_ms_menu][:id_menu]), notice: 'Admin ms menu was successfully updated.' }
+        format.js { 
+          if params[:rowId]
+            render nothing: true, status: 200
+          else
+            render file: "admin_ms_menus/show", formats: :js
+          end
+        }
       else
         format.html { render action: "edit" }
         format.json { render json: @admin_ms_menu.errors, status: :unprocessable_entity }
@@ -231,12 +246,12 @@ class AdminMsMenusController < ApplicationController
   # DELETE /admin_ms_menus/1
   # DELETE /admin_ms_menus/1.json
   def destroy
-    @admin_ms_menu = AdminMsMenu.find(params[:id])
+    @admin_ms_menu = AdminMsMenu.where(id_menu: params[:admin_ms_menu_id]).first
     @admin_ms_menu.destroy
 
     respond_to do |format|
       format.html { redirect_to admin_ms_menus_url }
-      format.json { head :no_content }
+      format.js { render nothing: true }
     end
   end
 

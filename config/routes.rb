@@ -30,7 +30,9 @@ Hermanstartup::Application.routes.draw do
   end
   resources :admin_ms_menu_group_navs
   resources :admin_ms_menu_groups
-  resources :admin_ms_menus
+  resources :admin_ms_menus, except: [:destroy] do
+    get "delete" => "admin_ms_menus#destroy"
+  end
   resources :admin_ms_groups
   
   devise_for :admin_ms_users

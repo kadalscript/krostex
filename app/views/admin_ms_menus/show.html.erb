@@ -1,70 +1,44 @@
+<%#= render "shared/menu_navigation", pathname: "admin_ms_menu", object: @admin_ms_menu %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Id menu:</b>
+  <b>Menu ID:</b>
   <%= @admin_ms_menu.id_menu %>
 </p>
 
 <p>
-  <b>Id menuref:</b>
-  <%= @admin_ms_menu.id_menuref %>
+  <b>Menu ID Root:</b>
+  <%= @admin_ms_menu.id_menu_parent %>
 </p>
 
 <p>
-  <b>Status1:</b>
-  <%= @admin_ms_menu.status1 %>
-</p>
-
-<p>
-  <b>Nolist:</b>
-  <%= @admin_ms_menu.nolist %>
-</p>
-
-<p>
-  <b>Levelmenu:</b>
-  <%= @admin_ms_menu.levelmenu %>
-</p>
-
-<p>
-  <b>Id modul:</b>
-  <%= @admin_ms_menu.id_modul %>
-</p>
-
-<p>
-  <b>Addparam:</b>
-  <%= @admin_ms_menu.addparam %>
-</p>
-
-<p>
-  <b>Namamenu:</b>
+  <b>Description:</b>
   <%= @admin_ms_menu.namamenu %>
 </p>
 
 <p>
-  <b>Statusaplikasi:</b>
-  <%= @admin_ms_menu.statusaplikasi %>
+  <b>Parameter:</b>
+  <%= @admin_ms_menu.addparam %>
 </p>
 
 <p>
-  <b>Nourut:</b>
+  <b>Modul ID:</b>
+  <%= @admin_ms_menu.id_modul %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @admin_ms_menu.status1 %>
+</p>
+
+<p>
+  <b>Level Deep Menu:</b>
+  <%= @admin_ms_menu.levelmenu %>
+</p>
+
+<p>
+  <b>Number:</b>
   <%= @admin_ms_menu.nourut %>
 </p>
 
-<p>
-  <b>Is show aplikasi:</b>
-  <%= @admin_ms_menu.is_show_aplikasi %>
-</p>
-
-<p>
-  <b>Is show buku:</b>
-  <%= @admin_ms_menu.is_show_buku %>
-</p>
-
-<p>
-  <b>Is show laporan:</b>
-  <%= @admin_ms_menu.is_show_laporan %>
-</p>
-
-
-<%= link_to 'Edit', edit_admin_ms_menu_path(@admin_ms_menu) %> |
-<%= link_to 'Back', admin_ms_menus_path %>
