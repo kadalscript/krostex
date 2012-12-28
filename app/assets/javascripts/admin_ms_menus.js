@@ -1,2 +1,14 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+$(function() {
+  // generate_admin_ms_menus_datatables();
+
+    $("#red").treeview({
+        animated: "fast",
+        collapsed: true,
+        unique: true,
+        persist: "cookie",
+        toggle: function() {
+            window.console && console.log("%o was toggled", this);
+        }
+    });
+
+});

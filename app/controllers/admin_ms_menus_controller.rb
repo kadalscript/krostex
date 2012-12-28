@@ -41,7 +41,7 @@ class AdminMsMenusController < ApplicationController
   end
 
   def inisialisasiMenuAwal(prm_ip) 
-    @id_menu       = "ROOT"
+    @id_menu       = "0000"
     @@prm_id_group = "00" 
 
     sqlTxtVar = "SELECT 

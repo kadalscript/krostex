@@ -1,6 +1,4 @@
-<%= @main.first %>
-
-<%= stylesheet_link_tag "nodeslink.custom", "jquery.treeview", "screen", :media => "all" %>
+<%= stylesheet_link_tag "jquery.treeview", "screen", :media => "all" %>
 
 <% content_for :head do %>
 
@@ -12,13 +10,6 @@
 
      if @main 
            @main.each do |rowS|
-# // 1 : key // 2 : mode // 3 : idParent // 4 : pesan       
-               param_browse = admin_ms_menu_path(rowS['id_menu']) 
-
-               param_add    = new_admin_ms_menu_path(parent: rowS['id_menu'])   
-               param_edit   = edit_admin_ms_menu_path(rowS['id_menu'], parent: rowS['id_menuref'])                                       
-               param_delete = admin_ms_menu_delete_path(rowS['id_menu'])
-
                # param_browse = "#{'paramtrx='}#{bin2hex(param_browse)"
                # param_add    = "#{'paramtrx='}#{bin2hex(param_add)"
                # param_edit   = "#{'paramtrx='}#{bin2hex(param_edit)"
@@ -27,21 +18,9 @@
                <%= rowS["simbol"].html_safe %>
 <%             if rowS["keterangan"] != ""    %>       
                    <%= rowS["keterangan"].html_safe %>
-                   <a href="javascript: callUrlJS(&quot;<%= "#{param_browse}" %>&quot;);">
-                       <%= '[Lihat]' %>
-                   </a>
 
 <%                if (rowS['nm_url']=="")  %>
-                       <a href="javascript: callUrlJS(&quot;<%= "#{param_add}" %>&quot;);">
-                          <%= '[Tambah]' %>
-                       </a>
 <%                 end %>
-                   <a href="javascript: callUrlJS(&quot;<%= "#{param_edit}" %>&quot;);">
-                          <%= '[Edit]' %>
-                   </a>
-                   <a href="javascript: callUrlJS(&quot;<%= "#{param_delete}" %>&quot;);">
-                     <%= '[Delete]' %>
-                   </a>
 <%             end %>                    
 <%         end 
      end 

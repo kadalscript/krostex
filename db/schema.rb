@@ -99,18 +99,6 @@ ActiveRecord::Schema.define(:version => 20121228085811) do
     t.datetime "updated_at",                :null => false
   end
 
-  create_table "a_level_4s", :force => true do |t|
-    t.string   "kode",          :limit => 5
-    t.string   "nama",          :limit => 30
-    t.string   "simbol",        :limit => 5
-    t.string   "id_department", :limit => 5
-    t.string   "id_golongan",   :limit => 5
-    t.string   "id_type",       :limit => 5
-    t.string   "updated_by",    :limit => 30
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
   create_table "a_level_fives", :force => true do |t|
     t.string   "kode",          :limit => 5
     t.string   "nama",          :limit => 30
@@ -198,16 +186,14 @@ ActiveRecord::Schema.define(:version => 20121228085811) do
 
   create_table "admin_ms_menu_generates", :force => true do |t|
     t.string   "ip_address"
-    t.string   "string"
     t.string   "no_urut"
     t.string   "id_menu"
     t.string   "simbol"
     t.string   "keterangan"
     t.string   "nm_url"
-    t.string   "status"
-    t.string   "integer"
+    t.integer  "status"
     t.string   "id_menuref"
-    t.string   "tipemenu"
+    t.integer  "tipemenu"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -221,12 +207,11 @@ ActiveRecord::Schema.define(:version => 20121228085811) do
   end
 
   create_table "admin_ms_menu_groups", :force => true do |t|
-    t.string   "id_menu"
-    t.string   "id_group"
-    t.string   "id_product"
-    t.integer  "statusmenu"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "id_menu",    :limit => 4
+    t.string   "id_group",   :limit => 2
+    t.integer  "statusmenu", :limit => 2
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "admin_ms_menus", :force => true do |t|
