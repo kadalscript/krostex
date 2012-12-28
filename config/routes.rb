@@ -16,6 +16,7 @@ Hermanstartup::Application.routes.draw do
   resources :a_level_fours
   resources :b_suppliers do
     resources :b_supplier_alamats
+    match "b_supplier_alamats/:id/change_form" => "b_supplier_alamats#change_form", as: :change_form
   end
 
   ["a_template_cats", "a_departments", "a_golongans", "a_types", "a_level_fours",

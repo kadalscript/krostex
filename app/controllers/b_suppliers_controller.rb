@@ -11,7 +11,7 @@ class BSuppliersController < ApplicationController
   end
 
   def show
-    @b_supplier_alamats = @b_supplier.b_supplier_alamats
+    @b_supplier_alamats = @b_supplier.b_supplier_alamats.order('id')
     @b_supplier_alamat = BSupplierAlamat.new
     
     respond_to do |format|

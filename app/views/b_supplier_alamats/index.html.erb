@@ -3,9 +3,9 @@
   <div class="form-horizontal">
     <legend class="pull-left">
       <span class="pull-left">&nbsp &nbsp<%= b_supplier_alamat.kode_alamat %></span>
-      <%= link_to "Delete", "#", class: 'pull-right', style: 'font-size: 0.7em; margin-right: 10px;' %>
+      <%= link_to "Delete", "javascript:void(0)", class: 'pull-right', style: 'font-size: 0.7em; margin-right: 10px;', id: "delete", value: b_supplier_alamat.id %>
       <span class="pull-right" style="font-size: 0.7em">&nbsp|&nbsp</span>
-      <%= link_to "Koreksi", "#", class: 'pull-right', style: 'font-size: 0.7em' %>
+      <%= link_to "Koreksi", "javascript:void(0)", class: 'pull-right', style: 'font-size: 0.7em', id: "koreksi", value: b_supplier_alamat.id %>
     </legend>
     <div class="control-group">
       <% BSupplierAlamat.column_names.each do |column_name| %>
@@ -15,6 +15,31 @@
         <% end %>
       <% end %>
     </div>
-    <%= render partial: 'b_supplier_alamats/form', locals: { title: 'FORM KOREKSI ALAMAT SUPPLIER', object: b_supplier_alamat } %>
   </div>
 <% end %>
+
+<script>
+$(function() {
+  $('a#koreksi').click(function() {
+    var value = $(this).attr('value');
+    var type = $(this).attr('id');
+    $.ajax({
+      url: "/b_suppliers/<%= @b_supplier.id %>/b_supplier_alamats/" + value + "/change_form/?type=" + type,
+      success: function() {
+        $('#formSupplierModal').modal('show');
+      }
+    });
+  });
+
+  $('a#delete').click(function() {
+    var value = $(this).attr('value');
+    var type = $(this).attr('id');
+    $.ajax({
+      url: "/b_suppliers/<%= @b_supplier.id %>/b_supplier_alamats/" + value + "/change_form/?type=" + type,
+      success: function() {
+        $('#formSupplierModal').modal('show');
+      }
+    });
+  });
+});
+</script>

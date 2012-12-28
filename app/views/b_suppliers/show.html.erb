@@ -13,8 +13,20 @@
   </tr>
   </table>
 <% end %>
+
+<%=
+    render partial: 'b_supplier_alamats/form',
+           locals: {
+                      title: 'FORM REGISTRASI ALAMAT SUPPLIER',
+                      b_supplier_alamat: @b_supplier_alamat,
+                      controller: 'b_supplier_alamats',
+                      action: 'create',
+                      b_supplier: @b_supplier,
+                      action_type: 'Create'
+                    }
+%>
+
 <%= hidden_value(b_suppliers_path) %>
-<%= render partial: 'b_supplier_alamats/form', locals: { title: 'FORM REGISTRASI ALAMAT SUPPLIER', object: @b_supplier_alamat } %>
 <script>
 $(function() {
   $('#formSupplier').click(function() {
