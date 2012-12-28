@@ -1,0 +1,2 @@
+module BSuppliersHelper
+end

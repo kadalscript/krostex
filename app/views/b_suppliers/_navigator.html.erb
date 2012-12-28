@@ -1,0 +1,7 @@
+<tr>
+  <th colspan="3">
+    <%= link_to 'Tambah' , new_b_supplier_path  %>
+    <%= link_to 'Koreksi', edit_b_supplier_path(@b_supplier) if @b_supplier.id %>
+    <%= link_to 'Hapus'  , b_suppliers_destroy_show_path(@b_supplier) if action_name != 'destroy_show' %>
+  </th>
+</tr>

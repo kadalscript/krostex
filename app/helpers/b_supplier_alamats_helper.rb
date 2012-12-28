@@ -1,0 +1,2 @@
+module BSupplierAlamatsHelper
+end

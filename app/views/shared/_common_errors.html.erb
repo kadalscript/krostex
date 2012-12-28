@@ -1,0 +1,17 @@
+<tr>
+  <th colspan="3" align="center">
+    <table class="tableError">
+      <tr class="trTitleError">
+        <th align="left">
+         Terjadi <%= pluralize(object.errors.count, "kesalahan") %> dalam pengisian data.
+         Keterangan sebagai berikut &nbsp;:&nbsp;
+       </th>
+     </tr>
+      <% object.errors.full_messages.each_with_index do |msg, index| %>
+        <tr>
+          <th align="left">&nbsp;<%= index + 1 %>.&nbsp;&nbsp;<%= msg %></th>
+        </tr>
+      <% end %>
+    </table>
+  </th>
+</tr>

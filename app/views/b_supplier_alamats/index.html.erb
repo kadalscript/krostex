@@ -1,0 +1,20 @@
+<br /><%= link_to 'Tambah Alamat', 'javascript:void(0)', class: 'btn btn-primary pull-left', style: 'margin-left: 20px;', id: 'formSupplier' %><br /><br />
+<% @b_supplier_alamats.each do |b_supplier_alamat| %>
+  <div class="form-horizontal">
+    <legend class="pull-left">
+      <span class="pull-left">&nbsp &nbsp<%= b_supplier_alamat.kode_alamat %></span>
+      <%= link_to "Delete", "#", class: 'pull-right', style: 'font-size: 0.7em; margin-right: 10px;' %>
+      <span class="pull-right" style="font-size: 0.7em">&nbsp|&nbsp</span>
+      <%= link_to "Koreksi", "#", class: 'pull-right', style: 'font-size: 0.7em' %>
+    </legend>
+    <div class="control-group">
+      <% BSupplierAlamat.column_names.each do |column_name| %>
+        <% if ["kode", "alamat_title", "alamat_01", "alamat_02", "id_kota", "kode_pos", "telepon", "fax"].include?(column_name) %>
+          <%= label_tag column_name, column_name, class: 'control-label' %>
+          <div class="controls"><%= text_field_tag column_name, b_supplier_alamat[column_name], disabled: 'disabled'  %></div>
+        <% end %>
+      <% end %>
+    </div>
+    <%= render partial: 'b_supplier_alamats/form', locals: { title: 'FORM KOREKSI ALAMAT SUPPLIER', object: b_supplier_alamat } %>
+  </div>
+<% end %>
