@@ -15,6 +15,7 @@ Hermanstartup::Application.routes.draw do
   resources :a_cities
   resources :a_level_fives
   resources :a_level_fours
+  resources :b_barangs
   resources :b_suppliers do
     resources :b_supplier_alamats
     match "b_supplier_alamats/:id/change_form" => "b_supplier_alamats#change_form", as: :change_form
@@ -23,7 +24,7 @@ Hermanstartup::Application.routes.draw do
   ["a_template_cats", "a_departments", "a_golongans", "a_types", "a_level_fours",
    "a_level_fives", "a_cities", "a_gudangs", "a_company_profiles", "a_satuans",
    "a_badan_usahas", "a_kemasans", "a_negaras", "a_provinsis", "b_suppliers",
-   "a_mata_uangs"].each do |item|
+   "a_mata_uangs", "b_barangs"].each do |item|
     match "#{item}/:id/destroy_show" => "#{item}#destroy_show", as: "#{item}_destroy_show"
     get "#{item}/search"
   end

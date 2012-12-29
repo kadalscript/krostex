@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kode: MyString
+  nama: MyString
+  id_department: MyString
+  id_golongan: MyString
+  id_type: MyString
+  id_level_four: MyString
+  id_level_five: MyString
+  id_satuan: MyString
+  min_stok: 9.99
+  max_stok: 9.99
+  reorder_stok: 9.99
+  updated_by: MyString
+
+two:
+  kode: MyString
+  nama: MyString
+  id_department: MyString
+  id_golongan: MyString
+  id_type: MyString
+  id_level_four: MyString
+  id_level_five: MyString
+  id_satuan: MyString
+  min_stok: 9.99
+  max_stok: 9.99
+  reorder_stok: 9.99
+  updated_by: MyString

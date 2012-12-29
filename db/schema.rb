@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121229062641) do
+ActiveRecord::Schema.define(:version => 20121229072123) do
 
   create_table "a_badan_usahas", :force => true do |t|
     t.string   "kode",       :limit => 5
@@ -274,6 +274,23 @@ ActiveRecord::Schema.define(:version => 20121229062641) do
     t.integer  "is_level3"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+  end
+
+  create_table "b_barangs", :force => true do |t|
+    t.string   "kode",          :limit => 5
+    t.string   "nama",          :limit => 30
+    t.string   "id_department", :limit => 5
+    t.string   "id_golongan",   :limit => 5
+    t.string   "id_type",       :limit => 5
+    t.string   "id_level_four", :limit => 5
+    t.string   "id_level_five", :limit => 5
+    t.string   "id_satuan",     :limit => 5
+    t.decimal  "min_stok"
+    t.decimal  "max_stok"
+    t.decimal  "reorder_stok"
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "b_supplier_alamats", :force => true do |t|

@@ -6,5 +6,5 @@ class ACompanyProfile < ActiveRecord::Base
   validates :alamat_title, :alamat_01, :alamat_02, :alamat_03, length: { maximum: 90, message: " terlalu panjang, maksimal 90 karakter" }
   validates :telepon, :fax, :email, :homepage, length: { maximum: 30, message: " terlalu panjang, maksimal 30 karakter" }
   validates :telepon, :fax, numericality: { message: " harus nomor" }
-  validates :email, email_format: { message: " bukanlah sebuah email" }
+  validates :email, email_format: { message: " harus berformat nama@email.com" }
 end

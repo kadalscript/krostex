@@ -8,3 +8,12 @@ en:
       previous: "&lt; Sebelum"
       next: "Sesudah &gt;"
       truncate: "..."
+  activerecord:
+    attributes:
+      a_company_profile:
+        nama_company: "Nama perusahaan"
+        alamat_title: "Alamat"
+        contact_person: "Nama kontak"
+        alamat_01: ""
+        alamat_02: ""
+        alamat_03: ""

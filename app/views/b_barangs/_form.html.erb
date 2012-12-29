@@ -1,16 +1,16 @@
-<%= form_for(@a_company_profile) do |f| %>
+<%= form_for(@b_barang) do |f| %>
   <table class="table-bordered" align="center" width="60%">
     <tr class="titleJudulTable"><th colspan="3"><%= title %></th></tr>
-    <%= render partial: "shared/common_errors", locals: { object: @a_company_profile } if @a_company_profile.errors.any? %>
-    <%= render partial: "navigator" unless action_name == 'new' %>
+    <%= render partial: "shared/common_errors", locals: { object: @b_barang } if @b_barang.errors.any? %>
+    <%= render partial: "navigation" unless action_name == 'new' %>
     <%= render partial: "columns", locals: { f: f, attributes: @attributes } %>
     <tr>
       <th colspan="3" class="titleJudulTable" width="100%">
         <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>
-        <%= link_to "Hapus", a_company_profile_path(@a_company_profile), method: :delete, class: :btn, confirm: "Hapus data?" unless ["new", "create"].include?(action_name) %>
+        <%= link_to "Hapus", b_barang_path(@b_barang), method: :delete, class: :btn, confirm: "Hapus data?" unless ["create", "new"].include?(action_name) %>
         <%= link_to "Tutup", "javascript:void(0)", onclick: "closingForm()", class: :btn %>
       </th>
     </tr>
   </table>
 <% end %>
-<%= hidden_value(a_company_profiles_path) %>
+<%= hidden_value(b_barangs_path) %>

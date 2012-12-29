@@ -1,38 +1,42 @@
 <table class="table table-bordered table-hover" width="60%" align="center">
   <thead class="thead">
     <tr class="titleJudul" style="font-size : 12pt">
-      <th align="center" colspan="11">DAFTAR COMPANY PROFILE</th>
+      <th align="center" colspan="12">DAFTAR COMPANY BARANG</th>
     </tr>
     <tr class="blankSpot">
       <th colspan="11" align="left">&nbsp;
-        <%= link_to 'Tambah Data', new_a_company_profile_path, :class => "navigasi btn" %>
+        <%= link_to 'Tambah Data', new_b_barang_path, class: "navigasi btn" %>
         <a id="searchLink" class="navigasi btn" href="javascript:void(0)" style="float:right">Cari Data</a>
       </th>
     </tr>
     <tr class="titleJudulTable">
-      <% ACompanyProfile.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at", "alamat_01", "alamat_02", "alamat_03"].include?(column_name) %>
-          <th><%= ACompanyProfile.human_attribute_name(column_name).titleize %></th>
+      <% BBarang.column_names.each do |column_name| %>
+        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
+          <th><%= column_name %></th>
         <% end %>
       <% end %>
     </tr>
   </thead>
-  <% @a_company_profiles.each do |a_company_profile| %>
-    <tr onclick="redirectTo('<%= a_company_profile_path(a_company_profile) %>')">
-      <td><%= a_company_profile.kode %></td>
-      <td><%= a_company_profile.nama_company %></td>
-      <td><%= a_company_profile.contact_person %></td>
-      <td><%= showing_alamat(a_company_profile) %></td>
-      <td><%= a_company_profile.telepon %></td>
-      <td><%= a_company_profile.fax %></td>
-      <td><%= a_company_profile.email %></td>
-      <td><%= a_company_profile.homepage %></td>
+  <% @b_barangs.each do |b_barang| %>
+    <tr onclick="redirectTo('<%= b_barang_path(b_barang) %>')">
+      <td><%= b_barang.kode %></td>
+      <td><%= b_barang.nama %></td>
+      <td><%= b_barang.id_department %></td>
+      <td><%= b_barang.id_golongan %></td>
+      <td><%= b_barang.id_type %></td>
+      <td><%= b_barang.id_level_four %></td>
+      <td><%= b_barang.id_level_five %></td>
+      <td><%= b_barang.id_satuan %></td>
+      <td><%= b_barang.min_stok %></td>
+      <td><%= b_barang.max_stok %></td>
+      <td><%= b_barang.reorder_stok %></td>
+      <td><%= b_barang.updated_by %></td>
     </tr>
   <% end %>
   <thead class="thead">
     <tr class="titleJudulTable">
-      <th colspan="11" align="right">
-        <%= paginate @a_company_profiles %>
+      <th colspan="12" align="right">
+        <%= paginate @b_barangs %>
       </th>
     </tr>
   </thead>
@@ -40,13 +44,13 @@
 
 <!-- Modal -->
 <div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= form_tag a_company_profiles_search_path, method: :get, class: 'form-horizontal' do %>
+  <%= form_tag b_barangs_search_path, method: :get, class: 'form-horizontal' do %>
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Search company profile</h3>
+      <h3 id="myModalLabel">Search barang</h3>
     </div>
     <div class="modal-body">
-      <% ACompanyProfile.column_names.each do |column_name| %>
+      <% BBarang.column_names.each do |column_name| %>
         <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
           <div class="control-group">
             <%= label_tag column_name, column_name.gsub('_', ' ').titleize, class: 'control-label' %>
@@ -64,7 +68,7 @@
   <% end %>
 </div>
 
-<%= link_to "Back", a_company_profiles_path, class: 'btn btn-success' if action_name == 'search' %>
+<%= link_to "Back", b_barangs_path, class: 'btn btn-success' if action_name == 'search' %>
 
 <script>
 $(function() {

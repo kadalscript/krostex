@@ -1,14 +1,7 @@
 <% ACompanyProfile.column_names.each do |column_name| %>
   <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
     <tr>
-      <th align="left">
-        &nbsp;
-        <% if ["alamat_title", "alamat_01", "alamat_02", "alamat_03"].include?(column_name) %>
-          <%= column_name.gsub('_title', " ").titleize if ["alamat_title"].include?(column_name) %>
-        <% else %>
-          <%= company_profile_column(column_name).titleize %>
-        <% end %>
-      </th>
+      <th align="left">&nbsp; <%= ACompanyProfile.human_attribute_name(column_name).titleize %></th>
       <th align="center">:</th>
       <th align="left">
         <%= f.text_field column_name, ["homepage"].include?(column_name) ? (attributes.tap { |attribute| attribute.delete(:class) }) : attributes %>
