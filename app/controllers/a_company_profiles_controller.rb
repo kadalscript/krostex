@@ -63,9 +63,12 @@ class ACompanyProfilesController < ApplicationController
   def destroy_show; end
 
   def search
-    query = {}
-    ACompanyProfile.column_names.each { |column_name| query.merge!({ column_name => params[column_name] }) if params[column_name].present? }      
-    @a_company_profiles = ACompanyProfile.where(query).page(params[:page]).per(12)
+    queries = {}
+    ACompanyProfile.column_names.each { |column_name| queries.merge!({ column_name => params[column_name] }) if params[column_name].present? }      
+    @a_company_profiles = ACompanyProfile.where(queries).page(params[:page]).per(12)
+    notifications = ""
+    queries.each_pair { |key, value| notifications += "#{ACompanyProfile.human_attribute_name(key).titleize} = \"#{value}\"<br />" }
+    flash.now[:notice] = "Hasil pencarian :<br /> #{notifications}".html_safe
     render template: "a_company_profiles/index"
   end
 

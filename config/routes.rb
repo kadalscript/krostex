@@ -26,7 +26,7 @@ Hermanstartup::Application.routes.draw do
    "a_badan_usahas", "a_kemasans", "a_negaras", "a_provinsis", "b_suppliers",
    "a_mata_uangs", "b_barangs"].each do |item|
     match "#{item}/:id/destroy_show" => "#{item}#destroy_show", as: "#{item}_destroy_show"
-    get "#{item}/search"
+    match "#{item}/search" => "#{item}#search"
   end
 
   resources :admin_ms_url_backs

@@ -17,14 +17,18 @@
       <% end %>
     </tr>
   </thead>
-  <% @a_company_profiles.each do |a_company_profile| %>
-    <tr onclick="redirectTo('<%= a_company_profile_path(a_company_profile) %>')">
-      <% ACompanyProfile.column_names.each do |column_name| %>
-        <% unless ["kode", "id", "created_at", "updated_at", "alamat_01", "alamat_02", "alamat_03"].include?(column_name) %>
-          <td><%= column_name == "alamat_title" ? (showing_alamat(a_company_profile)) : a_company_profile[column_name] %></td>
+  <% if @a_company_profiles.count > 0 %>
+    <% @a_company_profiles.each do |a_company_profile| %>
+      <tr onclick="redirectTo('<%= a_company_profile_path(a_company_profile) %>')">
+        <% ACompanyProfile.column_names.each do |column_name| %>
+          <% unless ["kode", "id", "created_at", "updated_at", "alamat_01", "alamat_02", "alamat_03"].include?(column_name) %>
+            <td><%= column_name == "alamat_title" ? (showing_alamat(a_company_profile)) : a_company_profile[column_name] %></td>
+          <% end %>
         <% end %>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr><td colspan="7" style="text-align: center">Data kosong</td></tr>
   <% end %>
   <thead class="thead">
     <tr class="titleJudulTable">
@@ -37,16 +41,16 @@
 
 <!-- Modal -->
 <div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= form_tag a_company_profiles_search_path, method: :get, class: 'form-horizontal' do %>
+  <%= form_tag a_company_profiles_search_path, class: 'form-horizontal' do %>
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <h3 id="myModalLabel">Search company profile</h3>
     </div>
     <div class="modal-body">
       <% ACompanyProfile.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at", "kode"].include?(column_name) %>
+        <% unless ["id", "created_at", "updated_at", "kode", "alamat_01", "alamat_02", "alamat_03"].include?(column_name) %>
           <div class="control-group">
-            <%= label_tag column_name, ACompanyProfile.human_attribute_name(column_name), class: 'control-label' %>
+            <%= label_tag column_name, ACompanyProfile.human_attribute_name(column_name).titleize, class: 'control-label' %>
             <div class="controls">
               <%= text_field_tag column_name %>
             </div>
@@ -56,7 +60,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <button class="btn btn-primary">Search</button>
+      <button class="btn btn-primary" id="search">Search</button>&nbsp &nbsp<span id="empty" style="color: red; display: none;">* Setidaknya satu field harus diisi</span>
     </div>
   <% end %>
 </div>
@@ -67,6 +71,16 @@
 $(function() {
   $('#searchLink').click(function() {
     $('#searchModal').modal();
+  });
+
+  $('#search').click(function() {
+    if (($('#nama_company').val() == "") && ($('#contact_person').val() == "") &&
+        ($('#alamat_title').val() == "") && ($('#telepon').val() == "") &&
+        ($('#fax').val() == "") && ($('#email').val() == "") && ($('#homepage').val() == ""))
+        {
+          $('#empty').fadeIn();
+          return false;
+        }
   });
 });
 </script>

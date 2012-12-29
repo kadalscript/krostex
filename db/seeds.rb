@@ -9,21 +9,7 @@ AdminMsUser.create(:login_name =>'herman', :id_group =>'00', :user_name =>'herma
 AdminMsUser.create(:login_name =>'masterroot', :id_group =>'00', :user_name =>'MASTER ROOT', :password =>'1111', :password_confirmation =>'1111', :limitlogin =>99, :tglcreate =>'2007-06-04', :tglpasswordexpired =>'2900-06-04', :tgllastlogin =>'2008-01-30', :pin =>'333333', :created_at =>'1899-12-30', :updated_at =>'1899-12-30', :status =>0)
 
 puts "Seeding ACompanyProfile..."
-1.upto(10) do |number|
-  ACompanyProfile.create({
-    kode: number,
-    nama_company: "Company #{number}",
-    contact_person: "Contact Person #{number}",
-    alamat_title: "Alamat Title #{number}",
-    alamat_01: "Alamat 01 #{number}",
-    alamat_02: "Alamat 02 #{number}",
-    alamat_03: "Alamat 03 #{number}",
-    telepon: "08229123#{number}",
-    fax: "08229124#{number}",
-    email: "email_#{number}@test.com",
-    homepage: "www.homepage#{number}.com"
-  })
-end
+ACompanyProfile.create(kode: "1", nama_company: "Perusahaan", contact_person: "Kontak", alamat_title: "Alamat", alamat_01: "Alamat", alamat_02: "Alamat", alamat_03: "Alamat", telepon: 011102223, fax: 011102224, email: "email@test.com", homepage: "www.homepage.com")
 
 puts "Seeding ASatuan..."
 admin = AdminMsUser.first
