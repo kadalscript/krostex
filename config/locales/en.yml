@@ -19,3 +19,7 @@ en:
         alamat_03: ""
       a_satuan:
         nama: "Nama satuan"
+      a_kemasan:
+        isi_volume: "Isi / Volume"
+        id_satuan: "Satuan"
+        nama: "Nama kemasan"

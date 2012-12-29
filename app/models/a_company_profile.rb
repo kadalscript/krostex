@@ -6,7 +6,6 @@ class ACompanyProfile < ActiveRecord::Base
   validates :telepon, :fax, :email, :homepage, presence: true, length: { maximum: 30, message: " terlalu panjang, maksimal 30 karakter" }
   validates :telepon, :fax, numericality: { message: " harus berupa angka" }
   validates :email, email_format: { message: " harus berformat nama@email.com" }
-
   before_create :get_last_kode
 
   def get_last_kode

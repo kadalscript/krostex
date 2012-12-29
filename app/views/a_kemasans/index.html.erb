@@ -11,19 +11,24 @@
     </tr>
     <tr class="titleJudulTable">
       <% AKemasan.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
-          <th><%= column_name %></th>
+        <% unless ["id", "created_at", "updated_at", "updated_by"].include?(column_name) %>
+          <th><%= AKemasan.human_attribute_name(column_name).titleize %></th>
         <% end %>
       <% end %>
     </tr>
   </thead>
-  <% @a_kemasans.each do |a_kemasan| %>
-    <tr onclick="redirectTo('<%= a_kemasan_path(a_kemasan) %>')">
-      <td><%= a_kemasan.kode %></td>
-      <td><%= a_kemasan.nama %></td>
-      <td><%= a_kemasan.isi_volume %></td>
-      <td><%= a_kemasan.id_satuan %></td>
-    </tr>
+  <% if @a_kemasans.count > 0 %>
+    <% @a_kemasans.each do |a_kemasan| %>
+      <tr onclick="redirectTo('<%= a_kemasan_path(a_kemasan) %>')">
+        <% AKemasan.column_names.each do |column_name| %>
+          <% unless ["id", "created_at", "updated_at", "updated_by"].include?(column_name) %>
+            <%= column_name == 'id_satuan' ? raw("<td>#{a_kemasan.a_satuan.nama}</td>") : raw("<td>#{a_kemasan[column_name]}</td>") %>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr><td colspan="4" style="text-align: center">Data kosong</td></tr>
   <% end %>
   <thead class="thead">
     <tr class="titleJudulTable">
@@ -36,18 +41,22 @@
 
 <!-- Modal -->
 <div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= form_tag a_kemasans_search_path, method: :get, class: 'form-horizontal' do %>
+  <%= form_tag a_kemasans_search_path, class: 'form-horizontal' do %>
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <h3 id="myModalLabel">Search kemasan</h3>
     </div>
     <div class="modal-body">
       <% AKemasan.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
+        <% unless ["id", "created_at", "updated_at", "updated_by"].include?(column_name) %>
           <div class="control-group">
-            <%= label_tag column_name, column_name.gsub('_', ' ').titleize, class: 'control-label' %>
+            <%= label_tag column_name, AKemasan.human_attribute_name(column_name).titleize, class: 'control-label' %>
             <div class="controls">
-              <%= text_field_tag column_name %>
+              <% if column_name == 'id_satuan' %>
+                <%= select_tag("id_satuan", options_for_select(ASatuan.all.collect {|satuan| [ satuan.nama, satuan.id ] }), prompt: "- Satuan -") %>
+              <% else %>
+                <%= text_field_tag column_name %>
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -55,7 +64,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <button class="btn btn-primary">Search</button>
+      <button class="btn btn-primary" id="search">Search</button>&nbsp &nbsp<span id="empty" style="color: red; display: none;">* Setidaknya satu field harus diisi</span>
     </div>
   <% end %>
 </div>
@@ -67,5 +76,14 @@ $(function() {
   $('#searchLink').click(function() {
     $('#searchModal').modal();
   });
+
+  $('#search').click(function() {
+    if (($('#kode').val() == "") && ($('#nama').val() == "") && ($('#isi_volume').val() == "") &&
+        ($('#id_satuan').val() == ""))
+    {
+      $('#empty').fadeIn();
+      return false;
+    }
+  })
 });
 </script>

@@ -33,6 +33,6 @@ protected
   def attributes
     @attributes = { style: "width: 300px;" }
     @attributes.merge!({ class: 'required' }) if ['new', 'edit', 'create', 'update'].include?(action_name)
-    @attributes.merge!({ readonly: 'true' }) if ['show', 'destroy_show'].include?(action_name)
+    @attributes.merge!({ readonly: 'true', disabled: 'disabled' }) if ['show', 'destroy_show'].include?(action_name)
   end
 end

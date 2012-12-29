@@ -31,6 +31,17 @@ puts "Seeding ASatuan..."
   })
 end
 
+a_satuan = ASatuan.first
+puts "Seeding AKemasan..."
+1.upto(5) do |number|
+  AKemasan.create({
+    kode: ASatuan.find_by_id(a_satuan.id + number - 1).simbol,
+    nama: "Nama kemasan #{number}",
+    isi_volume: number,
+    id_satuan: a_satuan.id + number - 1
+  })
+end
+
 AdminMsUser.delete_all
 AdminMsUser.create(:login_name =>'0331960121', :id_group =>'00', :user_name =>'AIRMANSENA', :password =>'1111', :password_confirmation =>'1111', :limitlogin =>99, :tglcreate =>'2008-01-01', :tglpasswordexpired =>'2900-01-01', :tgllastlogin =>'2008-01-04', :pin =>'111111', :created_at =>'1899-12-30', :updated_at =>'1899-12-30', :status =>0)
 AdminMsUser.create(:login_name =>'herman', :id_group =>'00', :user_name =>'herman', :password =>'1111', :password_confirmation =>'1111', :limitlogin =>1, :tglcreate =>'2012-09-24', :tglpasswordexpired =>'2012-09-24', :tgllastlogin =>'2012-09-24', :pin =>'1', :created_at =>'2012-09-24', :updated_at =>'2012-09-24', :status =>1)
