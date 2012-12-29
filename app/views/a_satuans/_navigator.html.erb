@@ -1,7 +1,7 @@
 <tr>
   <th colspan="3">
-    <%= link_to 'Tambah' , new_a_satuan_path  %>
+    <%= link_to 'Tambah' , new_a_satuan_path if @a_satuan.id %>
     <%= link_to 'Koreksi', edit_a_satuan_path(@a_satuan) if @a_satuan.id %>
-    <%= link_to 'Hapus'  , a_satuans_destroy_show_path(@a_satuan) if action_name != 'destroy_show' %>
+    <%= link_to 'Hapus'  , a_satuans_destroy_show_path(@a_satuan) unless ["destroy_show", "create"].include?(action_name) %>
   </th>
 </tr>

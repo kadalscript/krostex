@@ -1,5 +1,13 @@
 class ASatuan < ActiveRecord::Base
   attr_accessible :nama, :no_urut, :simbol, :updated_by
-  validates :nama, :no_urut, :simbol, :updated_by, presence: true
-  validates :simbol, uniqueness: true
+  validates :no_urut, presence: true, numericality: { message: " harus berupa angka" }
+  validates :simbol, uniqueness: { message: " harus unik" }, presence: true, length: { maximum: 5, message: " terlalu panjang, maksimal 5 karakter" }
+  validates :nama, presence: true, length: { maximum: 15, message: " terlalu panjang, maksimal 15 karakter" }
+  validates :updated_by, length: { maximum: 30, message: " terlalu panjang, maksimal 15 karakter" }
+  before_create :check_updater
+  before_save :check_updater
+
+  def check_updater
+    self.updated_by = self.updated_by.blank? ? "ANONYMOUS" : self.updated_by
+  end
 end

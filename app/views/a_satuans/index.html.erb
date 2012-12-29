@@ -11,19 +11,22 @@
     </tr>
     <tr class="titleJudulTable">
       <% ASatuan.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
-          <th><%= satuan_column(column_name).titleize %></th>
+        <% unless ["id", "created_at", "updated_at", "updated_by"].include?(column_name) %>
+          <th><%= ASatuan.human_attribute_name(column_name).titleize %></th>
         <% end %>
       <% end %>
     </tr>
   </thead>
-  <% @a_satuans.each do |a_satuan| %>
-    <tr onclick="redirectTo('<%= a_satuan_path(a_satuan) %>')">
-      <td><%= a_satuan.simbol %></td>
-      <td><%= a_satuan.nama %></td>
-      <td><%= a_satuan.no_urut %></td>
-      <td><%= a_satuan.updated_by %></td>
-    </tr>
+  <% if @a_satuans.count > 0 %>
+    <% @a_satuans.each do |a_satuan| %>
+      <tr onclick="redirectTo('<%= a_satuan_path(a_satuan) %>')">
+        <% ASatuan.column_names.each do |column_name| %>
+          <%= raw("<td>#{a_satuan[column_name]}</td>") unless ["id", "created_at", "updated_at", "updated_by"].include?(column_name) %>
+        <% end %>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr><td colspan="3" style="text-align: center">Data kosong</td></tr>
   <% end %>
   <thead class="thead">
     <tr class="titleJudulTable">
@@ -36,7 +39,7 @@
 
 <!-- Modal -->
 <div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= form_tag a_satuans_search_path, method: :get, class: 'form-horizontal' do %>
+  <%= form_tag a_satuans_search_path, class: 'form-horizontal' do %>
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <h3 id="myModalLabel">Search satuan</h3>
@@ -45,7 +48,7 @@
       <% ASatuan.column_names.each do |column_name| %>
         <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
           <div class="control-group">
-            <%= label_tag column_name, column_name.gsub('_', ' ').titleize, class: 'control-label' %>
+            <%= label_tag column_name, ASatuan.human_attribute_name(column_name).titleize, class: 'control-label' %>
             <div class="controls">
               <%= text_field_tag column_name %>
             </div>
@@ -55,7 +58,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <button class="btn btn-primary">Search</button>
+      <button class="btn btn-primary" id="search">Search</button>&nbsp &nbsp<span id="empty" style="color: red; display: none;">* Setidaknya satu field harus diisi</span>
     </div>
   <% end %>
 </div>
@@ -67,5 +70,13 @@ $(function() {
   $('#searchLink').click(function() {
     $('#searchModal').modal();
   });
+
+  $('#search').click(function() {
+    if (($('#simbol').val() == "") && ($('#nama').val() == "") && ($('#no_urut').val() == ""))
+        {
+          $('#empty').fadeIn();
+          return false;
+        }
+  })
 });
 </script>

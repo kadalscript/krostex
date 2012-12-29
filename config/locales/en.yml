@@ -17,3 +17,5 @@ en:
         alamat_01: ""
         alamat_02: ""
         alamat_03: ""
+      a_satuan:
+        nama: "Nama satuan"
