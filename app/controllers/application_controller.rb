@@ -30,9 +30,9 @@ class ApplicationController < ActionController::Base
   
 
 protected
-  def attribute
-    @attribute = { style: "width: 300px;" }
-    @attribute.merge!({ class: 'required' }) if ['new', 'edit', 'create'].include?(action_name)
-    @attribute.merge!({ readonly: 'true' }) if ['show', 'destroy_show'].include?(action_name)
+  def attributes
+    @attributes = { style: "width: 300px;" }
+    @attributes.merge!({ class: 'required' }) if ['new', 'edit', 'create', 'update'].include?(action_name)
+    @attributes.merge!({ readonly: 'true' }) if ['show', 'destroy_show'].include?(action_name)
   end
 end

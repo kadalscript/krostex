@@ -6,6 +6,7 @@ gem 'pg'
 gem 'devise'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
 
 group :development do
   gem 'therubyracer', :platforms => :ruby
