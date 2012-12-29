@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121228085811) do
+ActiveRecord::Schema.define(:version => 20121229062641) do
 
   create_table "a_badan_usahas", :force => true do |t|
     t.string   "kode",       :limit => 5
@@ -88,17 +88,6 @@ ActiveRecord::Schema.define(:version => 20121228085811) do
     t.datetime "updated_at",               :null => false
   end
 
-  create_table "a_kotas", :force => true do |t|
-    t.string   "kode",        :limit => 5
-    t.string   "nama",        :limit => 30
-    t.string   "simbol",      :limit => 5
-    t.string   "id_negara",   :limit => 5
-    t.string   "id_provinsi", :limit => 5
-    t.string   "updated_by",  :limit => 30
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
   create_table "a_level_fives", :force => true do |t|
     t.string   "kode",          :limit => 5
     t.string   "nama",          :limit => 30
@@ -122,6 +111,16 @@ ActiveRecord::Schema.define(:version => 20121228085811) do
     t.string   "updated_by",    :limit => 30
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "a_mata_uangs", :force => true do |t|
+    t.string   "kode",       :limit => 2
+    t.string   "simbol",     :limit => 5
+    t.string   "nama",       :limit => 15
+    t.integer  "no_urut"
+    t.string   "updated_by", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "a_negaras", :force => true do |t|
@@ -275,6 +274,40 @@ ActiveRecord::Schema.define(:version => 20121228085811) do
     t.integer  "is_level3"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+  end
+
+  create_table "b_supplier_alamats", :force => true do |t|
+    t.string   "kode_alamat",   :limit => 15
+    t.string   "kode",          :limit => 10
+    t.string   "kode_kategori"
+    t.string   "alamat_title",  :limit => 90
+    t.string   "alamat_01",     :limit => 90
+    t.string   "alamat_02",     :limit => 90
+    t.string   "id_negara",     :limit => 5
+    t.string   "id_provinsi",   :limit => 5
+    t.string   "id_kota",       :limit => 5
+    t.string   "telepon",       :limit => 30
+    t.string   "fax",           :limit => 30
+    t.string   "kode_pos",      :limit => 5
+    t.integer  "status1"
+    t.string   "st_progress",   :limit => 20
+    t.integer  "b_supplier_id"
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "b_suppliers", :force => true do |t|
+    t.string   "kode",           :limit => 10
+    t.string   "nama",           :limit => 50
+    t.string   "id_badan_usaha", :limit => 2
+    t.string   "email",          :limit => 50
+    t.string   "homepage"
+    t.integer  "status1"
+    t.string   "st_progress",    :limit => 20
+    t.string   "updated_by",     :limit => 30
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
 end
