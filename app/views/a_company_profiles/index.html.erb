@@ -11,7 +11,7 @@
     </tr>
     <tr class="titleJudulTable">
       <% ACompanyProfile.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at", "alamat_01", "alamat_02", "alamat_03"].include?(column_name) %>
+        <% unless ["kode", "id", "created_at", "updated_at", "alamat_01", "alamat_02", "alamat_03"].include?(column_name) %>
           <th><%= ACompanyProfile.human_attribute_name(column_name).titleize %></th>
         <% end %>
       <% end %>
@@ -19,14 +19,11 @@
   </thead>
   <% @a_company_profiles.each do |a_company_profile| %>
     <tr onclick="redirectTo('<%= a_company_profile_path(a_company_profile) %>')">
-      <td><%= a_company_profile.kode %></td>
-      <td><%= a_company_profile.nama_company %></td>
-      <td><%= a_company_profile.contact_person %></td>
-      <td><%= showing_alamat(a_company_profile) %></td>
-      <td><%= a_company_profile.telepon %></td>
-      <td><%= a_company_profile.fax %></td>
-      <td><%= a_company_profile.email %></td>
-      <td><%= a_company_profile.homepage %></td>
+      <% ACompanyProfile.column_names.each do |column_name| %>
+        <% unless ["kode", "id", "created_at", "updated_at", "alamat_01", "alamat_02", "alamat_03"].include?(column_name) %>
+          <td><%= column_name == "alamat_title" ? (showing_alamat(a_company_profile)) : a_company_profile[column_name] %></td>
+        <% end %>
+      <% end %>
     </tr>
   <% end %>
   <thead class="thead">
@@ -47,9 +44,9 @@
     </div>
     <div class="modal-body">
       <% ACompanyProfile.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
+        <% unless ["id", "created_at", "updated_at", "kode"].include?(column_name) %>
           <div class="control-group">
-            <%= label_tag column_name, column_name.gsub('_', ' ').titleize, class: 'control-label' %>
+            <%= label_tag column_name, ACompanyProfile.human_attribute_name(column_name), class: 'control-label' %>
             <div class="controls">
               <%= text_field_tag column_name %>
             </div>

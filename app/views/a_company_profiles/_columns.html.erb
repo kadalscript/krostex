@@ -1,5 +1,5 @@
 <% ACompanyProfile.column_names.each do |column_name| %>
-  <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
+  <% unless ["id", "created_at", "updated_at", "kode"].include?(column_name) %>
     <tr>
       <th align="left">&nbsp; <%= ACompanyProfile.human_attribute_name(column_name).titleize %></th>
       <th align="center">:</th>
