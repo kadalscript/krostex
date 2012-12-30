@@ -2,7 +2,7 @@ class ACompanyProfilesController < ApplicationController
   before_filter :attributes, only: [:new, :show, :edit, :destroy_show, :create, :update]
   before_filter :find_a_company_profile_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
   before_filter :get_miscellaneous
-  before_filter :common_form, only: [:edit, :destroy_show]
+  before_filter :common_form, only: [:edit, :destroy_show, :show]
   
   @@title = 'company profile'
 
@@ -86,6 +86,7 @@ private
     @form_title = form_title(action_name, @@title)
     respond_to do |format|
       format.html { render file: "#{Rails.root}/app/views/a_company_profiles/_form" }
+      format.json { render json: @a_company_profile }
     end
   end
 end
