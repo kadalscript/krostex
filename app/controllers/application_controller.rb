@@ -42,4 +42,12 @@ protected
     result += "FORM #{types[type].upcase}" if ["destroy_show", "edit", "new", "show"].include?(type)
     result += " DATA #{title.upcase}"
   end
+
+  def common_form(table_name, title, object)
+    @form_title = form_title(action_name, title)
+    respond_to do |format|
+      format.html { render file: "#{Rails.root}/app/views/#{table_name}/_form" }
+      format.json { render json: object }
+    end
+  end
 end

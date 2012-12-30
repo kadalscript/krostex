@@ -1,6 +1,6 @@
 <%= form_for(@a_satuan) do |f| %>
   <table class="table-bordered" align="center" width="60%">
-    <tr class="titleJudulTable"><th colspan="3"><%= title %></th></tr>
+    <tr class="titleJudulTable"><th colspan="3"><%= @form_title %></th></tr>
     <%= render partial: COMMON_ERRORS, locals: { object: @a_satuan } if @a_satuan.errors.any? %>
     <%= render partial: "navigator" unless action_name == 'new' %>
     <%= render partial: "columns", locals: { f: f, attributes: @attributes } %>

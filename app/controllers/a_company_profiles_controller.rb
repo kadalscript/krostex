@@ -2,9 +2,9 @@ class ACompanyProfilesController < ApplicationController
   before_filter :attributes, only: [:new, :show, :edit, :destroy_show, :create, :update]
   before_filter :find_a_company_profile_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
   before_filter :get_miscellaneous
-  before_filter :common_form, only: [:edit, :destroy_show, :show]
   
   @@title = 'company profile'
+  @@table_name = ACompanyProfile.table_name
 
   def index
     @a_company_profiles = ACompanyProfile.page(params[:page]).per(5).order('id')
@@ -14,14 +14,18 @@ class ACompanyProfilesController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    common_form(@@table_name, @@title, @a_company_profile)
+  end
 
   def new
     @a_company_profile = ACompanyProfile.new
-    common_form
+    common_form(@@table_name, @@title, @a_company_profile)
   end
 
-  def edit; end
+  def edit
+    common_form(@@table_name, @@title, @a_company_profile)
+  end
 
   def create
     @a_company_profile = ACompanyProfile.new(params[:a_company_profile])
@@ -30,7 +34,7 @@ class ACompanyProfilesController < ApplicationController
         format.html { redirect_to @a_company_profile, notice: SUCCESSFULLY_SAVE_DATA }
         format.json { render json: @a_company_profile, status: :created, location: @a_company_profile }
       else
-        format.html { common_form }
+        format.html { common_form(@@table_name, @@title, @a_company_profile) }
         format.json { render json: @a_company_profile.errors, status: :unprocessable_entity }
       end
     end
@@ -42,7 +46,7 @@ class ACompanyProfilesController < ApplicationController
         format.html { redirect_to @a_company_profile, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else
-        format.html { common_form }
+        format.html { common_form(@@table_name, @@title, @a_company_profile) }
         format.json { render json: @a_company_profile.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +60,9 @@ class ACompanyProfilesController < ApplicationController
     end
   end
 
-  def destroy_show; end
+  def destroy_show
+    common_form(@@table_name, @@title, @a_company_profile)
+  end
 
   def search
     queries = {}
@@ -72,21 +78,15 @@ private
   def find_a_company_profile_by_id
     @a_company_profile = ACompanyProfile.find_by_id(params[:id])
     if @a_company_profile.blank?
-      flash[:alert] = "Company profile tidak ditemukan"
-      redirect_to a_company_profiles_path
+      respond_to do |format|
+        format.html { redirect_to a_company_profiles_path, alert: NOT_FOUND_DATA }
+        format.json { head :no_content }
+      end
     end
   end
 
   def get_miscellaneous
     @title = @@title
     @hidden_columns = ["kode", "id", "created_at", "updated_at", "alamat_01", "alamat_02", "alamat_03"]
-  end
-
-  def common_form
-    @form_title = form_title(action_name, @@title)
-    respond_to do |format|
-      format.html { render file: "#{Rails.root}/app/views/a_company_profiles/_form" }
-      format.json { render json: @a_company_profile }
-    end
   end
 end

@@ -3,6 +3,9 @@ class ASatuansController < ApplicationController
   before_filter :find_a_satuan_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
   before_filter :get_miscellaneous
 
+  @@title = 'satuan'
+  @@table_name = ASatuan.table_name
+
   def index
     @a_satuans = ASatuan.page(params[:page]).per(5).order('id')
     respond_to do |format|
@@ -12,21 +15,17 @@ class ASatuansController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @a_satuan }
-    end
+    common_form(@@table_name, @@title, @satuan)
   end
 
   def new
     @a_satuan = ASatuan.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @a_satuan }
-    end
+    common_form(@@table_name, @@title, @satuan)
   end
 
-  def edit; end
+  def edit
+    common_form(@@table_name, @@title, @satuan)
+  end
 
   def create
     @a_satuan = ASatuan.new(params[:a_satuan])
@@ -35,7 +34,7 @@ class ASatuansController < ApplicationController
         format.html { redirect_to @a_satuan, notice: SUCCESSFULLY_SAVE_DATA }
         format.json { render json: @a_satuan, status: :created, location: @a_satuan }
       else
-        format.html { render action: "new" }
+        format.html { common_form(@@table_name, @@title, @satuan) }
         format.json { render json: @a_satuan.errors, status: :unprocessable_entity }
       end
     end
@@ -47,7 +46,7 @@ class ASatuansController < ApplicationController
         format.html { redirect_to @a_satuan, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { common_form(@@table_name, @@title, @satuan) }
         format.json { render json: @a_satuan.errors, status: :unprocessable_entity }
       end
     end
@@ -61,7 +60,9 @@ class ASatuansController < ApplicationController
     end
   end
 
-  def destroy_show; end
+  def destroy_show
+    common_form(@@table_name, @@title, @satuan)
+  end
 
   def search
     queries = {}
@@ -77,12 +78,16 @@ private
   def find_a_satuan_by_id
     @a_satuan = ASatuan.find_by_id(params[:id])
     if @a_satuan.blank?
-      flash[:alert] = "Satuan tidak ditemukan"
-      redirect_to a_satuans_path
+      respond_to do |format|
+        format.html { redirect_to a_satuans_path, alert: NOT_FOUND_DATA }
+        format.json { head :no_content }
+      end      
     end
   end
 
   def get_miscellaneous
-    @title = 'satuan'
+    @title = @@title
+    @hidden_columns = ["id", "created_at", "updated_at", "updated_by"]
+    @updated_at_attributes = { readonly: true, disabled: 'disabled', style: 'width: 300px;' }
   end
 end
