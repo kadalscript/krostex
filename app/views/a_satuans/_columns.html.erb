@@ -1,3 +1,4 @@
+<% updated_at_attributes = { readonly: true, disabled: 'disabled', style: 'width: 300px;' } %>
 <% ASatuan.column_names.each do |column_name| %>
   <% unless ["id", "created_at", "updated_by"].include?(column_name) %>
     <tr>
@@ -5,7 +6,11 @@
       <th align="center">:</th>
       <th align="left">
         <% if column_name == 'updated_at' %>
-          <%= text_field_tag column_name, @a_satuan.updated_at.strftime("%a %b %d , "), { readonly: true, disabled: 'disabled', style: 'width: 300px;' } %>
+          <% unless ["new", "create"].include?(action_name) %>
+            <%= text_field_tag column_name, @a_satuan.updated_at.strftime("%a %b %d, %H:%M %p"), updated_at_attributes %>
+          <% else %>
+            <%= text_field_tag "dummy_date", Time.now.strftime("%a %b %d, %H:%M %p"), updated_at_attributes %>
+          <% end %>
         <% else %>
           <%= f.text_field column_name, attributes %>
         <% end %>

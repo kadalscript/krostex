@@ -1,6 +1,7 @@
 class ASatuansController < ApplicationController
   before_filter :attributes, only: [:new, :show, :edit, :destroy_show, :create, :update]
   before_filter :find_a_satuan_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
+  before_filter :get_miscellaneous
 
   def index
     @a_satuans = ASatuan.page(params[:page]).per(5).order('id')
@@ -31,7 +32,7 @@ class ASatuansController < ApplicationController
     @a_satuan = ASatuan.new(params[:a_satuan])
     respond_to do |format|
       if @a_satuan.save
-        format.html { redirect_to @a_satuan, notice: 'Data berhasil dibuat' }
+        format.html { redirect_to @a_satuan, notice: SUCCESSFULLY_SAVE_DATA }
         format.json { render json: @a_satuan, status: :created, location: @a_satuan }
       else
         format.html { render action: "new" }
@@ -43,7 +44,7 @@ class ASatuansController < ApplicationController
   def update
     respond_to do |format|
       if @a_satuan.update_attributes(params[:a_satuan])
-        format.html { redirect_to @a_satuan, notice: 'Data berhasil diupdate' }
+        format.html { redirect_to @a_satuan, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -55,7 +56,7 @@ class ASatuansController < ApplicationController
   def destroy
     @a_satuan.destroy
     respond_to do |format|
-      format.html { redirect_to a_satuans_url, notice: 'Data berhasil dihapus' }
+      format.html { redirect_to a_satuans_url, notice: SUCCESSFULLY_DELETE_DATA }
       format.json { head :no_content }
     end
   end
@@ -79,5 +80,9 @@ private
       flash[:alert] = "Satuan tidak ditemukan"
       redirect_to a_satuans_path
     end
+  end
+
+  def get_miscellaneous
+    @title = 'satuan'
   end
 end

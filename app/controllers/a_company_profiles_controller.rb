@@ -2,6 +2,9 @@ class ACompanyProfilesController < ApplicationController
   before_filter :attributes, only: [:new, :show, :edit, :destroy_show, :create, :update]
   before_filter :find_a_company_profile_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
   before_filter :get_miscellaneous
+  before_filter :common_form, only: [:edit, :destroy_show]
+  
+  @@title = 'company profile'
 
   def index
     @a_company_profiles = ACompanyProfile.page(params[:page]).per(5).order('id')
@@ -11,19 +14,11 @@ class ACompanyProfilesController < ApplicationController
     end
   end
 
-  def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @a_company_profile }
-    end
-  end
+  def show; end
 
   def new
     @a_company_profile = ACompanyProfile.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @a_company_profile }
-    end
+    common_form
   end
 
   def edit; end
@@ -35,7 +30,7 @@ class ACompanyProfilesController < ApplicationController
         format.html { redirect_to @a_company_profile, notice: SUCCESSFULLY_SAVE_DATA }
         format.json { render json: @a_company_profile, status: :created, location: @a_company_profile }
       else
-        format.html { render action: "new" }
+        format.html { common_form }
         format.json { render json: @a_company_profile.errors, status: :unprocessable_entity }
       end
     end
@@ -47,7 +42,7 @@ class ACompanyProfilesController < ApplicationController
         format.html { redirect_to @a_company_profile, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { common_form }
         format.json { render json: @a_company_profile.errors, status: :unprocessable_entity }
       end
     end
@@ -83,7 +78,14 @@ private
   end
 
   def get_miscellaneous
-    @title = 'company profile'
+    @title = @@title
     @hidden_columns = ["kode", "id", "created_at", "updated_at", "alamat_01", "alamat_02", "alamat_03"]
+  end
+
+  def common_form
+    @form_title = form_title(action_name, @@title)
+    respond_to do |format|
+      format.html { render file: "#{Rails.root}/app/views/a_company_profiles/_form" }
+    end
   end
 end

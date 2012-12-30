@@ -30,10 +30,16 @@ class ApplicationController < ActionController::Base
   
 
 protected
-
   def attributes
     @attributes = { style: "width: 300px;" }
     @attributes.merge!({ class: 'required' }) if ['new', 'edit', 'create', 'update'].include?(action_name)
     @attributes.merge!({ readonly: 'true', disabled: 'disabled' }) if ['show', 'destroy_show'].include?(action_name)
+  end
+
+  def form_title(type, title)
+    result = ""
+    types = { "destroy_show" => DELETE, "edit" => EDIT, "show" => "", "new" => "REGISTRASI" }
+    result += "FORM #{types[type].upcase}" if ["destroy_show", "edit", "new", "show"].include?(type)
+    result += " DATA #{title.upcase}"
   end
 end
