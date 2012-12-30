@@ -1,9 +1,15 @@
 <% ASatuan.column_names.each do |column_name| %>
-  <% unless ["id", "created_at", "updated_at", "updated_by"].include?(column_name) %>
+  <% unless ["id", "created_at", "updated_by"].include?(column_name) %>
     <tr>
       <th align="left">&nbsp;<%= ASatuan.human_attribute_name(column_name).titleize %></th>
       <th align="center">:</th>
-      <th align="left"><%= f.text_field column_name, attributes %></th>
+      <th align="left">
+        <% if column_name == 'updated_at' %>
+          <%= text_field_tag column_name, @a_satuan.updated_at.strftime("%a %b %d , "), { readonly: true, disabled: 'disabled', style: 'width: 300px;' } %>
+        <% else %>
+          <%= f.text_field column_name, attributes %>
+        <% end %>
+      </th>
     </tr>
   <% end %>
 <% end %>

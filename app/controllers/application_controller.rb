@@ -30,6 +30,7 @@ class ApplicationController < ActionController::Base
   
 
 protected
+
   def attributes
     @attributes = { style: "width: 300px;" }
     @attributes.merge!({ class: 'required' }) if ['new', 'edit', 'create', 'update'].include?(action_name)

@@ -1,7 +1,7 @@
 <tr>
   <th colspan="3">
-    <%= link_to 'Tambah' , new_a_company_profile_path if @a_company_profile.id  %>
-    <%= link_to 'Koreksi', edit_a_company_profile_path(@a_company_profile) if @a_company_profile.id %>
-    <%= link_to 'Hapus'  , a_company_profiles_destroy_show_path(@a_company_profile) unless ["destroy_show", "create"].include?(action_name) %>
+    <%= link_to ADD , new_a_company_profile_path if @a_company_profile.id  %>
+    <%= link_to EDIT, edit_a_company_profile_path(@a_company_profile) if @a_company_profile.id %>
+    <%= link_to DELETE, a_company_profiles_destroy_show_path(@a_company_profile) unless ["destroy_show", "create"].include?(action_name) %>
   </th>
 </tr>

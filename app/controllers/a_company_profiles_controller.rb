@@ -1,6 +1,7 @@
 class ACompanyProfilesController < ApplicationController
   before_filter :attributes, only: [:new, :show, :edit, :destroy_show, :create, :update]
   before_filter :find_a_company_profile_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
+  before_filter :get_miscellaneous
 
   def index
     @a_company_profiles = ACompanyProfile.page(params[:page]).per(5).order('id')
@@ -31,7 +32,7 @@ class ACompanyProfilesController < ApplicationController
     @a_company_profile = ACompanyProfile.new(params[:a_company_profile])
     respond_to do |format|
       if @a_company_profile.save
-        format.html { redirect_to @a_company_profile, notice: 'Company profile berhasil dibuat' }
+        format.html { redirect_to @a_company_profile, notice: SUCCESSFULLY_SAVE_DATA }
         format.json { render json: @a_company_profile, status: :created, location: @a_company_profile }
       else
         format.html { render action: "new" }
@@ -43,7 +44,7 @@ class ACompanyProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @a_company_profile.update_attributes(params[:a_company_profile])
-        format.html { redirect_to @a_company_profile, notice: 'Company profile berhasil diupdate' }
+        format.html { redirect_to @a_company_profile, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -55,7 +56,7 @@ class ACompanyProfilesController < ApplicationController
   def destroy
     @a_company_profile.destroy
     respond_to do |format|
-      format.html { redirect_to a_company_profiles_url, notice: "Company profile berhasil di hapus" }
+      format.html { redirect_to a_company_profiles_url, notice: SUCCESSFULLY_DELETE_DATA }
       format.json { head :no_content }
     end
   end
@@ -79,5 +80,10 @@ private
       flash[:alert] = "Company profile tidak ditemukan"
       redirect_to a_company_profiles_path
     end
+  end
+
+  def get_miscellaneous
+    @title = 'company profile'
+    @hidden_columns = ["kode", "id", "created_at", "updated_at", "alamat_01", "alamat_02", "alamat_03"]
   end
 end
