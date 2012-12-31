@@ -1,6 +1,10 @@
 class ABadanUsahasController < ApplicationController
-  before_filter :attribute, only: [:new, :show, :edit, :destroy_show]
+  before_filter :attributes, only: [:new, :show, :edit, :destroy_show, :create, :update]
   before_filter :find_a_badan_usaha_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
+  before_filter :get_miscellaneous
+
+  @@title = 'badan usaha'
+  @@table_name = ABadanUsaha.table_name
 
   def index
     @a_badan_usahas = ABadanUsaha.page(params[:page]).per(5).order('id')
@@ -11,30 +15,26 @@ class ABadanUsahasController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @a_badan_usaha }
-    end
+    common_form(@@table_name, @@title, @a_badan_usaha)
   end
 
   def new
     @a_badan_usaha = ABadanUsaha.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @a_badan_usaha }
-    end
+    common_form(@@table_name, @@title, @a_badan_usaha)
   end
 
-  def edit; end
+  def edit
+    common_form(@@table_name, @@title, @a_badan_usaha)
+  end
 
   def create
     @a_badan_usaha = ABadanUsaha.new(params[:a_badan_usaha])
     respond_to do |format|
       if @a_badan_usaha.save
-        format.html { redirect_to @a_badan_usaha, notice: 'Badan usaha berhasil di buat' }
+        format.html { redirect_to @a_badan_usaha, notice: SUCCESSFULLY_SAVE_DATA }
         format.json { render json: @a_badan_usaha, status: :created, location: @a_badan_usaha }
       else
-        format.html { render action: "new" }
+        format.html { common_form(@@table_name, @@title, @a_badan_usaha) }
         format.json { render json: @a_badan_usaha.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +43,10 @@ class ABadanUsahasController < ApplicationController
   def update
     respond_to do |format|
       if @a_badan_usaha.update_attributes(params[:a_badan_usaha])
-        format.html { redirect_to @a_badan_usaha, notice: 'Badan usaha berhasil di update' }
+        format.html { redirect_to @a_badan_usaha, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { common_form(@@table_name, @@title, @a_badan_usaha) }
         format.json { render json: @a_badan_usaha.errors, status: :unprocessable_entity }
       end
     end
@@ -55,17 +55,22 @@ class ABadanUsahasController < ApplicationController
   def destroy
     @a_badan_usaha.destroy
     respond_to do |format|
-      format.html { redirect_to a_badan_usahas_url, notice: 'Badan usaha berhasil di hapus' }
+      format.html { redirect_to a_badan_usahas_url, notice: SUCCESSFULLY_DELETE_DATA }
       format.json { head :no_content }
     end
   end
 
-  def destroy_show; end
+  def destroy_show
+    common_form(@@table_name, @@title, @a_badan_usaha)
+  end
 
   def search
-    query = {}
-    ABadanUsaha.column_names.each { |column_name| query.merge!({ column_name => params[column_name] }) if params[column_name].present? }
-    @a_badan_usahas = ABadanUsaha.where(query).page(params[:page]).per(5)
+    queries = {}
+    ABadanUsaha.column_names.each { |column_name| queries.merge!({ column_name => params[column_name] }) if params[column_name].present? }
+    @a_badan_usahas = ABadanUsaha.where(queries).page(params[:page]).per(12)
+    notifications = ""
+    queries.each_pair { |key, value| notifications += "#{ABadanUsaha.human_attribute_name(key).titleize} = \"#{value}\"<br />" }
+    flash.now[:notice] = "Hasil pencarian :<br /> #{notifications}".html_safe
     render template: "a_badan_usahas/index"
   end
 
@@ -76,5 +81,9 @@ private
       flash[:alert] = "Badan usaha tidak ditemukan"
       redirect_to a_badan_usahas_path
     end
+  end
+
+  def get_miscellaneous
+    @title = @@title
   end
 end

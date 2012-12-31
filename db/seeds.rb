@@ -17,8 +17,7 @@ puts "Seeding ABadanUsaha..."
   ABadanUsaha.create({
     kode: number,
     nama: "Nama #{number}",
-    no_urut: number,
-    updated_by: admin.user_name
+    no_urut: number
   })
 end
 

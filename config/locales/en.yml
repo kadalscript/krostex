@@ -23,3 +23,5 @@ en:
         isi_volume: "Isi / Volume"
         id_satuan: "Satuan"
         nama: "Nama kemasan"
+      a_badan_usaha:
+        nama: "Nama badan usaha"
