@@ -11,7 +11,7 @@
     </tr>
     <tr class="titleJudulTable">
       <% ABadanUsaha.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at", "updated_by"].include?(column_name) %>
+        <% unless @hidden_columns.include?(column_name) %>
           <th><%= ABadanUsaha.human_attribute_name(column_name).titleize %></th>
         <% end %>
       <% end %>
@@ -21,7 +21,7 @@
     <% @a_badan_usahas.each do |a_badan_usaha| %>
       <tr onclick="redirectTo('<%= a_badan_usaha_path(a_badan_usaha) %>')">
         <% ABadanUsaha.column_names.each do |column_name| %>
-          <% unless ["id", "created_at", "updated_at", "updated_by"].include?(column_name) %>
+          <% unless @hidden_columns.include?(column_name) %>
             <td><%= a_badan_usaha[column_name] %></td>
           <% end %>
         <% end %>
@@ -48,7 +48,7 @@
     </div>
     <div class="modal-body">
       <% ABadanUsaha.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at", "updated_by"].include?(column_name) %>
+        <% unless @hidden_columns.include?(column_name) %>
           <div class="control-group">
             <%= label_tag column_name, ABadanUsaha.human_attribute_name(column_name).titleize, class: 'control-label' %>
             <div class="controls">

@@ -78,12 +78,13 @@ private
   def find_a_badan_usaha_by_id
     @a_badan_usaha = ABadanUsaha.find_by_id(params[:id])
     if @a_badan_usaha.blank?
-      flash[:alert] = "Badan usaha tidak ditemukan"
+      flash[:alert] = NOT_FOUND_DATA
       redirect_to a_badan_usahas_path
     end
   end
 
   def get_miscellaneous
     @title = @@title
+    @hidden_columns = ["id", "created_at", "updated_at", "updated_by"]
   end
 end

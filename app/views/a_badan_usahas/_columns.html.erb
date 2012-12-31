@@ -1,5 +1,5 @@
 <% ABadanUsaha.column_names.each do |column_name| %>
-  <% unless ["id", "created_at", "updated_at", "updated_by"].include?(column_name) %>
+  <% unless @hidden_columns.include?(column_name) %>
     <tr>
       <th align="left">&nbsp;<%= ABadanUsaha.human_attribute_name(column_name).titleize %></th>
       <th align="center">:</th>
