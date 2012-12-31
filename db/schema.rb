@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20121229072123) do
     t.string   "kode",       :limit => 5
     t.string   "nama",       :limit => 15
     t.decimal  "isi_volume"
-    t.string   "id_satuan"
+    t.integer  "id_satuan"
     t.string   "updated_by", :limit => 30
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false

@@ -6,8 +6,16 @@ class ASatuan < ActiveRecord::Base
   validates :updated_by, length: { maximum: 30, message: " terlalu panjang, maksimal %{count} karakter" }
   before_create :check_updater
   before_save :check_updater
+  has_many :a_kemasans, class_name: "AKemasan", foreign_key: "id_satuan"
+  before_destroy :check_childs
 
   def check_updater
     self.updated_by = self.updated_by.blank? ? "ANONYMOUS" : self.updated_by
+  end
+
+  def check_childs
+    if self.a_kemasans.count > 0
+      return false
+    end
   end
 end

@@ -22,7 +22,7 @@
       <tr onclick="redirectTo('<%= a_kemasan_path(a_kemasan) %>')">
         <% AKemasan.column_names.each do |column_name| %>
           <% unless @hidden_columns.include?(column_name) %>
-            <%= column_name == 'id_satuan' ? raw("<td>#{a_kemasan.a_satuan.nama}</td>") : raw("<td>#{a_kemasan[column_name]}</td>") %>
+            <%= column_name == 'id_satuan' ? raw("<td>#{a_kemasan.a_satuan.blank? ? 'Satuan kosong' : a_kemasan.a_satuan.nama}</td>") : raw("<td>#{a_kemasan[column_name]}</td>") %>
           <% end %>
         <% end %>
       </tr>

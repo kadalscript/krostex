@@ -4,7 +4,7 @@ class CreateAKemasans < ActiveRecord::Migration
       t.string :kode, limit: 5
       t.string :nama, limit: 15
       t.decimal :isi_volume, default_value: 0
-      t.string :id_satuan
+      t.integer :id_satuan
       t.string :updated_by, limit: 30
 
       t.timestamps

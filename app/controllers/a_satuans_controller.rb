@@ -53,10 +53,14 @@ class ASatuansController < ApplicationController
   end
 
   def destroy
-    @a_satuan.destroy
     respond_to do |format|
-      format.html { redirect_to a_satuans_url, notice: SUCCESSFULLY_DELETE_DATA }
-      format.json { head :no_content }
+      if @a_satuan.destroy
+        format.html { redirect_to a_satuans_url, notice: SUCCESSFULLY_DELETE_DATA }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to a_satuan_path(@a_satuan), alert: "Hapus data gagal. Masih ada kemasan yg berelasi dengan satuan ini" }
+        format.json { head :no_content }
+      end
     end
   end
 
