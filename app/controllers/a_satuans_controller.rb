@@ -15,16 +15,16 @@ class ASatuansController < ApplicationController
   end
 
   def show
-    common_form(@@table_name, @@title, @satuan)
+    common_form(@@table_name, @@title, @a_satuan)
   end
 
   def new
     @a_satuan = ASatuan.new
-    common_form(@@table_name, @@title, @satuan)
+    common_form(@@table_name, @@title, @a_satuan)
   end
 
   def edit
-    common_form(@@table_name, @@title, @satuan)
+    common_form(@@table_name, @@title, @a_satuan)
   end
 
   def create
@@ -34,7 +34,7 @@ class ASatuansController < ApplicationController
         format.html { redirect_to @a_satuan, notice: SUCCESSFULLY_SAVE_DATA }
         format.json { render json: @a_satuan, status: :created, location: @a_satuan }
       else
-        format.html { common_form(@@table_name, @@title, @satuan) }
+        format.html { common_form(@@table_name, @@title, @a_satuan) }
         format.json { render json: @a_satuan.errors, status: :unprocessable_entity }
       end
     end
@@ -46,7 +46,7 @@ class ASatuansController < ApplicationController
         format.html { redirect_to @a_satuan, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else
-        format.html { common_form(@@table_name, @@title, @satuan) }
+        format.html { common_form(@@table_name, @@title, @a_satuan) }
         format.json { render json: @a_satuan.errors, status: :unprocessable_entity }
       end
     end
@@ -65,7 +65,7 @@ class ASatuansController < ApplicationController
   end
 
   def destroy_show
-    common_form(@@table_name, @@title, @satuan)
+    common_form(@@table_name, @@title, @a_satuan)
   end
 
   def search

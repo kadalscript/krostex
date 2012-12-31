@@ -1,6 +1,10 @@
 class ANegarasController < ApplicationController
-  before_filter :attribute, only: [:new, :show, :edit, :destroy_show]
+  before_filter :attributes, only: [:new, :show, :edit, :destroy_show, :create, :update]
   before_filter :find_a_negara_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
+  before_filter :get_miscellaneous
+
+  @@title = 'negara'
+  @@table_name = ANegara.table_name
 
   def index
     @a_negaras = ANegara.page(params[:page]).per(5).order('id')
