@@ -1,14 +1,14 @@
 <%= form_for(@a_kemasan) do |f| %>
   <table class="table-bordered" align="center" width="60%">
-    <tr class="titleJudulTable"><th colspan="3"><%= title %></th></tr>
-    <%= render partial: "shared/common_errors", locals: { object: @a_kemasan } if @a_kemasan.errors.any? %>
+    <tr class="titleJudulTable"><th colspan="3"><%= @form_title %></th></tr>
+    <%= render partial: COMMON_ERRORS, locals: { object: @a_kemasan } if @a_kemasan.errors.any? %>
     <%= render partial: "navigator" unless action_name == 'new' %>
     <%= render partial: "columns", locals: { f: f, attributes: @attributes } %>
     <tr>
       <th colspan="3" class="titleJudulTable" width="100%">
-        <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>
-        <%= link_to "Hapus", a_kemasan_path(@a_kemasan), method: :delete, class: :btn, confirm: "Hapus data?" if action_name.eql?('destroy_show') %>
-        <%= link_to "Tutup", "javascript:void(0)", onclick: "closingForm()", class: :btn %>
+        <%= f.submit SAVE, class: :btn unless action_name.eql?('destroy_show')  %>
+        <%= link_to DELETE, a_kemasan_path(@a_kemasan), method: :delete, class: :btn, confirm: "#{DELETE} data?" if action_name.eql?('destroy_show') %>
+        <%= link_to CLOSE, "javascript:void(0)", onclick: "closingForm()", class: :btn %>
       </th>
     </tr>
   </table>

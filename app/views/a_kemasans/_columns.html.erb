@@ -1,11 +1,11 @@
 <% AKemasan.column_names.each do |column_name| %>
-  <% unless ["id", "created_at", "updated_at", "updated_by"].include?(column_name) %>
+  <% unless @hidden_columns.include?(column_name) %>
     <tr>
       <th align="left">&nbsp;<%= AKemasan.human_attribute_name(column_name).titleize %></th>
       <th align="center">:</th>
       <th align="left">
         <% if column_name == 'id_satuan' %>
-          <%= select("a_kemasan", "id_satuan", ASatuan.all.collect {|satuan| [ satuan.nama, satuan.id ] }, { include_blank: "- Satuan -" }, attributes) %>
+          <%= select("a_kemasan", "id_satuan", ASatuan.all.collect {|satuan| [ satuan.nama, satuan.id ] }, { include_blank: "- Satuan -" }, @select_box_attr) %>
         <% else %>
           <%= f.text_field column_name, attributes %>
         <% end %>

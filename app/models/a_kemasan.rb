@@ -1,9 +1,9 @@
 class AKemasan < ActiveRecord::Base
   attr_accessible :id_satuan, :isi_volume, :kode, :nama, :updated_by
-  validates :kode, presence: true, length: { maximum: 5, message: " terlalu panjang, maksimal 5 karakter" }
-  validates :nama, presence: true, length: { maximum: 15, message: " terlalu panjang, maksimal 15 karakter" }
+  validates :kode, presence: true, length: { maximum: 5, message: " terlalu panjang, maksimal %{count} karakter" }
+  validates :nama, presence: true, length: { maximum: 15, message: " terlalu panjang, maksimal %{count} karakter" }
   validates :id_satuan, presence: true
-  validates :updated_by, length: { maximum: 30, message: " terlalu panjang, maksimal 30 karakter" }
+  validates :updated_by, length: { maximum: 30, message: " terlalu panjang, maksimal %{count} karakter" }
   validates :isi_volume, presence: true, numericality: { message: " harus berupa angka" }
   before_create :check_updater
   before_save :check_updater
