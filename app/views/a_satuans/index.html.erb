@@ -21,7 +21,9 @@
     <% @a_satuans.each do |a_satuan| %>
       <tr onclick="redirectTo('<%= a_satuan_path(a_satuan) %>')">
         <% ASatuan.column_names.each do |column_name| %>
-          <%= raw("<td>#{a_satuan[column_name]}</td>") unless @hidden_columns.include?(column_name) %>
+          <% unless @hidden_columns.include?(column_name) %>
+            <%= raw("<td>#{column_name == 'updated_at' ? a_satuan[column_name].strftime("%a %b %d, %H:%M %p") : a_satuan[column_name]}</td>") %>
+          <% end %>
         <% end %>
       </tr>
     <% end %>

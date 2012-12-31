@@ -1,18 +1,18 @@
 <table class="table table-bordered table-hover" width="60%" align="center">
   <thead class="thead">
     <tr class="titleJudul" style="font-size : 12pt">
-      <th align="center" colspan="11">DAFTAR NEGARA</th>
+      <th align="center" colspan="11"><%= form_title(action_name, @title) %></th>
     </tr>
     <tr class="blankSpot">
       <th colspan="11" align="left">&nbsp;
-        <%= link_to 'Tambah Data', new_a_negara_path, :class => "navigasi btn" %>
-        <a id="searchLink" class="navigasi btn" href="javascript:void(0)" style="float:right">Cari Data</a>
+        <%= link_to ADD, new_a_negara_path, class: "navigasi btn" %>
+        <a id="searchLink" class="navigasi btn" href="javascript:void(0)" style="float:right"><%= SEARCH %></a>
       </th>
     </tr>
     <tr class="titleJudulTable">
       <% ANegara.column_names.each do |column_name| %>
         <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
-          <th><%= column_name %></th>
+          <th><%= ANegara.human_attribute_name(column_name).titleize %></th>
         <% end %>
       <% end %>
     </tr>
