@@ -11,7 +11,7 @@
     </tr>
     <tr class="titleJudulTable">
       <% ANegara.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
+        <% unless ["id", "created_at"].include?(column_name) %>
           <th><%= ANegara.human_attribute_name(column_name).titleize %></th>
         <% end %>
       <% end %>
@@ -19,10 +19,11 @@
   </thead>
   <% @a_negaras.each do |a_negara| %>
     <tr onclick="redirectTo('<%= a_negara_path(a_negara) %>')">
-      <td><%= a_negara.kode %></td>
-      <td><%= a_negara.nama %></td>
-      <td><%= a_negara.simbol %></td>
-      <td><%= a_negara.updated_by %></td>
+      <% ANegara.column_names.each do |column_name| %>
+        <% unless ["id", "created_at"].include?(column_name) %>
+          <td><%= column_name == "updated_at" ? formatting_updated_at(a_negara[column_name]) : a_negara[column_name] %></td>
+        <% end %>
+      <% end %>
     </tr>
   <% end %>
   <thead class="thead">
