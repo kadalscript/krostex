@@ -92,6 +92,6 @@ private
   def get_miscellaneous
     @title = @@title
     @hidden_columns = ["id", "created_at"]
-    @updated_at_attributes = { readonly: true, disabled: 'disabled', style: 'width: 300px;' }
+    @read_only_attributes = { readonly: true, disabled: 'disabled', style: 'width: 300px;' }
   end
 end
