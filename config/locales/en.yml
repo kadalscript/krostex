@@ -19,6 +19,8 @@ en:
         alamat_03: ""
       a_satuan:
         nama: "Nama satuan"
+        updated_by: "Di update oleh"
+        updated_at: "Di update pada"
       a_kemasan:
         isi_volume: "Isi / Volume"
         id_satuan: "Satuan"
