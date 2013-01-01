@@ -106,6 +106,67 @@ fifth_country = ANegara.find_by_id(fourth_country.id + 1)
   })
 end
 
+puts "Seeding ACity"
+first_province = AProvinsi.first
+1.upto(4) do |number|
+  unique_id = "#{first_province.id}#{number}"
+  ACity.create({
+    kode: "c#{unique_id}",
+    nama: "City #{unique_id}",
+    simbol: "s#{unique_id}",
+    id_negara: first_province.id_negara,
+    id_provinsi: first_province.id
+  })
+end
+
+second_province = AProvinsi.find_by_id(first_province.id + 1)
+1.upto(4) do |number|
+  unique_id = "#{second_province.id}#{number}"
+  ACity.create({
+    kode: "c#{unique_id}",
+    nama: "City #{unique_id}",
+    simbol: "s#{unique_id}",
+    id_negara: second_province.id_negara,
+    id_provinsi: second_province.id
+  })
+end
+
+third_province = AProvinsi.find_by_id(second_province.id + 1)
+1.upto(4) do |number|
+  unique_id = "#{third_province.id}#{number}"
+  ACity.create({
+    kode: "c#{unique_id}",
+    nama: "City #{unique_id}",
+    simbol: "s#{unique_id}",
+    id_negara: third_province.id_negara,
+    id_provinsi: third_province.id
+  })
+end
+
+fourth_province = AProvinsi.find_by_id(third_province.id + 1)
+1.upto(4) do |number|
+  unique_id = "#{fourth_province.id}#{number}"
+  ACity.create({
+    kode: "c#{unique_id}",
+    nama: "City #{unique_id}",
+    simbol: "s#{unique_id}",
+    id_negara: fourth_province.id_negara,
+    id_provinsi: fourth_province.id
+  })
+end
+
+fifth_province = AProvinsi.find_by_id(fourth_province.id + 1)
+1.upto(4) do |number|
+  unique_id = "#{fifth_province.id}#{number}"
+  ACity.create({
+    kode: "c#{unique_id}",
+    nama: "City #{unique_id}",
+    simbol: "s#{unique_id}",
+    id_negara: fifth_province.id_negara,
+    id_provinsi: fifth_province.id
+  })
+end
+
 AdminMsUser.delete_all
 AdminMsUser.create(:login_name =>'0331960121', :id_group =>'00', :user_name =>'AIRMANSENA', :password =>'1111', :password_confirmation =>'1111', :limitlogin =>99, :tglcreate =>'2008-01-01', :tglpasswordexpired =>'2900-01-01', :tgllastlogin =>'2008-01-04', :pin =>'111111', :created_at =>'1899-12-30', :updated_at =>'1899-12-30', :status =>0)
 AdminMsUser.create(:login_name =>'herman', :id_group =>'00', :user_name =>'herman', :password =>'1111', :password_confirmation =>'1111', :limitlogin =>1, :tglcreate =>'2012-09-24', :tglpasswordexpired =>'2012-09-24', :tgllastlogin =>'2012-09-24', :pin =>'1', :created_at =>'2012-09-24', :updated_at =>'2012-09-24', :status =>1)
