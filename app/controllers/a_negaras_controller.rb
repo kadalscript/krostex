@@ -75,8 +75,8 @@ class ANegarasController < ApplicationController
 private
   def find_a_negara_by_id
     @a_negara = ANegara.find_by_id(params[:id])
-    respond_to do |format|
-      if @a_negara.blank?
+    if @a_negara.blank?
+      respond_to do |format|
         format.html { redirect_to a_negaras_path, alert: NOT_FOUND_DATA }
         format.json { head :no_content }
       end
