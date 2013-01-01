@@ -21,7 +21,7 @@
     <tr onclick="redirectTo('<%= a_provinsi_path(a_provinsi) %>')">
       <% AProvinsi.column_names.each do |column_name| %>
         <% unless @hidden_columns.include?(column_name) %>
-          <td><%= column_name == "id_negara" ? a_provinsi.a_negara.nama : a_provinsi[column_name] %></td>
+          <td><%= column_name == "id_negara" ? (a_provinsi.a_negara.blank? ? "Kosong" : a_provinsi.a_negara.nama) : a_provinsi[column_name] %></td>
         <% end %>
       <% end %>
     </tr>
