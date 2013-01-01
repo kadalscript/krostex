@@ -75,6 +75,7 @@ class ANegarasController < ApplicationController
   end
   
 private
+
   def find_a_negara_by_id
     @a_negara = ANegara.find_by_id(params[:id])
     if @a_negara.blank?
