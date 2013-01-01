@@ -75,7 +75,8 @@ $(function() {
   });
 
   $('#search').click(function() {
-    if (($('#kode').val() == "") && ($('#nama').val() == "") && ($('#no_urut').val() == ""))
+    if (($('#kode').val() == "") && ($('#nama').val() == "") && ($('#no_urut').val() == "") &&
+        ($('#updated_by').val() == ""))
         {
           $('#empty').fadeIn();
           return false;
