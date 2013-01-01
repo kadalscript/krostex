@@ -8,6 +8,8 @@ en:
       previous: "&lt; Sebelum"
       next: "Sesudah &gt;"
       truncate: "..."
+      first: "&laquo Pertama"
+      last: "Terakhir &raquo"
   activerecord:
     attributes:
       a_company_profile:
