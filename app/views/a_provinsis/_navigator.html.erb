@@ -1,7 +1,9 @@
 <tr>
   <th colspan="3">
-    <%= link_to 'Tambah' , new_a_provinsi_path  %>
-    <%= link_to 'Koreksi', edit_a_provinsi_path(@a_provinsi) if @a_provinsi.id %>
-    <%= link_to 'Hapus'  , a_provinsis_destroy_show_path(@a_provinsi) if action_name != 'destroy_show' %>
+    <% if @a_provinsi.id %>
+      <%= link_to ADD, new_a_provinsi_path %>
+      <%= link_to EDIT, edit_a_provinsi_path(@a_provinsi) %>
+    <% end %>
+    <%= link_to DELETE, a_provinsis_destroy_show_path(@a_provinsi) unless ["destroy_show", "create"].include?(action_name) %>
   </th>
 </tr>

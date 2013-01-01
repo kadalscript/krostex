@@ -70,7 +70,7 @@ class AProvinsisController < ApplicationController
     AProvinsi.column_names.each { |column_name| queries.merge!({ column_name => params[column_name] }) if params[column_name].present? }
     @a_provinsis = AProvinsi.where(queries).page(params[:page]).per(12)
     notifications = ""
-    queries.each_pair { |key, value| notifications += "#{AProvinsi.human_attribute_name(key).titleize} = \"#{value}\"<br />" }
+    queries.each_pair { |key, value| notifications += "#{AProvinsi.human_attribute_name(key).titleize} = \"#{key == 'id_negara' ? @a_provinsis.first.a_negara.nama : value}\"<br />" }
     flash.now[:notice] = "Hasil pencarian :<br /> #{notifications}".html_safe
     render template: "#{@@table_name}/index"
   end
@@ -90,5 +90,9 @@ private
   def get_miscellaneous
     @title = @@title
     @hidden_columns = ["id", "created_at", "updated_at", "updated_by"]
+    @read_only_attributes = { readonly: true, disabled: 'disabled', style: 'width: 300px;' }
+    @select_box_attr = { style: "width: 314px;" }
+    @select_box_attr.merge!({ class: 'required' }) if ['new', 'edit', 'create', 'update'].include?(action_name)
+    @select_box_attr.merge!({ readonly: 'true', disabled: 'disabled' }) if ['show', 'destroy_show'].include?(action_name)
   end
 end

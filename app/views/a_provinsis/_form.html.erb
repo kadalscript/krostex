@@ -1,14 +1,14 @@
 <%= form_for(@a_provinsi) do |f| %>
   <table class="table-bordered" align="center" width="60%">
-    <tr class="titleJudulTable"><th colspan="3"><%= title %></th></tr>
-    <%= render template: "/shared/errors", errors: @a_provinsi.errors if @a_provinsi.errors.any? %>
+    <tr class="titleJudulTable"><th colspan="3"><%= form_title(action_name, @title) %></th></tr>
+    <%= render partial: COMMON_ERRORS, locals: { object: @a_provinsi } if @a_provinsi.errors.any? %>
     <%= render partial: "navigator" unless action_name == 'new' %>
-    <%= render partial: "columns", locals: { f: f, attribute: @attribute } %>
+    <%= render partial: "columns", locals: { f: f, attributes: @attributes } %>
     <tr>
       <th colspan="3" class="titleJudulTable" width="100%">
-        <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>
-        <%= link_to "Hapus", a_provinsi_path(@a_provinsi), method: :delete, class: :btn, confirm: "Hapus data?" if action_name.eql?('destroy_show') %>
-        <%= link_to "Tutup", "javascript:void(0)", onclick: "closingForm()", class: :btn %>
+        <%= f.submit SAVE, class: :btn unless ["destroy_show", "show"].include?(action_name)  %>
+        <%= link_to DELETE, a_provinsi_path(@a_provinsi), method: :delete, class: :btn, confirm: "#{DELETE} data?" if action_name.eql?('destroy_show') %>
+        <%= link_to CLOSE, "javascript:void(0)", onclick: "closingForm()", class: :btn %>
       </th>
     </tr>
   </table>
