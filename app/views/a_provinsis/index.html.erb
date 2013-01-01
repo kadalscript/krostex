@@ -1,28 +1,29 @@
 <table class="table table-bordered table-hover" width="60%" align="center">
   <thead class="thead">
     <tr class="titleJudul" style="font-size : 12pt">
-      <th align="center" colspan="11">DAFTAR PROVINSI</th>
+      <th align="center" colspan="11"><%= form_title(action_name, @title) %></th>
     </tr>
     <tr class="blankSpot">
       <th colspan="11" align="left">&nbsp;
-        <%= link_to 'Tambah Data', new_a_provinsi_path, :class => "navigasi btn" %>
-        <a id="searchLink" class="navigasi btn" href="javascript:void(0)" style="float:right">Cari Data</a>
+        <%= link_to ADD, new_a_provinsi_path, class: "navigasi btn" %>
+        <a id="searchLink" class="navigasi btn" href="javascript:void(0)" style="float:right"><%= SEARCH %></a>
       </th>
     </tr>
     <tr class="titleJudulTable">
       <% AProvinsi.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
-          <th><%= column_name %></th>
+        <% unless @hidden_columns.include?(column_name) %>
+          <th><%= AProvinsi.human_attribute_name(column_name).titleize %></th>
         <% end %>
       <% end %>
     </tr>
   </thead>
   <% @a_provinsis.each do |a_provinsi| %>
     <tr onclick="redirectTo('<%= a_provinsi_path(a_provinsi) %>')">
-      <td><%= a_provinsi.kode %></td>
-      <td><%= a_provinsi.nama %></td>
-      <td><%= a_provinsi.simbol %></td>
-      <td><%= a_provinsi.updated_by %></td>
+      <% AProvinsi.column_names.each do |column_name| %>
+        <% unless @hidden_columns.include?(column_name) %>
+          <td><%= column_name == "id_negara" ? a_provinsi.a_negara.nama : a_provinsi[column_name] %></td>
+        <% end %>
+      <% end %>
     </tr>
   <% end %>
   <thead class="thead">
@@ -36,16 +37,16 @@
 
 <!-- Modal -->
 <div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= form_tag a_provinsis_search_path, method: :get, class: 'form-horizontal' do %>
+  <%= form_tag a_provinsis_search_path, class: 'form-horizontal' do %>
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Search provinsi</h3>
+      <h3 id="myModalLabel"><%= SEARCH %> provinsi</h3>
     </div>
     <div class="modal-body">
       <% AProvinsi.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
+        <% unless @hidden_columns.include?(column_name) %>
           <div class="control-group">
-            <%= label_tag column_name, column_name.gsub('_', ' ').titleize, class: 'control-label' %>
+            <%= label_tag column_name, AProvinsi.human_attribute_name(column_name).titleize, class: 'control-label' %>
             <div class="controls">
               <%= text_field_tag column_name %>
             </div>
@@ -54,13 +55,13 @@
       <% end %>
     </div>
     <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <button class="btn btn-primary">Search</button>
+      <button class="btn" data-dismiss="modal" aria-hidden="true"><%= CLOSE %></button>
+      <button class="btn btn-primary"><%= SEARCH %></button>
     </div>
   <% end %>
 </div>
 
-<%= link_to "Back", a_provinsis_path, class: 'btn btn-success' if action_name == 'search' %>
+<%= link_to BACK, a_provinsis_path, class: 'btn btn-success' if action_name == 'search' %>
 
 <script>
 $(function() {

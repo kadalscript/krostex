@@ -89,6 +89,6 @@ private
 
   def get_miscellaneous
     @title = @@title
-    @hidden_columns = ["id", "created_at"]
+    @hidden_columns = ["id", "created_at", "updated_at", "updated_by"]
   end
 end

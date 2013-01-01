@@ -35,3 +35,6 @@ en:
         nama: "Nama negara"
         updated_at: "Di update pada"
         updated_by: "Di update oleh"
+      a_provinsi:
+        nama: "Nama provinsi"
+        id_negara: "Negara"
