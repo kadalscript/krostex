@@ -19,11 +19,11 @@
   </thead>
   <% @a_cities.each do |a_city| %>
     <tr onclick="redirectTo('<%= a_city_path(a_city) %>')">
-      <td><%= a_badan_usaha.kode %></td>
-      <td><%= a_badan_usaha.nama %></td>
-      <td><%= a_badan_usaha.simbol %></td>
-      <td><%= a_badan_usaha.id_negara %></td>
-      <td><%= a_badan_usaha.id_provinsi %></td>
+      <% ACity.column_names.each do |column_name| %>
+        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
+          <td><%= a_city[column_name] %></td>
+        <% end %>
+      <% end %>
     </tr>
   <% end %>
   <thead class="thead">
