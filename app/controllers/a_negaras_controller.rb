@@ -23,7 +23,9 @@ class ANegarasController < ApplicationController
     common_form(@@table_name, @@title, @a_negara)
   end
 
-  def edit; end
+  def edit
+    common_form(@@table_name, @@title, @a_negara)
+  end
 
   def create
     @a_negara = ANegara.new(params[:a_negara])
