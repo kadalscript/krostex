@@ -29,3 +29,5 @@ en:
         nama: "Nama kemasan"
       a_badan_usaha:
         nama: "Nama badan usaha"
+        updated_at: "Di update pada"
+        updated_by: "Di update oleh"
