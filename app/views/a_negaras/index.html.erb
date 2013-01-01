@@ -11,7 +11,7 @@
     </tr>
     <tr class="titleJudulTable">
       <% ANegara.column_names.each do |column_name| %>
-        <% unless ["id", "created_at"].include?(column_name) %>
+        <% unless @hidden_columns.include?(column_name) %>
           <th><%= ANegara.human_attribute_name(column_name).titleize %></th>
         <% end %>
       <% end %>
@@ -20,7 +20,7 @@
   <% @a_negaras.each do |a_negara| %>
     <tr onclick="redirectTo('<%= a_negara_path(a_negara) %>')">
       <% ANegara.column_names.each do |column_name| %>
-        <% unless ["id", "created_at"].include?(column_name) %>
+        <% unless @hidden_columns.include?(column_name) %>
           <td><%= column_name == "updated_at" ? formatting_updated_at(a_negara[column_name]) : a_negara[column_name] %></td>
         <% end %>
       <% end %>
@@ -37,16 +37,17 @@
 
 <!-- Modal -->
 <div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= form_tag a_negaras_search_path, method: :get, class: 'form-horizontal' do %>
+  <%= form_tag a_negaras_search_path, class: 'form-horizontal' do %>
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Search negara</h3>
+      <h3 id="myModalLabel"><%= SEARCH %> negara</h3>
     </div>
     <div class="modal-body">
+      <% @hidden_columns << "updated_at" %>
       <% ANegara.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
+        <% unless @hidden_columns.include?(column_name) %>
           <div class="control-group">
-            <%= label_tag column_name, column_name.gsub('_', ' ').titleize, class: 'control-label' %>
+            <%= label_tag column_name, ANegara.human_attribute_name(column_name).titleize, class: 'control-label' %>
             <div class="controls">
               <%= text_field_tag column_name %>
             </div>
@@ -55,18 +56,27 @@
       <% end %>
     </div>
     <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <button class="btn btn-primary">Search</button>
+      <button class="btn" data-dismiss="modal" aria-hidden="true"><%= CLOSE %></button>
+      <button class="btn btn-primary" id="search"><%= SEARCH %></button>&nbsp &nbsp<span id="empty" style="color: red; display: none;"><%= REQUIRE_AT_LEAST_ONE_FIELD %></span>
     </div>
   <% end %>
 </div>
 
-<%= link_to "Back", a_negaras_path, class: 'btn btn-success' if action_name == 'search' %>
+<%= link_to BACK, a_negaras_path, class: 'btn btn-success' if action_name == 'search' %>
 
 <script>
 $(function() {
   $('#searchLink').click(function() {
     $('#searchModal').modal();
+  });
+
+  $('#search').click(function() {
+    if (($('#kode').val() == "") && ($('#nama').val() == "") && ($('#simbol').val() == "") &&
+        ($('#updated_by').val() == ""))
+        {
+          $('#empty').fadeIn();
+          return false;
+        }
   });
 });
 </script>
