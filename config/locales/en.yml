@@ -31,3 +31,7 @@ en:
         nama: "Nama badan usaha"
         updated_at: "Di update pada"
         updated_by: "Di update oleh"
+      a_negara:
+        nama: "Nama negara"
+        updated_at: "Di update pada"
+        updated_by: "Di update oleh"
