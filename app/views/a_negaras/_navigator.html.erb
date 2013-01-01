@@ -1,7 +1,7 @@
 <tr>
   <th colspan="3">
-    <%= link_to 'Tambah' , new_a_negara_path  %>
-    <%= link_to 'Koreksi', edit_a_negara_path(@a_negara) if @a_negara.id %>
-    <%= link_to 'Hapus'  , a_negaras_destroy_show_path if action_name != 'destroy_show' %>
+    <%= link_to ADD, new_a_negara_path if @a_negara.id %>
+    <%= link_to EDIT, edit_a_negara_path(@a_negara) if @a_negara.id %>
+    <%= link_to DELETE, a_negaras_destroy_show_path(@a_negara) unless ["destroy_show", "create"].include?(action_name) %>
   </th>
 </tr>

@@ -6,9 +6,9 @@
     <%= render partial: "columns", locals: { f: f, attributes: @attributes } %>
     <tr>
       <th colspan="3" class="titleJudulTable" width="100%">
-        <%= f.submit "Simpan", class: :btn unless ["show", "destroy_show"].include?(action_name)  %>
-        <%= link_to "Hapus", a_negara_path(@a_negara), method: :delete, class: :btn, confirm: "Hapus data?" if action_name.eql?('destroy_show') %>
-        <%= link_to "Tutup", "javascript:void(0)", onclick: "closingForm()", class: :btn %>
+        <%= f.submit SAVE, class: :btn unless ["show", "destroy_show"].include?(action_name)  %>
+        <%= link_to DELETE, a_negara_path(@a_negara), method: :delete, class: :btn, confirm: "#{DELETE} data?" if action_name.eql?('destroy_show') %>
+        <%= link_to CLOSE, "javascript:void(0)", onclick: "closingForm()", class: :btn %>
       </th>
     </tr>
   </table>
