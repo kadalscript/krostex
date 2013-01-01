@@ -6,7 +6,7 @@
     <%= render partial: "columns", locals: { f: f, attributes: @attributes } %>
     <tr>
       <th colspan="3" class="titleJudulTable" width="100%">
-        <%= f.submit SAVE, class: :btn unless ["destroy_show", "show", "new"].include?(action_name)  %>
+        <%= f.submit SAVE, class: :btn unless ["destroy_show", "show"].include?(action_name)  %>
         <%= link_to DELETE, a_satuan_path(@a_satuan), method: :delete, class: :btn, confirm: "#{DELETE} data?" if action_name.eql?('destroy_show') %>
         <%= link_to CLOSE, "javascript:void(0)", onclick: "closingForm()", class: :btn %>
       </th>

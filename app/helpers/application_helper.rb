@@ -21,7 +21,11 @@ module ApplicationHelper
     result += "<th align='left'>&nbsp; #{model.human_attribute_name(column_name).titleize}</th>"
     result += "<th align='center'>:</th>"
     result += "<th align='left'>"
-    result += column_name == "updated_at" ? "#{text_field_tag column_name, instance.updated_at.strftime("%a %b %d, %H:%M %p"), @read_only_attributes}" : "#{object.text_field column_name, column_name == 'updated_by' ? @read_only_attributes : attributes}"
+    if column_name == 'id_satuan'
+      result += select("a_kemasan", "id_satuan", ASatuan.all.collect {|satuan| [ satuan.nama, satuan.id ] }, { include_blank: "- Satuan -" }, @select_box_attr)
+    else
+      result += column_name == "updated_at" ? "#{text_field_tag column_name, instance.updated_at.strftime("%a %b %d, %H:%M %p"), @read_only_attributes}" : "#{object.text_field column_name, column_name == 'updated_by' ? @read_only_attributes : attributes}"
+    end
     result += "</th>"
     result += "</tr>"
   end
