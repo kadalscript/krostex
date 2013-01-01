@@ -47,6 +47,7 @@
       <h3 id="myModalLabel"><%= SEARCH %> badan usaha</h3>
     </div>
     <div class="modal-body">
+      <% @hidden_columns << "updated_at" %>
       <% ABadanUsaha.column_names.each do |column_name| %>
         <% unless @hidden_columns.include?(column_name) %>
           <div class="control-group">
