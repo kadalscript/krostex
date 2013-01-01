@@ -15,18 +15,12 @@ class ANegarasController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @a_negara }
-    end
+    common_form(@@table_name, @@title, @a_negara)
   end
 
   def new
     @a_negara = ANegara.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @a_negara }
-    end
+    common_form(@@table_name, @@title, @a_negara)
   end
 
   def edit; end
@@ -35,10 +29,10 @@ class ANegarasController < ApplicationController
     @a_negara = ANegara.new(params[:a_negara])
     respond_to do |format|
       if @a_negara.save
-        format.html { redirect_to @a_negara, notice: 'Negara berhasil dibuat' }
+        format.html { redirect_to @a_negara, notice: SUCCESSFULLY_SAVE_DATA }
         format.json { render json: @a_negara, status: :created, location: @a_negara }
       else
-        format.html { render action: "new" }
+        format.html { common_form(@@table_name, @@title, @a_negara) }
         format.json { render json: @a_negara.errors, status: :unprocessable_entity }
       end
     end
@@ -47,10 +41,10 @@ class ANegarasController < ApplicationController
   def update
     respond_to do |format|
       if @a_negara.update_attributes(params[:a_negara])
-        format.html { redirect_to @a_negara, notice: 'Negara berhasil diupdate' }
+        format.html { redirect_to @a_negara, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { common_form(@@table_name, @@title, @a_negara) }
         format.json { render json: @a_negara.errors, status: :unprocessable_entity }
       end
     end
@@ -59,17 +53,38 @@ class ANegarasController < ApplicationController
   def destroy
     @a_negara.destroy
     respond_to do |format|
-      format.html { redirect_to a_negaras_url, notice: 'Negara berhasil dihapus' }
+      format.html { redirect_to a_negaras_url, notice: SUCCESSFULLY_DELETE_DATA }
       format.json { head :no_content }
     end
+  end
+
+  def destroy_show
+    common_form(@@table_name, @@title, @a_negara)
+  end
+
+  def search
+    queries = {}
+    ANegara.column_names.each { |column_name| queries.merge!({ column_name => params[column_name] }) if params[column_name].present? }
+    @a_negaras = ANegara.where(queries).page(params[:page]).per(12)
+    notifications = ""
+    queries.each_pair { |key, value| notifications += "#{ANegara.human_attribute_name(key).titleize} = \"#{value}\"<br />" }
+    flash.now[:notice] = "Hasil pencarian :<br /> #{notifications}".html_safe
+    render template: "a_negaras/index"
   end
   
 private
   def find_a_negara_by_id
     @a_negara = ANegara.find_by_id(params[:id])
-    if @a_negara.blank?
-      flash[:alert] = "Negara tidak ditemukan"
-      redirect_to a_negaras_path
+    respond_to do |format|
+      if @a_negara.blank?
+        format.html { redirect_to a_negaras_path, alert: NOT_FOUND_DATA }
+        format.json { head :no_content }
+      end
     end
+  end
+
+  def get_miscellaneous
+    @title = @@title
+    @hidden_columns = ["id", "created_at"]
   end
 end
