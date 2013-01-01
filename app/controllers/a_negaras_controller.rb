@@ -53,10 +53,14 @@ class ANegarasController < ApplicationController
   end
 
   def destroy
-    @a_negara.destroy
     respond_to do |format|
-      format.html { redirect_to a_negaras_url, notice: SUCCESSFULLY_DELETE_DATA }
-      format.json { head :no_content }
+      if @a_negara.destroy
+        format.html { redirect_to a_negaras_url, notice: SUCCESSFULLY_DELETE_DATA }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to a_negara_path(@a_negara), alert: "Masih ada data provinsi yg berelasi dengan negara ini" }
+        format.json { head :no_content }
+      end
     end
   end
 
