@@ -22,7 +22,7 @@
       <tr onclick="redirectTo('<%= a_badan_usaha_path(a_badan_usaha) %>')">
         <% ABadanUsaha.column_names.each do |column_name| %>
           <% unless @hidden_columns.include?(column_name) %>
-            <td><%= a_badan_usaha[column_name] %></td>
+            <td><%= column_name == "updated_at" ? formatting_updated_at(a_badan_usaha[column_name]) : a_badan_usaha[column_name] %></td>
           <% end %>
         <% end %>
       </tr>
