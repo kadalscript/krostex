@@ -24,7 +24,9 @@ module ApplicationHelper
     if column_name == 'id_satuan'
       result += select("a_kemasan", "id_satuan", ASatuan.all.collect { |satuan| [ satuan.nama, satuan.id ] }, { include_blank: "- Satuan -" }, @select_box_attr)
     elsif column_name == "id_negara"
-      result += select("a_provinsi", "id_negara", ANegara.all.collect { |negara| [ negara.nama, negara.id ] }, { include_blank: "- Negara -" }, @select_box_attr)
+      result += select(controller_name == 'a_cities' ? 'a_city' : 'a_provinsi', "id_negara", ANegara.all.collect { |negara| [ negara.nama, negara.id ] }, { include_blank: "- Negara -" }, @select_box_attr)
+    elsif column_name == "id_provinsi"
+      result += select("a_city", "id_provinsi", AProvinsi.all.collect { |provinsi| [ provinsi.nama, provinsi.id ] }, { include_blank: "- Provinsi -" }, @select_box_attr)
     else
       result += column_name == "updated_at" ? "#{text_field_tag column_name, formatting_updated_at(instance.updated_at), @read_only_attributes}" : "#{object.text_field column_name, column_name == 'updated_by' ? @read_only_attributes : attributes}"
     end
