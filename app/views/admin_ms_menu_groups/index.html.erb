@@ -1,30 +1,33 @@
-<h1>Listing admin_ms_menu_groups</h1>
-
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-bordered table-hover" align="center">
   <thead class="thead">
-    <tr>
+    <tr class="titleJudul" style="font-size : 12pt">
+      <th align="center" colspan="11">
+       ADMIN MASTER MENU GROUP
+      </th> 
+    </tr>  
+    <tr class="blankSpot">
+      <th colspan="5" align="left">&nbsp;
+        <%= link_to 'Tambah Data', new_admin_ms_menu_group_path, :class => "navigasi btn" %>
+      </th>
+    </tr>
+    <tr class="titleJudulTable">
       <th>Id menu</th>
       <th>Id group</th>
-      <th>Id product</th>
       <th>Statusmenu</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
   <% @admin_ms_menu_groups.each do |admin_ms_menu_group| %>
-  <tr>
+  <tr onclick="redirectTo('<%= admin_ms_menu_group_path(admin_ms_menu_group.id, page: params[:page]) %>')">
     <td><%= admin_ms_menu_group.id_menu %></td>
     <td><%= admin_ms_menu_group.id_group %></td>
-    <td><%= admin_ms_menu_group.id_product %></td>
     <td><%= admin_ms_menu_group.statusmenu %></td>
-    <td><%= link_to 'Show', admin_ms_menu_group %></td>
-    <td><%= link_to 'Edit', edit_admin_ms_menu_group_path(admin_ms_menu_group) %></td>
-    <td><%= link_to 'Destroy', admin_ms_menu_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   <% end %>
+  <thead class="thead">
+    <tr class="titleJudulTable">
+      <th colspan="11" align="right">
+        <%= paginate @admin_ms_menu_groups %> 
+      </th>  
+    </tr>  
+  </thread>
 </table>
-
-<br />
-
-<%= link_to 'New Admin ms menu group', new_admin_ms_menu_group_path %>

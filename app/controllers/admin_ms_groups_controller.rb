@@ -2,12 +2,7 @@ class AdminMsGroupsController < ApplicationController
   # GET /admin_ms_groups
   # GET /admin_ms_groups.json
   def index
-    @admin_ms_groups = AdminMsGroup.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @admin_ms_groups }
-    end
+    @admin_ms_groups = AdminMsGroup.page(params[:page]).per(5)
   end
 
   # GET /admin_ms_groups/1
@@ -25,6 +20,7 @@ class AdminMsGroupsController < ApplicationController
   # GET /admin_ms_groups/new.json
   def new
     @admin_ms_group = AdminMsGroup.new
+    @admin_ms_groups = AdminMsGroup.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +31,7 @@ class AdminMsGroupsController < ApplicationController
   # GET /admin_ms_groups/1/edit
   def edit
     @admin_ms_group = AdminMsGroup.find(params[:id])
+    @admin_ms_groups = AdminMsGroup.all
   end
 
   # POST /admin_ms_groups
@@ -69,8 +66,11 @@ class AdminMsGroupsController < ApplicationController
     end
   end
 
-  # DELETE /admin_ms_groups/1
-  # DELETE /admin_ms_groups/1.json
+  def destroy_show
+    @admin_ms_group = AdminMsGroup.find(params[:id])
+    @admin_ms_groups = AdminMsGroup.all
+  end
+
   def destroy
     @admin_ms_group = AdminMsGroup.find(params[:id])
     @admin_ms_group.destroy

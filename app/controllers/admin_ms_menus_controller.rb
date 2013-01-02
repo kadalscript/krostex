@@ -1,6 +1,4 @@
-class AdminMsMenusController < ApplicationController
-  before_filter :attribute, only: [:new, :show, :edit, :destroy_show]
-  
+class AdminMsMenusController < ApplicationController  
   # GET /admin_ms_menus
   # GET /admin_ms_menus.json
   def index

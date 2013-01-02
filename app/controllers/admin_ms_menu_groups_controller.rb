@@ -2,7 +2,7 @@ class AdminMsMenuGroupsController < ApplicationController
   # GET /admin_ms_menu_groups
   # GET /admin_ms_menu_groups.json
   def index
-    @admin_ms_menu_groups = AdminMsMenuGroup.all
+    @admin_ms_menu_groups = AdminMsMenuGroup.page(params[:page]).per(5)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +25,7 @@ class AdminMsMenuGroupsController < ApplicationController
   # GET /admin_ms_menu_groups/new.json
   def new
     @admin_ms_menu_group = AdminMsMenuGroup.new
+    @admin_ms_groups = AdminMsGroup.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class AdminMsMenuGroupsController < ApplicationController
   # GET /admin_ms_menu_groups/1/edit
   def edit
     @admin_ms_menu_group = AdminMsMenuGroup.find(params[:id])
+    @admin_ms_groups = AdminMsGroup.all
   end
 
   # POST /admin_ms_menu_groups
@@ -67,6 +69,11 @@ class AdminMsMenuGroupsController < ApplicationController
         format.json { render json: @admin_ms_menu_group.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy_show
+    @admin_ms_menu_group = AdminMsMenuGroup.find(params[:id])
+    @admin_ms_groups = AdminMsGroup.all
   end
 
   # DELETE /admin_ms_menu_groups/1

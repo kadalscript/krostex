@@ -1,0 +1,20 @@
+<tr>
+  <th colspan="3" align="center">    
+    <table class="tableError">
+      <tr class="trTitleError">
+        <th align="left"> 
+         <%= pluralize(errors_object.count, "Kesalahan") %> dalam pengisian data. sebagai berikut &nbsp;:&nbsp;
+       </th>
+     </tr>
+     <%
+     nomorUrutErr = 0
+     errors_object.full_messages.each do |msg| 
+      nomorUrutErr += 1 ;
+      %>
+      <tr> 
+        <th align="left">&nbsp;<%= nomorUrutErr %>.&nbsp;&nbsp;<%= msg %></th>
+      </tr>
+      <% end %>
+    </table>  
+  </th>
+</tr>

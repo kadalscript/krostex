@@ -1,33 +1,43 @@
 <%= form_for(@admin_ms_group) do |f| %>
-  <% if @admin_ms_group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@admin_ms_group.errors.count, "error") %> prohibited this admin_ms_group from being saved:</h2>
-
-      <ul>
-      <% @admin_ms_group.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :id_group %><br />
-    <%= f.text_field :id_group %>
-  </div>
-  <div class="field">
-    <%= f.label :namagroup %><br />
-    <%= f.text_field :namagroup %>
-  </div>
-  <div class="field">
-    <%= f.label :statusgroup %><br />
-    <%= f.number_field :statusgroup %>
-  </div>
-  <div class="field">
-    <%= f.label :id_group_parent %><br />
-    <%= f.text_field :id_group_parent %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <table class="table-bordered" align="center" width="60%">
+    <tr class="titleJudulTable"><th colspan="3"><%= title %></th>
+    </tr>
+      <th align="left">&nbsp;Group ID</th>
+      <th align="center">:</th>
+      <th align="left">
+        <% if action_name.eql? "new" %>
+          <%= f.text_field :id_group, class: "required", value: AdminMsGroup.last.id_group.succ, maxlength: 5, readonly: true %>
+        <% else %>
+          <%= f.text_field :id_group, class: "required", maxlength: 5, readonly: true %>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Description</th>
+      <th align="center">:</th>
+      <th align="left">
+        <%= f.text_field :namagroup, class: "required", maxlength: 20 %>
+      </th>
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Parent Node</th>
+      <th align="center">:</th>
+      <th align="left">
+        <% if @admin_ms_group.id.nil? %>
+          <%= f.select :id_group_parent, options_from_collection_for_select(@admin_ms_groups, 'id_group', 'namagroup', @admin_ms_group.id_group), {include_blank: true}, class: "required" %>
+        <% else %>
+          <%= f.select :id_group_parent, options_from_collection_for_select(@admin_ms_groups, 'id_group', 'namagroup', @admin_ms_group.id_group), {}, class: "required" %>
+        <% end %>
+      </th>
+    </tr>
+    <tr>
+      <th colspan="3" class="titleJudulTable" width="100%">
+        <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>
+        <%= link_to "Hapus", admin_ms_group_path(@admin_ms_group), method: :delete, class: :btn, confirm: "Hapus data?" if action_name.eql?('destroy_show') %>
+        <%= link_to "Tutup", "javascript:void(0)", onclick: "closingForm()", class: :btn %>
+      </th>
+    </tr>
+  </table>
 <% end %>
+
+<input type="hidden" id="url_back" value="<%= admin_ms_groups_path %>">
