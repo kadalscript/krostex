@@ -38,3 +38,7 @@ en:
       a_provinsi:
         nama: "Nama provinsi"
         id_negara: "Negara"
+      a_city:
+        nama: "Nama kota"
+        id_negara: "Negara"
+        id_provinsi: "Provinsi"
