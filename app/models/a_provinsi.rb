@@ -4,6 +4,8 @@ class AProvinsi < ActiveRecord::Base
   validates :kode, presence: true, length: { maximum: 5, message: TOO_LONG_CHARACTER }
   validates :nama, presence: true, length: { maximum: 15, message: TOO_LONG_CHARACTER }
   validates :updated_by, length: { maximum: 30, message: TOO_LONG_CHARACTER }
+  belongs_to :a_negara, class_name: "ANegara", foreign_key: "id_negara"
+  has_many :a_cities, class_name: "ACity", foreign_key: "id_provinsi"
   before_create :check_updater
   before_save :check_updater
 

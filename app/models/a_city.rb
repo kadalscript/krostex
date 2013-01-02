@@ -3,6 +3,8 @@ class ACity < ActiveRecord::Base
   validates :kode, :simbol, presence: true, length: { maximum: 5, message: TOO_LONG_CHARACTER }
   validates :nama, presence: true, length: { maximum: 30, message: TOO_LONG_CHARACTER }
   validates :updated_by, length: { maximum: 30, message: TOO_LONG_CHARACTER }
+  belongs_to :a_provinsi, class_name: "AProvinsi", foreign_key: 'id_provinsi'
+  belongs_to :a_negara, class_name: "ANegara", foreign_key: 'id_negara'
   before_create :check_updater
   before_save :check_updater
 

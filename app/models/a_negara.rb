@@ -7,6 +7,7 @@ class ANegara < ActiveRecord::Base
   before_save :check_updater
   before_destroy :check_childs
   has_many :a_provinsis, class_name: "AProvinsi", foreign_key: "id_negara"
+  has_many :a_cities, through: :a_provinsis
 
   def check_updater
     self.updated_by = self.updated_by.blank? ? "ANONYMOUS" : self.updated_by
