@@ -69,7 +69,7 @@ class ACitiesController < ApplicationController
     ACity.column_names.each { |column_name| queries.merge!({ column_name => params[column_name] }) if params[column_name].present? }
     @a_cities = ACity.where(queries).page(params[:page]).per(12)
     notifications = ""
-    queries.each_pair { |key, value| notifications += "#{ACity.human_attribute_name(key).titleize} = \"#{value}\"<br />" }
+    queries.each_pair { |key, value| notifications += "#{ACity.human_attribute_name(key).titleize} = \"#{['id_negara', 'id_provinsi'].include?(key) ? (key == 'id_negara' ? @a_cities.first.a_negara.nama : @a_cities.first.a_provinsi.nama) : value}\"<br />" }
     flash.now[:notice] = "Hasil pencarian :<br /> #{notifications}".html_safe
     render template: "#{@@table_name}/index"
   end

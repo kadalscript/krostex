@@ -50,6 +50,8 @@
             <div class="controls">
               <% if column_name == 'id_negara' %>
                 <%= select_tag("id_negara", options_for_select(ANegara.all.collect {|negara| [ negara.nama, negara.id ] }), prompt: "- Negara -") %>
+              <% elsif column_name == 'id_provinsi' %>
+                <%= select_tag("id_provinsi", options_for_select(""), prompt: "- Provinsi -") %>
               <% else %>
                 <%= text_field_tag column_name %>
               <% end %>
@@ -80,6 +82,22 @@ $(function() {
           $('#empty').fadeIn();
           return false;
         }
+  });
+
+  $('#id_provinsi').attr('disabled', 'disabled');
+  $('#id_provinsi').attr('readonly', 'true');
+
+  $('#id_negara').change(function() {
+    if ($('#id_negara').val() == '') {
+      $('#id_provinsi').attr('disabled', 'disabled');
+      $('#id_provinsi').attr('readonly', 'true');
+    } else if ($('#id_negara').val() != '') {
+      $('#id_provinsi').removeAttr('disabled');
+      $('#id_provinsi').removeAttr('readonly');
+      $.ajax({
+        url: '<%= get_provinces_a_cities_path %>?negara=' + $('#id_negara').val() + '&index=true'
+      })
+    }
   });
 });
 </script>
