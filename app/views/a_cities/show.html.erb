@@ -1,11 +1,11 @@
 <%= form_for(@a_city) do |f| %>
   <table class="table-bordered" align="center" width="60%">
-  <tr class="titleJudulTable"><th colspan="3">FORM DATA KOTA</th></tr>
+  <tr class="titleJudulTable"><th colspan="3"><%= form_title(action_name, @title) %></th></tr>
   <%= render partial: "navigator" %>
   <%= render partial: "columns", locals: { f: f, attributes: @attributes } %>
   <tr>
     <th colspan="3" class="titleJudulTable" width="100%">
-      <input type="button" value="Tutup" onclick="closingForm()" class="btn" />
+      <input type="button" value="<%= CLOSE %>" onclick="closingForm()" class="btn" />
     </th>
   </tr>
   </table>
