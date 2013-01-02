@@ -12,7 +12,11 @@ Hermanstartup::Application.routes.draw do
   resources :a_golongans
   resources :a_departments
   resources :a_template_cats
-  resources :a_cities
+  resources :a_cities do
+    collection do
+      match "get_provinces"
+    end
+  end
   resources :a_level_fives
   resources :a_level_fours
   resources :b_barangs

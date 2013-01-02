@@ -74,6 +74,13 @@ class ACitiesController < ApplicationController
     render template: "#{@@table_name}/index"
   end
 
+  def get_provinces
+    @a_negara = ANegara.find_by_id(params[:negara])
+    respond_to do |format|
+      format.js { render }
+    end
+  end
+
 private
 
   def find_a_city_by_id

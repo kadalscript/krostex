@@ -74,7 +74,7 @@ class AProvinsisController < ApplicationController
     flash.now[:notice] = "Hasil pencarian :<br /> #{notifications}".html_safe
     render template: "#{@@table_name}/index"
   end
-  
+
 private
 
   def find_a_provinsi_by_id

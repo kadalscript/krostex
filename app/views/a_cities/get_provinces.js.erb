@@ -1,0 +1,5 @@
+<% if @a_negara.blank? %>
+  $('#a_city_id_provinsi').html('<%= escape_javascript(select("a_city", "id_provinsi", "", { include_blank: "- Provinsi -" }, @select_box_attr)) %>')
+<% else %>
+  $('#a_city_id_provinsi').html('<%= escape_javascript(select("a_city", "id_provinsi", @a_negara.a_provinsis.collect { |provinsi| [ provinsi.nama, provinsi.id ] }, { include_blank: "- Provinsi -" })) %>')
+<% end %>
