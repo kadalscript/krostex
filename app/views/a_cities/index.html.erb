@@ -48,7 +48,11 @@
           <div class="control-group">
             <%= label_tag column_name, ACity.human_attribute_name(column_name).titleize, class: 'control-label' %>
             <div class="controls">
-              <%= text_field_tag column_name %>
+              <% if column_name == 'id_negara' %>
+                <%= select_tag("id_negara", options_for_select(ANegara.all.collect {|negara| [ negara.nama, negara.id ] }), prompt: "- Negara -") %>
+              <% else %>
+                <%= text_field_tag column_name %>
+              <% end %>
             </div>
           </div>
         <% end %>
