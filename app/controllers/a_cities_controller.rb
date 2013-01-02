@@ -1,6 +1,10 @@
 class ACitiesController < ApplicationController
-  before_filter :attribute, only: [:new, :show, :edit, :destroy_show]
+  before_filter :attributes, only: [:new, :show, :edit, :destroy_show, :create, :update]
   before_filter :find_a_city_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
+  before_filter :get_miscellaneous
+
+  @@title = 'city'
+  @@table_name = ACity.table_name
 
   def index
     @a_cities = ACity.page(params[:page]).per(5)
@@ -11,30 +15,26 @@ class ACitiesController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @a_city }
-    end
+    common_form(@@table_name, @@title, @a_city)
   end
 
   def new
     @a_city = ACity.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @a_city }
-    end
+    common_form(@@table_name, @@title, @a_city)
   end
 
-  def edit; end
+  def edit
+    common_form(@@table_name, @@title, @a_city)
+  end
 
   def create
     @a_city = ACity.new(params[:a_city])
     respond_to do |format|
       if @a_city.save
-        format.html { redirect_to @a_city, notice: 'Data berhasil dibuat' }
+        format.html { redirect_to @a_city, notice: SUCCESSFULLY_SAVE_DATA }
         format.json { render json: @a_city, status: :created, location: @a_city }
       else
-        format.html { render action: "new" }
+        format.html { common_form(@@table_name, @@title, @a_city) }
         format.json { render json: @a_city.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +43,10 @@ class ACitiesController < ApplicationController
   def update
     respond_to do |format|
       if @a_city.update_attributes(params[:a_city])
-        format.html { redirect_to @a_city, notice: 'Data berhasil diupdate' }
+        format.html { redirect_to @a_city, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { common_form(@@table_name, @@title, @a_city) }
         format.json { render json: @a_city.errors, status: :unprocessable_entity }
       end
     end
@@ -55,26 +55,39 @@ class ACitiesController < ApplicationController
   def destroy
     @a_city.destroy
     respond_to do |format|
-      format.html { redirect_to a_cities_url, notice: 'Data berhasil dihapus' }
+      format.html { redirect_to a_cities_url, notice: SUCCESSFULLY_DELETE_DATA }
       format.json { head :no_content }
     end
   end
 
-  def destroy_show; end
+  def destroy_show
+    common_form(@@table_name, @@title, @a_city)
+  end
 
   def search
-    query = {}
-    ACity.column_names.each { |column_name| query.merge!({ column_name => params[column_name] }) if params[column_name].present? }
-    @a_cities = ACity.where(query).page(params[:page]).per(5)
-    render template: "a_cities/index"
+    queries = {}
+    ACity.column_names.each { |column_name| queries.merge!({ column_name => params[column_name] }) if params[column_name].present? }
+    @a_cities = ACity.where(queries).page(params[:page]).per(12)
+    notifications = ""
+    queries.each_pair { |key, value| notifications += "#{ACity.human_attribute_name(key).titleize} = \"#{value}\"<br />" }
+    flash.now[:notice] = "Hasil pencarian :<br /> #{notifications}".html_safe
+    render template: "#{@@table_name}/index"
   end
 
 private
+
   def find_a_city_by_id
     @a_city = ACity.find_by_id(params[:id])
     if @a_city.blank?
-      flash[:alert] = "Data tidak ditemukan"
-      redirect_to a_cities_path
+      respond_to do |format|
+        format.html { redirect_to a_cities_path, alert: NOT_FOUND_DATA }
+        format.json { head :no_content }
+      end
     end
+  end
+
+  def get_miscellaneous
+    @title = @@title
+    @hidden_columns = ["id", "created_at"]
   end
 end
