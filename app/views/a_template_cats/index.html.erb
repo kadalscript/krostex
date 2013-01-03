@@ -17,12 +17,16 @@
       <% end %>
     </tr>
   </thead>
-  <% @a_template_cats.each do |a_template_cat| %>
-    <tr onclick="redirectTo('<%= a_template_cat_path(a_template_cat) %>')">
-      <% unless @hidden_columns.include?(column_name) %>
-        <td><%= a_template_cate[column_name] %></td>
-      <% end %>
-    </tr>
+  <% if @a_template_cats.count > 0 %>
+    <% @a_template_cats.each do |a_template_cat| %>
+      <tr onclick="redirectTo('<%= a_template_cat_path(a_template_cat) %>')">
+        <% unless @hidden_columns.include?(column_name) %>
+          <td><%= a_template_cate[column_name] %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr><td colspan="7" style="text-align: center"><%= EMPTY_DATA %></td></tr>
   <% end %>
   <thead class="thead">
     <tr class="titleJudulTable">
