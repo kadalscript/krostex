@@ -89,5 +89,9 @@ private
   def get_miscellaneous
     @title = @@title
     @hidden_columns = ["id", "created_at", "status1"]
+    @read_only_attributes = { readonly: true, disabled: 'disabled', style: 'width: 300px;' }
+    @select_box_attr = { style: "width: 314px;" }
+    @select_box_attr.merge!({ class: 'required' }) if ['new', 'edit', 'create', 'update'].include?(action_name)
+    @select_box_attr.merge!({ readonly: 'true', disabled: 'disabled' }) if ['show', 'destroy_show'].include?(action_name)
   end
 end

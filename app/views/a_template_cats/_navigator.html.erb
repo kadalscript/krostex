@@ -1,7 +1,9 @@
 <tr>
   <th colspan="3">
-    <%= link_to 'Tambah' , new_a_template_cat_path  %>
-    <%= link_to 'Koreksi', edit_a_template_cat_path(@a_template_cat) if @a_template_cat.id %>
-    <%= link_to 'Hapus'  , a_template_cats_destroy_show_path(@a_template_cat) if action_name != 'destroy_show' %>
+    <% if @a_template_cat.id %>
+      <%= link_to ADD, new_a_template_cat_path  %>
+      <%= link_to EDIT, edit_a_template_cat_path(@a_template_cat) %>
+    <% end %>
+    <%= link_to DELETE, a_template_cats_destroy_show_path(@a_template_cat)  unless ["destroy_show", "create"].include?(action_name) %>
   </th>
 </tr>
