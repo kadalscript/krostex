@@ -75,7 +75,7 @@ class ASatuansController < ApplicationController
     notifications = ""
     queries.each_pair { |key, value| notifications += "#{ASatuan.human_attribute_name(key).titleize} = \"#{value}\"<br />" }
     flash.now[:notice] = "Hasil pencarian :<br /> #{notifications}".html_safe
-    render template: "a_satuans/index"
+    render template: "#{@@table_name}/index"
   end
   
 private
