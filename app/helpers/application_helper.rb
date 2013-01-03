@@ -30,7 +30,11 @@ module ApplicationHelper
     elsif column_name == "st_progress"                
       result += select("a_template_cat", "st_progress", [["ACTIVE", "ACTIVE"], ['CLOSED', 'CLOSED']], { include_blank: "- Status -" }, @select_box_attr)
     elsif ((column_name == 'kode') && (controller_name == 'a_template_cats'))
-      result += object.text_field column_name, @read_only_attributes
+      if action_name == 'new'
+        result += text_field_tag 'a_template_cat[kode]', ATemplateCat.last.kode.to_i + 1, @read_only_attributes
+      else
+        result += object.text_field column_name, @read_only_attributes
+      end
     else
       result += column_name == "updated_at" ? "#{text_field_tag column_name, formatting_updated_at(instance.updated_at), @read_only_attributes}" : "#{object.text_field column_name, column_name == 'updated_by' ? @read_only_attributes : attributes}"
     end
