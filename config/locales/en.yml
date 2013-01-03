@@ -42,3 +42,7 @@ en:
         nama: "Nama kota"
         id_negara: "Negara"
         id_provinsi: "Provinsi"
+      a_template_cat:
+        st_progress: "Status"
+        updated_by: "Di update oleh"
+        updated_at: "Di update pada"
