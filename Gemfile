@@ -7,6 +7,7 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
+gem 'string2hex'
 
 group :development do
   gem 'therubyracer', :platforms => :ruby

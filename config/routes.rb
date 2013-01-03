@@ -33,6 +33,10 @@ Hermanstartup::Application.routes.draw do
     match "#{item}/search" => "#{item}#search"
   end
 
+  get "admin_otorisasi/index"
+  get "admin_otorisasi/frm_otorisasi"
+  post "admin_otorisasi/admin_otorisasi_save"
+
   resources :admin_ms_url_backs
   resources :admin_ms_navigasis
   resources :admin_ms_modul_navigasis

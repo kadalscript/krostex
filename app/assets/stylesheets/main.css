@@ -42,3 +42,9 @@ a.navigasi {font-size: 8pt;}
 .required.error {
   border: 2px solid red;
 }
+
+.main-btn {
+  height: 30%;
+  margin: 10px;
+  width: 40%;
+}

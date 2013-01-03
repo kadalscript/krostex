@@ -1,0 +1,90 @@
+ <%= stylesheet_link_tag "nodeslink.custom", "jquery.treeview", "screen", :media => "all" %>
+
+<% content_for :head do %>
+
+<% end 
+
+   namaGroup = "" ;
+%>
+
+<table width="100%" border="1">
+     <%= form_tag admin_otorisasi_admin_otorisasi_save_path do %>
+     <tr class="titleJudul">
+            <td width="100%"  align="center">GROUP MODULES AUTHORIZE</td>
+     </tr>
+     <tr class="titleJudul">
+            <td width="100%" class="subtitle" align="center">LEVEL &nbsp;:&nbsp;<%= namaGroup %></td>
+     </tr>   
+     <tr class="titleJudul">
+        <td width="100%">
+             <input type="submit"  name="btnsimpan"       value="SIMPAN"> &nbsp;
+             <input type="submit"  name="btntutup"        value="TUTUP"> &nbsp;
+             <input type="hidden"  name="prm_id_group"    value="<%= @prm_id_group %>"> &nbsp;
+             <input type="hidden"  name="prm_id_group_parent" value="<%= @prm_id_group_parent %>"> &nbsp;
+              
+        </td>
+      </tr>
+      <tr><td></td></tr>
+</table>
+
+<ul id="red" class="treeview-red">
+ <%
+     prm_ids   = "9999" 
+     totalmenu = 0 
+
+     if @main 
+           @main.each do |rowS|
+               totalNav  = 0 
+%>
+               <%= rowS["simbol"].html_safe %>
+<%             if rowS["keterangan"] != ""       
+                    totalmenu      = totalmenu+1
+                    nm             = "M#{totalmenu}" 
+                    if (@prm_id_group_parent=="ROOT")
+                        checked    = "checked" 
+                    else 
+                        sqlTxt     = "select statusmenu as data from admin_ms_menu_groups where id_menu='#{rowS["id_menu"]}'#{" and id_group='"}#{prm_id_group_parent}'"
+                        checked    = get_singleData(sqlTxt);
+                        if (checked==1) 
+                           checked = "checked" 
+                        else 
+                           checked = ""
+                        end    
+                    end 
+
+                    if (@prm_id_group_parent=="ROOT")
+ %>                    <input type="checkbox" name="<%= nm %>" id="<%= nm %>" value="<%= rowS['id_menu'] %> " <%= checked %>>
+                       <%= rowS['keterangan'] %>
+                       <% @RecNavigasi = InitNavigasi(rowS['id_menu'], @prm_id_group, @prm_id_group_parent, totalmenu) %>
+<%                  else  %>
+                       <input type="checkbox" name="<%= nm %>" id="<%= nm %>" value="<%= rowS['id_menu'] %> " <%= checked %>>
+                       <%= rowS['keterangan'] %>
+                       <%  @RecNavigasi = InitNavigasi(rowS['id_menu'], @prm_id_group, @prm_id_group_parent, totalmenu) %>    
+<%                  end  %>
+<%
+                    if @RecNavigasi 
+                         totalNav = 0 
+                         @RecNavigasi.each do |rowNav|
+                             totalNav = totalNav+1 
+                             if (@prm_id_group_parent=="ROOT")  
+%>                               <input type="checkbox" name="N<%= totalmenu %>_<%= totalNav %>"  id="N<%= totalmenu %>_<%= totalNav %>" value="<%= rowNav['id_navigasi'] %>" checked > <%= rowNav['nama_navigasi'] %>
+<%                           else  %>
+<%                               myCheck = get_singleData("SELECT id_navigasi as data FROM admin_ms_menu_group_navs 
+                                                      WHERE id_menu='#{rowS['id_menu']}' AND id_group='#{prm_id_group}' and id_navigasi='#{rowNav['id_navigasi']}'")
+                                 if (myCheck!="") 
+                                      myCheck=" checked" 
+                                 end 
+%>                               <input type="checkbox" name="N<%= totalmenu %>_<%= totalNav %>"  id="N<%= totalmenu %>_<%= totalNav %>" value="<%= rowNav['id_navigasi'] %>" <%= myCheck %> > <%= rowNav['nama_navigasi'] %>      
+<%                           end
+                          end   
+                    end %>
+                    <input type="hidden" name="totalNavigasi_<%= totalmenu %>"  id="totalNavigasi_<%= totalmenu %>" value="<%= totalNav %>">
+<%            end                     
+           end 
+     end   
+     %> 
+</ul>
+
+<input type="hidden" name="totalmenu"  id="totalmenu" value="<%= totalmenu %>">
+
+<% end %>
