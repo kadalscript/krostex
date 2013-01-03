@@ -29,7 +29,7 @@ module ApplicationHelper
       result += select("a_city", "id_provinsi", AProvinsi.all.collect { |provinsi| [ provinsi.nama, provinsi.id ] }, { include_blank: "- Provinsi -" }, @select_box_attr)
     elsif column_name == "st_progress"                
       result += select("a_template_cat", "st_progress", [["ACTIVE", "ACTIVE"], ['CLOSED', 'CLOSED']], { include_blank: "- Status -" }, @select_box_attr)
-    elsif ((column_name == 'kode') && (action_name == 'edit') && (controller_name == 'a_template_cats'))
+    elsif ((column_name == 'kode') && (controller_name == 'a_template_cats'))
       result += object.text_field column_name, @read_only_attributes
     else
       result += column_name == "updated_at" ? "#{text_field_tag column_name, formatting_updated_at(instance.updated_at), @read_only_attributes}" : "#{object.text_field column_name, column_name == 'updated_by' ? @read_only_attributes : attributes}"
