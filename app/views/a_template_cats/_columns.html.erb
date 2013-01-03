@@ -1,9 +1,7 @@
 <% ATemplateCat.column_names.each do |column_name| %>
-  <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
-    <tr>
-      <th align="left">&nbsp;<%= column_name %></th>
-      <th align="center">:</th>
-      <th align="left"><%= f.text_field column_name, attribute %></th>
-    </tr>
+  <% unless @hidden_columns.include?(column_name) %>
+    <% if !(["new", "create"].include?(action_name) && ["updated_at", "updated_by"].include?(column_name)) %>
+      <%= raw(showing_row(ATemplateCat, column_name, attributes, f, @a_template_cat)) %>
+    <% end %>
   <% end %>
 <% end %>
