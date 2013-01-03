@@ -20,8 +20,10 @@
   <% if @a_template_cats.count > 0 %>
     <% @a_template_cats.each do |a_template_cat| %>
       <tr onclick="redirectTo('<%= a_template_cat_path(a_template_cat) %>')">
-        <% unless @hidden_columns.include?(column_name) %>
-          <td><%= a_template_cate[column_name] %></td>
+        <% ATemplateCat.column_names.each do |column_name| %>
+          <% unless @hidden_columns.include?(column_name) %>
+            <td><%= column_name == 'updated_at' ? formatting_updated_at(a_template_cat[column_name]) : a_template_cat[column_name] %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
