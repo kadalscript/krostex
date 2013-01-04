@@ -5,7 +5,7 @@ class AdminMsMenusController < ApplicationController
     prm_ip = "#{remoteIP}#{'a'}"
     deleteMenuUserGroup(prm_ip)
     dataMenuAwal = inisialisasiMenuAwal(prm_ip)
-
+   
     @noUrut = 0
     dataMenuAwal.each do |row|
       @nomor = fillData(@noUrut.to_s(),"0","L",2)
@@ -41,21 +41,33 @@ class AdminMsMenusController < ApplicationController
   end
 
   def inisialisasiMenuAwal(prm_ip) 
-    @id_menu       = "0000"
+    @id_menu       = "ROOT"
     @@prm_id_group = "00" 
 
-    sqlTxtVar = "SELECT 
-    a.id_menu       , a.id_group  ,  b.namamenu  , 
-    b.id_menu_parent, b.nourut    ,  c.keterangan, 
-    c.nm_url 
-    FROM  admin_ms_menu_groups a 
-    INNER JOIN admin_ms_menus  b on a.id_menu =b.id_menu
-    INNER JOIN admin_ms_moduls c on b.id_modul=c.id_modul 
-    WHERE      
-    a.id_group  ='#{@@prm_id_group}' 
-    AND  b.id_menu_parent='#{@id_menu}' 
-    ORDER BY  b.nourut "
+    # sqlTxtVar = "SELECT 
+    # a.id_menu       , a.id_group  ,  b.namamenu  , 
+    # b.id_menu_parent, b.nourut    ,  c.keterangan, 
+    # c.nm_url 
+    # FROM  admin_ms_menu_groups a 
+    # INNER JOIN admin_ms_menus  b on a.id_menu =b.id_menu
+    # INNER JOIN admin_ms_moduls c on b.id_modul=c.id_modul 
+    # WHERE      
+    # a.id_group  ='#{@@prm_id_group}' 
+    # AND  b.id_menu_parent='#{@id_menu}' 
+    # ORDER BY  b.nourut "
 
+    sqlTxtVar = "SELECT 
+    a.id_menu       , a.namamenu   ,  a.id_menu_parent, 
+    a.nourut        ,  c.keterangan,  c.nm_url 
+    FROM  admin_ms_menus       a
+    INNER JOIN admin_ms_moduls c on a.id_modul=c.id_modul 
+    WHERE      
+    a.id_menu_parent='#{@id_menu}' 
+    ORDER BY  a.nourut "
+
+
+    # puts sqlTxtVar 
+    # debugger
     ActiveRecord::Base.connection.execute(sqlTxtVar)
   end
 
