@@ -6,7 +6,7 @@ class AdminOtorisasiController < ApplicationController
     total_menu = params[:totalmenu].to_i
     total_menu.times do |counter|
       if not params["M#{counter+1}"].blank?
-        AdminMsMenuGroup.create(:id_menu => params["M#{counter+1}"], :id_group => params[:id_group], :id_product =>'', :statusmenu =>1)
+        AdminMsMenuGroup.create(:id_menu => params["M#{counter+1}"], :id_group => params[:id_group], :statusmenu =>1)
       end
     end
 
@@ -329,7 +329,6 @@ def init_data_menu_show(prm_ip)
           puts params[:params].hex2string
           puts "-------------------"
           get                 = eval(params[:params].hex2string)
-          debugger
           prm_id_group        = get[:id_group]  
           prm_id_group_parent = get[:id_group_parent] 
           prm_ids             = get[:user_ids]        

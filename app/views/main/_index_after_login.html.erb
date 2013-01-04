@@ -1,4 +1,4 @@
-<div style="text-align:center;vertical-align:middel">
+<!-- <div style="text-align:center;vertical-align:middel">
   <a role="button" class="main-btn btn btn-large">Pembelian and Stok</a>
   <a role="button" class="main-btn btn btn-large">Production</a>
   <a role="button" class="main-btn btn btn-large">Marketing sales and development</a>
@@ -6,3 +6,26 @@
   <a role="button" class="main-btn btn btn-large">Human Resource</a>
   <a role="button" class="main-btn btn btn-large">Setup Configuration</a>
 </div>
+ -->
+<%= stylesheet_link_tag "jquery.treeview", "screen", :media => "all" %>
+
+<% content_for :head do %>
+
+<% end %>
+
+<ul id="red" class="treeview-red">
+  <% prm_ids = "9999" %>
+    <% if @main %> 
+      <% @main.each do |rowS| %>
+        <% param_additional = {id_group:rowS["id_menu"], id_group_parent:rowS["id_menuref"]} %>
+        <% params_ready = $params_sys_default.merge(param_additional).to_s.string2hex %>
+        <% nm_url = "#{root_url}#{'admin_otorisasi/frm_otorisasi?params='}#{params_ready}" %>
+        <%= rowS["simbol"].html_safe %>
+        <% if rowS["keterangan"] != "" %>       
+          <a class='navigasi_tree' href="javascript: callUrlJS(&quot;<%= nm_url %>&quot;);">
+            <%= rowS["keterangan"]  %>
+          </a>
+        <% end %>                    
+      <% end %>
+    <% end %> 
+</ul>
