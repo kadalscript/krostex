@@ -17,15 +17,21 @@
   <% prm_ids = "9999" %>
     <% if @main %> 
       <% @main.each do |rowS| %>
-        <% param_additional = {id_group:rowS["id_menu"], id_group_parent:rowS["id_menuref"]} %>
-        <% params_ready = $params_sys_default.merge(param_additional).to_s.string2hex %>
-        <% nm_url = "#{root_url}#{'admin_otorisasi/frm_otorisasi?params='}#{params_ready}" %>
+        <%# param_additional = {id_group:rowS["id_menu"], id_group_parent:rowS["id_menuref"]} %>
+        <% param_additional = {idm:rowS["id_menu"]} %>
+        <% params_ready = $params_sys_default.merge(param_additional).to_s.string2hex %> 
+
+        <% nm_url = "#{root_url}#{rowS['nm_url']}?params='#{params_ready}" %>
         <%= rowS["simbol"].html_safe %>
-        <% if rowS["keterangan"] != "" %>       
+
+        <% if rowS["nm_url"] != "" %>       
           <a class='navigasi_tree' href="javascript: callUrlJS(&quot;<%= nm_url %>&quot;);">
             <%= rowS["keterangan"]  %>
           </a>
-        <% end %>                    
+        <% else %>
+          <%= rowS["keterangan"]  %>
+        <% end %>
+
       <% end %>
     <% end %> 
 </ul>

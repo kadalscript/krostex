@@ -4,9 +4,10 @@ class AdminOtorisasiController < ApplicationController
     menus.destroy_all
 
     total_menu = params[:totalmenu].to_i
+
     total_menu.times do |counter|
       if not params["M#{counter+1}"].blank?
-        AdminMsMenuGroup.create(:id_menu => params["M#{counter+1}"], :id_group => params[:id_group], :statusmenu =>1)
+        AdminMsMenuGroup.create(:id_menu => params["M#{counter+1}"], :id_group => params[:prm_id_group], :statusmenu =>1)
       end
     end
 

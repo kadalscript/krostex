@@ -1,7 +1,7 @@
 class MainController < ApplicationController
 
   @@prm_id_group    = '00'
-  
+
   def index
     if admin_ms_user_signed_in?
       randomNumber        = rand(1000000)
@@ -51,7 +51,7 @@ class MainController < ApplicationController
                  FROM  admin_ms_menu_groups a
                  INNER JOIN admin_ms_menus  b on a.id_menu = b.id_menu
                  INNER JOIN admin_ms_moduls c on b.id_modul=c.id_modul
-                 WHERE a.id_group  ='#{@@prm_id_group}'
+                 WHERE a.id_group ='#{@@prm_id_group}'
                  AND b.id_menu_parent='#{@id_menu}'
                  ORDER BY b.nourut "
     ActiveRecord::Base.connection.execute(sqlTxtVar)
