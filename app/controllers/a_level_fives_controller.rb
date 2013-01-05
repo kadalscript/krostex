@@ -1,5 +1,5 @@
 class ALevelFivesController < ApplicationController
-  before_filter :attribute, only: [:new, :show, :edit, :destroy_show]
+  before_filter :attributes, only: [:new, :show, :edit, :destroy_show]
   before_filter :find_a_level_five_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
 
   def index
@@ -18,7 +18,7 @@ class ALevelFivesController < ApplicationController
   end
 
   def new
-    @a_level_fife = ALevelFive.new
+    @a_level_fife = ALevelFive.new(kode: counter_alpha(ALevelFive.count, 1, "ALevelFive.maximum('kode')"))
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @a_level_fife }
@@ -28,7 +28,7 @@ class ALevelFivesController < ApplicationController
   def edit; end
 
   def create
-    @a_level_fife = ALevelFive.new(params[:a_level_five])
+    @a_level_fife = ALevelFive.new(params[:a_level_five].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @a_level_fife.save
         format.html { redirect_to @a_level_fife, notice: 'Data berhasil dibuat' }
@@ -42,7 +42,7 @@ class ALevelFivesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_level_fife.update_attributes(params[:a_level_five])
+      if @a_level_fife.update_attributes(params[:a_level_five].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_level_fife, notice: 'Data berhasil diupdate' }
         format.json { head :no_content }
       else

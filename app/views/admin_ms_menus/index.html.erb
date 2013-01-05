@@ -13,8 +13,8 @@
   <% if @main %>
     <% @main.each do |rowS| %>
       <% param_browse = admin_ms_menu_path(rowS['id_menu']) %>
-      <% param_add    = new_admin_ms_menu_path(parent: rowS['id_menu']) %>   
-      <% param_edit   = edit_admin_ms_menu_path(rowS['id_menu'], parent: rowS['id_menuref']) %>
+      <% param_add    = new_admin_ms_menu_path(parent: rowS['id_menu'], deep: rowS['levelmenu']) %>   
+      <% param_edit   = edit_admin_ms_menu_path(rowS['id_menu'], parent: rowS['id_menuref'], deep: rowS['levelmenu']) %>
       <% param_delete = admin_ms_menu_delete_path(rowS['id_menu']) %>
 
       <%= rowS["simbol"].html_safe %>

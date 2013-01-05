@@ -6,7 +6,7 @@
       <th align="center">:</th>
       <th align="left">
         <% if action_name.eql? "new" %>
-          <%= f.text_field :id_group, class: "required", value: AdminMsGroup.last.id_group.succ, maxlength: 5, readonly: true %>
+          <%= f.text_field :id_group, class: "required", value: AdminMsGroup.maximum(:id_group).succ, maxlength: 5, readonly: true %>
         <% else %>
           <%= f.text_field :id_group, class: "required", maxlength: 5, readonly: true %>
         <% end %>

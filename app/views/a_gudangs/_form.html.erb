@@ -1,11 +1,14 @@
 <%= form_for(@a_gudang) do |f| %>
+
+<%= f.hidden_field :update_by, value: current_admin_ms_user.login_name, :style => "width:300px", class: 'required', readonly: true %>
+
 <table class="table-bordered" align="center" width="60%">
   <tr class="titleJudulTable">
     <th colspan="3">
       <%= title %>
     </th>
   </tr>
-  <% render template: "/shared/errors", errors: @a_gudang.errors if @a_gudang.errors.any? %>
+  <% render partial: COMMON_ERRORS, locals: {errors: @a_gudang.errors} if @a_gudang.errors.any? %>
   <% if not action_name.eql?('new') %>
   <tr>
    <th colspan="3">
@@ -19,7 +22,7 @@
  <% end %>
  <tr>
    <th align="left">
-     &nbsp;Kode
+     &nbsp;Simbol
    </th>  
    <th align="center"> 
      :
@@ -49,18 +52,7 @@
    <th align="left"> 
     <%= f.select(:st_progress, [["Active", "Active"], ["Closed","Closed"]], {}, :style => "width:314px")  %>
   </th> 
-</tr>  
-<tr>
- <th align="left">
-   &nbsp;Opr Input
- </th>  
- <th align="center"> 
-   :
- </th>
- <th align="left"> 
-  <%= f.text_field :update_by, :style => "width:300px", class: 'required' %>
-</th> 
-</tr>  
+</tr>
 <tr>
   <th colspan="3" class="titleJudulTable" width="100%">
     <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>

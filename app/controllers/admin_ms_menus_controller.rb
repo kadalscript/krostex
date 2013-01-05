@@ -199,6 +199,8 @@ class AdminMsMenusController < ApplicationController
     @admin_ms_menus = AdminMsMenu.all
     @admin_ms_moduls = AdminMsModul.all
 
+    @deep = AdminMsMenu.where(id_menu_parent: params[:parent]).first.levelmenu+1
+
     respond_to do |format|
       format.html # new.html.erb
       format.js

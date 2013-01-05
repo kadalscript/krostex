@@ -1,5 +1,5 @@
 class BSuppliersController < ApplicationController
-  before_filter :attribute, only: [:new, :show, :edit, :destroy_show]
+  before_filter :attributes, only: [:new, :show, :edit, :destroy_show]
   before_filter :find_b_supplier_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
 
   def index
@@ -21,7 +21,7 @@ class BSuppliersController < ApplicationController
   end
 
   def new
-    @b_supplier = BSupplier.new
+    @b_supplier = BSupplier.new(kode: counter_alpha(BSupplier.count, 10, "BSupplier.maximum('kode')"))
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @b_supplier }
@@ -31,7 +31,7 @@ class BSuppliersController < ApplicationController
   def edit; end
 
   def create
-    @b_supplier = BSupplier.new(params[:b_supplier])
+    @b_supplier = BSupplier.new(params[:b_supplier].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @b_supplier.save
         format.html { redirect_to @b_supplier, notice: 'Data berhasil dibuat' }
@@ -45,7 +45,7 @@ class BSuppliersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @b_supplier.update_attributes(params[:b_supplier])
+      if @b_supplier.update_attributes(params[:b_supplier].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @b_supplier, notice: 'Data berhasil diupdate' }
         format.json { head :no_content }
       else

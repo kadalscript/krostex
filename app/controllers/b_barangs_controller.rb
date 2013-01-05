@@ -18,7 +18,7 @@ class BBarangsController < ApplicationController
   end
 
   def new
-    @b_barang = BBarang.new
+    @b_barang = BBarang.new(kode: counter_alpha(BBarang.count, 5, "BBarang.maximum('kode')"))
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @b_barang }
@@ -28,7 +28,7 @@ class BBarangsController < ApplicationController
   def edit; end
 
   def create
-    @b_barang = BBarang.new(params[:b_barang])
+    @b_barang = BBarang.new(params[:b_barang].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @b_barang.save
         format.html { redirect_to @b_barang, notice: 'Data berhasil disimpan' }
@@ -42,7 +42,7 @@ class BBarangsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @b_barang.update_attributes(params[:b_barang])
+      if @b_barang.update_attributes(params[:b_barang].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @b_barang, notice: 'Data berhasil diupdate' }
         format.json { head :no_content }
       else

@@ -3,7 +3,7 @@
     <tr class="titleJudulTable"><th colspan="3"><%= title %></th></tr>
     <%= render partial: "/shared/errors", errors: @b_supplier.errors if @b_supplier.errors.any? %>
     <%= render partial: "navigator" unless action_name == 'new' %>
-    <%= render partial: "columns", locals: { f: f, attribute: @attribute } %>
+    <%= render partial: "columns", locals: { f: f, attribute: @attributes } %>
     <tr>
       <th colspan="3" class="titleJudulTable" width="100%">
         <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>

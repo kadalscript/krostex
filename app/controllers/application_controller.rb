@@ -28,6 +28,31 @@ class ApplicationController < ActionController::Base
     return @strtmp 
   end 
   
+  def counter_alpha(datacount, size, syntax)
+    if datacount.zero?
+      kode = sprintf '%0*d', size, 1
+    else
+      last_kode = eval(syntax)
+        
+      if last_kode.last.eql?("9")
+        last_kode[-1] = "A"
+        kode = last_kode
+      elsif last_kode.last.eql?("Z")
+        last_kode.succ!
+        last_kode[-1] = "0"
+        kode = last_kode
+      else
+        kode = eval(syntax).succ
+      end
+      
+      if kode.match(/I|O|X/)
+        kode.succ
+      else
+        kode
+      end
+    end
+  end
+
 
 protected
   def attributes

@@ -1,5 +1,5 @@
 class ATypesController < ApplicationController
-  before_filter :attribute, only: [:new, :show, :edit, :destroy_show]
+  before_filter :attributes, only: [:new, :show, :edit, :destroy_show]
   before_filter :find_a_type_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
 
   def index
@@ -18,7 +18,7 @@ class ATypesController < ApplicationController
   end
 
   def new
-    @a_type = AType.new
+    @a_type = AType.new(kode: counter_alpha(AType.count, 1, "AType.maximum('kode')"))
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @a_type }
@@ -28,7 +28,7 @@ class ATypesController < ApplicationController
   def edit; end
 
   def create
-    @a_type = AType.new(params[:a_type])
+    @a_type = AType.new(params[:a_type].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @a_type.save
         format.html { redirect_to @a_type, notice: 'Data berhasil disimpan' }
@@ -42,7 +42,7 @@ class ATypesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_type.update_attributes(params[:a_type])
+      if @a_type.update_attributes(params[:a_type].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_type, notice: 'Data berhasil diupdate' }
         format.json { head :no_content }
       else

@@ -10,7 +10,11 @@
     <th align="left">&nbsp;Id_modul</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= f.text_field :id_modul, :style => "width:300px", class: :required %>
+      <% if action_name.eql? "new" %>
+        <%= f.text_field :id_modul, class: "required", value: AdminMsModul.maximum(:id_modul).succ, maxlength: 4, readonly: true, :style => "width:300px" %>
+      <% else %>
+        <%= f.text_field :id_modul, class: "required", maxlength: 4, readonly: true, :style => "width:300px" %>
+      <% end %>
     </th> 
   </tr>
   <tr>

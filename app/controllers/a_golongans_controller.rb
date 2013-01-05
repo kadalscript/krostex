@@ -1,5 +1,5 @@
 class AGolongansController < ApplicationController
-  before_filter :attribute, only: [:new, :show, :edit, :destroy_show]
+  before_filter :attributes, only: [:new, :show, :edit, :destroy_show]
   before_filter :find_a_golongan_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
 
   def index
@@ -18,7 +18,7 @@ class AGolongansController < ApplicationController
   end
 
   def new
-    @a_golongan = AGolongan.new
+    @a_golongan = AGolongan.new(kode: counter_alpha(AGolongan.count, 1, "AGolongan.maximum('kode')"))
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @a_golongan }
@@ -28,7 +28,7 @@ class AGolongansController < ApplicationController
   def edit; end
 
   def create
-    @a_golongan = AGolongan.new(params[:a_golongan])
+    @a_golongan = AGolongan.new(params[:a_golongan].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @a_golongan.save
         format.html { redirect_to @a_golongan, notice: 'Data berhasil dibuat' }
@@ -42,7 +42,7 @@ class AGolongansController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_golongan.update_attributes(params[:a_golongan])
+      if @a_golongan.update_attributes(params[:a_golongan].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_golongan, notice: 'Data berhasil di update' }
         format.json { head :no_content }
       else

@@ -3,7 +3,7 @@ class BSupplierAlamatsController < ApplicationController
   before_filter :find_b_supplier_alamat_by_id, only: [:show, :edit, :update, :destroy, :change_form]
 
   def create
-    @b_supplier_alamat = @b_supplier.b_supplier_alamats.new(params[:b_supplier_alamat])
+    @b_supplier_alamat = @b_supplier.b_supplier_alamats.new(params[:b_supplier_alamat].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @b_supplier_alamat.save
         format.html { redirect_to b_supplier_path(@b_supplier), notice: 'B supplier alamat was successfully created.' }
@@ -17,7 +17,7 @@ class BSupplierAlamatsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @b_supplier_alamat.update_attributes(params[:b_supplier_alamat])
+      if @b_supplier_alamat.update_attributes(params[:b_supplier_alamat].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to b_supplier_path(@b_supplier), notice: 'B supplier alamat was successfully updated.' }
         format.json { head :no_content }
       else

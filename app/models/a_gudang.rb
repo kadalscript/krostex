@@ -1,6 +1,7 @@
 class AGudang < ActiveRecord::Base
   attr_accessible :nama, :simbol, :st_progress, :status1, :update_by
   validates :nama, :simbol, :st_progress, :update_by, presence: true
+  validates :simbol, uniqueness: true
 
   before_save :check_status
 

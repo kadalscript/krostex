@@ -18,7 +18,7 @@ class AMataUangsController < ApplicationController
   end
 
   def new
-    @a_mata_uang = AMataUang.new
+    @a_mata_uang = AMataUang.new(kode: counter_alpha(AMataUang.count, 2, "AMataUang.maximum('kode')"))
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @a_mata_uang }
@@ -28,7 +28,7 @@ class AMataUangsController < ApplicationController
   def edit; end
 
   def create
-    @a_mata_uang = AMataUang.new(params[:a_mata_uang])
+    @a_mata_uang = AMataUang.new(params[:a_mata_uang].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @a_mata_uang.save
         format.html { redirect_to @a_mata_uang, notice: 'Data berhasil disimpan' }
@@ -42,7 +42,7 @@ class AMataUangsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_mata_uang.update_attributes(params[:a_mata_uang])
+      if @a_mata_uang.update_attributes(params[:a_mata_uang].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_mata_uang, notice: 'Data berhasil diupdate' }
         format.json { head :no_content }
       else

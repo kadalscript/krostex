@@ -19,7 +19,7 @@ class ADepartmentsController < ApplicationController
   end
 
   def new
-    @a_department = ADepartment.new
+    @a_department = ADepartment.new(kode: counter_alpha(ADepartment.count, 1, "ADepartment.maximum('kode')"))
     common_form(@@table_name, @@title, @a_department)
   end
 
@@ -28,10 +28,10 @@ class ADepartmentsController < ApplicationController
   end
 
   def create
-    @a_department = ADepartment.new(params[:a_department])
+    @a_department = ADepartment.new(params[:a_department].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @a_department.save
-        format.html { redirect_to @a_department, notice: SUCCESFFULLY_SAVE_DATA }
+        format.html { redirect_to @a_department, notice: SUCCESSFULLY_SAVE_DATA }
         format.json { render json: @a_department, status: :created, location: @a_department }
       else
         format.html { common_form(@@table_name, @@title, @a_department) }
@@ -42,7 +42,7 @@ class ADepartmentsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_department.update_attributes(params[:a_department])
+      if @a_department.update_attributes(params[:a_department].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_department, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else

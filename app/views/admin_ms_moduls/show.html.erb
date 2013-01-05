@@ -17,29 +17,34 @@
     <th align="left">&nbsp;Id_modul</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= text_field_tag "", @admin_ms_modul.id_modul, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.id_modul, :style => "width:70%", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Keterangan</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= text_field_tag "", @admin_ms_modul.keterangan, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.keterangan, :style => "width:70%", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Status1</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= text_field_tag "", @admin_ms_modul.status1, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.status1, :style => "width:70%", :readonly=>"true", class: :required %>
     </th> 
   </tr>
   <tr>
     <th align="left">&nbsp;Nama URL</th>  
     <th align="center"> :</th>
     <th align="left"> 
-      <%= text_field_tag "", @admin_ms_modul.nm_url, :style => "width:300px", :readonly=>"true", class: :required %>
+      <%= text_field_tag "", @admin_ms_modul.nm_url, :style => "width:70%", :readonly=>"true", class: :required %>
     </th> 
+  </tr>
+  <tr>
+    <th colspan="3">
+      <br/><%= render partial: "admin_ms_moduls/detail_table" %>
+    </th>
   </tr>
   <tr>
     <th colspan="3" class="titleJudulTable" width="100%">
@@ -50,5 +55,3 @@
 
 
 <input type="hidden" id="url_back" name="admin_ms_modul_back" value="<%= admin_ms_moduls_path %>">
-
-<%= render partial: "admin_ms_moduls/detail_table" %>

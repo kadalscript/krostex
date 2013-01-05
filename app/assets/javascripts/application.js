@@ -30,11 +30,9 @@ function openSearchBar() {
 }
 
 function isSimpan() {
-  if (confirm("Simpan data?")) {
-    return true
-  } else {
-    return false
-  }
+  isOk = confirm("Simpan data?")
+  if (!isOk)
+    return false;
 }
 
 function isUpdate() {
