@@ -1,4 +1,19 @@
 Hermanstartup::Application.routes.draw do
+  resources :m_beli_po_first_hs do
+    collection do
+      match "get_supplier"
+      match "get_golongan"
+      match "get_type"
+      match "get_level_four"
+      match "get_level_five"
+      match ":id/draft" => "m_beli_po_first_hs#draft", as: :draft
+      match ":id/undraft" => "m_beli_po_first_hs#undraft", as: :undraft
+      match "get_gudang"
+      match "get_mata_uang"
+      match "populate_barangs"
+    end
+    resources :m_beli_po_second_ds
+  end
   resources :a_mata_uangs
   resources :a_gudangs
   resources :a_company_profiles
@@ -28,7 +43,7 @@ Hermanstartup::Application.routes.draw do
   ["a_template_cats", "a_departments", "a_golongans", "a_types", "a_level_fours",
    "a_level_fives", "a_cities", "a_gudangs", "a_company_profiles", "a_satuans",
    "a_badan_usahas", "a_kemasans", "a_negaras", "a_provinsis", "b_suppliers",
-   "a_mata_uangs", "b_barangs"].each do |item|
+   "a_mata_uangs", "b_barangs", "m_beli_po_first_hs"].each do |item|
     match "#{item}/:id/destroy_show" => "#{item}#destroy_show", as: "#{item}_destroy_show"
     match "#{item}/search" => "#{item}#search"
   end

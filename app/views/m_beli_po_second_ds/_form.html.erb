@@ -1,0 +1,65 @@
+<%= form_for(@m_beli_po_second_d) do |f| %>
+  <% if @m_beli_po_second_d.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@m_beli_po_second_d.errors.count, "error") %> prohibited this m_beli_po_second_d from being saved:</h2>
+
+      <ul>
+      <% @m_beli_po_second_d.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode_tmp %><br />
+    <%= f.text_field :kode_tmp %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_barang %><br />
+    <%= f.text_field :kode_barang %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_kemasan %><br />
+    <%= f.text_field :qty_kemasan %>
+  </div>
+  <div class="field">
+    <%= f.label :id_satuan_kemasan %><br />
+    <%= f.text_field :id_satuan_kemasan %>
+  </div>
+  <div class="field">
+    <%= f.label :qty %><br />
+    <%= f.text_field :qty %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_btb %><br />
+    <%= f.text_field :qty_btb %>
+  </div>
+  <div class="field">
+    <%= f.label :id_valuta %><br />
+    <%= f.text_field :id_valuta %>
+  </div>
+  <div class="field">
+    <%= f.label :harga %><br />
+    <%= f.text_field :harga %>
+  </div>
+  <div class="field">
+    <%= f.label :diskon %><br />
+    <%= f.text_field :diskon %>
+  </div>
+  <div class="field">
+    <%= f.label :total_qty_kali_harga %><br />
+    <%= f.text_field :total_qty_kali_harga %>
+  </div>
+  <div class="field">
+    <%= f.label :total_qty_kali_harga_kali_diskon %><br />
+    <%= f.text_field :total_qty_kali_harga_kali_diskon %>
+  </div>
+  <div class="field">
+    <%= f.label :total_kurang_diskon %><br />
+    <%= f.text_field :total_kurang_diskon %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

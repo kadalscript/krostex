@@ -8,6 +8,7 @@ class AKemasan < ActiveRecord::Base
   before_create :check_updater
   before_save :check_updater
   belongs_to :a_satuan, class_name: "ASatuan", foreign_key: "id_satuan"
+  has_many :m_beli_po_second_ds, class_name: 'MBeliPoSecondD', foreign_key: 'id_satuan_kemasan'
 
   def check_updater
     self.updated_by = self.updated_by.blank? ? "ANONYMOUS" : self.updated_by

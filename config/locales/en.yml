@@ -46,3 +46,7 @@ en:
         st_progress: "Status"
         updated_by: "Di update oleh"
         updated_at: "Di update pada"
+      m_beli_po_first_h:
+        kode_disp: "No po"
+        total_ppn_nominal: "PPN"
+        total_sub_total_kurang_disc: "Netto"

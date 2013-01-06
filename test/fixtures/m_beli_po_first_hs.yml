@@ -1,0 +1,67 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kode_tmp: MyString
+  kode_disp: MyString
+  id_cabang: MyString
+  simbol: MyString
+  tanggal: 2013-01-05 12:01:14
+  no_penawaran: MyString
+  id_supplier: MyString
+  id_alamat_supplier: MyString
+  id_valuta: MyString
+  nilai_rate_kurs: 9.99
+  total_sub_total: 9.99
+  total_disc_persen: 9.99
+  total_disc_nominal: 9.99
+  total_sub_total_kurang_disc: 9.99
+  total_ppn_disc: 9.99
+  total_ppn_nominal: 9.99
+  total_grand_total: 9.99
+  tgl_kirim: 2013-01-05 12:01:14
+  tgl_jth_tempo: 2013-01-05 12:01:14
+  keterangan: MyString
+  keterangan_syarat_bayar: MyString
+  updated_by: MyString
+  status1: 1
+  st_progress: MyString
+  qty_all_po: 9.99
+  qty_all_btb: 9.99
+  qty_all_close: 9.99
+  total_nota: 9.99
+  total_retur: 9.99
+  is_close_btb: 1
+  is_close_po: 1
+
+two:
+  kode_tmp: MyString
+  kode_disp: MyString
+  id_cabang: MyString
+  simbol: MyString
+  tanggal: 2013-01-05 12:01:14
+  no_penawaran: MyString
+  id_supplier: MyString
+  id_alamat_supplier: MyString
+  id_valuta: MyString
+  nilai_rate_kurs: 9.99
+  total_sub_total: 9.99
+  total_disc_persen: 9.99
+  total_disc_nominal: 9.99
+  total_sub_total_kurang_disc: 9.99
+  total_ppn_disc: 9.99
+  total_ppn_nominal: 9.99
+  total_grand_total: 9.99
+  tgl_kirim: 2013-01-05 12:01:14
+  tgl_jth_tempo: 2013-01-05 12:01:14
+  keterangan: MyString
+  keterangan_syarat_bayar: MyString
+  updated_by: MyString
+  status1: 1
+  st_progress: MyString
+  qty_all_po: 9.99
+  qty_all_btb: 9.99
+  qty_all_close: 9.99
+  total_nota: 9.99
+  total_retur: 9.99
+  is_close_btb: 1
+  is_close_po: 1

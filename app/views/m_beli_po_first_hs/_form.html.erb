@@ -1,0 +1,141 @@
+<%= form_for(@m_beli_po_first_h) do |f| %>
+  <% if @m_beli_po_first_h.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@m_beli_po_first_h.errors.count, "error") %> prohibited this m_beli_po_first_h from being saved:</h2>
+
+      <ul>
+      <% @m_beli_po_first_h.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode_tmp %><br />
+    <%= f.text_field :kode_tmp %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_disp %><br />
+    <%= f.text_field :kode_disp %>
+  </div>
+  <div class="field">
+    <%= f.label :id_cabang %><br />
+    <%= f.text_field :id_cabang %>
+  </div>
+  <div class="field">
+    <%= f.label :simbol %><br />
+    <%= f.text_field :simbol %>
+  </div>
+  <div class="field">
+    <%= f.label :tanggal %><br />
+    <%= f.datetime_select :tanggal %>
+  </div>
+  <div class="field">
+    <%= f.label :no_penawaran %><br />
+    <%= f.text_field :no_penawaran %>
+  </div>
+  <div class="field">
+    <%= f.label :id_supplier %><br />
+    <%= f.text_field :id_supplier %>
+  </div>
+  <div class="field">
+    <%= f.label :id_alamat_supplier %><br />
+    <%= f.text_field :id_alamat_supplier %>
+  </div>
+  <div class="field">
+    <%= f.label :id_valuta %><br />
+    <%= f.text_field :id_valuta %>
+  </div>
+  <div class="field">
+    <%= f.label :nilai_rate_kurs %><br />
+    <%= f.text_field :nilai_rate_kurs %>
+  </div>
+  <div class="field">
+    <%= f.label :total_sub_total %><br />
+    <%= f.text_field :total_sub_total %>
+  </div>
+  <div class="field">
+    <%= f.label :total_disc_persen %><br />
+    <%= f.text_field :total_disc_persen %>
+  </div>
+  <div class="field">
+    <%= f.label :total_disc_nominal %><br />
+    <%= f.text_field :total_disc_nominal %>
+  </div>
+  <div class="field">
+    <%= f.label :total_sub_total_kurang_disc %><br />
+    <%= f.text_field :total_sub_total_kurang_disc %>
+  </div>
+  <div class="field">
+    <%= f.label :total_ppn_disc %><br />
+    <%= f.text_field :total_ppn_disc %>
+  </div>
+  <div class="field">
+    <%= f.label :total_ppn_nominal %><br />
+    <%= f.text_field :total_ppn_nominal %>
+  </div>
+  <div class="field">
+    <%= f.label :total_grand_total %><br />
+    <%= f.text_field :total_grand_total %>
+  </div>
+  <div class="field">
+    <%= f.label :tgl_kirim %><br />
+    <%= f.datetime_select :tgl_kirim %>
+  </div>
+  <div class="field">
+    <%= f.label :tgl_jth_tempo %><br />
+    <%= f.datetime_select :tgl_jth_tempo %>
+  </div>
+  <div class="field">
+    <%= f.label :keterangan %><br />
+    <%= f.text_field :keterangan %>
+  </div>
+  <div class="field">
+    <%= f.label :keterangan_syarat_bayar %><br />
+    <%= f.text_field :keterangan_syarat_bayar %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_by %><br />
+    <%= f.text_field :updated_by %>
+  </div>
+  <div class="field">
+    <%= f.label :status1 %><br />
+    <%= f.number_field :status1 %>
+  </div>
+  <div class="field">
+    <%= f.label :st_progress %><br />
+    <%= f.text_field :st_progress %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_all_po %><br />
+    <%= f.text_field :qty_all_po %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_all_btb %><br />
+    <%= f.text_field :qty_all_btb %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_all_close %><br />
+    <%= f.text_field :qty_all_close %>
+  </div>
+  <div class="field">
+    <%= f.label :total_nota %><br />
+    <%= f.text_field :total_nota %>
+  </div>
+  <div class="field">
+    <%= f.label :total_retur %><br />
+    <%= f.text_field :total_retur %>
+  </div>
+  <div class="field">
+    <%= f.label :is_close_btb %><br />
+    <%= f.number_field :is_close_btb %>
+  </div>
+  <div class="field">
+    <%= f.label :is_close_po %><br />
+    <%= f.number_field :is_close_po %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

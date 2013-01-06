@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kode_tmp: MyString
+  kode_barang: MyString
+  qty_kemasan: 9.99
+  id_satuan_kemasan: MyString
+  qty: 9.99
+  qty_btb: 9.99
+  id_valuta: MyString
+  harga: 9.99
+  diskon: 9.99
+  total_qty_kali_harga: 9.99
+  total_qty_kali_harga_kali_diskon: 9.99
+  total_kurang_diskon: 9.99
+
+two:
+  kode_tmp: MyString
+  kode_barang: MyString
+  qty_kemasan: 9.99
+  id_satuan_kemasan: MyString
+  qty: 9.99
+  qty_btb: 9.99
+  id_valuta: MyString
+  harga: 9.99
+  diskon: 9.99
+  total_qty_kali_harga: 9.99
+  total_qty_kali_harga_kali_diskon: 9.99
+  total_kurang_diskon: 9.99

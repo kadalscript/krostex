@@ -1,0 +1,1 @@
+$('#type_id').html('<%= escape_javascript(select_tag(:type_id, options_for_select(@a_types.collect { |type| [ type.nama, type.id ] }), prompt: "- Jenis -")) %>')

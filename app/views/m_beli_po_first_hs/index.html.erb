@@ -1,0 +1,79 @@
+<table class="table table-bordered table-hover" width="60%" align="center">
+  <thead class="thead">
+    <tr class="titleJudul" style="font-size : 12pt">
+      <th align="center" colspan="11"><%= form_title(action_name, @title) %></th>
+    </tr>
+    <tr class="blankSpot">
+      <th colspan="11" align="left">&nbsp;
+        <%= link_to ADD, new_m_beli_po_first_h_path, class: "navigasi btn" %>
+        <a id="searchLink" class="navigasi btn" href="javascript:void(0)" style="float:right"><%= SEARCH %></a>
+      </th>
+    </tr>
+    <tr class="titleJudulTable">
+      <% @column_titles.each do |title| %>
+        <th><%= title.upcase %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <% if @m_beli_po_first_hs.count > 0 %>
+    <% @m_beli_po_first_hs.each do |m_beli_po_first_h| %>
+      <tr onclick="redirectTo('<%= m_beli_po_first_h_path(m_beli_po_first_h) %>')">
+        <% MBeliPoFirstH.column_names.each do |column_name| %>
+          <% if @visible_columns.include?(column_name) %>
+            <td><%= m_beli_po_first_h %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr><td colspan="<%= @column_titles.count %>" style="text-align: center"><%= EMPTY_DATA %></td></tr>
+  <% end %>
+  <thead class="thead">
+    <tr class="titleJudulTable">
+      <th colspan="11" align="right">
+        <%= paginate @m_beli_po_first_hs %>
+      </th>
+    </tr>
+  </thead>
+</table>
+
+<!-- Modal -->
+<div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <%= form_tag m_beli_po_first_hs_search_path, class: 'form-horizontal' do %>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel"><%= SEARCH %> purchase order</h3>
+    </div>
+    <div class="modal-body">
+      <div class="control-group">
+        <%= label_tag "period", "periode".titleize, class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :from, "", id: 'date_from', class: 'span2' %>&nbsp s/d &nbsp<%= text_field_tag :tes, "", id: 'date_to', class: 'span2' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag "status", "Status".titleize, class: 'control-label' %>
+        <div class="controls">
+          <%= select_tag(:status, options_for_select(@status)) %>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true"><%= CLOSE %></button>
+      <button class="btn btn-primary" id="search"><%= SEARCH %></button>&nbsp &nbsp<span id="empty" style="color: red; display: none;">* Setidaknya satu field harus diisi</span>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to BACK, m_beli_po_first_hs_path, class: 'btn btn-success' if action_name == 'search' %>
+
+<script>
+$(function() {
+  $('#searchLink').click(function() {
+    $('#searchModal').modal();
+  });
+
+  $('#date_from').datepicker();
+  $('#date_to').datepicker();
+});
+</script>

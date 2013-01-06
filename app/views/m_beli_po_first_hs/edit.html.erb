@@ -1,0 +1,120 @@
+<%= form_for(@m_beli_po_first_h, html: { class: 'form-horizontal' }) do |f| %>
+  <table class="table table-bordered table-hover" width="60%" align="center">
+    <thead class="thead">
+      <tr class="titleJudul" style="font-size : 12pt">
+        <th align="center" colspan="11"><%= form_title(action_name, @title) %></th>
+      </tr>
+      <tr class="blankSpot"><td><%= render partial: 'header_form', locals: { f: f } %></td></tr>
+      <tr class="blankSpot"><td><%= link_to 'Tambah', "#searchModal", class: 'btn', id: 'showingSearch' %></td></tr>
+      <tr class="titleJudulTable">
+        <th>Tes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="1" style="text-align: center"><%= EMPTY_DATA %></td></tr>
+    </tbody>
+  </table>
+  <!-- Modal -->
+  <div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel"><%= SEARCH %></h3>
+    </div>
+    <div class="modal-body">
+      <%= select_tag(:department_id, options_for_select(ADepartment.all.collect { |department| [ department.nama, department.id ] } ), prompt: '- Department -') %><br />
+      <%= select_tag(:golongan_id, "", prompt: '- Golongan -', disabled: true) %><br />
+      <%= select_tag(:type_id, "", prompt: '- Jenis -', disabled: true) %><br />
+      <%= select_tag(:level_four_id, "", prompt: '- Level 4 -', disabled: true) %><br />
+      <%= select_tag(:level_five_id, "", prompt: '- Level 5 -', disabled: true) %>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+<% end %>
+
+<script>
+$(function() {
+  $('#golongan_id').attr('disabled', 'disabled');
+  $('#type_id').attr('disabled', 'disabled');
+  $('#level_four_id').attr('disabled', 'disabled');
+
+  $('#showingSearch').click(function() {
+    $('#searchModal').modal();
+  });
+
+  $('#m_beli_po_first_h_tanggal').datepicker();
+  $('#department_id').change(function() {
+    if ($('#department_id').val() != '') {
+      $('#golongan_id').removeAttr('disabled');
+      $.ajax({
+        url: '<%= get_golongan_m_beli_po_first_hs_path %>?id=' + $('#department_id').val()
+      });
+      $('#type_id').attr('value', '');
+      $('#type_id').attr('disabled', 'disabled');
+      $('#level_four_id').attr('value', '');
+      $('#level_four_id').attr('disabled', 'disabled');
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    } else if ($('#department_id').val() == '') {
+      $('#golongan_id').attr('value', '');
+      $('#golongan_id').attr('disabled', 'disabled');
+      $('#type_id').attr('value', '');
+      $('#type_id').attr('disabled', 'disabled');
+      $('#level_four_id').attr('value', '');
+      $('#level_four_id').attr('disabled', 'disabled');
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    }
+  });
+
+  $('#golongan_id').change(function() {
+    if ($('#golongan_id').val() != '') {
+      $('#type_id').removeAttr('disabled');
+      $.ajax({
+        url: '<%= get_type_m_beli_po_first_hs_path %>?id=' + $('#golongan_id').val()
+      });
+      $('#level_four_id').attr('value', '');
+      $('#level_four_id').attr('disabled', 'disabled');
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    } else if ($('#golongan_id').val() == '') {
+      $('#type_id').attr('value', '');
+      $('#type_id').attr('disabled', 'disabled');
+      $('#level_four_id').attr('value', '');
+      $('#level_four_id').attr('disabled', 'disabled');
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    }
+  });
+
+  $('#type_id').change(function() {
+    if ($('#type_id').val() != '') {
+      $('#level_four_id').removeAttr('disabled');
+      $.ajax({
+        url: '<%= get_level_four_m_beli_po_first_hs_path %>?id=' + $('#type_id').val()
+      });
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    } else if ($('#type_id').val() == '') {
+      $('#level_four_id').attr('value', '');
+      $('#level_four_id').attr('disabled', 'disabled');
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    }
+  });
+
+  $('#level_four_id').change(function() {
+    if ($('#level_four_id').val() != '') {
+      $('#level_five_id').removeAttr('disabled');
+      $.ajax({
+        url: '<%= get_level_five_m_beli_po_first_hs_path %>?id=' + $('#level_four_id').val()
+      });
+    } else if ($('#level_four_id').val() == '') {
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    }
+  });
+});
+</script>

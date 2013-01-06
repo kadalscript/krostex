@@ -1,0 +1,1 @@
+$('#level_four_id').html('<%= escape_javascript(select_tag(:level_four_id, options_for_select(@a_level_fours.collect { |level_four| [ level_four.nama, level_four.id ] }), prompt: "- Level 4 -")) %>')

@@ -1,3 +1,8 @@
+ActiveRecord::Base.establish_connection
+ActiveRecord::Base.connection.tables.each do |table|
+  ActiveRecord::Base.connection.execute("TRUNCATE #{table}") if !["schema_migrations"].include?(table)
+end
+
 AdminMsGroup.delete_all
 AdminMsGroup.create(:id_group =>'00', :namagroup =>'MASTER ROOT', :statusgroup =>0, :id_group_parent =>'ROOT', :created_at =>'1900-01-01', :updated_at =>'1900-01-01')
 AdminMsGroup.create(:id_group =>'01', :namagroup =>'SUPER ADMINISTRATOR', :statusgroup =>0, :id_group_parent =>'00', :created_at =>'1900-01-01', :updated_at =>'1900-01-01')
@@ -125,3 +130,116 @@ AdminMsMenu.create(:id_menu =>'0049', :id_menu_parent =>'0026', :status1 =>0, :l
 AdminMsMenu.create(:id_menu =>'0050', :id_menu_parent =>'0026', :status1 =>0, :levelmenu =>3, :id_modul =>18, :addparam =>'', :namamenu =>'Jenis', :nourut =>30, :created_at =>'2013-01-04', :updated_at =>'2013-01-04')
 AdminMsMenu.create(:id_menu =>'0051', :id_menu_parent =>'0026', :status1 =>0, :levelmenu =>3, :id_modul =>20, :addparam =>'', :namamenu =>'Level 4', :nourut =>40, :created_at =>'2013-01-04', :updated_at =>'2013-01-04')
 AdminMsMenu.create(:id_menu =>'0052', :id_menu_parent =>'0026', :status1 =>0, :levelmenu =>3, :id_modul =>21, :addparam =>'', :namamenu =>'Level 5', :nourut =>50, :created_at =>'2013-01-04', :updated_at =>'2013-01-04')
+
+ABadanUsaha.create(kode: 'K1', nama: 'Badan Usaha 1', no_urut: '1')
+
+badan_usaha = ABadanUsaha.first
+
+ANegara.create([
+  { kode: 'K1', nama: 'Negara 1', simbol: 'S1' },
+  { kode: 'K2', nama: 'Negara 2', simbol: 'S2' }
+])
+
+country = ANegara.first
+second_country = ANegara.find_by_id(country.id + 1)
+
+AProvinsi.create([
+  { kode: 'K1', nama: 'Provinsi 1', simbol: 'S1', id_negara: country.id },
+  { kode: 'K2', nama: 'Provinsi 2', simbol: 'S2', id_negara: second_country.id }
+])
+
+province = AProvinsi.first
+second_province = AProvinsi.find_by_id(country.id + 1)
+
+ACity.create([
+  { kode: 'K1', nama: 'Provinsi 1', simbol: 'S1', id_negara: country.id, id_provinsi: province.id },
+  { kode: 'K2', nama: 'Provinsi 2', simbol: 'S2', id_negara: second_country.id, id_provinsi: second_province.id }
+])
+
+city = ACity.first
+second_city = ACity.find_by_id(city.id + 1)
+
+BSupplier.create([
+  { kode: 'Kode 1', nama: 'Nama Supplier 1', id_badan_usaha: badan_usaha.id, email: 'email@supplier1.com', homepage: 'www.homepage-supplier1.com', status1: 0, st_progress: 'ACTIVE' },
+  { kode: 'Kode 2', nama: 'Nama Supplier 2', id_badan_usaha: badan_usaha.id, email: 'email@supplier2.com', homepage: 'www.homepage-supplier2.com', status1: 99, st_progress: 'VOID' }
+])
+
+supplier = BSupplier.first
+second_supplier = BSupplier.find_by_id(supplier.id + 1)
+
+BSupplierAlamat.create([
+  { kode_alamat: 'Kode alamat 1', kode: 'Kode 1', kode_kategori: 'Kode kategori 1', alamat_title: "Alamat #{supplier.nama}", id_negara: country.id, id_provinsi: province.id, id_kota: city.id, telepon: '11111111', fax: '11111112', status1: 0, st_progress: 'ACTIVE', b_supplier_id: supplier.id },
+  { kode_alamat: 'Kode alamat 2', kode: 'Kode 2', kode_kategori: 'Kode kategori 2', alamat_title: "Alamat #{second_supplier.nama}", id_negara: second_country.id, id_provinsi: second_province.id, id_kota: second_city.id, telepon: '22222222', fax: '22222223', status1: 99, st_progress: 'VOID', b_supplier_id: second_supplier.id }
+])
+
+ACompanyProfile.create([
+  { kode: "1", nama_company: "Perusahaan 1", contact_person: "Kontak Perusahaan 1", alamat_title: "Alamat Perusahaan 1", telepon: 11111111, fax: 11111112, email: "email@perusahaan1.com", homepage: "www.perusahaan1.com" },
+  { kode: "2", nama_company: "Perusahaan 2", contact_person: "Kontak Perusahaan 2", alamat_title: "Alamat Perusahaan 2", telepon: 22222223, fax: 22222221, email: "email@perusahaan2.com", homepage: "www.perusahaan2.com" }
+])
+
+ADepartment.create([
+  { kode: 'K1', nama: 'Department 1', simbol: 'S1' },
+  { kode: 'K2', nama: 'Department 2', simbol: 'S2' }
+])
+
+department = ADepartment.first
+second_department = ADepartment.find_by_id(department.id + 1)
+
+AGolongan.create([
+  { kode: 'K1', nama: 'Golongan 1', simbol: 'S1', id_department: department.id },
+  { kode: 'K2', nama: 'Golongan 2', simbol: 'S2', id_department: second_department.id }
+])
+
+golongan = AGolongan.first
+second_golongan = AGolongan.find_by_id(golongan.id + 1)
+
+AType.create([
+  { kode: 'K1', nama: 'Jenis 1', simbol: 'S1', id_department: department.id, id_golongan: golongan.id },
+  { kode: 'K2', nama: 'Jenis 2', simbol: 'S2', id_department: second_department.id, id_golongan: second_golongan.id }
+])
+
+type = AType.first
+second_type = AType.find_by_id(type.id + 1)
+
+ALevelFour.create([
+  { kode: 'K1', nama: 'Level Four 1', simbol: 'S1', id_department: department.id, id_golongan: golongan.id, id_type: type.id },
+  { kode: 'K2', nama: 'Level Four 2', simbol: 'S2', id_department: second_department.id, id_golongan: second_golongan.id, id_type: second_type.id }
+])
+
+level_four = ALevelFour.first
+second_level_four = ALevelFour.find_by_id(level_four.id + 1)
+
+ALevelFive.create([
+  { kode: 'K1', nama: 'Level Five 1', simbol: 'S1', id_department: department.id, id_golongan: golongan.id, id_type: type.id, id_level_four: level_four.id },
+  { kode: 'K2', nama: 'Level Five 2', simbol: 'S2', id_department: second_department.id, id_golongan: second_golongan.id, id_type: second_type.id, id_level_four: second_level_four.id }
+])
+
+level_five = ALevelFive.first
+second_level_five = ALevelFive.find_by_id(level_five.id + 1)
+
+AMataUang.create([
+  { kode: 'K1', nama: 'Rupiah', simbol: 'Rp', no_urut: 1 },
+  { kode: 'K2', nama: 'Dollar', simbol: '$', no_urut: 1 }
+])
+
+ASatuan.create([
+  { simbol: 'S1', nama: 'Satuan 1', no_urut: 1 },
+  { simbol: 'S2', nama: 'Satuan 2', no_urut: 2 }
+])
+
+satuan = ASatuan.first
+second_satuan = ASatuan.find_by_id(satuan.id + 1)
+
+BBarang.create([
+  { kode: 'K1', nama: 'Barang 1', id_department: department.id, id_golongan: golongan.id, id_type: type.id, id_level_four: level_four.id, id_level_five: level_five.id, id_satuan: satuan.id, min_stok: 10, max_stok: 100 },
+  { kode: 'K2', nama: 'Barang 2', id_department: second_department.id, id_golongan: second_golongan.id, id_type: second_type.id, id_level_four: second_level_four.id, id_level_five: second_level_five.id, id_satuan: second_satuan.id, min_stok: 20, max_stok: 200 },
+  { kode: 'K3', nama: 'Barang 3', id_department: department.id, id_golongan: golongan.id, id_type: type.id, id_level_four: level_four.id, id_level_five: level_five.id, id_satuan: satuan.id, min_stok: 10, max_stok: 100 },
+  { kode: 'K4', nama: 'Barang 4', id_department: second_department.id, id_golongan: second_golongan.id, id_type: second_type.id, id_level_four: second_level_four.id, id_level_five: second_level_five.id, id_satuan: second_satuan.id, min_stok: 20, max_stok: 200 }
+])
+
+AKemasan.create([
+  { kode: 'K1', nama: 'Kemasan 1', isi_volume: 1, id_satuan: satuan.id },
+  { kode: 'K2', nama: 'Kemasan 2', isi_volume: 2, id_satuan: satuan.id },
+  { kode: 'K3', nama: 'Kemasan 3', isi_volume: 3, id_satuan: satuan.id },
+  { kode: 'K4', nama: 'Kemasan 4', isi_volume: 4, id_satuan: satuan.id }
+])

@@ -1,0 +1,45 @@
+<h1>Listing m_beli_po_second_ds</h1>
+
+<table>
+  <tr>
+    <th>Kode tmp</th>
+    <th>Kode barang</th>
+    <th>Qty kemasan</th>
+    <th>Id satuan kemasan</th>
+    <th>Qty</th>
+    <th>Qty btb</th>
+    <th>Id valuta</th>
+    <th>Harga</th>
+    <th>Diskon</th>
+    <th>Total qty kali harga</th>
+    <th>Total qty kali harga kali diskon</th>
+    <th>Total kurang diskon</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @m_beli_po_second_ds.each do |m_beli_po_second_d| %>
+  <tr>
+    <td><%= m_beli_po_second_d.kode_tmp %></td>
+    <td><%= m_beli_po_second_d.kode_barang %></td>
+    <td><%= m_beli_po_second_d.qty_kemasan %></td>
+    <td><%= m_beli_po_second_d.id_satuan_kemasan %></td>
+    <td><%= m_beli_po_second_d.qty %></td>
+    <td><%= m_beli_po_second_d.qty_btb %></td>
+    <td><%= m_beli_po_second_d.id_valuta %></td>
+    <td><%= m_beli_po_second_d.harga %></td>
+    <td><%= m_beli_po_second_d.diskon %></td>
+    <td><%= m_beli_po_second_d.total_qty_kali_harga %></td>
+    <td><%= m_beli_po_second_d.total_qty_kali_harga_kali_diskon %></td>
+    <td><%= m_beli_po_second_d.total_kurang_diskon %></td>
+    <td><%= link_to 'Show', m_beli_po_second_d %></td>
+    <td><%= link_to 'Edit', edit_m_beli_po_second_d_path(m_beli_po_second_d) %></td>
+    <td><%= link_to 'Destroy', m_beli_po_second_d, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New M beli po second d', new_m_beli_po_second_d_path %>
