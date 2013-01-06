@@ -34,7 +34,9 @@ Hermanstartup::Application.routes.draw do
   end
   resources :a_level_fives
   resources :a_level_fours
-  resources :b_barangs
+  resources :b_barangs do
+    get 'combobox_change', on: :collection
+  end
   resources :b_suppliers do
     resources :b_supplier_alamats
     match "b_supplier_alamats/:id/change_form" => "b_supplier_alamats#change_form", as: :change_form

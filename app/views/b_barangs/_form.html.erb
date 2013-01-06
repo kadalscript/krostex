@@ -34,7 +34,7 @@
        :
       </th>
       <th align="left"> 
-       <%= f.select :id_department, options_from_collection_for_select(@a_departments, 'kode', 'nama', @b_barang.id_department), {}, class: :required %>
+       <%= f.select :id_department, options_from_collection_for_select(@a_departments, 'kode', 'nama', @b_barang.id_department), {include_blank: true}, class: :required, data_combo: "department" %>
       </th> 
     </tr>
     <tr>
@@ -45,7 +45,7 @@
         :
       </th>
       <th align="left"> 
-        <%= f.select :id_golongan, options_from_collection_for_select(@a_golongans, 'kode', 'nama', @b_barang.id_department), {include_blank: true}, class: :required, readonly: true %>
+        <%= f.select :id_golongan, options_from_collection_for_select(@a_golongans, 'kode', 'nama', @b_barang.id_department), {include_blank: true}, class: :required, readonly: true, disabled: :disabled, data_combo: "golongan" %>
       </th> 
     </tr>
     <tr>
@@ -56,7 +56,7 @@
         :
       </th>
       <th align="left"> 
-        <%= f.select :id_type, options_from_collection_for_select(@a_types, 'kode', 'nama', @b_barang.id_department), {include_blank: true}, class: :required, readonly: true %>
+        <%= f.select :id_type, options_from_collection_for_select(@a_types, 'kode', 'nama', @b_barang.id_type), {include_blank: true}, class: :required, readonly: true, disabled: :disabled, data_combo: "type" %>
       </th> 
     </tr>
     <tr>
@@ -67,7 +67,18 @@
        :
       </th>
       <th align="left"> 
-       <%= f.select :id_level_four, options_from_collection_for_select(@a_level_fours, 'kode', 'nama', @b_barang.id_level_four), {include_blank: true}, class: :required, readonly: true %>
+       <%= f.select :id_level_four, options_from_collection_for_select(@a_level_fours, 'kode', 'nama', @b_barang.id_level_four), {include_blank: true}, class: :required, readonly: true, disabled: :disabled, data_combo: "level4" %>
+      </th> 
+    </tr>
+    <tr>
+      <th align="left">
+       &nbsp;Level 5
+      </th>  
+      <th align="center"> 
+       :
+      </th>
+      <th align="left"> 
+       <%= f.select :id_level_five, options_from_collection_for_select(@a_level_fifes, 'kode', 'nama', @b_barang.id_level_five), {include_blank: true}, class: :required, readonly: true, disabled: :disabled %>
       </th> 
     </tr>
     <tr>
@@ -80,3 +91,52 @@
   </table>
 <% end %>
 <%= hidden_value(b_barangs_path) %>
+
+<script type="text/javascript">
+  var combo_departement = $('#b_barang_id_department'),
+  combo_golongan = $('#b_barang_id_golongan'),
+  combo_type = $('#b_barang_id_type'),
+  combo_level_four = $('#b_barang_id_level_four')
+
+  $(document).ready(function(){
+    combo_departement.change(function(){
+      $.get('<%= combobox_change_b_barangs_path %>', {
+        type : $(this).attr('data_combo'),
+        id_department: $(this).val()
+      })
+    });
+
+    combo_golongan.change(function(){
+      $.get('<%= combobox_change_b_barangs_path %>', {
+        type : $(this).attr('data_combo'),
+        id_department: combo_departement.val(),
+        id_golongan: $(this).val()
+      })
+    });
+
+    combo_type.change(function(){
+      $.get('<%= combobox_change_b_barangs_path %>', {
+        type : $(this).attr('data_combo'),
+        id_department: combo_departement.val(),
+        id_golongan: combo_golongan.val(),
+        id_type : $(this).val()
+      })
+    });
+
+    combo_level_four.change(function(){
+      $.get('<%= combobox_change_b_barangs_path %>', {
+        type : $(this).attr('data_combo'),
+        id_department: combo_departement.val(),
+        id_golongan: combo_golongan.val(),
+        id_type : combo_type.val(),
+        id_level_four: $(this).val()
+      })
+    });
+
+    <% if action_name.eql?('edit') %>
+      var unlock_field = $('#b_barang_id_department, #b_barang_id_golongan, #b_barang_id_type, #b_barang_id_level_four, #b_barang_id_level_five');
+      unlock_field.removeAttr('disabled');
+      unlock_field.removeAttr('readonly');
+    <% end %>
+  });
+</script>
