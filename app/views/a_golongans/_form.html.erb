@@ -3,7 +3,51 @@
     <tr class="titleJudulTable"><th colspan="3"><%= title %></th></tr>
     <%= render template: "/shared/errors", errors: @a_golongan.errors if @a_golongan.errors.any? %>
     <%= render partial: "navigator" unless action_name == 'new' %>
-    <%= render partial: "columns", locals: { f: f, attributes: @attributes } %>
+    <%#= render partial: "columns", locals: { f: f, attributes: @attributes } %>
+    <tr>
+      <th align="left">
+       &nbsp;Department
+      </th>  
+      <th align="center"> 
+       :
+      </th>
+      <th align="left"> 
+       <%= f.select :id_department, options_from_collection_for_select(@a_departments, 'kode', 'nama', @a_golongan.id_department), {}, class: :required %>
+      </th> 
+    </tr>
+    <tr>
+      <th align="left">
+       &nbsp;Kode Golongan
+      </th>  
+      <th align="center"> 
+       :
+      </th>
+      <th align="left"> 
+       <%= f.text_field :kode, :style => "width:300px", class: :required %>
+      </th> 
+    </tr>
+    <tr>
+      <th align="left">
+       &nbsp;Nama Golongan
+      </th>  
+      <th align="center"> 
+       :
+      </th>
+      <th align="left"> 
+       <%= f.text_field :nama, :style => "width:300px", class: :required %>
+      </th> 
+    </tr>
+    <tr>
+      <th align="left">
+       &nbsp;Simbol
+      </th>  
+      <th align="center"> 
+       :
+      </th>
+      <th align="left"> 
+       <%= f.text_field :simbol, :style => "width:300px", class: :required %>
+      </th> 
+    </tr>
     <tr>
       <th colspan="3" class="titleJudulTable" width="100%">
         <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>

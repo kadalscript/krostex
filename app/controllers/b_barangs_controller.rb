@@ -19,13 +19,25 @@ class BBarangsController < ApplicationController
 
   def new
     @b_barang = BBarang.new(kode: counter_alpha(BBarang.count, 5, "BBarang.maximum('kode')"))
+    @a_departments = ADepartment.all
+    @a_golongans = AGolongan.all
+    @a_types = AType.all
+    @a_level_fours = ALevelFour.all
+    @a_level_fifes = ALevelFive.all
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @b_barang }
     end
   end
 
-  def edit; end
+  def edit
+    @a_departments = ADepartment.all
+    @a_golongans = AGolongan.all
+    @a_types = AType.all
+    @a_level_fours = ALevelFour.all
+    @a_level_fifes = ALevelFive.all
+  end
 
   def create
     @b_barang = BBarang.new(params[:b_barang].merge({updated_by: current_admin_ms_user.login_name}))
@@ -60,7 +72,13 @@ class BBarangsController < ApplicationController
     end
   end
 
-  def destroy_show; end
+  def destroy_show
+    @a_departments = ADepartment.all
+    @a_golongans = AGolongan.all
+    @a_types = AType.all
+    @a_level_fours = ALevelFour.all
+    @a_level_fifes = ALevelFive.all
+  end
 
   def search
     query = {}

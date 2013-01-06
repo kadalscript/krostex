@@ -19,13 +19,17 @@ class AGolongansController < ApplicationController
 
   def new
     @a_golongan = AGolongan.new(kode: counter_alpha(AGolongan.count, 1, "AGolongan.maximum('kode')"))
+    @a_departments = ADepartment.all
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @a_golongan }
     end
   end
 
-  def edit; end
+  def edit
+    @a_departments = ADepartment.all
+  end
 
   def create
     @a_golongan = AGolongan.new(params[:a_golongan].merge({updated_by: current_admin_ms_user.login_name}))
@@ -60,7 +64,9 @@ class AGolongansController < ApplicationController
     end
   end
 
-  def destroy_show; end
+  def destroy_show
+    @a_departments = ADepartment.all
+  end
 
   def search
     query = {}

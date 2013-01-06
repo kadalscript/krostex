@@ -19,16 +19,22 @@ class ATypesController < ApplicationController
 
   def new
     @a_type = AType.new(kode: counter_alpha(AType.count, 1, "AType.maximum('kode')"))
+    @a_departments = ADepartment.all
+    @a_golongans = AGolongan.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @a_type }
     end
   end
 
-  def edit; end
+  def edit
+    @a_departments = ADepartment.all
+    @a_golongans = AGolongan.all
+  end
 
   def create
     @a_type = AType.new(params[:a_type].merge({updated_by: current_admin_ms_user.login_name}))
+    @a_departments = ADepartment.all
     respond_to do |format|
       if @a_type.save
         format.html { redirect_to @a_type, notice: 'Data berhasil disimpan' }
@@ -50,6 +56,11 @@ class ATypesController < ApplicationController
         format.json { render json: @a_type.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy_show
+    @a_departments = ADepartment.all
+    @a_golongans = AGolongan.all
   end
 
   def destroy

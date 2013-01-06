@@ -19,13 +19,21 @@ class ALevelFoursController < ApplicationController
 
   def new
     @a_level_four = ALevelFour.new(kode: counter_alpha(ALevelFour.count, 1, "ALevelFour.maximum('kode')"))
+    @a_departments = ADepartment.all
+    @a_golongans = AGolongan.all
+    @a_types = AType.all
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @a_level_four }
     end
   end
 
-  def edit; end
+  def edit
+    @a_departments = ADepartment.all
+    @a_golongans = AGolongan.all
+    @a_types = AType.all
+  end
 
   def create
     @a_level_four = ALevelFour.new(params[:a_level_four].merge({updated_by: current_admin_ms_user.login_name}))
@@ -60,7 +68,11 @@ class ALevelFoursController < ApplicationController
     end
   end
 
-  def destroy_show; end
+  def destroy_show
+    @a_departments = ADepartment.all
+    @a_golongans = AGolongan.all
+    @a_types = AType.all
+  end
 
   def search
     query = {}
