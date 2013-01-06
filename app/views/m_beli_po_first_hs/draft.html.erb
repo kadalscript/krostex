@@ -26,7 +26,7 @@
             <td><%= detail.diskon %></td>
             <td><%= detail.total_kurang_diskon %></td>
             <td>
-              <%= link_to "Edit", "javascript:void(0)", id: 'edit_detail' %> &nbsp - &nbsp
+              <%= link_to "Edit", "javascript:void(0)", id: 'edit_detail', value: "#{detail.id}" %> &nbsp - &nbsp
               <%= link_to "Destroy", "javascript:void(0)", id: 'destroy_detail', value: "#{detail.id}" %>
             </td>
           </tr>
@@ -74,20 +74,7 @@
   </div>
 <% end %>
 
-<!-- Modal -->
-<div id="edit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Edit</h3>
-  </div>
-  <div class="modal-body">
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    <button class="btn btn-primary">Update</button>
-  </div>
-</div>
-
+<%= render partial: 'edit_modal' %>
 <%= render partial: 'destroy_modal' %>
 
 <script>
@@ -102,7 +89,11 @@ $(function() {
     $('#searchModal').modal();
   });
 
-  $('#edit_detail').click(function() {
+  $('a#edit_detail').click(function() {
+    $.ajax({
+      url: '<%= m_beli_po_first_h_modify_edit_form_path(@m_beli_po_first_h) %>?detail_id=' + $(this).attr('value')
+    });
+
     $('#edit').modal();
   });
 

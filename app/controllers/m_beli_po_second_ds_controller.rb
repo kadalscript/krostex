@@ -30,11 +30,6 @@ class MBeliPoSecondDsController < ApplicationController
     end
   end
 
-  # GET /m_beli_po_second_ds/1/edit
-  def edit
-    @m_beli_po_second_d = MBeliPoSecondD.find(params[:id])
-  end
-
   # POST /m_beli_po_second_ds
   # POST /m_beli_po_second_ds.json
   def create
@@ -70,14 +65,11 @@ class MBeliPoSecondDsController < ApplicationController
   # PUT /m_beli_po_second_ds/1.json
   def update
     @m_beli_po_second_d = MBeliPoSecondD.find(params[:id])
+    @m_beli_po_first_h = MBeliPoFirstH.find(params[:m_beli_po_first_h_id])
 
     respond_to do |format|
-      if @m_beli_po_second_d.update_attributes(params[:m_beli_po_second_d])
-        format.html { redirect_to @m_beli_po_second_d, notice: 'M beli po second d was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @m_beli_po_second_d.errors, status: :unprocessable_entity }
+      if @m_beli_po_second_d.update_attributes(params[:edit])
+        format.html { redirect_to draft_m_beli_po_first_hs_path(@m_beli_po_first_h), notice: SUCCESSFULLY_SAVE_DATA  }
       end
     end
   end
