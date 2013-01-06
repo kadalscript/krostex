@@ -87,6 +87,29 @@ class BBarangsController < ApplicationController
     render template: "b_barangs/index"
   end
 
+  def combobox_change
+    case params[:type]
+    when 'department'
+      @datum = AGolongan.where(id_department: params[:id_department])
+      @elm = 'b_barang_id_golongan'
+    when 'golongan'
+      @datum = AType.where(id_department: params[:id_department],
+        id_golongan: params[:id_golongan])
+      @elm = 'b_barang_id_type'
+    when 'type'
+      @datum = ALevelFour.where(id_department: params[:id_department],
+        id_golongan: params[:id_golongan],
+        id_type: params[:id_type])
+      @elm = 'b_barang_id_level_four'
+    when 'level4'
+      @datum = ALevelFive.where(id_department: params[:id_department],
+        id_golongan: params[:id_golongan],
+        id_type: params[:id_type],
+        id_level_four: params[:id_level_four])
+      @elm = 'b_barang_id_level_five'
+    end
+  end
+
 private
   def find_b_barang_by_id
     @b_barang = BBarang.find_by_id(params[:id])
