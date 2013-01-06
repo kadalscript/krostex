@@ -12,6 +12,7 @@ Hermanstartup::Application.routes.draw do
       match "get_mata_uang"
       match "populate_barangs"
     end
+    match "modify_destroy_form"
     resources :m_beli_po_second_ds
   end
   resources :a_mata_uangs

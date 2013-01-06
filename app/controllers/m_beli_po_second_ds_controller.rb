@@ -42,7 +42,7 @@ class MBeliPoSecondDsController < ApplicationController
     detail = params[:detail]
 
     respond_to do |format|
-      if detail[:checked].blank?
+      if detail.blank? || detail[:checked].blank?
         format.html { redirect_to draft_m_beli_po_first_hs_path(@m_beli_po_first_h), alert: 'Penyimpanan data gagal' }
       else
         detail[:checked].each do |key, value|
@@ -82,15 +82,13 @@ class MBeliPoSecondDsController < ApplicationController
     end
   end
 
-  # DELETE /m_beli_po_second_ds/1
-  # DELETE /m_beli_po_second_ds/1.json
   def destroy
-    @m_beli_po_second_d = MBeliPoSecondD.find(params[:id])
-    @m_beli_po_second_d.destroy
+    @m_beli_po_second_d = MBeliPoSecondD.find_by_id(params[:id])
 
     respond_to do |format|
-      format.html { redirect_to m_beli_po_second_ds_url }
-      format.json { head :no_content }
+      if @m_beli_po_second_d.destroy
+        format.html { redirect_to draft_m_beli_po_first_hs_path(params[:m_beli_po_first_h_id]), alert: SUCCESSFULLY_DELETE_DATA }
+      end
     end
   end
 end

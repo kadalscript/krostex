@@ -161,6 +161,15 @@ class MBeliPoFirstHsController < ApplicationController
     end
   end
 
+  def modify_destroy_form
+    @m_beli_po_second_d = MBeliPoSecondD.find_by_id(params[:detail_id])
+    @m_beli_po_first_h = MBeliPoFirstH.find_by_id(params[:m_beli_po_first_h_id])
+
+    respond_to do |format|
+      format.js { render }
+    end
+  end
+
 private
 
   def get_miscellaneous
