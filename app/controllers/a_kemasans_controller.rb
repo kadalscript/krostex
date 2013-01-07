@@ -7,7 +7,7 @@ class AKemasansController < ApplicationController
   @@table_name = AKemasan.table_name
 
   def index
-    @a_kemasans = AKemasan.page(params[:page]).per(5).order('id')
+    @a_kemasans = AKemasan.page(params[:page]).per(PAGINATE).order('id')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_kemasans }
@@ -19,7 +19,7 @@ class AKemasansController < ApplicationController
   end
 
   def new
-    @a_kemasan = AKemasan.new
+    @a_kemasan = AKemasan.new(kode: counter_alpha(AKemasan.count, 2, "AKemasan.maximum('kode')"))
     common_form(@@table_name, @@title, @a_kemasan)
   end
 
@@ -28,7 +28,7 @@ class AKemasansController < ApplicationController
   end
 
   def create
-    @a_kemasan = AKemasan.new(params[:a_kemasan])
+    @a_kemasan = AKemasan.new(params[:a_kemasan].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @a_kemasan.save
         format.html { redirect_to @a_kemasan, notice: SUCCESSFULLY_SAVE_DATA }
@@ -42,7 +42,7 @@ class AKemasansController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_kemasan.update_attributes(params[:a_kemasan])
+      if @a_kemasan.update_attributes(params[:a_kemasan].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_kemasan, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else

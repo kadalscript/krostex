@@ -48,3 +48,8 @@ a.navigasi {font-size: 8pt;}
   margin: 10px;
   width: 40%;
 }
+
+.next > a {COLOR: #ffffff; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt;FONT-WEIGHT: bold; TEXT-DECORATION: none}
+.page > a {COLOR: #ffffff; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt;FONT-WEIGHT: bold; TEXT-DECORATION: none}
+.current > a {COLOR: #ffffff; FONT-FAMILY: Tahoma; FONT-SIZE: 12pt;FONT-WEIGHT: bold; TEXT-DECORATION: none}
+.last > a {COLOR: #ffffff; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt;FONT-WEIGHT: bold; TEXT-DECORATION: none}
