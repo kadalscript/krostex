@@ -8,8 +8,8 @@ html>body {
 body {
 	font-family: Verdana, helvetica, arial, sans-serif;
 	font-size: 68.75%;
-	background: #000058;
-	color: #FFFFFF;;
+	background: #FFFFFF;
+	color: #000000;;
 }
  /*
 body {
@@ -31,8 +31,8 @@ h1 { font-size: large }
 
 a img { border: none; }
 
-.navigasiMenu {COLOR: #FFFFFF; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt; TEXT-DECORATION: none}
-    a.navigasi:hover {COLOR: #FFFF00; FONT-WEIGHT: bold; TEXT-DECORATION: underline}              
+.navigasiMenu {COLOR: #000000; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt; TEXT-DECORATION: none}
+    a.navigasi:hover {COLOR: #000000; FONT-WEIGHT: bold; TEXT-DECORATION: underline}              
     
 .subtitle {
     font-family: Arial, Helvetica, sans-serif;

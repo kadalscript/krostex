@@ -12,7 +12,14 @@
 <% content_for :head do %>
 
 <% end %>
-
+<table>
+<tr>
+   <th align="left">
+      SYSTEM INFORMASI MANAGEMENT KROSTEX'S
+   </th>  
+</tr>
+<tr>   
+<th align="left">  
 <ul id="red" class="treeview-red">
   <% prm_ids = "9999" %>
     <% if @main %> 
@@ -21,7 +28,7 @@
         <% param_additional = {idm:rowS["id_menu"]} %>
         <% params_ready = $params_sys_default.merge(param_additional).to_s.string2hex %> 
 
-        <% nm_url = "#{root_url}#{rowS['nm_url']}?params='#{params_ready}" %>
+        <% nm_url = "#{root_url}#{rowS['nm_url']}?params=#{params_ready}" %>
         <%= rowS["simbol"].html_safe %>
 
         <% if rowS["nm_url"] != "" %>       
@@ -35,3 +42,6 @@
       <% end %>
     <% end %> 
 </ul>
+</th>
+</tr>
+</table>
