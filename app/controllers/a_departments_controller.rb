@@ -7,7 +7,7 @@ class ADepartmentsController < ApplicationController
   @@table_name = ADepartment.table_name
 
   def index
-    @a_departments = ADepartment.page(params[:page]).per(5)
+    @a_departments = ADepartment.page(params[:page]).per(PAGINATE)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_departments }

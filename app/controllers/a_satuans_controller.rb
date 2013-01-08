@@ -7,7 +7,7 @@ class ASatuansController < ApplicationController
   @@table_name = ASatuan.table_name
 
   def index
-    @a_satuans = ASatuan.page(params[:page]).per(5).order('id')
+    @a_satuans = ASatuan.page(params[:page]).per(PAGINATE).order('id')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_satuans }
@@ -30,6 +30,7 @@ class ASatuansController < ApplicationController
   def create
     @a_satuan = ASatuan.new(params[:a_satuan])
     respond_to do |format|
+      @a_satuan = ASatuan.new(params[:a_satuan].merge({updated_by: current_admin_ms_user.login_name}))
       if @a_satuan.save
         format.html { redirect_to @a_satuan, notice: SUCCESSFULLY_SAVE_DATA }
         format.json { render json: @a_satuan, status: :created, location: @a_satuan }
@@ -42,7 +43,7 @@ class ASatuansController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_satuan.update_attributes(params[:a_satuan])
+      if @a_satuan.update_attributes(params[:a_satuan].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_satuan, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else

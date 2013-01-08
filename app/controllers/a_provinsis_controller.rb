@@ -7,7 +7,7 @@ class AProvinsisController < ApplicationController
   @@table_name = AProvinsi.table_name
 
   def index
-    @a_provinsis = AProvinsi.page(params[:page]).per(5).order('id')
+    @a_provinsis = AProvinsi.page(params[:page]).per(PAGINATE).order('id')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_provinsis }
@@ -28,7 +28,7 @@ class AProvinsisController < ApplicationController
   end
 
   def create
-    @a_provinsi = AProvinsi.new(params[:a_provinsi])
+    @a_provinsi = AProvinsi.new(params[:a_provinsi].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @a_provinsi.save
         format.html { redirect_to @a_provinsi, notice: SUCCESSFULLY_SAVE_DATA }
@@ -42,7 +42,7 @@ class AProvinsisController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_provinsi.update_attributes(params[:a_provinsi])
+      if @a_provinsi.update_attributes(params[:a_provinsi].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_provinsi, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else

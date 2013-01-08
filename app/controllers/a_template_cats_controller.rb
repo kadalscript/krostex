@@ -7,7 +7,7 @@ class ATemplateCatsController < ApplicationController
   @@table_name = ATemplateCat.table_name
 
   def index
-    @a_template_cats = ATemplateCat.page(params[:page]).per(5).order('id')
+    @a_template_cats = ATemplateCat.page(params[:page]).per(PAGINATE).order('id')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_template_cats }
@@ -28,7 +28,7 @@ class ATemplateCatsController < ApplicationController
   end
 
   def create
-    @a_template_cat = ATemplateCat.new(params[:a_template_cat])
+    @a_template_cat = ATemplateCat.new(params[:a_template_cat].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @a_template_cat.save
         format.html { redirect_to @a_template_cat, notice: SUCCESSFULLY_SAVE_DATA }
@@ -42,7 +42,7 @@ class ATemplateCatsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_template_cat.update_attributes(params[:a_template_cat])
+      if @a_template_cat.update_attributes(params[:a_template_cat].merger({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_template_cat, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else

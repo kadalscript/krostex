@@ -2,8 +2,9 @@ class ATypesController < ApplicationController
   before_filter :attributes, only: [:new, :show, :edit, :destroy_show]
   before_filter :find_a_type_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
 
+ 
   def index
-    @a_types = AType.page(params[:page]).per(5)
+    @a_types = AType.page(params[:page]).per(PAGINATE)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_types }
@@ -11,6 +12,14 @@ class ATypesController < ApplicationController
   end
 
   def show
+    @a_departments = ADepartment.all
+    @a_golongans   = AGolongan.all
+
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled          = true
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @a_type }
@@ -18,9 +27,15 @@ class ATypesController < ApplicationController
   end
 
   def new
-    @a_type = AType.new(kode: counter_alpha(AType.count, 1, "AType.maximum('kode')"))
-    @a_departments = ADepartment.all
-    @a_golongans = AGolongan.all
+    @a_type            = AType.new(kode: counter_alpha(AType.count, 1, "AType.maximum('kode')"))
+    @a_departments     = ADepartment.all
+    @a_golongans       = AGolongan.all
+
+    @read_only         = false
+    @read_only_key     = false
+    @read_only_always  = true
+    @disabled          = false
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @a_type }
@@ -29,7 +44,13 @@ class ATypesController < ApplicationController
 
   def edit
     @a_departments = ADepartment.all
-    @a_golongans = AGolongan.all
+    @a_golongans   = AGolongan.all
+
+    @read_only         = false
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled          = true
+
   end
 
   def create
@@ -59,8 +80,13 @@ class ATypesController < ApplicationController
   end
 
   def destroy_show
-    @a_departments = ADepartment.all
-    @a_golongans = AGolongan.all
+    @a_departments     = ADepartment.all
+    @a_golongans       = AGolongan.all
+
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled          = true
   end
 
   def destroy

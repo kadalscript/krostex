@@ -7,7 +7,7 @@ class ABadanUsahasController < ApplicationController
   @@table_name = ABadanUsaha.table_name
 
   def index
-    @a_badan_usahas = ABadanUsaha.page(params[:page]).per(5).order('id')
+    @a_badan_usahas = ABadanUsaha.page(params[:page]).per(PAGINATE).order('id')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_badan_usahas }
@@ -19,7 +19,7 @@ class ABadanUsahasController < ApplicationController
   end
 
   def new
-    @a_badan_usaha = ABadanUsaha.new
+    @a_badan_usaha = ABadanUsaha.new(kode: counter_alpha(ABadanUsaha.count,2, "ABadanUsaha.maximum('kode')"))
     common_form(@@table_name, @@title, @a_badan_usaha)
   end
 
@@ -28,7 +28,7 @@ class ABadanUsahasController < ApplicationController
   end
 
   def create
-    @a_badan_usaha = ABadanUsaha.new(params[:a_badan_usaha])
+    @a_badan_usaha = ABadanUsaha.new(params[:a_badan_usaha].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @a_badan_usaha.save
         format.html { redirect_to @a_badan_usaha, notice: SUCCESSFULLY_SAVE_DATA }
@@ -42,7 +42,7 @@ class ABadanUsahasController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_badan_usaha.update_attributes(params[:a_badan_usaha])
+      if @a_badan_usaha.update_attributes(params[:a_badan_usaha].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_badan_usaha, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else

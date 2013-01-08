@@ -3,7 +3,7 @@ class AGolongansController < ApplicationController
   before_filter :find_a_golongan_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
 
   def index
-    @a_golongans = AGolongan.page(params[:page]).per(5)
+    @a_golongans = AGolongan.page(params[:page]).per(PAGINATE)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_golongans }
@@ -11,6 +11,7 @@ class AGolongansController < ApplicationController
   end
 
   def show
+    @a_departments = ADepartment.all
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @a_golongan }

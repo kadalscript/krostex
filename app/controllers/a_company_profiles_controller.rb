@@ -7,7 +7,7 @@ class ACompanyProfilesController < ApplicationController
   @@table_name = ACompanyProfile.table_name
 
   def index
-    @a_company_profiles = ACompanyProfile.page(params[:page]).per(5).order('id')
+    @a_company_profiles = ACompanyProfile.page(params[:page]).per(PAGINATE).order('id')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_company_profiles }

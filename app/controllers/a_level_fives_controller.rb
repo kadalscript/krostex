@@ -3,7 +3,7 @@ class ALevelFivesController < ApplicationController
   before_filter :find_a_level_five_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
 
   def index
-    @a_level_fives = ALevelFive.page(params[:page]).per(5)
+    @a_level_fives = ALevelFive.page(params[:page]).per(PAGINATE)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_level_fives }
@@ -11,6 +11,16 @@ class ALevelFivesController < ApplicationController
   end
 
   def show
+    @a_departments     = ADepartment.all
+    @a_golongans       = AGolongan.all
+    @a_types           = AType.all
+    @a_level_fours     = ALevelFour.all
+
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = true
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @a_level_fife }
@@ -18,11 +28,16 @@ class ALevelFivesController < ApplicationController
   end
 
   def new
-    @a_level_fife = ALevelFive.new(kode: counter_alpha(ALevelFive.count, 1, "ALevelFive.maximum('kode')"))
-    @a_departments = ADepartment.all
-    @a_golongans = AGolongan.all
-    @a_types = AType.all
-    @a_level_fours = ALevelFour.all
+    @a_level_fife      = ALevelFive.new(kode: counter_alpha(ALevelFive.count, 1, "ALevelFive.maximum('kode')"))
+    @a_departments     = ADepartment.all
+    @a_golongans       = AGolongan.all
+    @a_types           = AType.all
+    @a_level_fours     = ALevelFour.all
+
+    @read_only         = false
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = false
 
     respond_to do |format|
       format.html # new.html.erb
@@ -31,10 +46,14 @@ class ALevelFivesController < ApplicationController
   end
 
   def edit
-    @a_departments = ADepartment.all
-    @a_golongans = AGolongan.all
-    @a_types = AType.all
-    @a_level_fours = ALevelFour.all
+    @a_departments     = ADepartment.all
+    @a_golongans       = AGolongan.all
+    @a_types           = AType.all
+    @a_level_fours     = ALevelFour.all
+    @read_only         = false
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = true
   end
 
   def create
@@ -71,10 +90,14 @@ class ALevelFivesController < ApplicationController
   end
 
   def destroy_show
-    @a_departments = ADepartment.all
-    @a_golongans = AGolongan.all
-    @a_types = AType.all
-    @a_level_fours = ALevelFour.all
+    @a_departments     = ADepartment.all
+    @a_golongans       = AGolongan.all
+    @a_types           = AType.all
+    @a_level_fours     = ALevelFour.all
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = true
   end
 
   def search

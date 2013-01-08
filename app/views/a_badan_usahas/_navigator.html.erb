@@ -1,7 +1,7 @@
 <tr>
-  <th colspan="3">
+  <th colspan="3" align="left">&nbsp;
     <%= link_to ADD, new_a_badan_usaha_path if @a_badan_usaha.id  %>
-    <%= link_to EDIT, edit_a_badan_usaha_path(@a_badan_usaha) if @a_badan_usaha.id %>
-    <%= link_to DELETE, a_badan_usahas_destroy_show_path(@a_badan_usaha) unless ["destroy_show", "create"].include?(action_name) %>
+    &nbsp;|&nbsp;<%= link_to EDIT, edit_a_badan_usaha_path(@a_badan_usaha) if @a_badan_usaha.id %>
+    &nbsp;|&nbsp;<%= link_to DELETE, a_badan_usahas_destroy_show_path(@a_badan_usaha) unless ["destroy_show", "create"].include?(action_name) %>
   </th>
 </tr>

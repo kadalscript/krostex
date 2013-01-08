@@ -1,13 +1,1 @@
-<%= form_for(@a_level_fife) do |f| %>
-  <table class="table-bordered" align="center" width="60%">
-  <tr class="titleJudulTable"><th colspan="3">FORM DATA LEVEL FIVE</th></tr>
-  <%= render partial: "navigator" %>
-  <%= render partial: "columns", locals: { f: f, attribute: @attributes } %>
-  <tr>
-    <th colspan="3" class="titleJudulTable" width="100%">
-      <input type="button" value="Tutup" onclick="closingForm()" class="btn" />
-    </th>
-  </tr>
-  </table>
-<% end %>
-<%= hidden_value(a_level_fives_path) %>
+<%= render 'form', title: 'FORM DATA LEVEL FIVE' %>

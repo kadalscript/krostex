@@ -28,7 +28,7 @@
         <% param_additional = {idm:rowS["id_menu"]} %>
         <% params_ready = $params_sys_default.merge(param_additional).to_s.string2hex %> 
 
-        <% nm_url = "#{root_url}#{rowS['nm_url']}?params=#{params_ready}" %>
+        <% nm_url = "#{root_url}#{rowS['nm_url']}?parametro=#{params_ready}" %>
         <%= rowS["simbol"].html_safe %>
 
         <% if rowS["nm_url"] != "" %>       

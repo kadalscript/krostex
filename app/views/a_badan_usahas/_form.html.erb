@@ -2,11 +2,11 @@
   <table class="table-bordered" align="center" width="60%">
     <tr class="titleJudulTable"><th colspan="3"><%= @form_title %></th></tr>
     <%= render partial: COMMON_ERRORS, locals: { object: @a_badan_usaha } if @a_badan_usaha.errors.any? %>
-    <%= render partial: "navigator" unless action_name == 'new' %>
+    <%= render partial: "navigator" unless ['new','edit','destroy_show'].include?(action_name) %>
     <%= render partial: "columns", locals: { f: f, attributes: @attributes } %>
     <tr>
       <th colspan="3" class="titleJudulTable" width="100%">
-        <%= f.submit SAVE, class: :btn unless ["destroy_show", "show"].include?(action_name)  %>
+        <%= f.submit SAVE, class: :btn, confirm: "Simpan Data?" unless ["destroy_show", "show"].include?(action_name)  %>
         <%= link_to DELETE, a_badan_usaha_path(@a_badan_usaha), method: :delete, class: :btn, confirm: "#{DELETE} data?" if action_name.eql?('destroy_show') %>
         <%= link_to CLOSE, "javascript:void(0)", onclick: "closingForm()", class: :btn %>
       </th>
@@ -14,3 +14,7 @@
   </table>
 <% end %>
 <%= hidden_value(a_badan_usahas_path) %>
+
+<script type="text/javascript">
+          $("#a_badan_usaha_kode").attr("readonly","true")    
+</script>

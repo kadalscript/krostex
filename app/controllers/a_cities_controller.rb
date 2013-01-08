@@ -3,11 +3,11 @@ class ACitiesController < ApplicationController
   before_filter :find_a_city_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
   before_filter :get_miscellaneous
 
-  @@title = 'city'
+  @@title = 'Kota'
   @@table_name = ACity.table_name
 
   def index
-    @a_cities = ACity.page(params[:page]).per(5)
+    @a_cities = ACity.page(params[:page]).per(PAGINATE)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_cities }
@@ -28,7 +28,7 @@ class ACitiesController < ApplicationController
   end
 
   def create
-    @a_city = ACity.new(params[:a_city])
+    @a_city = ACity.new(params[:a_city].merge({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @a_city.save
         format.html { redirect_to @a_city, notice: SUCCESSFULLY_SAVE_DATA }
@@ -42,7 +42,7 @@ class ACitiesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_city.update_attributes(params[:a_city])
+      if @a_city.update_attributes(params[:a_city].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_city, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else

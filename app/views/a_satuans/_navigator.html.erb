@@ -1,7 +1,9 @@
 <tr>
-  <th colspan="3">
+  <th colspan="3" align="left">&nbsp;
     <%= link_to ADD, new_a_satuan_path if @a_satuan.id %>
+    &nbsp;|&nbsp;
     <%= link_to EDIT, edit_a_satuan_path(@a_satuan) if @a_satuan.id %>
+    &nbsp;|&nbsp;
     <%= link_to DELETE, a_satuans_destroy_show_path(@a_satuan) unless ["destroy_show", "create"].include?(action_name) %>
   </th>
 </tr>

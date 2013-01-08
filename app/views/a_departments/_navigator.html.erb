@@ -1,7 +1,7 @@
 <tr>
-  <th colspan="3">
-    <%= link_to 'Tambah' , new_a_department_path  %>
-    <%= link_to 'Koreksi', edit_a_department_path(@a_department) if @a_department.id %>
-    <%= link_to 'Hapus'  , a_departments_destroy_show_path(@a_department) if action_name != 'destroy_show' %>
+  <th colspan="3" align="left">
+    &nbsp;<%= link_to 'Tambah' , new_a_department_path  %>
+    &nbsp;|&nbsp;<%= link_to 'Koreksi', edit_a_department_path(@a_department) if @a_department.id %>
+    &nbsp;|&nbsp;<%= link_to 'Hapus'  , a_departments_destroy_show_path(@a_department) if action_name != 'destroy_show' %>
   </th>
 </tr>

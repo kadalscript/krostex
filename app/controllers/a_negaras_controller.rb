@@ -7,7 +7,7 @@ class ANegarasController < ApplicationController
   @@table_name = ANegara.table_name
 
   def index
-    @a_negaras = ANegara.page(params[:page]).per(5).order('id')
+    @a_negaras = ANegara.page(params[:page]).per(PAGINATE).order('id')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_negaras }
@@ -28,7 +28,7 @@ class ANegarasController < ApplicationController
   end
 
   def create
-    @a_negara = ANegara.new(params[:a_negara])
+    @a_negara = ANegara.new(params[:a_negara].merger({updated_by: current_admin_ms_user.login_name}))
     respond_to do |format|
       if @a_negara.save
         format.html { redirect_to @a_negara, notice: SUCCESSFULLY_SAVE_DATA }
@@ -42,7 +42,7 @@ class ANegarasController < ApplicationController
 
   def update
     respond_to do |format|
-      if @a_negara.update_attributes(params[:a_negara])
+      if @a_negara.update_attributes(params[:a_negara].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_negara, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else

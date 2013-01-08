@@ -1,6 +1,6 @@
 <tr>
   <th colspan="3" align="left"> 
-
+    &nbsp;
     <%= link_to ADD, new_a_kemasan_path if @a_kemasan.id %>
     &nbsp;|&nbsp;<%= link_to EDIT, edit_a_kemasan_path(@a_kemasan) if @a_kemasan.id %>
     &nbsp;|&nbsp;<%= link_to DELETE, a_kemasans_destroy_show_path(@a_kemasan) unless ["destroy_show", "create"].include?(action_name) %>
