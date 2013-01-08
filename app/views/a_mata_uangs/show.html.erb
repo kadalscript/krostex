@@ -1,7 +1,7 @@
 <%= form_for(@a_mata_uang) do |f| %>
   <table class="table-bordered" align="center" width="60%">
   <tr class="titleJudulTable"><th colspan="3">FORM DATA MATA UANG</th></tr>
-  <%= render partial: "navigator" %>
+  <%= render partial: "navigator" if action_name.eql?'show' %>
   <%= render partial: "columns", locals: { f: f, attributes: @attributes } %>
   <tr>
     <th colspan="3" class="titleJudulTable" width="100%">

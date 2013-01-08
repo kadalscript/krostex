@@ -12,7 +12,7 @@
        :
       </th>
       <th align="left"> 
-       <%= f.select :id_department, options_from_collection_for_select(@a_departments, 'kode', 'nama', @a_level_four.id_department), {}, disabled: @disabled_combo, class: :required %>
+       <%= f.select :id_department, options_from_collection_for_select(@a_departments, 'kode', 'nama', @a_level_four.id_department), {}, :style => "width:313px",  disabled: @disabled_combo, class: :required %>
       </th> 
     </tr>
     <tr>
@@ -23,7 +23,7 @@
         :
       </th>
       <th align="left"> 
-        <%= f.select :id_golongan, options_from_collection_for_select(@a_golongans, 'kode', 'nama', @a_level_four.id_department), {}, disabled: @disabled_combo, class: :required %>
+        <%= f.select :id_golongan, options_from_collection_for_select(@a_golongans, 'kode', 'nama', @a_level_four.id_department), {}, :style => "width:313px", disabled: @disabled_combo, class: :required %>
       </th> 
     </tr>
     <tr>
@@ -34,7 +34,7 @@
         :
       </th>
       <th align="left"> 
-        <%= f.select :id_type, options_from_collection_for_select(@a_types, 'kode', 'nama', @a_level_four.id_department), {}, disabled: @disabled_combo, class: :required %>
+        <%= f.select :id_type, options_from_collection_for_select(@a_types, 'kode', 'nama', @a_level_four.id_department), {}, :style => "width:313px", disabled: @disabled_combo, class: :required %>
       </th> 
     </tr>
     <tr>

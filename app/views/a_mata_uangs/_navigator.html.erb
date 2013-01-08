@@ -1,7 +1,8 @@
 <tr>
-  <th colspan="3">
+  <th colspan="3" align="left">
+    &nbsp;
     <%= link_to 'Tambah', new_a_mata_uang_path  %>
-    <%= link_to 'Koreksi', edit_a_mata_uang_path(@a_mata_uang) if @a_mata_uang.id %>
-    <%= link_to 'Hapus', a_mata_uangs_destroy_show_path(@a_mata_uang) unless ["destroy_show", "create"].include?(action_name) %>
+    &nbsp;|&nbsp;<%= link_to 'Koreksi', edit_a_mata_uang_path(@a_mata_uang) if @a_mata_uang.id %>
+    &nbsp;|&nbsp;<%= link_to 'Hapus', a_mata_uangs_destroy_show_path(@a_mata_uang) unless ["destroy_show", "create"].include?(action_name) %>
   </th>
 </tr>

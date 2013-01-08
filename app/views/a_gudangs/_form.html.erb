@@ -9,13 +9,11 @@
     </th>
   </tr>
   <% render partial: COMMON_ERRORS, locals: {errors: @a_gudang.errors} if @a_gudang.errors.any? %>
-  <% if not action_name.eql?('new') %>
+  <% if action_name.eql?('show') %>
   <tr>
-   <th colspan="3">
-     <%= link_to 'Tambah', new_a_gudang_path  %> |
-     <% if @a_gudang.id %>
-     <%= link_to 'Koreksi', edit_a_gudang_path(@a_gudang) %> |
-     <% end %>
+   <th colspan="3" align="left">
+     &nbsp;<%= link_to 'Tambah', new_a_gudang_path  %> &nbsp;|&nbsp;
+     <%= link_to 'Koreksi', edit_a_gudang_path(@a_gudang) %> &nbsp;|&nbsp;
      <%= link_to 'Hapus', :controller => a_gudangs_path, :action =>"destroy_show", :id => @a_gudang.id %> |
    </th> 
  </tr>
@@ -28,9 +26,10 @@
      :
    </th>
    <th align="left"> 
-     <%= f.text_field :simbol, :style => "width:300px", class: :required %>
+     <%= f.text_field :simbol, :style => "width:300px", readonly: @read_only_key,  class: :required %>
    </th> 
  </tr>
+
  <tr>
    <th align="left">
      &nbsp;Nama Gudang
@@ -39,7 +38,7 @@
      :
    </th>
    <th align="left"> 
-     <%= f.text_field :nama, :style => "width:300px", class: 'required' %>
+     <%= f.text_field :nama, :style => "width:300px", readonly: @read_only, class: 'required' %>
    </th> 
  </tr>
  <tr>
@@ -50,12 +49,12 @@
      :
    </th>
    <th align="left"> 
-    <%= f.select(:st_progress, [["Active", "Active"], ["Closed","Closed"]], {}, :style => "width:314px")  %>
+    <%= f.select(:st_progress, [["Active", "Active"], ["Closed","Closed"]], {}, :style => "width:314px", disabled: @disabled_combo)  %>
   </th> 
 </tr>
 <tr>
   <th colspan="3" class="titleJudulTable" width="100%">
-    <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>
+    <%= f.submit "Simpan", class: :btn, confirm: "Simpan Data?" unless ['destroy_show', 'show'].include?(action_name)  %>
     <%= link_to "Hapus", a_gudang_path(@a_gudang.id), method: :delete, class: :btn, confirm: "Hapus data?" if action_name.eql?('destroy_show') %>
     <%= link_to "Tutup", "#", onclick: "is_tutup()", class: :btn %>
   </th>

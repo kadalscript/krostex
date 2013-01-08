@@ -3,7 +3,7 @@ class AMataUangsController < ApplicationController
   before_filter :find_a_mata_uang_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
 
   def index
-    @a_mata_uangs = AMataUang.page(params[:page]).per(5)
+    @a_mata_uangs = AMataUang.page(params[:page]).per(PAGINATE)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @a_mata_uangs }
@@ -11,6 +11,11 @@ class AMataUangsController < ApplicationController
   end
 
   def show
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @a_mata_uang }
@@ -18,7 +23,15 @@ class AMataUangsController < ApplicationController
   end
 
   def new
-    @a_mata_uang = AMataUang.new(kode: counter_alpha(AMataUang.count, 2, "AMataUang.maximum('kode')"))
+    @a_mata_uang = AMataUang.new(
+                                  kode: counter_alpha(AMataUang.count, 2, "AMataUang.maximum('kode')"), 
+                                  updated_by: current_admin_ms_user.login_name
+                                 )
+    @read_only         = false
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = false
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @a_mata_uang }
@@ -41,6 +54,11 @@ class AMataUangsController < ApplicationController
   end
 
   def update
+    @read_only         = false
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = true
+
     respond_to do |format|
       if @a_mata_uang.update_attributes(params[:a_mata_uang].merge({updated_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_mata_uang, notice: 'Data berhasil diupdate' }
@@ -60,7 +78,13 @@ class AMataUangsController < ApplicationController
     end
   end
 
-  def destroy_show; end
+  def destroy_show; 
+     @read_only         = true
+     @read_only_key     = true
+     @read_only_always  = true
+     @disabled_combo    = true
+
+  end
 
   def search
     query = {}

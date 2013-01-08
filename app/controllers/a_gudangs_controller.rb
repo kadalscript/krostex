@@ -7,7 +7,7 @@ class AGudangsController < ApplicationController
     condition_query.merge!({st_progress: params[:status]}) if params[:status].present?
     condition_query.merge!({update_by: params[:diinput]}) if params[:diinput].present?
     
-    @a_gudangs = AGudang.where(condition_query).page(params[:page]).per(12)
+    @a_gudangs = AGudang.where(condition_query).page(params[:page]).per(PAGINATE)
 
     render template: "a_gudangs/index"
   end
@@ -15,7 +15,7 @@ class AGudangsController < ApplicationController
   # GET /a_gudangs
   # GET /a_gudangs.json
   def index
-    @a_gudangs = AGudang.page(params[:page]).per(5)
+    @a_gudangs = AGudang.page(params[:page]).per(PAGINATE)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +26,11 @@ class AGudangsController < ApplicationController
   # GET /a_gudangs/1
   # GET /a_gudangs/1.json
   def show
-    @a_gudang = AGudang.find(params[:id])
+    @a_gudang          = AGudang.find(params[:id])
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = true
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +41,14 @@ class AGudangsController < ApplicationController
   # GET /a_gudangs/new
   # GET /a_gudangs/new.json
   def new
-    @a_gudang = AGudang.new(status1: 0)
+    @a_gudang          = AGudang.new(
+                                       status1: 0,
+                                       update_by: current_admin_ms_user.login_name)
+
+    @read_only         = false
+    @read_only_key     = false
+    @read_only_always  = true
+    @disabled_combo    = false
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,11 +58,19 @@ class AGudangsController < ApplicationController
 
   # GET /a_gudangs/1/edit
   def edit
-    @a_gudang = AGudang.find(params[:id])
+    @a_gudang          = AGudang.find(params[:id])
+    @read_only         = false
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = false
   end
 
   def destroy_show
-     @a_gudang = AGudang.find(params[:id])
+    @a_gudang = AGudang.find(params[:id])
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = true
   end
 
   # POST /a_gudangs
@@ -76,7 +95,7 @@ class AGudangsController < ApplicationController
     @a_gudang = AGudang.find(params[:id])
 
     respond_to do |format|
-      if @a_gudang.update_attributes(params[:a_gudang])
+      if @a_gudang.update_attributes(params[:a_gudang].merge({update_by: current_admin_ms_user.login_name}))
         format.html { redirect_to @a_gudang, notice: 'A gudang was successfully updated.' }
         format.json { head :no_content }
       else
