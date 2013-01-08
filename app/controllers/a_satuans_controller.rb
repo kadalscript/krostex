@@ -72,7 +72,7 @@ class ASatuansController < ApplicationController
   def search
     queries = {}
     ASatuan.column_names.each { |column_name| queries.merge!({ column_name => params[column_name] }) if params[column_name].present? }
-    @a_satuans = ASatuan.where(queries).page(params[:page]).per(12)
+    @a_satuans = ASatuan.where(queries).page(params[:page]).per(PAGINATE)
     notifications = ""
     queries.each_pair { |key, value| notifications += "#{ASatuan.human_attribute_name(key).titleize} = \"#{value}\"<br />" }
     flash.now[:notice] = "Hasil pencarian :<br /> #{notifications}".html_safe
