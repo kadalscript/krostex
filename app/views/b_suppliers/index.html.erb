@@ -10,21 +10,25 @@
       </th>
     </tr>
     <tr class="titleJudulTable">
-      <% BSupplier.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
-          <th><%= column_name %></th>
-        <% end %>
-      <% end %>
+        <td>Kode</td>
+        <td>Nama</td>
+        <td>Email</td>
+        <td>Status</td>
+        <td>Diupdate Oleh</td>
     </tr>
   </thead>
   <% @b_suppliers.each do |b_supplier| %>
+  <%     @a_badan_usaha = ABadanUsaha.where(kode: b_supplier.id_badan_usaha) 
+         @a_badan_usaha.each do |badan_usaha| 
+                @nama_badan_usaha = badan_usaha.nama 
+         end 
+  %>
     <tr onclick="redirectTo('<%= b_supplier_path(b_supplier) %>')">
       <td><%= b_supplier.kode %></td>
-      <td><%= b_supplier.nama %></td>
-      <td><%= b_supplier.id_badan_usaha %></td>
+      <td><%= "#{@nama_badan_usaha}#{'.'}#{b_supplier.nama}" %></td>
       <td><%= b_supplier.email %></td>
-      <td><%= b_supplier.homepage %></td>
-      <td><%= b_supplier.status1 %></td>
+      
+      
       <td><%= b_supplier.st_progress %></td>
       <td><%= b_supplier.updated_by %></td>
     </tr>

@@ -31,16 +31,16 @@ class AdminOtorisasiController < ApplicationController
 
       def inisialisasiOtorisasiAwalFrm(prm_id_group, prm_id_group_parent)
 
-       if (prm_id_group_parent!="ROOT") 
+       if (!prm_id_group_parent.eql?"ROOT") 
          sqlTxtVar  = " SELECT 
-         a.id_menu , a.id_menu_parent, a.status1
-         , a.id_modul, a.namamenu      , '' as nm_url 
-         FROM 
-         admin_ms_menus  a 
-         INNER JOIN admin_ms_groups b on a.id_menu=b.id_menu and 
-         WHERE 
-         b.id_group       ='#{prm_id_group_parent}' 
-         AND a.id_menu_parent ='0000'"    
+                              a.id_menu , a.id_menu_parent, a.status1
+                            , a.id_modul, a.namamenu      , '' as nm_url 
+                       FROM 
+                                  admin_ms_menus  a 
+                       INNER JOIN admin_ms_menu_groups b on a.id_menu=b.id_menu  
+                       WHERE 
+                            b.id_group       ='#{prm_id_group_parent}' 
+                          AND a.id_menu_parent ='0000'"    
        else 
          sqlTxtVar  = " SELECT 
          a.id_menu , a.id_menu_parent , a.status1
@@ -193,21 +193,21 @@ def inisialisasiMenuCreated(prm_id_menu, prm_myno, prm_ip)
 end
 
 def inisialisasiMenuCreatedFrm(prm_id_menu, prm_myno, prm_id_group, prm_id_group_parent, prm_ip)
-  if (prm_id_group_parent!="ROOT") 
+  if (!prm_id_group_parent.eql?"ROOT") 
    prm_sql_txt  = "SELECT 
-   a.id_menu, a.id_menu_parent, a.status1
-   , a.namamenu 
-   FROM  
-   admin_ms_menus  a 
-   INNER JOIN  admin_ms_groups b on a.id_menu=b.id_menu and 
-   WHERE  b.id_group='#{prm_id_group_parent}' 
-   AND  a.id_menu_parent='#{prm_id_menu}'"
+                         a.id_menu, a.id_menu_parent, a.status1
+                       , a.namamenu 
+                 FROM  
+                             admin_ms_menus       a 
+                 INNER JOIN  admin_ms_menu_groups b on a.id_menu=b.id_menu  
+                 WHERE b.id_group      ='#{prm_id_group_parent}' 
+                 AND   a.id_menu_parent='#{prm_id_menu}'"
  else 
    prm_sql_txt  = "SELECT 
-   a.id_menu, a.id_menu_parent, a.status1
-   , a.namamenu 
-   FROM admin_ms_menus a 
-   WHERE a.id_menu_parent='#{prm_id_menu}'"   
+                       a.id_menu, a.id_menu_parent, a.status1
+                       , a.namamenu 
+                       FROM admin_ms_menus a 
+                       WHERE a.id_menu_parent='#{prm_id_menu}'"   
  end 
 
  tRecProsesC = ActiveRecord::Base.connection.execute(prm_sql_txt)  
@@ -324,18 +324,19 @@ def init_data_menu_show(prm_ip)
          def frm_otorisasi
 
           prm_ip              = "#{remoteIP}#{'d'}"
-          puts "-------------------"
-          puts params[:params]    
-          puts "-------------------"
-          puts params[:params].hex2string
-          puts "-------------------"
+          # puts "-------------------"
+          # puts params[:params]    
+          # puts "-------------------"
+          # puts params[:params].hex2string
+          # puts "-------------------"
           get                 = eval(params[:params].hex2string)
           prm_id_group        = get[:id_group]  
           prm_id_group_parent = get[:id_group_parent] 
           prm_ids             = get[:user_ids]        
 
           @prm_id_group        = prm_id_group    
-          @prm_id_group_parent = prm_id_group_parent     
+          @prm_id_group_parent = prm_id_group_parent    
+          # debugger 
 
           deleteMenuOtotisasiGroup(prm_ip)
           dataMenuAwal        = inisialisasiOtorisasiAwalFrm(prm_id_group, prm_id_group_parent)

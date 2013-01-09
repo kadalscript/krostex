@@ -7,7 +7,10 @@ class ABadanUsaha < ActiveRecord::Base
   before_save :check_updater
   before_create :check_updater
 
+  has_many :b_suppliers, class_name: "BSupplier", foreign_key: "id_badan_usaha" 
+
   def check_updater
     self.updated_by = self.updated_by.blank? ? "ANONYMOUS" : self.updated_by
   end
+  
 end

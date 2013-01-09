@@ -2,6 +2,7 @@ class MainController < ApplicationController
 
   @@prm_id_group    = '00'
 
+
   def index
     if admin_ms_user_signed_in?
       randomNumber        = rand(1000000)
@@ -15,8 +16,11 @@ class MainController < ApplicationController
       session[:user_id]   = current_admin_ms_user.id
       session[:user_ids]  = randomNumber
 
+      @@prm_id_group      =   current_admin_ms_user.id_group
+      # debugger
+
       deleteMenuUserGroup()
-      dataMenuAwal = inisialisasiMenuAwal()
+      dataMenuAwal = inisialisasiMenuAwal(current_admin_ms_user.id_group)
       @noUrut = 0
       dataMenuAwal.each do |row|
         @nomor = fillData(@noUrut.to_s(), "0", "L", 2)
@@ -44,16 +48,17 @@ class MainController < ApplicationController
     ActiveRecord::Base.connection.execute(sqlTxtVar)
   end
 
-  def inisialisasiMenuAwal()
+  def inisialisasiMenuAwal(prm_id_group)
     @id_menu  = "0000"
     sqlTxtVar = "SELECT a.id_menu, a.id_group, b.namamenu, b.id_menu_parent,
                         b.nourut, c.keterangan, c.nm_url
                  FROM  admin_ms_menu_groups a
                  INNER JOIN admin_ms_menus  b on a.id_menu = b.id_menu
                  INNER JOIN admin_ms_moduls c on b.id_modul=c.id_modul
-                 WHERE a.id_group ='#{@@prm_id_group}'
+                 WHERE a.id_group ='#{prm_id_group}'
                  AND b.id_menu_parent='#{@id_menu}'
                  ORDER BY b.nourut "
+    # debugger              
     ActiveRecord::Base.connection.execute(sqlTxtVar)
   end
 

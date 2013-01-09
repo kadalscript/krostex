@@ -2,8 +2,40 @@
   <table class="table-bordered" align="center" width="60%">
     <tr class="titleJudulTable"><th colspan="3"><%= title %></th></tr>
     <%= render partial: "/shared/errors", errors: @b_supplier.errors if @b_supplier.errors.any? %>
-    <%= render partial: "navigator" unless action_name == 'new' %>
-    <%= render partial: "columns", locals: { f: f, attribute: @attributes } %>
+    <%= render partial: "navigator" if action_name.eql?'show' %>
+
+    <tr>
+      <th align="left">&nbsp;Kode</th>  
+      <th align="center">:</th>
+      <th align="left">&nbsp;<%= f.text_field :kode, :style => "width:400px", readonly: @read_only_always, class: :required %>
+      </th> 
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Nama</th>  
+      <th align="center">:</th>
+      <th align="left">&nbsp;<%= f.select :id_badan_usaha, options_from_collection_for_select(@a_badan_usahas, 'kode', 'nama', @b_supplier.id_badan_usaha), {}, :style => "width:92px",disabled: @disabled_combo, class: :required %>
+          <%= f.text_field :nama, :style => "width:305px", readonly: @read_only, class: :required %>
+      </th> 
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Email</th>  
+      <th align="center">:</th>
+      <th align="left">&nbsp;<%= f.text_field :email, :style => "width:400px", readonly: @read_only, class: :required %>
+      </th> 
+    </tr>
+    <tr>
+      <th align="left">&nbsp;Homepage</th>  
+      <th align="center">:</th>
+      <th align="left">&nbsp;<%= f.text_field :homepage, :style => "width:400px", readonly: @read_only, class: :required %>
+      </th> 
+    </tr>
+    <tr>
+       <th align="left">&nbsp;Status</th>  
+       <th align="center">:</th>
+       <th align="left">&nbsp;<%= f.select(:st_progress, [["Active", "Active"], ["De-Active","De-Active"]], {}, :style => "width:414px", disabled: @disabled_combo)  %>
+      </th> 
+    </tr>
+
     <tr>
       <th colspan="3" class="titleJudulTable" width="100%">
         <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>

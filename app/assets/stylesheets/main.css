@@ -39,6 +39,10 @@
 .navigasi {COLOR: #000058; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt;FONT-WEIGHT: bold; TEXT-DECORATION: none}
 a.navigasi {font-size: 8pt;}
 
+
+.navigasi_putih {COLOR: #ffffff; FONT-FAMILY: Tahoma; FONT-SIZE: 8pt;FONT-WEIGHT: bold; TEXT-DECORATION: none}
+a.navigasi {font-size: 8pt;}
+
 .required.error {
   border: 2px solid red;
 }
@@ -85,7 +89,7 @@ a.navigasi {font-size: 8pt;}
     -webkit-box-shadow: 3px 3px 4px #000;
     box-shadow: 3px 3px 4px #000;
   /* For WebKit (Safari, Google Chrome etc) */  
-    background: -webkit-gradient(linear, left top, left bottom, from(#F0F0F0), to(#FFFFFF));
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFA74F), to(#FFEAD5));
     /* For Mozilla/Gecko (Firefox etc) */
     background: -moz-linear-gradient(top, #FFA74F, #FFEAD5);
     /* For Internet Explorer 5.5 - 7 */
@@ -93,7 +97,7 @@ a.navigasi {font-size: 8pt;}
     /* For IE 8 */
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
     /* For IE 5.5 - 7 */
-    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000', startColorstr=#F0F0F0, endColorstr=#FFFFFF);
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000', startColorstr=#FFA74F, endColorstr=#FFEAD5);
 }
 
 .divShadowContent {
@@ -118,3 +122,29 @@ a.navigasi {font-size: 8pt;}
     /* For IE 5.5 - 7 */
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000', startColorstr=#F0F0F0, endColorstr=#FFFFFF);
 }
+
+.divShadowMenuModul {
+    width   : 40%;
+    height  : 400px;
+    position: absolute  ;
+    left    : 360px; 
+    top     : 100px;
+    text-align:center;
+    vertical-align:middel ;
+
+
+    -moz-box-shadow: 3px 3px 4px #000;
+    -webkit-box-shadow: 3px 3px 4px #000;
+    box-shadow: 3px 3px 4px #000;
+  /* For WebKit (Safari, Google Chrome etc) */  
+    background: -webkit-gradient(linear, left top, left bottom, from(#F0F0F0), to(#FFFFFF));
+    /* For Mozilla/Gecko (Firefox etc) */
+    background: -moz-linear-gradient(top, #F0F0F0, #FFFFFF);
+    /* For Internet Explorer 5.5 - 7 */
+
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000', startColorstr=#F0F0F0, endColorstr=#FFFFFF);
+}
+

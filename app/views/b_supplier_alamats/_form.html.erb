@@ -1,3 +1,4 @@
+
 <div id="supplierModal">
   <!-- Modal -->
   <div id="formSupplierModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -7,16 +8,76 @@
         <h3 id="myModalLabel"><%= title %></h3>
       </div>
       <div class="modal-body">
-        <% BSupplierAlamat.column_names.each do |column_name| %>
-          <% unless ["id", "created_at", "updated_at", "b_supplier_id"].include?(column_name) %>
-            <div class="control-group">
-              <%= f.label column_name, column_name.gsub('_', ' ').titleize, class: 'control-label' %>
-              <div class="controls">
-                <%= f.text_field column_name %>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+        <table class="table-bordered" align="center" width="100%">
+                    <tr>
+                      <th align="left">&nbsp;Kode Alamat</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :kode_alamat, :style => "width:300px" , class: :required %></th>
+                    </tr>
+                    <tr>
+                      <th align="left">&nbsp;Kode Supplier</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :kode, :style => "width:300px", readonly: @read_only_key, class: :required %></th>
+                    </tr>
+                    <tr>
+                      <th align="left">&nbsp;Kode Kategori</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :kode_kategori, :style => "width:300px", class: :required %></th>
+                    </tr>
+                    <tr>
+                      <th align="left">&nbsp;Alamat</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :alamat_title, :style => "width:300px", class: :required %></th>
+                    </tr>
+                    <tr>
+                      <th align="left">&nbsp;</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :alamat_01, :style => "width:300px", class: :required %></th>
+                    </tr>
+                    <tr>
+                      <th align="left">&nbsp;</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :alamat_02, :style => "width:300px", class: :required %></th>
+                    </tr>
+                    <tr>
+                      <th align="left">&nbsp;Negara</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :id_negara, :style => "width:300px", class: :required %></th>
+                    </tr>
+                    <tr>
+                      <th align="left">&nbsp;Provinsi</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :id_provinsi, :style => "width:300px", class: :required %></th>
+                    </tr>
+
+                    <tr>
+                      <th align="left">&nbsp;Kota</th>
+                      <th align="center">:</th>
+                      <th align="left">&nbsp;<%= f.select :id_kota, options_from_collection_for_select(a_cities, 'kode', 'nama', :id_kota), {}, :style => "width:92px",disabled: @disabled_combo, class: :required %>
+                      </th>
+                    </tr>       
+                    <tr>
+                      <th align="left">&nbsp;Kode Pos</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :kode_pos, :style => "width:300px", class: :required %></th>
+                    </tr>   
+                    <tr>
+                      <th align="left">&nbsp;Telepon</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :telepon, :style => "width:300px", class: :required %></th>
+                    </tr>   
+                    <tr>
+                      <th align="left">&nbsp;Fax</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :fax, :style => "width:300px", class: :required %></th>
+                    </tr>    
+                    <tr>
+                      <th align="left">&nbsp;Status</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :st_progress, :style => "width:300px", class: :required %></th>
+                    </tr>                                                                                              
+        </table>
+
       </div>
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>

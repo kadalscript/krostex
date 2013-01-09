@@ -1,22 +1,99 @@
-<br /><%= link_to 'Tambah Alamat', 'javascript:void(0)', class: 'btn btn-primary pull-left', style: 'margin-left: 20px;', id: 'formSupplier' %><br /><br />
-<% @b_supplier_alamats.each do |b_supplier_alamat| %>
-  <div class="form-horizontal">
-    <legend class="pull-left">
-      <span class="pull-left">&nbsp &nbsp<%= b_supplier_alamat.kode_alamat %></span>
-      <%= link_to "Delete", "javascript:void(0)", class: 'pull-right', style: 'font-size: 0.7em; margin-right: 10px;', id: "delete", value: b_supplier_alamat.id %>
-      <span class="pull-right" style="font-size: 0.7em">&nbsp|&nbsp</span>
-      <%= link_to "Koreksi", "javascript:void(0)", class: 'pull-right', style: 'font-size: 0.7em', id: "koreksi", value: b_supplier_alamat.id %>
-    </legend>
-    <div class="control-group">
-      <% BSupplierAlamat.column_names.each do |column_name| %>
-        <% if ["kode", "alamat_title", "alamat_01", "alamat_02", "id_kota", "kode_pos", "telepon", "fax"].include?(column_name) %>
-          <%= label_tag column_name, column_name, class: 'control-label' %>
-          <div class="controls"><%= text_field_tag column_name, b_supplier_alamat[column_name], disabled: 'disabled'  %></div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+
+<table class="table-bordered" align="center" width="100%">
+    <tr>
+        <th><%= link_to 'Tambah Alamat', 'javascript:void(0)', class: 'btn btn-primary pull-left', style: 'margin-left: 20px;', id: 'formSupplier' %>
+        </th>
+    </tr>  
+    <tr>
+        <th width="100%">  
+            <table class="table-bordered table-hover" align="center" width="100%">
+            <% 
+               ATemplateCat.all
+               ANegara.all
+               AProvinsi.all
+               ACity.all
+
+               @b_supplier_alamats.each do |b_supplier_alamat| 
+                  
+                  @a_template_cat       = ATemplateCat.where(kode: b_supplier_alamat.kode_kategori) 
+                          @a_template_cat.each do |a_template_cat| 
+                          @nama_kategori_alamat = a_template_cat.nama 
+                  end
+
+                  @a_kota               = ACity.where(kode: b_supplier_alamat.id_kota) 
+                          @a_kota.each do |a_kota| 
+                          @nama_kota    = a_kota.nama 
+                  end
+
+                  @a_provinsi           = AProvinsi.where(kode: b_supplier_alamat.id_provinsi) 
+                          @a_provinsi.each do |a_provinsi| 
+                          @nama_provinsi= a_provinsi.nama 
+                  end
+
+                  @a_negara             = ANegara.where(kode: b_supplier_alamat.id_negara) 
+                          @a_negara.each do |a_negara| 
+                          @nama_negara  = a_negara.nama 
+                  end
+                  @alamat_03 = "#{@nama_kota}#{' - '}#{@nama_provinsi}#{' - '}#{@nama_negara}"    
+
+            %>
+                <tr>
+                     <th>
+                        <table class="table-bordered" align="center" width="100%">
+                             <tr class="titleJudulTable" >
+                               <th align="left" colspan="3">&nbsp;<%= @nama_kategori_alamat %>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[
+                                   <%= link_to "Koreksi", "javascript:void(0)" , id: "koreksi", value: b_supplier_alamat.id, class:'navigasi_putih' %>
+                                   &nbsp;| &nbsp;
+                                   <%= link_to "Delete", "javascript:void(0)"  , id: "delete", value: b_supplier_alamat.id, class:'navigasi_putih' %> ]
+                               </th>     
+                             </tr>
+                             <tr>
+                                  <th align="left" width="100px">&nbsp;Alamat</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_alamat.alamat_title", b_supplier_alamat['alamat_title'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>
+                             <tr>
+                                  <th align="left">&nbsp;</th>  
+                                  <th align="center">&nbsp;</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_alamat.alamat_01", b_supplier_alamat['alamat_01'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>                             
+                             <tr>
+                                  <th align="left">&nbsp;</th>  
+                                  <th align="center">&nbsp;</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_alamat.alamat_02", b_supplier_alamat['alamat_02'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>    
+                             <tr>
+                                  <th align="left">&nbsp;</th>  
+                                  <th align="center">&nbsp;</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_alamat.alamat_03", @alamat_03, disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr> 
+                             <tr>
+                                  <th align="left">&nbsp;Telepon</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_alamat.telepon", b_supplier_alamat['telepon'], disabled: 'disabled', style:"width:284px"  %>&nbsp; Fax &nbsp;:&nbsp;
+                                         <%= text_field_tag "b_supplier_alamat.fax", b_supplier_alamat['fax'], disabled: 'disabled', style:"width:283px"  %>
+                                  </th> 
+                             </tr>                                                                                      
+                        </table>     
+                    </th>   
+                </tr> 
+                    
+           <% end %>
+           </table>
+        </th>
+    </tr>    
+</table>
+
 
 <script>
 $(function() {
