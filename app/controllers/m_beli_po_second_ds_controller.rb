@@ -1,41 +1,31 @@
 class MBeliPoSecondDsController < ApplicationController
   def index
     @m_beli_po_second_ds = MBeliPoSecondD.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @m_beli_po_second_ds }
     end
   end
 
-  # GET /m_beli_po_second_ds/1
-  # GET /m_beli_po_second_ds/1.json
   def show
     @m_beli_po_second_d = MBeliPoSecondD.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @m_beli_po_second_d }
     end
   end
 
-  # GET /m_beli_po_second_ds/new
-  # GET /m_beli_po_second_ds/new.json
   def new
     @m_beli_po_second_d = MBeliPoSecondD.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @m_beli_po_second_d }
     end
   end
 
-  # POST /m_beli_po_second_ds
-  # POST /m_beli_po_second_ds.json
   def create
     @m_beli_po_first_h = MBeliPoFirstH.find_by_id(params[:m_beli_po_first_h_id])
     detail = params[:detail]
-
     respond_to do |format|
       if detail.blank? || detail[:checked].blank?
         format.html { redirect_to draft_m_beli_po_first_hs_path(@m_beli_po_first_h), alert: 'Penyimpanan data gagal' }
@@ -50,23 +40,17 @@ class MBeliPoSecondDsController < ApplicationController
             qty: detail[:qty2][key.to_i],
             harga: detail[:harga][key.to_i],
             diskon: detail[:disc][key.to_i],
-         )
-         @po_detail.save!
-         @po_detail.update_attributes(total_qty_kali_harga: (@po_detail.qty.to_i * @po_detail.harga.to_i))
-         @po_detail.update_attributes(total_qty_kali_harga_kali_diskon: (@po_detail.total_qty_kali_harga * @po_detail.diskon) / 100)
-         @po_detail.update_attributes(total_kurang_diskon: (@po_detail.total_qty_kali_harga - @po_detail.total_qty_kali_harga_kali_diskon))
+          )
+          @po_detail.save!
         end
         format.html { redirect_to draft_m_beli_po_first_hs_path(@m_beli_po_first_h), notice: SUCCESSFULLY_SAVE_DATA }
       end
     end
   end
 
-  # PUT /m_beli_po_second_ds/1
-  # PUT /m_beli_po_second_ds/1.json
   def update
     @m_beli_po_second_d = MBeliPoSecondD.find(params[:id])
     @m_beli_po_first_h = MBeliPoFirstH.find(params[:m_beli_po_first_h_id])
-
     respond_to do |format|
       if @m_beli_po_second_d.update_attributes(params[:edit])
         format.html { redirect_to draft_m_beli_po_first_hs_path(@m_beli_po_first_h), notice: SUCCESSFULLY_SAVE_DATA  }
@@ -76,7 +60,6 @@ class MBeliPoSecondDsController < ApplicationController
 
   def destroy
     @m_beli_po_second_d = MBeliPoSecondD.find_by_id(params[:id])
-
     respond_to do |format|
       if @m_beli_po_second_d.destroy
         format.html { redirect_to draft_m_beli_po_first_hs_path(params[:m_beli_po_first_h_id]), alert: SUCCESSFULLY_DELETE_DATA }

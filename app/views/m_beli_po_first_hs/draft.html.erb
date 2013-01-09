@@ -13,6 +13,7 @@
       </tr>
     </thead>
     <tbody>
+      <% @total_kurang_diskon = 0 %>
       <% if @m_beli_po_second_ds.count > 0 %>
         <% @m_beli_po_second_ds.each_with_index do |detail, index| %>
           <tr>
@@ -30,10 +31,38 @@
               <%= link_to "Destroy", "javascript:void(0)", id: 'destroy_detail', value: "#{detail.id}" %>
             </td>
           </tr>
+        <% @total_kurang_diskon = @total_kurang_diskon + detail.total_kurang_diskon.to_i %> 
         <% end %>
       <% else %>
         <tr><td colspan="<%= @detailed_columns.count %>" style="text-align: center"><%= EMPTY_DATA %></td></tr>
       <% end %>
+      <tr class="blankSpot">
+        <td colspan="<%= @detailed_columns.count %>">
+          <div class="control-group pull-right"><br />
+            <%= label_tag "po_header[total_sub_total]", "Sub total".titleize, style: 'color: black; ', class: 'control-label' %>
+            <div class="controls" style="margin-bottom: 10px;">
+              <%= text_field_tag "po_header[total_sub_total]", @total_kurang_diskon, disabled: 'disabled' %>
+            </div>
+            <%= label_tag "po_header[total_disc_persen]", "Discount".titleize, style: 'color: black; ', class: 'control-label' %>
+            <div class="controls" style="margin-bottom: 10px;">
+              <%= text_field_tag "po_header[total_disc_persen]", @m_beli_po_first_h.total_disc_persen.blank? ? "0" : @m_beli_po_first_h.total_disc_persen, class: 'span1' %> &nbsp <span style="color: black;">%</span> &nbsp <%= text_field_tag "po_header[total_disc_nominal]", @m_beli_po_first_h.total_disc_nominal.blank? ? "0" : @m_beli_po_first_h.total_disc_nominal, style: 'width: 118px;', disabled: 'disabled' %>
+            </div>
+            <%= label_tag "po_header[total_sub_total_kurang_disc]", "Sub total - Diskon".titleize, style: 'color: black; ', class: 'control-label' %>
+            <div class="controls" style="margin-bottom: 10px;">
+              <%= text_field_tag "po_header[total_sub_total_kurang_disc]", @m_beli_po_first_h.total_sub_total_kurang_disc.blank? ? "0" : @m_beli_po_first_h.total_sub_total_kurang_disc.blank? ? "0" : @m_beli_po_first_h.total_sub_total_kurang_disc, disabled: 'disabled' %>
+            </div>
+            <%= label_tag "po_header[total_ppn_disc]", "PPN", style: 'color: black; ', class: 'control-label' %>
+            <div class="controls" style="margin-bottom: 10px;">
+              <%= text_field_tag "po_header[total_ppn_disc]", @m_beli_po_first_h.total_ppn_disc.blank? ? "0" : @m_beli_po_first_h.total_ppn_disc, class: 'span1' %> &nbsp <span style="color: black;">%</span> &nbsp <%= text_field_tag "po_header[total_ppn_nominal]", @m_beli_po_first_h.total_ppn_nominal.blank? ? "0" : @m_beli_po_first_h.total_ppn_disc, style: 'width: 118px;', disabled: 'disabled' %>
+            </div>
+            <%= label_tag "po_header[total_grand_total]", "Grand total".titleize, style: 'color: black; ', class: 'control-label' %>
+            <div class="controls" style="margin-bottom: 10px;">
+              <%= text_field_tag "po_header[total_grand_total]", @m_beli_po_first_h.total_grand_total.blank? ? "0" : @m_beli_po_first_h.total_ppn_disc, disabled: 'disabled' %>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr class="blankSpot"><td colspan="<%= @detailed_columns.count %>"><%= submit_tag 'Buat PO', class: 'btn' %></td></tr>
     </tbody>
   </table>
 <% end %>
@@ -194,5 +223,62 @@ $(function() {
       return false;
     }
   });
+
+  var sub_total = $('#po_header_total_sub_total').val();
+  var discount_percent = $('#po_header_total_disc_persen').val();
+  
+  function handleChange(event)
+  {
+      var e = $(event.target);
+
+      var oldvalue = "" + e.data('oldvalue');
+      var newvalue = "" + e.val();
+      if (oldvalue != newvalue)
+      {
+          var sub_total_diskon = (e.val() * sub_total) / 100;
+          $('#po_header_total_disc_nominal').attr('value', sub_total_diskon );
+          $('#po_header_total_sub_total_kurang_disc').attr('value', sub_total - sub_total_diskon);
+
+          var temporary_total = $('#po_header_total_sub_total_kurang_disc').val();
+          $('#po_header_total_ppn_nominal').attr('value', temporary_total * $('#po_header_total_ppn_disc').val() / 100);
+          grand_total = temporary_total - (temporary_total * $('#po_header_total_ppn_disc').val() / 100);
+          $('#po_header_total_grand_total').attr('value', grand_total);
+          e.data('oldvalue', newvalue);
+      }
+  }
+
+  $(function(){
+      $('#po_header_total_disc_persen')
+          .bind('change', handleChange)
+          .bind('blur', handleChange)
+          .bind('keydown', handleChange)
+          .bind('keyup', handleChange)
+          .data('oldvalue', '');
+  });
+
+  function handleChange2(event)
+  {
+      var e = $(event.target);
+
+      var oldvalue = "" + e.data('oldvalue');
+      var newvalue = "" + e.val();
+      if (oldvalue != newvalue)
+      {
+          total_ppn = e.val() * $('#po_header_total_sub_total_kurang_disc').val() / 100;
+          $('#po_header_total_ppn_nominal').attr('value', total_ppn);
+          $('#po_header_total_grand_total').attr('value', $('#po_header_total_sub_total_kurang_disc').val() - total_ppn);
+          e.data('oldvalue', newvalue);
+      }
+  }
+
+  $(function(){
+      $('#po_header_total_ppn_disc')
+          .bind('change', handleChange2)
+          .bind('blur', handleChange2)
+          .bind('keydown', handleChange2)
+          .bind('keyup', handleChange2)
+          .data('oldvalue', '');
+  });
+
 });
 </script>

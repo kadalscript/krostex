@@ -1,10 +1,15 @@
 <% barang_ids = [] %>
-<% barangs.each { |barang| barang_ids << MBeliPoSecondD.where(kode_barang: barang.kode).where(kode_tmp: params[:id]).first.id unless MBeliPoSecondD.where(kode_barang: barang.kode).first.blank? } %>
+<% barangs.each do |barang| %>
+  <% unless MBeliPoSecondD.where(kode_barang: barang.kode).where(kode_tmp: params[:id]).blank? %>
+    <% barang_ids << MBeliPoSecondD.where(kode_barang: barang.kode).where(kode_tmp: params[:id]) %>
+  <% end %>
+<% end %>
 <% if barangs.count == barang_ids.count %>
   <tr><td style="text-align: center" colspan="<%= @search_columns.count %>"><%= EMPTY_DATA %></td></tr>
 <% else %>
-  <% barangs.each_with_index do |barang, index| %>
-    <% if MBeliPoSecondD.find_by_kode_barang(barang.kode).blank? %>
+  <% index = 0 %>
+  <% barangs.each do |barang| %>
+    <% if MBeliPoSecondD.where(kode_barang: barang.kode).where(kode_tmp: params[:id]).blank? %>
       <tr>
         <td><%= index + 1 %></td>
         <td><%= barang.kode %></td>
@@ -17,6 +22,7 @@
         <td><%= check_box_tag "detail[checked][#{index}][]" %></td>
       </tr>
       <%= hidden_field_tag "detail[id][]", barang.id %>
+      <% index += 1 %>
     <% end %>
   <% end %>
 <% end %>

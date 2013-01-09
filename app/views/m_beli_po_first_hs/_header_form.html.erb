@@ -36,7 +36,9 @@
     <div class="control-group">
       <%= label_tag :kurs_id, "Kurs", class: 'control-label' %>
       <div class="controls">
-        <%= select_tag(:kurs_id, options_for_select(AMataUang.all.collect { |mata_uang| [ mata_uang.nama, mata_uang.id ] }), prompt: '- Mata Uang -') %> &nbsp <span id="simbol_mata_uang"></span>
+        <%= select_tag(:kurs_id, options_for_select(AMataUang.all.collect { |mata_uang| [ mata_uang.nama, mata_uang.id ] }), prompt: '- Mata Uang -', class: 'span2') %>
+        &nbsp &nbsp &nbsp <%= text_field_tag :kurs_value, "", class: 'span1', disabled: 'disabled' %>
+        &nbsp <span id="simbol_mata_uang">Rp</span>
       </div>
     </div>
   </div>
@@ -95,9 +97,14 @@ $(function() {
   });
 
   $('#kurs_id').change(function() {
-    $.ajax({
-      url: '<%= get_mata_uang_m_beli_po_first_hs_path %>?id=' + $('#kurs_id').val()
-    });
+    var kurs_type = $('#kurs_id option:selected').text();
+    if (kurs_type == 'Dollar') {
+      $('#kurs_value').attr('value', '9800');
+    } else if (kurs_type == 'Rupiah') {
+      $('#kurs_value').attr('value', '1');
+    } else {
+      $('#kurs_value').attr('value', '');
+    }
   });
 });
 </script>

@@ -111,8 +111,7 @@ class MBeliPoFirstHsController < ApplicationController
 
   def draft
     @m_beli_po_first_h = MBeliPoFirstH.find_by_id(params[:id])
-    @m_beli_po_second_ds = @m_beli_po_first_h.m_beli_po_second_ds
-
+    @m_beli_po_second_ds = @m_beli_po_first_h.m_beli_po_second_ds.order('id')
     respond_to do |format|
       if @m_beli_po_first_h.is_drafted.eql?(true)
         format.html

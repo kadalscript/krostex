@@ -17,7 +17,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Delete</button>
+      <%= button_tag "Delete", class: 'btn btn-primary', confirm: 'Are you sure?' %>
     </div>
   </div>
 <% end %>
