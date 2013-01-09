@@ -45,4 +45,9 @@ module ApplicationHelper
   def formatting_updated_at(date)
     date.strftime("%a %b %d, %H:%M %p")
   end
+
+  def sqlExecute(prm_sql_txt)
+    # puts "#{'prm_sql_txt = '}#{prm_sql_txt}"
+    ActiveRecord::Base.connection.execute(prm_sql_txt) 
+  end  
 end

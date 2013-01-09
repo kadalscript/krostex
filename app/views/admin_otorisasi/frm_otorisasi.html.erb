@@ -4,7 +4,9 @@
 
 <% end 
 
-   namaGroup = "" ;
+   
+   @namaGrouptbl = AdminMsGroup.where(id_group: @prm_id_group)
+   @namaGroup = @namaGrouptbl.first.namagroup  
 %>
 
 <table width="100%" border="1">
@@ -13,7 +15,7 @@
             <td width="100%"  align="center">GROUP MODULES AUTHORIZE</td>
      </tr>
      <tr class="titleJudul">
-            <td width="100%" class="subtitle" align="center">LEVEL &nbsp;:&nbsp;<%= namaGroup %></td>
+            <td width="100%" class="subtitle" align="center">Level Jabatan &nbsp;:&nbsp;<%= @namaGroup %></td>
      </tr>   
      <tr class="titleJudul">
         <td width="100%">
@@ -33,26 +35,32 @@
      totalmenu = 0 
 
      if @main 
+           @AdminMsMenuGroup = AdminMsMenuGroup
            @main.each do |rowS|
                totalNav  = 0 
+               checked = ""
 %>
                <%= rowS["simbol"].html_safe %>
-<%             if rowS["keterangan"] != ""       
+<%             if !rowS["keterangan"].eql?""       
                     totalmenu      = totalmenu+1
                     nm             = "M#{totalmenu}" 
-                    if (@prm_id_group_parent=="ROOT")
+                    if (@prm_id_group_parent.eql?"ROOT")
                         checked    = "checked" 
                     else 
-                        sqlTxt     = "select statusmenu as data from admin_ms_menu_groups where id_menu='#{rowS["id_menu"]}'#{" and id_group='"}#{prm_id_group_parent}'"
-                        checked    = get_singleData(sqlTxt);
-                        if (checked==1) 
-                           checked = "checked" 
-                        else 
-                           checked = ""
-                        end    
+                         @AdminMsMenuGroup = AdminMsMenuGroup.where("id_menu=? AND id_group=?", rowS["id_menu"], @prm_id_group)
+
+                         if !@AdminMsMenuGroup.blank?
+                            if @AdminMsMenuGroup.first.statusmenu.eql?1
+                                 checked = "checked" 
+                            else 
+                                 checked = ""
+                            end
+                         else  
+                            checked = "" 
+                         end   
                     end 
 
-                    if (@prm_id_group_parent=="ROOT")
+                    if (@prm_id_group_parent.eql?"ROOT")
  %>                    <input type="checkbox" name="<%= nm %>" id="<%= nm %>" value="<%= rowS['id_menu'] %> " <%= checked %>>
                        <%= rowS['keterangan'] %>
                        <% @RecNavigasi = InitNavigasi(rowS['id_menu'], @prm_id_group, @prm_id_group_parent, totalmenu) %>
@@ -66,10 +74,10 @@
                          totalNav = 0 
                          @RecNavigasi.each do |rowNav|
                              totalNav = totalNav+1 
-                             if (@prm_id_group_parent=="ROOT")  
+                             if (@prm_id_group_parent.eql?"ROOT")  
 %>                               <input type="checkbox" name="N<%= totalmenu %>_<%= totalNav %>"  id="N<%= totalmenu %>_<%= totalNav %>" value="<%= rowNav['id_navigasi'] %>" checked > <%= rowNav['nama_navigasi'] %>
 <%                           else  %>
-<%                               myCheck = get_singleData("SELECT id_navigasi as data FROM admin_ms_menu_group_navs 
+<%                               myCheck = sqlExecute("SELECT id_navigasi as data FROM admin_ms_menu_group_navs 
                                                       WHERE id_menu='#{rowS['id_menu']}' AND id_group='#{prm_id_group}' and id_navigasi='#{rowNav['id_navigasi']}'")
                                  if (myCheck!="") 
                                       myCheck=" checked" 

@@ -36,6 +36,7 @@ class BSupplierAlamatsController < ApplicationController
   end
 
   def change_form
+       @read_only = false
     respond_to do |format|
       format.js { render }
     end

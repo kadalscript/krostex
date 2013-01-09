@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     return request.remote_ip
   end 
 
-    def sqlExecute(prm_sql_txt)
+  def sqlExecute(prm_sql_txt)
     # puts "#{'prm_sql_txt = '}#{prm_sql_txt}"
     ActiveRecord::Base.connection.execute(prm_sql_txt) 
   end  

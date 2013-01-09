@@ -3,7 +3,9 @@ class BSuppliersController < ApplicationController
   before_filter :find_b_supplier_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
 
   def index
-    @b_suppliers = BSupplier.page(params[:page]).per(5)
+    @b_suppliers   = BSupplier.page(params[:page]).per(PAGINATE)
+    ABadanUsaha.all  
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @b_suppliers }
@@ -12,7 +14,14 @@ class BSuppliersController < ApplicationController
 
   def show
     @b_supplier_alamats = @b_supplier.b_supplier_alamats.order('id')
-    @b_supplier_alamat = BSupplierAlamat.new
+    @b_supplier_alamat  = BSupplierAlamat.new
+
+    @a_badan_usahas     = ABadanUsaha.all  
+    @read_only          = true
+    @read_only_key      = true
+    @read_only_always   = true
+    @disabled_combo     = true
+
     
     respond_to do |format|
       format.html # show.html.erb
@@ -21,14 +30,25 @@ class BSuppliersController < ApplicationController
   end
 
   def new
-    @b_supplier = BSupplier.new(kode: counter_alpha(BSupplier.count, 10, "BSupplier.maximum('kode')"))
+    @b_supplier        = BSupplier.new(kode: counter_alpha(BSupplier.count, 2, "BSupplier.maximum('kode')"))
+    @a_badan_usahas    = ABadanUsaha.all  
+    @a_negaras         = ANegara.all
+    @read_only         = false
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = false
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @b_supplier }
     end
   end
 
-  def edit; end
+  def edit; 
+      @a_negaras       = ANegara.all
+      @a_cities        = ACities.all
+      @read_only_key   = true 
+  end
 
   def create
     @b_supplier = BSupplier.new(params[:b_supplier].merge({updated_by: current_admin_ms_user.login_name}))
