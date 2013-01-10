@@ -12,12 +12,12 @@
         :
       </th>
       <th align="left">
-        <input id="id_satuan" type="text" style="width:40px" disabled="disabled">
-        <input id="id_department" type="text" style="width:30px" disabled="disabled">
-        <input id="id_golongan" type="text" style="width:30px" disabled="disabled">
-        <input id="id_type" type="text" style="width:30px" disabled="disabled">
-        <input id="id_level_four" type="text" style="width:30px" disabled="disabled">
-        <input id="id_level_five" type="text" style="width:30px" disabled="disabled">
+        <input id="id_satuan" value="<%= @b_barang.id_satuan %>" type="text" style="width:40px" disabled="disabled">
+        <input id="id_department" value="<%= @b_barang.id_department %>" type="text" style="width:30px" disabled="disabled">
+        <input id="id_golongan" value="<%= @b_barang.id_golongan %>" type="text" style="width:30px" disabled="disabled">
+        <input id="id_type" type="text" value="<%= @b_barang.id_type %>" style="width:30px" disabled="disabled">
+        <input id="id_level_four" value="<%= @b_barang.id_level_four %>" type="text" style="width:30px" disabled="disabled">
+        <input id="id_level_five" value="<%= @b_barang.id_level_five %>" type="text" style="width:30px" disabled="disabled">
 
         <input type="text" value="<%= Time.now.strftime("%m/%d/%Y") %>" disabled="disabled" class="pull-right">
         <%= f.hidden_field :kode, :style => "width:300px", class: :required %>
