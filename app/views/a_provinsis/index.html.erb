@@ -10,21 +10,28 @@
       </th>
     </tr>
     <tr class="titleJudulTable">
-      <% AProvinsi.column_names.each do |column_name| %>
-        <% unless @hidden_columns.include?(column_name) %>
-          <th><%= AProvinsi.human_attribute_name(column_name).titleize %></th>
-        <% end %>
-      <% end %>
+          <th>Kode</th>
+          <th>Nama</th>
+          <th>Simbol</th>
+          <th>Negara</th>
     </tr>
   </thead>
   <% if @a_provinsis.count > 0 %>
     <% @a_provinsis.each do |a_provinsi| %>
-      <tr onclick="redirectTo('<%= a_provinsi_path(a_provinsi) %>')">
-        <% AProvinsi.column_names.each do |column_name| %>
-          <% unless @hidden_columns.include?(column_name) %>
-            <td><%= column_name == "id_negara" ? (a_provinsi.a_negara.blank? ? "Kosong" : a_provinsi.a_negara.nama) : a_provinsi[column_name] %></td>
-          <% end %>
-        <% end %>
+      <tr onclick="redirectTo('<%= a_provinsi_path(a_provinsi.id) %>')">
+      
+          <th><%= a_provinsi.kode %></th>
+          <th><%= a_provinsi.nama %></th>
+          <th><%= a_provinsi.simbol %></th>
+          <th><%= ANegara.where("kode=?",a_provinsi.id_negara).first.nama %></th>
+         
+
+          <!-- AProvinsi.column_names.each do |column_name|  -->
+        
+              <!-- unless @hidden_columns.include?(column_name) -->
+            <!-- <td> column_name == "id_negara" ? (a_provinsi.a_negara.blank? ? "Kosong" : a_provinsi.a_negara.nama) : a_provinsi[column_name] %></td> -->
+          <!--  end  -->
+        <!--  end  -->
       </tr>
     <% end %>
   <% else %>

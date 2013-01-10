@@ -53,7 +53,7 @@
                     <tr>
                       <th align="left">&nbsp;Kota</th>
                       <th align="center">:</th>
-                      <th align="left">&nbsp;<%= f.select :id_kota, options_from_collection_for_select(a_cities, 'kode', 'nama', :id_kota), {}, :style => "width:92px",disabled: @disabled_combo, class: :required %>
+                      <th align="left">&nbsp;<%= f.select :id_kota, options_from_collection_for_select(a_cities, 'kode', 'nama', :id_kota), {include_blank: true}, :style => "width:92px",disabled: @disabled_combo, class: :required %>
                       </th>
                     </tr>       
                     <tr>

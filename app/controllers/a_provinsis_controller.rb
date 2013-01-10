@@ -15,16 +15,49 @@ class AProvinsisController < ApplicationController
   end
 
   def show
-    common_form(@@table_name, @@title, @a_provinsi)
+    # common_form(@@table_name, @@title, @a_provinsi)
+
+    @a_provinsi        = AProvinsi.find(params[:id])
+    @a_negaras         = ANegara.all
+
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = true
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @a_provinsi }
+    end
   end
 
   def new
-    @a_provinsi = AProvinsi.new
-    common_form(@@table_name, @@title, @a_provinsi)
+    @a_provinsi        = AProvinsi.new
+    @a_negaras         = ANegara.all
+
+    @read_only         = false
+    @read_only_key     = false
+    @read_only_always  = true
+    @disabled_combo    = false
+
+    respond_to do |format|
+         format.html { common_form(@@table_name, @@title, @a_provinsi) }
+         format.json { render json: object }
+    end 
   end
 
   def edit
-    common_form(@@table_name, @@title, @a_provinsi)
+    @a_provinsi          = AProvinsi.find(params[:id])
+    @a_negaras         = ANegara.all
+    @read_only         = false
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = false
+
+    respond_to do |format|
+         format.html { common_form(@@table_name, @@title, @a_provinsi) }
+         format.json { render json: object }
+    end 
   end
 
   def create
@@ -62,7 +95,17 @@ class AProvinsisController < ApplicationController
 
 
   def destroy_show
-    common_form(@@table_name, @@title, @a_provinsi)
+    @a_provinsi          = AProvinsi.find(params[:id])
+    @a_negaras         = ANegara.all
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = true
+
+    respond_to do |format|
+         format.html { common_form(@@table_name, @@title, @a_provinsi) }
+         format.json { render json: object }
+    end 
   end
 
   def search
