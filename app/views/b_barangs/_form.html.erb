@@ -19,7 +19,7 @@
         <input id="id_level_five" value="<%= @b_barang.id_level_five %>" type="text" style="width:30px" disabled="disabled">
 
         <input type="text" value="<%= Time.now.strftime("%m/%d/%Y") %>" disabled="disabled" class="pull-right">
-        <%= f.hidden_field :kode, :style => "width:300px", class: :required %>
+        <%= f.text_field :kode, :style => "width:300px", class: :required, readonly: :true, style: "width:40px" %>
       </th> 
     </tr>
     <tr>
@@ -32,17 +32,6 @@
       <th align="left"> 
         <%= f.text_field :nama, :style => "width:300px", class: :required %>
       </th> 
-    </tr>
-    <tr>
-      <th align="left">
-       &nbsp;Satuan
-      </th>  
-      <th align="center"> 
-       :
-      </th>
-      <th align="left"> 
-       <%= f.select :id_satuan, options_from_collection_for_select(@a_satuans, 'simbol', 'nama', @b_barang.id_satuan), {include_blank: true}, class: :required %>
-      </th>
     </tr>
     <tr>
       <th align="left">
@@ -97,6 +86,17 @@
       </th>
       <th align="left"> 
        <%= f.select :id_level_five, options_from_collection_for_select(@a_level_fifes, 'kode', 'nama', @b_barang.id_level_five), {include_blank: true}, class: :required, readonly: true, disabled: :disabled %>
+      </th>
+    </tr>
+    <tr>
+      <th align="left">
+       &nbsp;Satuan
+      </th>  
+      <th align="center"> 
+       :
+      </th>
+      <th align="left"> 
+       <%= f.select :id_satuan, options_from_collection_for_select(@a_satuans, 'simbol', 'nama', @b_barang.id_satuan), {include_blank: true}, class: :required %>
       </th>
     </tr>
     <tr>

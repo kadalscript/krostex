@@ -18,7 +18,7 @@ class BBarangsController < ApplicationController
   end
 
   def new
-    @b_barang = BBarang.new(kode: counter_alpha(BBarang.count, 5, "BBarang.maximum('kode')"))
+    @b_barang = BBarang.new(kode: counter_alpha(BBarang.count, 3, "BBarang.maximum('kode')"))
     @a_departments = ADepartment.all
     @a_golongans = AGolongan.all
     @a_types = AType.all
@@ -80,6 +80,7 @@ class BBarangsController < ApplicationController
     @a_types = AType.all
     @a_level_fours = ALevelFour.all
     @a_level_fifes = ALevelFive.all
+    @a_satuans = ASatuan.all
   end
 
   def search
