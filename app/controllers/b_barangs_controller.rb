@@ -24,6 +24,7 @@ class BBarangsController < ApplicationController
     @a_types = AType.all
     @a_level_fours = ALevelFour.all
     @a_level_fifes = ALevelFive.all
+    @a_satuans = ASatuan.all
 
     respond_to do |format|
       format.html # new.html.erb

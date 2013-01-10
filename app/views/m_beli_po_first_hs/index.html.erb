@@ -17,12 +17,15 @@
   </thead>
   <% if @m_beli_po_first_hs.count > 0 %>
     <% @m_beli_po_first_hs.each do |m_beli_po_first_h| %>
-      <tr onclick="redirectTo('<%= m_beli_po_first_h_path(m_beli_po_first_h) %>')">
-        <% MBeliPoFirstH.column_names.each do |column_name| %>
-          <% if @visible_columns.include?(column_name) %>
-            <td><%= m_beli_po_first_h %></td>
-          <% end %>
-        <% end %>
+      <tr>
+        <td><%= m_beli_po_first_h.tanggal.strftime("%x") %></td>
+        <td><%= m_beli_po_first_h.kode_disp %></td>
+        <td><%= m_beli_po_first_h.b_supplier.nama %></td>
+        <td><%= m_beli_po_first_h.a_mata_uang.nama %></td>
+        <td><%= m_beli_po_first_h.total_sub_total_kurang_disc %></td>
+        <td><%= m_beli_po_first_h.total_ppn_nominal %></td>
+        <td><%= "0" %></td>
+        <td><%= m_beli_po_first_h.st_progress %></td>
       </tr>
     <% end %>
   <% else %>

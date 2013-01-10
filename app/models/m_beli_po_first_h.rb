@@ -8,4 +8,6 @@ class MBeliPoFirstH < ActiveRecord::Base
                   :total_sub_total_kurang_disc, :updated_by, :supplier, :is_drafted
   attr_accessor :supplier
   has_many :m_beli_po_second_ds, class_name: 'MBeliPoSecondD', foreign_key: 'kode_tmp'
+  belongs_to :b_supplier, class_name: 'BSupplier', foreign_key: 'id_supplier'
+  belongs_to :a_mata_uang, class_name: 'AMataUang', foreign_key: 'id_valuta'
 end

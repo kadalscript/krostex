@@ -59,6 +59,7 @@
             <div class="controls" style="margin-bottom: 10px;">
               <%= text_field_tag "po_header[total_grand_total]", @m_beli_po_first_h.total_grand_total.blank? ? "0" : @m_beli_po_first_h.total_ppn_disc, disabled: 'disabled' %>
             </div>
+            <%= hidden_field(:po_header_hidden, :total_sub_total, value: @total_kurang_diskon) %>
           </div>
         </td>
       </tr>

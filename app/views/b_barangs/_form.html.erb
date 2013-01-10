@@ -11,8 +11,16 @@
       <th align="center"> 
         :
       </th>
-      <th align="left"> 
-        <%= f.text_field :kode, :style => "width:300px", class: :required %>
+      <th align="left">
+        <input id="id_satuan" type="text" style="width:40px" disabled="disabled">
+        <input id="id_department" type="text" style="width:30px" disabled="disabled">
+        <input id="id_golongan" type="text" style="width:30px" disabled="disabled">
+        <input id="id_type" type="text" style="width:30px" disabled="disabled">
+        <input id="id_level_four" type="text" style="width:30px" disabled="disabled">
+        <input id="id_level_five" type="text" style="width:30px" disabled="disabled">
+
+        <input type="text" value="<%= Time.now.strftime("%m/%d/%Y") %>" disabled="disabled" class="pull-right">
+        <%= f.hidden_field :kode, :style => "width:300px", class: :required %>
       </th> 
     </tr>
     <tr>
@@ -25,6 +33,17 @@
       <th align="left"> 
         <%= f.text_field :nama, :style => "width:300px", class: :required %>
       </th> 
+    </tr>
+    <tr>
+      <th align="left">
+       &nbsp;Satuan
+      </th>  
+      <th align="center"> 
+       :
+      </th>
+      <th align="left"> 
+       <%= f.select :id_satuan, options_from_collection_for_select(@a_satuans, 'simbol', 'nama', @b_barang.id_satuan), {include_blank: true}, class: :required %>
+      </th>
     </tr>
     <tr>
       <th align="left">
@@ -79,8 +98,41 @@
       </th>
       <th align="left"> 
        <%= f.select :id_level_five, options_from_collection_for_select(@a_level_fifes, 'kode', 'nama', @b_barang.id_level_five), {include_blank: true}, class: :required, readonly: true, disabled: :disabled %>
+      </th>
+    </tr>
+    <tr>
+      <th align="left">
+        &nbsp;Min Stok
+      </th>  
+      <th align="center"> 
+        :
+      </th>
+      <th align="left"> 
+        <%= f.text_field :min_stok, :style => "width:300px", class: :required %>
       </th> 
     </tr>
+    <tr>
+      <th align="left">
+        &nbsp;Max Stok
+      </th>  
+      <th align="center"> 
+        :
+      </th>
+      <th align="left"> 
+        <%= f.text_field :max_stok, :style => "width:300px", class: :required %>
+      </th> 
+    </tr>
+    <tr>
+      <th align="left">
+        &nbsp;Reorder Stok
+      </th>  
+      <th align="center"> 
+        :
+      </th>
+      <th align="left"> 
+        <%= f.text_field :reorder_stok, :style => "width:300px", class: :required %>
+      </th> 
+    </tr> 
     <tr>
       <th colspan="3" class="titleJudulTable" width="100%">
         <%= f.submit "Simpan", class: :btn unless action_name.eql?('destroy_show')  %>
@@ -132,6 +184,11 @@
         id_level_four: $(this).val()
       })
     });
+
+    $("select").change(function(){
+      var kode_id = $(this).attr('id').replace('b_barang_', '#')
+      $(kode_id).val($(this).val());
+    })
 
     <% if action_name.eql?('edit') %>
       var unlock_field = $('#b_barang_id_department, #b_barang_id_golongan, #b_barang_id_type, #b_barang_id_level_four, #b_barang_id_level_five');

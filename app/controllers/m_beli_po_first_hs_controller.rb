@@ -123,7 +123,17 @@ class MBeliPoFirstHsController < ApplicationController
     end
   end
 
-  def undraft    
+  def undraft
+    params[:m_beli_po_first_h][:tanggal] = params[:m_beli_po_first_h][:tanggal].to_time
+    params[:m_beli_po_first_h][:total_ppn_nominal] = params[:po_header][:total_disc_persen].to_i * params[:po_header_hidden][:total_sub_total].to_i / 100
+    params[:m_beli_po_first_h][:total_sub_total_kurang_disc] = params[:po_header_hidden][:total_sub_total].to_i - params[:m_beli_po_first_h][:total_ppn_nominal].to_i
+
+    @m_beli_po_first_h = MBeliPoFirstH.find_by_id(params[:id])
+    @m_beli_po_first_h.update_attributes(params[:m_beli_po_first_h].merge(        
+        id_supplier: params[:supplier_id],
+        id_valuta: params[:kurs_id],
+        nilai_rate_kurs: params[:kurs_value])
+    )
   end
 
   def get_gudang
@@ -189,6 +199,6 @@ private
     @status = [["To be approve", 1], ["To be send", 2], ["In progress", 3], ["Closed", 4], ["Void", 5]]
     @basic_columns = ["no", "kode barang", "nama barang", "qty", "kemasan", "qty", "harga", "disc"]
     @search_columns = @basic_columns + ["check"]
-    @detailed_columns = @basic_columns + ["total", "Modify"]
+    @detailed_columns = @basic_columns + ["total", "nav"]
   end
 end

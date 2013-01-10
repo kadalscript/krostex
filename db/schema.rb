@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(:version => 20130106090551) do
     t.string   "kode",        :limit => 5
     t.string   "nama",        :limit => 30
     t.string   "simbol",      :limit => 5
-    t.integer  "id_negara",   :limit => 8
-    t.integer  "id_provinsi", :limit => 8
+    t.string   "id_negara",   :limit => 5
+    t.string   "id_provinsi", :limit => 5
     t.string   "updated_by",  :limit => 30
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
@@ -82,10 +82,21 @@ ActiveRecord::Schema.define(:version => 20130106090551) do
     t.string   "kode",       :limit => 5
     t.string   "nama",       :limit => 15
     t.decimal  "isi_volume"
-    t.integer  "id_satuan"
+    t.string   "id_satuan"
     t.string   "updated_by", :limit => 30
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+  end
+
+  create_table "a_kotas", :force => true do |t|
+    t.string   "kode",        :limit => 5
+    t.string   "nama",        :limit => 30
+    t.string   "simbol",      :limit => 5
+    t.string   "id_negara",   :limit => 5
+    t.string   "id_provinsi", :limit => 5
+    t.string   "updated_by",  :limit => 30
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "a_level_fives", :force => true do |t|
@@ -136,7 +147,7 @@ ActiveRecord::Schema.define(:version => 20130106090551) do
     t.string   "kode",       :limit => 5
     t.string   "nama",       :limit => 15
     t.string   "simbol"
-    t.integer  "id_negara"
+    t.string   "id_negara"
     t.string   "updated_by", :limit => 30
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
