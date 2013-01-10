@@ -10,22 +10,27 @@
       </th>
     </tr>
     <tr class="titleJudulTable">
-      <% ALevelFive.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
-          <th><%= column_name %></th>
-        <% end %>
-      <% end %>
+         <th align="center">Kode</th>
+         <th align="center">Nama Level 5</th>
+         <th align="center">Simbol</th>
+         <th align="center">Department</th>
+         <th align="center">Golongan</th>
+         <th align="center">Jenis</th>
+         <th align="center">Level 4</th>
+         <th align="center">Update Oleh</th>
     </tr>
   </thead>
   <% @a_level_fives.each do |a_level_five| %>
     <tr onclick="redirectTo('<%= a_level_fife_path(a_level_five) %>')">
-      <td><%= a_level_five.kode %></td>
-      <td><%= a_level_five.nama %></td>
-      <td><%= a_level_five.simbol %></td>
-      <td><%= a_level_five.id_department %></td>
-      <td><%= a_level_five.id_golongan %></td>
-      <td><%= a_level_five.id_type %></td>
-      <td><%= a_level_five.id_level_four %></td>
+      <th><%= a_level_five.kode %></th>
+      <th><%= a_level_five.nama %></th>
+      <th><%= a_level_five.simbol %></th>
+      <th><%= ADepartment.where(kode: a_level_five.id_department).first.nama %></th>
+      <th><%= AGolongan.where(kode: a_level_five.id_golongan, id_department: a_level_five.id_department).first.nama %></th>
+      <th><%= AType.where(kode: a_level_five.id_type, id_golongan: a_level_five.id_golongan,  id_department: a_level_five.id_department).first.nama %></th>
+      <th><%= ALevelFour.where(kode: a_level_five.id_level_four, id_type:   a_level_five.id_type, id_golongan: a_level_five.id_golongan,  id_department: a_level_five.id_department).first.nama %></th>
+      <th><%= a_level_five.updated_by %></th>
+
     </tr>
   <% end %>
   <thead class="thead">

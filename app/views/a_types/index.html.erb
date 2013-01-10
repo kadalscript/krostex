@@ -10,21 +10,22 @@
       </th>
     </tr>
     <tr class="titleJudulTable">
-      <% AType.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
-          <th><%= column_name %></th>
-        <% end %>
-      <% end %>
+       <th align="center">Kode</th>
+       <th align="center">Nama</th>
+       <th align="center">Simbol</th>
+       <th align="center">Department</th>
+       <th align="center">Golongan</th>
+       <th align="center">Update Oleh</th>
     </tr>
   </thead>
   <% @a_types.each do |a_type| %>
     <tr onclick="redirectTo('<%= a_type_path(a_type) %>')">
-      <td><%= a_type.kode %></td>
-      <td><%= a_type.nama %></td>
-      <td><%= a_type.simbol %></td>
-      <td><%= a_type.id_department %></td>
-      <td><%= a_type.id_golongan %></td>
-      <td><%= a_type.updated_by %></td>
+      <th><%= a_type.kode %></th>
+      <th><%= a_type.nama %></th>
+      <th><%= a_type.simbol %></th>
+      <th><%= ADepartment.where(kode: a_type.id_department).first.nama %></th>
+      <th><%= AGolongan.where(kode: a_type.id_golongan, id_department: a_type.id_department).first.nama %></th>
+      <th><%= a_type.updated_by %></th>
     </tr>
   <% end %>
   <thead class="thead">

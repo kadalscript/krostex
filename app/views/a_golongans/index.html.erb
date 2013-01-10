@@ -10,11 +10,11 @@
       </th>
     </tr>
     <tr class="titleJudulTable">
-      <% AGolongan.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
-          <th><%= column_name %></th>
-        <% end %>
-      <% end %>
+        <th align="center">Kode</th>
+        <th align="center">Nama</th>
+        <th align="center">Simbol</th>
+        <th align="center">Department</th>
+        <th align="center">Update Oleh</th>
     </tr>
   </thead>
   <% @a_golongans.each do |a_golongan| %>
@@ -22,7 +22,7 @@
       <td><%= a_golongan.kode %></td>
       <td><%= a_golongan.nama %></td>
       <td><%= a_golongan.simbol %></td>
-      <td><%= a_golongan.id_department %></td>
+      <td><%= ADepartment.where(kode: a_golongan.id_department).first.nama %></td>
       <td><%= a_golongan.updated_by %></td>
     </tr>
   <% end %>

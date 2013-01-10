@@ -10,11 +10,10 @@
       </th>
     </tr>
     <tr class="titleJudulTable">
-      <% ADepartment.column_names.each do |column_name| %>
-        <% unless ["id", "created_at", "updated_at"].include?(column_name) %>
-          <th><%= column_name %></th>
-        <% end %>
-      <% end %>
+       <th align="center">Kode</th>
+       <th align="center">Nama</th>
+       <th align="center">Simbol</th>
+       <th align="center">Update Oleh</th>
     </tr>
   </thead>
   <% @a_departments.each do |a_department| %>
