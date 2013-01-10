@@ -15,16 +15,51 @@ class ACitiesController < ApplicationController
   end
 
   def show
-    common_form(@@table_name, @@title, @a_city)
+    @a_city            = ACity.find(params[:id])
+    @a_provinsis        = AProvinsi.all
+    @a_negaras         = ANegara.all
+
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = true
+
+    respond_to do |format|
+         format.html { common_form(@@table_name, @@title, @a_city) }
+         format.json { render json: object }
+    end 
   end
 
   def new
-    @a_city = ACity.new
-    common_form(@@table_name, @@title, @a_city)
+    @a_city            = ACity.new
+    @a_provinsis       = AProvinsi.all
+    @a_negaras         = ANegara.all
+
+    @read_only         = false
+    @read_only_key     = false
+    @read_only_always  = true
+    @disabled_combo    = false
+
+    respond_to do |format|
+         format.html { common_form(@@table_name, @@title, @a_city) }
+         format.json { render json: object }
+    end 
   end
 
   def edit
-    common_form(@@table_name, @@title, @a_city)
+    @a_city            = ACity.find(params[:id])
+    @a_provinsis       = AProvinsi.all
+    @a_negaras         = ANegara.all
+
+    @read_only         = false
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = false
+
+    respond_to do |format|
+         format.html { common_form(@@table_name, @@title, @a_city) }
+         format.json { render json: object }
+    end 
   end
 
   def create
@@ -61,7 +96,19 @@ class ACitiesController < ApplicationController
   end
 
   def destroy_show
-    common_form(@@table_name, @@title, @a_city)
+    @a_city            = ACity.find(params[:id])
+    @a_provinsis       = AProvinsi.all
+    @a_negaras         = ANegara.all
+
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = true
+
+    respond_to do |format|
+         format.html { common_form(@@table_name, @@title, @a_city) }
+         format.json { render json: object }
+    end 
   end
 
   def search
@@ -75,9 +122,11 @@ class ACitiesController < ApplicationController
   end
 
   def get_provinces
-    @a_negara = ANegara.find_by_id(params[:negara])
+
+    @a_provinsis = AProvinsi.where("id_negara=?", params[:negara])
+    # debugger 
     respond_to do |format|
-      format.js { render }
+      format.js {  }
     end
   end
 

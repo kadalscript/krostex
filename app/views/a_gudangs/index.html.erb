@@ -33,6 +33,7 @@
 </thead>
 <% @a_gudangs.each do |a_gudang| %>
 <tr class="<%= 'status_red' if a_gudang.status1.eql?(99) %>" onclick="redirectTo('<%= a_gudang_path(a_gudang.id, page: params[:page]) %>')">
+  
   <td><%= a_gudang.simbol %></td>
   <td><%= a_gudang.nama %></td>
   <td><%= a_gudang.st_progress %></td>

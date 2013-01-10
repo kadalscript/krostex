@@ -40,7 +40,8 @@
                 <tr>
                      <th>
                         <table class="table-bordered" align="center" width="100%">
-                             <tr class="titleJudulTable" >
+                            <thead class="thead">
+                             <tr class="titleJudulTable thead" >
                                <th align="left" colspan="3">&nbsp;<%= @nama_kategori_alamat %>
                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[
                                    <%= link_to "Koreksi", "javascript:void(0)" , id: "koreksi", value: b_supplier_alamat.id, class:'navigasi_putih' %>
@@ -48,6 +49,7 @@
                                    <%= link_to "Delete", "javascript:void(0)"  , id: "delete", value: b_supplier_alamat.id, class:'navigasi_putih' %> ]
                                </th>     
                              </tr>
+                            </thead> 
                              <tr>
                                   <th align="left" width="100px">&nbsp;Alamat</th>  
                                   <th align="center">:</th>
@@ -97,7 +99,7 @@
 
 <script>
 $(function() {
-  $('a#koreksi').click(function() {
+  $('#koreksi').click(function() {
     var value = $(this).attr('value');
     var type = $(this).attr('id');
     $.ajax({
@@ -108,7 +110,7 @@ $(function() {
     });
   });
 
-  $('a#delete').click(function() {
+  $('#delete').click(function() {
     var value = $(this).attr('value');
     var type = $(this).attr('id');
     $.ajax({

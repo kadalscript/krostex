@@ -1,5 +1,26 @@
-<% ACity.column_names.each do |column_name| %>
-  <% unless @hidden_columns.include?(column_name) %>
-    <%= raw(showing_row(ACity, column_name, attributes, f, @a_city)) %>
-  <% end %>
-<% end %>
+   <tr>
+     <th align="left">&nbsp;Kode</th>  
+     <th align="center">:</th>
+     <th align="left"><%= f.text_field :kode, :style => "width:300px", readonly: @read_only_key,  class: :required %></th> 
+   </tr>
+   <tr>
+     <th align="left">&nbsp;Nama</th>  
+     <th align="center">:</th>
+     <th align="left"><%= f.text_field :nama, :style => "width:300px", readonly: @read_only,  class: :required %></th> 
+   </tr>
+   <tr>
+     <th align="left">&nbsp;Simbol</th>  
+     <th align="center">:</th>
+     <th align="left"><%= f.text_field :simbol, :style => "width:300px", readonly: @read_only,  class: :required %></th> 
+   </tr>
+   <tr>
+     <th align="left">&nbsp;Negara</th>  
+     <th align="center">:</th>
+     <th align="left"><%= f.select :id_negara, options_from_collection_for_select(@a_negaras, 'kode', 'nama', @a_city.id_negara), {}, :style => "width:313px",  disabled: @disabled_combo, class: :required %></th> 
+   </tr>
+
+   <tr>
+     <th align="left">&nbsp;Provinsi</th>  
+     <th align="center">:</th>
+     <th align="left"><%= f.select :id_provinsi, options_from_collection_for_select(@a_provinsis, 'kode', 'nama', @a_city.id_provinsi), {}, :style => "width:313px",  disabled: @disabled_combo, class: :required %></th> 
+   </tr>

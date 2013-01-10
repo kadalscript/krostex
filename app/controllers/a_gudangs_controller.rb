@@ -50,10 +50,10 @@ class AGudangsController < ApplicationController
     @read_only_always  = true
     @disabled_combo    = false
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @a_gudang }
-    end
+    # respond_to do |format|
+    #   format.html # new.html.erb
+    #   format.json { render json: @a_gudang }
+    # end
   end
 
   # GET /a_gudangs/1/edit

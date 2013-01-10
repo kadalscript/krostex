@@ -10,22 +10,26 @@
       </th>
     </tr>
     <tr class="titleJudulTable">
-      <% ACity.column_names.each do |column_name| %>
-        <% unless @hidden_columns.include?(column_name) %>
-          <th><%= ACity.human_attribute_name(column_name).titleize %></th>
-        <% end %>
-      <% end %>
+          <th>Kode</th>
+          <th>Nama</th>
+          <th>Negara</th>
+          <th>Kota</th>
     </tr>
-  </thead>
-  <% @a_cities.each do |a_city| %>
-    <tr onclick="redirectTo('<%= a_city_path(a_city) %>')">
-      <% ACity.column_names.each do |column_name| %>
-        <% unless @hidden_columns.include?(column_name) %>
-          <td><%= ["id_negara", "id_provinsi"].include?(column_name) ? (column_name == 'id_negara' ? a_city.a_negara.nama : a_city.a_provinsi.nama) : a_city[column_name] %></td>
-        <% end %>
-      <% end %>
-    </tr>
+
+    <% if @a_cities.count > 0 %>
+        <% @a_cities.each do |a_city| %>
+           <tr onclick="redirectTo('<%= a_city_path(a_city.id) %>')">
+              <th align="left">&nbsp;<%= a_city.kode %></th>
+              <th align="left">&nbsp;<%= a_city.nama %></th>
+              <th align="left">&nbsp;<%= ANegara.where("kode=?",a_city.id_negara).first.nama %></th>
+              <th align="left">&nbsp;<%= AProvinsi.where("kode=?",a_city.id_provinsi).first.nama %></th>
+           </tr>
+    <% end %>
+  <% else %>
+         <tr><td colspan="4" style="text-align: center"><%= EMPTY_DATA %></td></tr>
   <% end %>
+
+
   <thead class="thead">
     <tr class="titleJudulTable">
       <th colspan="11" align="right">

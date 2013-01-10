@@ -21,7 +21,7 @@ $(function() {
   $('#a_city_id_provinsi').attr('readonly', 'true');
   $('#a_city_id_provinsi').attr('disabled', 'disabled');
   
-  $('#a_city_id_negara').change(function() {
+  $('#a_city_id_negara').live('change',function() {
     if ($('#a_city_id_negara').val() != '')
     {
       $('#a_city_id_provinsi').removeAttr('readonly');

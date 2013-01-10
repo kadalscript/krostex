@@ -17,6 +17,7 @@ class BSuppliersController < ApplicationController
     @b_supplier_alamat  = BSupplierAlamat.new
 
     @a_badan_usahas     = ABadanUsaha.all  
+    @a_cities           = ACity.all 
     @read_only          = true
     @read_only_key      = true
     @read_only_always   = true
