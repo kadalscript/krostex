@@ -1,0 +1,26 @@
+var elm = $('#<%= @elm %>')
+
+elm.html("");
+elm.append( new Option('','') );
+
+<% @datum.each do |data| %>
+  elm.append( new Option('<%= data.nama %>','<%= data.kode %>') );
+<% end %>
+
+elm.removeAttr('disabled');
+elm.removeAttr('readonly');
+
+<% case params[:type] %>
+<% when 'department' %>
+  var disable_elm = $('#b_barang_id_type,#b_barang_id_level_four,#b_barang_id_level_five');
+<% when 'golongan' %>
+  var disable_elm = $('#b_barang_id_level_four,#b_barang_id_level_five');
+<% when 'type' %>
+  var disable_elm = $('#b_barang_id_level_five');
+<% end %>
+
+<% unless params[:type].eql?('level4') %>
+  disable_elm.attr('disabled', 'disabled');
+  disable_elm.attr('readonly', 'true');
+  disable_elm.html('');
+<% end %>

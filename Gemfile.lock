@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/Nerian/bootstrap-datepicker-rails.git
+  revision: ffefb0d9870ba4b3b6546a64a36ce5b1d8247a15
+  specs:
+    bootstrap-datepicker-rails (0.6.36)
+      railties (>= 3.0)
+
+GIT
   remote: git://github.com/alexdunae/validates_email_format_of.git
   revision: 46b832f7c778cc73f45ebc84cffba03c33294928
   specs:
@@ -125,6 +132,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  bootstrap-datepicker-rails!
   debugger
   devise
   jquery-rails
