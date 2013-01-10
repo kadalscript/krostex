@@ -52,7 +52,7 @@
     <div class="control-group">
       <%= f.label :tanggal, "Tanggal", class: 'control-label' %>
       <div class="controls">
-        <%= text_field_tag "m_beli_po_first_h[tanggal]", @m_beli_po_first_h.tanggal.strftime("%m/%d/%Y") %>
+        <%= text_field_tag "m_beli_po_first_h[tanggal]", @m_beli_po_first_h.tanggal.strftime("%d/%m/%Y"), 'data-date-format' => 'dd/mm/yyyy' %>
       </div>
     </div>
     <div class="control-group">
