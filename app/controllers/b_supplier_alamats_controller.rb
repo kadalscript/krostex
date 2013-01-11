@@ -3,10 +3,18 @@ class BSupplierAlamatsController < ApplicationController
   before_filter :find_b_supplier_alamat_by_id, only: [:show, :edit, :update, :destroy, :change_form]
 
   def create
-    @b_supplier_alamat = @b_supplier.b_supplier_alamats.new(params[:b_supplier_alamat].merge({updated_by: current_admin_ms_user.login_name}))
+         
+    @b_supplier_alamat = @b_supplier.b_supplier_alamats.new(
+                             params[:b_supplier_alamat].merge(
+                                  {kode_alamat: Time.now.strftime("%Y%m%d%H%M%S"),
+                                   updated_by:  current_admin_ms_user.login_name,
+                                   kode:        @b_supplier.kode}
+                             )
+                         )
+
     respond_to do |format|
       if @b_supplier_alamat.save
-        format.html { redirect_to b_supplier_path(@b_supplier), notice: 'B supplier alamat was successfully created.' }
+        format.html { redirect_to b_supplier_path(@b_supplier), notice: 'supplier alamat was successfully created.' }
         format.json { render json: @b_supplier_alamat, status: :created, location: @b_supplier_alamat }
       else
         format.html { render action: "new" }
@@ -18,7 +26,7 @@ class BSupplierAlamatsController < ApplicationController
   def update
     respond_to do |format|
       if @b_supplier_alamat.update_attributes(params[:b_supplier_alamat].merge({updated_by: current_admin_ms_user.login_name}))
-        format.html { redirect_to b_supplier_path(@b_supplier), notice: 'B supplier alamat was successfully updated.' }
+        format.html { redirect_to b_supplier_path(@b_supplier), notice: 'supplier alamat was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -36,7 +44,26 @@ class BSupplierAlamatsController < ApplicationController
   end
 
   def change_form
-       # @read_only = false
+
+      # @read_only                    = false
+      # @read_only_key                = true
+      # @read_only_primary            = true
+      # @disable_combo                = false
+      # b_supplier_alamat.kode_alamat = "xxxxxxxxxxxxxx"  
+
+      
+      
+      # debugger 
+      # unless ["update","destroy"].include?(action)
+             @ATemplates                   = ATemplateCat.where(kategori: 'ALAMAT')
+             @a_cities          = ACity.all 
+             @read_only         = false
+             @read_only_key     = true
+             @read_only_primary = true
+             @disable_combo     = false
+             # debugger 
+      # end   
+      
        respond_to do |format|
 
             format.js { render }

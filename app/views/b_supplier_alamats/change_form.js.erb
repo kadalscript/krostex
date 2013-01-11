@@ -1,1 +1,6 @@
-$('#supplierModal').html('<%= escape_javascript(render partial: 'b_supplier_alamats/form', locals: { title: "FORM #{params[:type] == 'koreksi' ? 'KOREKSI' : 'HAPUS DATA'} ALAMAT SUPPLIER", b_supplier_alamat: @b_supplier_alamat, controller: 'b_supplier_alamats', action: params[:type] == 'koreksi' ? 'update' : 'destroy' , b_supplier: @b_supplier, action_type: params[:type] == 'koreksi' ? 'Update' : 'Delete' })%>')
+
+@judul_var       ="FORM #{params[:type] == 'koreksi' ? 'KOREKSI' : 'HAPUS DATA'} ALAMAT SUPPLIER"
+@action_var      = (params[:type] == 'koreksi' ? 'update' : 'destroy')
+@action_type_var = (params[:type] == 'koreksi' ? 'Update' : 'Delete')
+
+$('#supplierModal').html('<%= escape_javascript(render partial: 'b_supplier_alamats/form', locals: { title: @judul_var, b_supplier_alamat: @b_supplier_alamat, controller: 'b_supplier_alamats', action: @action_var, b_supplier: @b_supplier, action_type: @action_type_var })%>')

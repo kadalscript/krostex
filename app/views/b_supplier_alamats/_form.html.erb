@@ -1,4 +1,21 @@
+<%
+      @read_only                    = false
+      @read_only_key                = true
+      @read_only_primary            = true
+      @disable_combo                = false
+      b_supplier_alamat.kode_alamat = "xxxxxxxxxxxxxx"  
 
+      @ATemplates                   = ATemplateCat.where(kategori: 'ALAMAT')
+      @a_cities          = ACity.all 
+      unless !["update","destroy"].include?(action)
+             
+             @read_only         = true
+             @read_only_key     = true
+             @read_only_primary = true
+             @disable_combo     = false
+             debugger 
+      end   
+%>
 <div id="supplierModal">
   <!-- Modal -->
   <div id="formSupplierModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -12,7 +29,7 @@
                     <tr>
                       <th align="left">&nbsp;Kode Alamat</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :kode_alamat, :style => "width:300px" , class: :required %></th>
+                      <th align="left"><%= f.text_field :kode_alamat, :style => "width:300px" , readonly: @read_only_key, class: :required %></th>
                     </tr>
                     <tr>
                       <th align="left">&nbsp;Kode Supplier</th>
@@ -20,61 +37,65 @@
                       <th align="left"><%= f.text_field :kode, :style => "width:300px", readonly: @read_only_key, class: :required %></th>
                     </tr>
                     <tr>
-                      <th align="left">&nbsp;Kode Kategori</th>
+                      <th align="left">&nbsp;Kategori</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :kode_kategori, :style => "width:300px", class: :required %></th>
+                      <th align="left">
+                          <%= f.select :kode_kategori, options_from_collection_for_select(@ATemplates, 'kode', 'nama', :kode_kategori), {}, prompt: "- Kategori -", :style => "width:313px",disabled: @disable_combo, class: :required %>
+                      </th>
                     </tr>
                     <tr>
                       <th align="left">&nbsp;Alamat</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :alamat_title, :style => "width:300px", class: :required %></th>
+                      <th align="left"><%= f.text_field :alamat_title, :style => "width:300px", readonly: @read_only, class: :required %></th>
                     </tr>
                     <tr>
                       <th align="left">&nbsp;</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :alamat_01, :style => "width:300px", class: :required %></th>
+                      <th align="left"><%= f.text_field :alamat_01, :style => "width:300px", readonly: @read_only, class: :required %></th>
                     </tr>
                     <tr>
                       <th align="left">&nbsp;</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :alamat_02, :style => "width:300px", class: :required %></th>
+                      <th align="left"><%= f.text_field :alamat_02, :style => "width:300px", readonly: @read_only, class: :required %></th>
                     </tr>
-                    <tr>
-                      <th align="left">&nbsp;Negara</th>
-                      <th align="center">:</th>
-                      <th align="left"><%= f.text_field :id_negara, :style => "width:300px", class: :required %></th>
-                    </tr>
-                    <tr>
-                      <th align="left">&nbsp;Provinsi</th>
-                      <th align="center">:</th>
-                      <th align="left"><%= f.text_field :id_provinsi, :style => "width:300px", class: :required %></th>
-                    </tr>
-
                     <tr>
                       <th align="left">&nbsp;Kota</th>
                       <th align="center">:</th>
-                      <th align="left">&nbsp;<%= f.select :id_kota, options_from_collection_for_select(a_cities, 'kode', 'nama', :id_kota), {include_blank: true}, :style => "width:92px",disabled: @disabled_combo, class: :required %>
+                      <th align="left">&nbsp;<%= f.select :id_kota, options_from_collection_for_select(@a_cities, 'kode', 'nama', :id_kota), {}, prompt: "- Kota -", :style => "width:313px",disabled: @disable_combo, class: :required %>
                       </th>
-                    </tr>       
+                    </tr> 
+                    <tr>
+                      <th align="left">&nbsp;Provinsi</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :id_provinsi, :style => "width:300px", readonly: @read_only_primary, class: :required %></th>
+                    </tr>                    
+                    <tr>
+                      <th align="left">&nbsp;Negara</th>
+                      <th align="center">:</th>
+                      <th align="left"><%= f.text_field :id_negara, :style => "width:300px", readonly: @read_only_primary, class: :required %></th>
+                    </tr>
+
                     <tr>
                       <th align="left">&nbsp;Kode Pos</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :kode_pos, :style => "width:300px", class: :required %></th>
+                      <th align="left"><%= f.text_field :kode_pos, :style => "width:300px", readonly: @read_only, class: :required %></th>
                     </tr>   
                     <tr>
                       <th align="left">&nbsp;Telepon</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :telepon, :style => "width:300px", class: :required %></th>
+                      <th align="left"><%= f.text_field :telepon, :style => "width:300px", readonly: @read_only, class: :required %></th>
                     </tr>   
                     <tr>
                       <th align="left">&nbsp;Fax</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :fax, :style => "width:300px", class: :required %></th>
+                      <th align="left"><%= f.text_field :fax, :style => "width:300px", readonly: @read_only, class: :required %></th>
                     </tr>    
                     <tr>
                       <th align="left">&nbsp;Status</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :st_progress, :style => "width:300px", class: :required %></th>
+                      <th align="left">
+                          <%= f.select(:st_progress, [["Active", "Active"], ["Closed","Closed"]], {}, :style => "width:313px", disabled: @disable_combo)  %>
+                      </th>
                     </tr>                                                                                              
         </table>
 

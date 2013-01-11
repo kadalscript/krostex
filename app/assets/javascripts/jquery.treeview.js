@@ -249,7 +249,7 @@
 		lastCollapsableHitarea: "lastCollapsable-hitarea",
 		lastCollapsable: "lastCollapsable",
 		lastExpandable: "lastExpandable",
-		last: "last",
+		last: "last1",
 		hitarea: "hitarea"
 	});
 	

@@ -1,7 +1,31 @@
-<% ATemplateCat.column_names.each do |column_name| %>
-  <% unless @hidden_columns.include?(column_name) %>
-    <% if !(["new", "create"].include?(action_name) && ["updated_at", "updated_by"].include?(column_name)) %>
-      <%= raw(showing_row(ATemplateCat, column_name, attributes, f, @a_template_cat)) %>
-    <% end %>
-  <% end %>
-<% end %>
+   <tr>
+     <th align="left">&nbsp;Kode</th>  
+     <th align="center">:</th>
+     <th align="left"><%= f.text_field :kode, :style => "width:300px", readonly: @read_only_key,  class: :required %></th> 
+   </tr>
+   <tr>
+     <th align="left">&nbsp;Kategori</th>  
+     <th align="center">:</th>
+     <th align="left"><%= f.text_field :kategori, :style => "width:300px", readonly: @read_only,  class: :required %></th> 
+   </tr>
+   <tr>
+     <th align="left">&nbsp;Nama</th>  
+     <th align="center">:</th>
+     <th align="left"><%= f.text_field :nama, :style => "width:300px", readonly: @read_only,  class: :required %></th> 
+   </tr>
+   <tr>
+     <th align="left">&nbsp;Simbol</th>  
+     <th align="center">:</th>
+     <th align="left"><%= f.text_field :simbol, :style => "width:300px", readonly: @read_only,  class: :required %></th> 
+   </tr>
+   <tr>
+     <th align="left">
+       &nbsp;Status
+     </th>  
+     <th align="center"> 
+       :
+     </th>
+     <th align="left"> 
+      <%= f.select(:st_progress, [["Active", "Active"], ["De-Active","De-Active"]], {}, :style => "width:314px", disabled: @disabled_combo)  %>
+    </th> 
+  </tr>

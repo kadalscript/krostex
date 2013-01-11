@@ -15,15 +15,27 @@ class ATemplateCatsController < ApplicationController
   end
 
   def show
+    @read_only         = true
+    @read_only_key     = true
+    @read_only_always  = true
+    @disabled_combo    = true
     common_form(@@table_name, @@title, @a_template_cat)
   end
 
   def new
-    @a_template_cat = ATemplateCat.new
+    @read_only         = false
+    @read_only_key     = true
+    @read_only_always  = false
+    @disabled_combo    = false
+    @a_template_cat = ATemplateCat.new(kode: Time.now.strftime("%Y%m%d%H%M%S").to_s)
     common_form(@@table_name, @@title, @a_template_cat)
   end
 
   def edit
+    @read_only         = false
+    @read_only_key     = true
+    @read_only_always  = false
+    @disabled_combo    = false
     common_form(@@table_name, @@title, @a_template_cat)
   end
 

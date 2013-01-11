@@ -105,6 +105,7 @@ $(function() {
     $.ajax({
       url: "/b_suppliers/<%= @b_supplier.id %>/b_supplier_alamats/" + value + "/change_form/?type=" + type,
       success: function() {
+        alert("berhasil");
         $('#formSupplierModal').modal('show');
       }
     });

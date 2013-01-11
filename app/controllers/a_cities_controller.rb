@@ -124,9 +124,8 @@ class ACitiesController < ApplicationController
   def get_provinces
 
     @a_provinsis = AProvinsi.where("id_negara=?", params[:negara])
-    # debugger 
     respond_to do |format|
-      format.js {  }
+      format.js { render }
     end
   end
 
