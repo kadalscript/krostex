@@ -920,3 +920,14 @@ a_golongan = AGolongan.first
 a_golongan_2 = AGolongan.find_by_id(a_golongan.id + 1)
 a_golongan_3 = AGolongan.find_by_id(a_golongan.id + 2)
 a_golongan_4 = AGolongan.find_by_id(a_golongan.id + 3)
+
+AType.create([
+  { kode: 'K1', nama: 'Jenis 1', simbol: 'S1', id_department: a_department.id, id_golongan: a_golongan.id },
+  { kode: 'K2', nama: 'Jenis 2', simbol: 'S2', id_department: a_department.id, id_golongan: a_golongan.id },
+  { kode: 'K3', nama: 'Jenis 3', simbol: 'S3', id_department: a_department.id, id_golongan: a_golongan_2.id },
+  { kode: 'K4', nama: 'Jenis 4', simbol: 'S4', id_department: a_department.id, id_golongan: a_golongan_2.id },
+  { kode: 'K5', nama: 'Jenis 5', simbol: 'S5', id_department: a_department_2.id, id_golongan: a_golongan_3.id },
+  { kode: 'K6', nama: 'Jenis 6', simbol: 'S6', id_department: a_department_2.id, id_golongan: a_golongan_3.id },
+  { kode: 'K7', nama: 'Jenis 7', simbol: 'S7', id_department: a_department_2.id, id_golongan: a_golongan_4.id },
+  { kode: 'K8', nama: 'Jenis 8', simbol: 'S8', id_department: a_department_2.id, id_golongan: a_golongan_4.id }
+])
