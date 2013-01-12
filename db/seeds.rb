@@ -943,3 +943,8 @@ BBarang.create([
   { kode: 'K1', nama: 'Barang 1', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id, id_level_four: a_level_four.id, id_level_five: a_level_five.id, id_satuan: a_satuan.id },
   { kode: 'K2', nama: 'Barang 2', id_department: a_department_2.id, id_golongan: a_golongan_2.id, id_type: a_type_2.id, id_level_four: a_level_four_2.id, id_level_five: a_level_five_2.id, id_satuan: a_satuan_2.id }
 ])
+
+AKemasan.create([
+  { kode: 'K1', nama: 'Kemasan 1', isi_volume: 1, id_satuan: a_satuan.id },
+  { kode: 'K2', nama: 'Kemasan 2', isi_volume: 2, id_satuan: a_satuan_2.id }
+])
