@@ -900,3 +900,12 @@ BSupplierAlamat.create([
   { kode_alamat: 'KA1', kode: 'K1', kode_kategori: 'Kode Kategori 1', alamat_title: 'Alamat Supplier 1', id_negara: a_negara.id, id_provinsi: a_provinsi.id, id_kota: a_city.id, telepon: '11111111', fax: '11111112', kode_pos: '12345', b_supplier_id: b_supplier.id },
   { kode_alamat: 'KA2', kode: 'K2', kode_kategori: 'Kode Kategori 2', alamat_title: 'Alamat Supplier 2', id_negara: a_negara_2.id, id_provinsi: a_provinsi_2.id, id_kota: a_city_2.id, telepon: '22222222', fax: '22222223', kode_pos: '12346', b_supplier_id: b_supplier_2.id }
 ])
+
+ADepartment.create([
+  { kode: 'K1', nama: 'Department 1', simbol: 'S1' },
+  { kode: 'K2', nama: 'Department 2', simbol: 'S2' }
+])
+
+a_department = ADepartment.first
+a_department_2 = ADepartment.find_by_id(a_department.id + 1)
+
