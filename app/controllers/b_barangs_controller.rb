@@ -43,6 +43,19 @@ class BBarangsController < ApplicationController
 
   def create
     @b_barang = BBarang.new(params[:b_barang].merge({updated_by: current_admin_ms_user.login_name}))
+    
+    prev_barang = BBarang.where(
+      id_department: params[:b_barang][:id_department],
+      id_golongan: params[:b_barang][:id_golongan],
+      id_type: params[:b_barang][:id_type],
+      id_level_four: params[:b_barang][:id_level_four],
+      id_level_five: params[:b_barang][:id_level_five]
+      )
+
+    kode = counter_alpha(prev_barang.count, 3, "BBarang.where(kode: '#{prev_barang.first.kode}').last.kode")
+
+    @b_barang.kode = kode
+
     respond_to do |format|
       if @b_barang.save
         format.html { redirect_to @b_barang, notice: 'Data berhasil disimpan' }
