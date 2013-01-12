@@ -872,25 +872,15 @@ a_negara_2 = ANegara.find_by_id(a_negara.id + 1)
 
 AProvinsi.create([
   { kode: 'K1', nama: 'Provinsi 1', simbol: 'S1', id_negara: a_negara.id },
-  { kode: 'K2', nama: 'Provinsi 2', simbol: 'S2', id_negara: a_negara.id },
-  { kode: 'K3', nama: 'Provinsi 3', simbol: 'S3', id_negara: a_negara_2.id },
-  { kode: 'K4', nama: 'Provinsi 4', simbol: 'S4', id_negara: a_negara_2.id }
+  { kode: 'K2', nama: 'Provinsi 2', simbol: 'S2', id_negara: a_negara_2.id }
 ])
 
 a_provinsi = AProvinsi.first
 a_provinsi_2 = AProvinsi.find_by_id(a_provinsi.id + 1)
-a_provinsi_3 = AProvinsi.find_by_id(a_provinsi.id + 2)
-a_provinsi_4 = AProvinsi.find_by_id(a_provinsi.id + 3)
 
 ACity.create([
   { kode: 'K1', nama: 'City 1', simbol: 'S1', id_negara: a_negara.id, id_provinsi: a_provinsi.id },
-  { kode: 'K2', nama: 'City 2', simbol: 'S2', id_negara: a_negara.id, id_provinsi: a_provinsi.id },
-  { kode: 'K3', nama: 'City 3', simbol: 'S3', id_negara: a_negara.id, id_provinsi: a_provinsi_2.id },
-  { kode: 'K4', nama: 'City 4', simbol: 'S4', id_negara: a_negara.id, id_provinsi: a_provinsi_2.id },
-  { kode: 'K5', nama: 'City 5', simbol: 'S5', id_negara: a_negara_2.id, id_provinsi: a_provinsi_3.id },
-  { kode: 'K6', nama: 'City 6', simbol: 'S6', id_negara: a_negara_2.id, id_provinsi: a_provinsi_3.id },
-  { kode: 'K7', nama: 'City 7', simbol: 'S7', id_negara: a_negara_2.id, id_provinsi: a_provinsi_4.id },
-  { kode: 'K8', nama: 'City 8', simbol: 'S8', id_negara: a_negara_2.id, id_provinsi: a_provinsi_4.id }
+  { kode: 'K2', nama: 'City 2', simbol: 'S2', id_negara: a_negara.id, id_provinsi: a_provinsi_2.id }
 ])
 
 a_city = ACity.first
@@ -911,81 +901,45 @@ a_department_2 = ADepartment.find_by_id(a_department.id + 1)
 
 AGolongan.create([
   { kode: 'K1', nama: 'Golongan 1', simbol: 'S1', id_department: a_department.id },
-  { kode: 'K2', nama: 'Golongan 2', simbol: 'S2', id_department: a_department.id },
-  { kode: 'K3', nama: 'Golongan 3', simbol: 'S3', id_department: a_department_2.id },
-  { kode: 'K4', nama: 'Golongan 4', simbol: 'S4', id_department: a_department_2.id }
+  { kode: 'K2', nama: 'Golongan 2', simbol: 'S2', id_department: a_department_2.id },
 ])
 
 a_golongan = AGolongan.first
 a_golongan_2 = AGolongan.find_by_id(a_golongan.id + 1)
-a_golongan_3 = AGolongan.find_by_id(a_golongan.id + 2)
-a_golongan_4 = AGolongan.find_by_id(a_golongan.id + 3)
 
 AType.create([
   { kode: 'K1', nama: 'Jenis 1', simbol: 'S1', id_department: a_department.id, id_golongan: a_golongan.id },
-  { kode: 'K2', nama: 'Jenis 2', simbol: 'S2', id_department: a_department.id, id_golongan: a_golongan.id },
-  { kode: 'K3', nama: 'Jenis 3', simbol: 'S3', id_department: a_department.id, id_golongan: a_golongan_2.id },
-  { kode: 'K4', nama: 'Jenis 4', simbol: 'S4', id_department: a_department.id, id_golongan: a_golongan_2.id },
-  { kode: 'K5', nama: 'Jenis 5', simbol: 'S5', id_department: a_department_2.id, id_golongan: a_golongan_3.id },
-  { kode: 'K6', nama: 'Jenis 6', simbol: 'S6', id_department: a_department_2.id, id_golongan: a_golongan_3.id },
-  { kode: 'K7', nama: 'Jenis 7', simbol: 'S7', id_department: a_department_2.id, id_golongan: a_golongan_4.id },
-  { kode: 'K8', nama: 'Jenis 8', simbol: 'S8', id_department: a_department_2.id, id_golongan: a_golongan_4.id }
+  { kode: 'K2', nama: 'Jenis 2', simbol: 'S2', id_department: a_department_2.id, id_golongan: a_golongan_2.id }
 ])
 
 a_type = AType.first
+a_type_2 = AType.find_by_id(a_type.id + 1)
 
 ALevelFour.create([
   { kode: 'K1', nama: 'Level Four 1', simbol: 'S1', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id },
-  { kode: 'K2', nama: 'Level Four 2', simbol: 'S2', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id },
-  { kode: 'K3', nama: 'Level Four 3', simbol: 'S3', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id + 1 },
-  { kode: 'K4', nama: 'Level Four 4', simbol: 'S4', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id + 1 },
-  { kode: 'K5', nama: 'Level Four 5', simbol: 'S5', id_department: a_department.id, id_golongan: a_golongan.id + 1, id_type: a_type.id + 2 },
-  { kode: 'K6', nama: 'Level Four 6', simbol: 'S6', id_department: a_department.id, id_golongan: a_golongan.id + 1, id_type: a_type.id + 2 },
-  { kode: 'K7', nama: 'Level Four 7', simbol: 'S7', id_department: a_department.id, id_golongan: a_golongan.id + 1, id_type: a_type.id + 3 },
-  { kode: 'K8', nama: 'Level Four 8', simbol: 'S8', id_department: a_department.id, id_golongan: a_golongan.id + 1, id_type: a_type.id + 3 },
-  { kode: 'K9', nama: 'Level Four 9', simbol: 'S9', id_department: a_department.id + 1, id_golongan: a_golongan.id + 2, id_type: a_type.id + 4 },
-  { kode: 'K10', nama: 'Level Four 10', simbol: 'S10', id_department: a_department.id + 1, id_golongan: a_golongan.id + 2, id_type: a_type.id + 4 },
-  { kode: 'K11', nama: 'Level Four 11', simbol: 'S11', id_department: a_department.id + 1, id_golongan: a_golongan.id + 2, id_type: a_type.id + 5 },
-  { kode: 'K12', nama: 'Level Four 12', simbol: 'S12', id_department: a_department.id + 1, id_golongan: a_golongan.id + 2, id_type: a_type.id + 5 },
-  { kode: 'K13', nama: 'Level Four 13', simbol: 'S13', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 6 },
-  { kode: 'K14', nama: 'Level Four 14', simbol: 'S14', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 6 },
-  { kode: 'K15', nama: 'Level Four 15', simbol: 'S15', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 7 },
-  { kode: 'K16', nama: 'Level Four 16', simbol: 'S16', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 7 }
+  { kode: 'K2', nama: 'Level Four 2', simbol: 'S2', id_department: a_department_2.id, id_golongan: a_golongan_2.id, id_type: a_type_2.id }
 ])
 
 a_level_four = ALevelFour.first
+a_level_four_2 = ALevelFour.find_by_id(a_level_four.id + 1)
 
 ALevelFive.create([
-  { kode: 'K1', nama: 'Level Five 1', simbol: 'S1', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id },
-  { kode: 'K2', nama: 'Level Five 2', simbol: 'S2', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id },
-  { kode: 'K3', nama: 'Level Five 3', simbol: 'S3', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id },
-  { kode: 'K4', nama: 'Level Five 4', simbol: 'S4', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id },
-  { kode: 'K5', nama: 'Level Five 5', simbol: 'S5', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id + 1 },
-  { kode: 'K6', nama: 'Level Five 6', simbol: 'S6', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id + 1 },
-  { kode: 'K7', nama: 'Level Five 7', simbol: 'S7', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id + 1 },
-  { kode: 'K8', nama: 'Level Five 8', simbol: 'S8', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id + 1 },
-  { kode: 'K9', nama: 'Level Five 9', simbol: 'S9', id_department: a_department.id, id_golongan: a_golongan.id + 2, id_type: a_type.id + 2 },
-  { kode: 'K10', nama: 'Level Five 10', simbol: 'S10', id_department: a_department.id, id_golongan: a_golongan.id + 2, id_type: a_type.id + 2 },
-  { kode: 'K11', nama: 'Level Five 11', simbol: 'S11', id_department: a_department.id, id_golongan: a_golongan.id + 2, id_type: a_type.id + 2 },
-  { kode: 'K12', nama: 'Level Five 12', simbol: 'S12', id_department: a_department.id, id_golongan: a_golongan.id + 2, id_type: a_type.id + 2 },
-  { kode: 'K13', nama: 'Level Five 13', simbol: 'S13', id_department: a_department.id, id_golongan: a_golongan.id + 2, id_type: a_type.id + 3 },
-  { kode: 'K14', nama: 'Level Five 14', simbol: 'S14', id_department: a_department.id, id_golongan: a_golongan.id + 2, id_type: a_type.id + 3 },
-  { kode: 'K15', nama: 'Level Five 15', simbol: 'S15', id_department: a_department.id, id_golongan: a_golongan.id + 2, id_type: a_type.id + 3 },
-  { kode: 'K16', nama: 'Level Five 16', simbol: 'S16', id_department: a_department.id, id_golongan: a_golongan.id + 2, id_type: a_type.id + 3 },
-  { kode: 'K17', nama: 'Level Five 17', simbol: 'S17', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 4 },
-  { kode: 'K18', nama: 'Level Five 18', simbol: 'S18', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 4 },
-  { kode: 'K19', nama: 'Level Five 19', simbol: 'S19', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 4 },
-  { kode: 'K20', nama: 'Level Five 20', simbol: 'S20', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 4 },
-  { kode: 'K21', nama: 'Level Five 21', simbol: 'S21', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 5 },
-  { kode: 'K22', nama: 'Level Five 22', simbol: 'S22', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 5 },
-  { kode: 'K23', nama: 'Level Five 23', simbol: 'S23', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 5 },
-  { kode: 'K24', nama: 'Level Five 24', simbol: 'S24', id_department: a_department.id + 1, id_golongan: a_golongan.id + 3, id_type: a_type.id + 5 },
-  { kode: 'K25', nama: 'Level Five 25', simbol: 'S25', id_department: a_department.id + 1, id_golongan: a_golongan.id + 4, id_type: a_type.id + 6 },
-  { kode: 'K26', nama: 'Level Five 26', simbol: 'S26', id_department: a_department.id + 1, id_golongan: a_golongan.id + 4, id_type: a_type.id + 6 },
-  { kode: 'K27', nama: 'Level Five 27', simbol: 'S27', id_department: a_department.id + 1, id_golongan: a_golongan.id + 4, id_type: a_type.id + 6 },
-  { kode: 'K28', nama: 'Level Five 28', simbol: 'S28', id_department: a_department.id + 1, id_golongan: a_golongan.id + 4, id_type: a_type.id + 6 },
-  { kode: 'K29', nama: 'Level Five 29', simbol: 'S29', id_department: a_department.id + 1, id_golongan: a_golongan.id + 4, id_type: a_type.id + 7 },
-  { kode: 'K30', nama: 'Level Five 30', simbol: 'S30', id_department: a_department.id + 1, id_golongan: a_golongan.id + 4, id_type: a_type.id + 7 },
-  { kode: 'K31', nama: 'Level Five 31', simbol: 'S31', id_department: a_department.id + 1, id_golongan: a_golongan.id + 4, id_type: a_type.id + 7 },
-  { kode: 'K32', nama: 'Level Five 32', simbol: 'S32', id_department: a_department.id + 1, id_golongan: a_golongan.id + 4, id_type: a_type.id + 7 }
+  { kode: 'K1', nama: 'Level Five 1', simbol: 'S1', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id, id_level_four: a_level_four.id },
+  { kode: 'K2', nama: 'Level Five 2', simbol: 'S2', id_department: a_department_2.id, id_golongan: a_golongan_2.id, id_type: a_type_2.id, id_level_four: a_level_four_2.id }
+])
+
+a_level_five = ALevelFive.first
+a_level_five_2 = ALevelFive.find_by_id(a_level_five.id + 1)
+
+ASatuan.create([
+  { simbol: 'S1', nama: 'Satuan 1', no_urut: 1 },
+  { simbol: 'S2', nama: 'Satuan 2', no_urut: 2 }
+])
+
+a_satuan = ASatuan.first
+a_satuan_2 = ASatuan.find_by_id(a_satuan.id + 1)
+
+BBarang.create([
+  { kode: 'K1', nama: 'Barang 1', id_department: a_department.id, id_golongan: a_golongan.id, id_type: a_type.id, id_level_four: a_level_four.id, id_level_five: a_level_five.id, id_satuan: a_satuan.id },
+  { kode: 'K2', nama: 'Barang 2', id_department: a_department_2.id, id_golongan: a_golongan_2.id, id_type: a_type_2.id, id_level_four: a_level_four_2.id, id_level_five: a_level_five_2.id, id_satuan: a_satuan_2.id }
 ])
