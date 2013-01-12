@@ -1,5 +1,5 @@
 class AGudang < ActiveRecord::Base
-  attr_accessible :nama, :simbol, :st_progress, :status1, :update_by
+  attr_accessible :nama, :simbol, :st_progress, :status1, :update_by, :created_at, :updated_at
   validates :nama, :simbol, :st_progress, :update_by, presence: true
   validates :simbol, uniqueness: true
 
