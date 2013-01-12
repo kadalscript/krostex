@@ -1,0 +1,101 @@
+<%= form_for(@m_warehouse_in_first_h) do |f| %>
+  <% if @m_warehouse_in_first_h.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@m_warehouse_in_first_h.errors.count, "error") %> prohibited this m_warehouse_in_first_h from being saved:</h2>
+
+      <ul>
+      <% @m_warehouse_in_first_h.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode_tmp %><br />
+    <%= f.text_field :kode_tmp %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_disp %><br />
+    <%= f.text_field :kode_disp %>
+  </div>
+  <div class="field">
+    <%= f.label :tanggal %><br />
+    <%= f.datetime_select :tanggal %>
+  </div>
+  <div class="field">
+    <%= f.label :id_cabang %><br />
+    <%= f.text_field :id_cabang %>
+  </div>
+  <div class="field">
+    <%= f.label :simbol %><br />
+    <%= f.text_field :simbol %>
+  </div>
+  <div class="field">
+    <%= f.label :jns_inv %><br />
+    <%= f.number_field :jns_inv %>
+  </div>
+  <div class="field">
+    <%= f.label :id_reff_disp %><br />
+    <%= f.text_field :id_reff_disp %>
+  </div>
+  <div class="field">
+    <%= f.label :keterangan %><br />
+    <%= f.text_field :keterangan %>
+  </div>
+  <div class="field">
+    <%= f.label :id_surat_jalan %><br />
+    <%= f.text_field :id_surat_jalan %>
+  </div>
+  <div class="field">
+    <%= f.label :id_po_disp %><br />
+    <%= f.text_field :id_po_disp %>
+  </div>
+  <div class="field">
+    <%= f.label :id_supplier %><br />
+    <%= f.text_field :id_supplier %>
+  </div>
+  <div class="field">
+    <%= f.label :id_customer %><br />
+    <%= f.text_field :id_customer %>
+  </div>
+  <div class="field">
+    <%= f.label :id_gudang_potong %><br />
+    <%= f.text_field :id_gudang_potong %>
+  </div>
+  <div class="field">
+    <%= f.label :is_nota %><br />
+    <%= f.number_field :is_nota %>
+  </div>
+  <div class="field">
+    <%= f.label :id_nota_beli_disp %><br />
+    <%= f.text_field :id_nota_beli_disp %>
+  </div>
+  <div class="field">
+    <%= f.label :total_qty_in %><br />
+    <%= f.text_field :total_qty_in %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_by %><br />
+    <%= f.text_field :updated_by %>
+  </div>
+  <div class="field">
+    <%= f.label :created_at %><br />
+    <%= f.datetime_select :created_at %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_at %><br />
+    <%= f.datetime_select :updated_at %>
+  </div>
+  <div class="field">
+    <%= f.label :status1 %><br />
+    <%= f.number_field :status1 %>
+  </div>
+  <div class="field">
+    <%= f.label :st_progress %><br />
+    <%= f.text_field :st_progress %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

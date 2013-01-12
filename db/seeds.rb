@@ -1,3 +1,8 @@
+ActiveRecord::Base.establish_connection
+ActiveRecord::Base.connection.tables.each do |table|
+  ActiveRecord::Base.connection.execute("TRUNCATE #{table}") if !["schema_migrations"].include?(table)
+end
+
 AdminMsGroup.delete_all
 AdminMsGroup.create(:id_group =>'00', :namagroup =>'MASTER ROOT', :statusgroup =>0, :id_group_parent =>'ROOT', :created_at =>'1900-01-01', :updated_at =>'1900-01-01')
 AdminMsGroup.create(:id_group =>'01', :namagroup =>'SUPER ADMINISTRATOR', :statusgroup =>0, :id_group_parent =>'00', :created_at =>'1900-01-01', :updated_at =>'1900-01-01')
@@ -840,3 +845,58 @@ ATemplateCat.delete_all
 ATemplateCat.create(:kategori =>'ALAMAT', :kode =>'201301100133', :nama =>'ALAMAT NPWP', :simbol =>'02', :status1 =>0, :st_progress =>'ACTIVE', :updated_by =>'HERMAN', :created_at =>'2013-01-10', :updated_at =>'2013-01-10')
 ATemplateCat.create(:kategori =>'ALAMAT', :kode =>'201301090133', :nama =>'ALAMAT KANTOR', :simbol =>'01', :status1 =>0, :st_progress =>'ACTIVE', :updated_by =>'HERMAN', :created_at =>'1900-01-01', :updated_at =>'1900-01-01')
 ATemplateCat.create(:kategori =>'ALAMAT', :kode =>'201301100134', :nama =>'ALAMAT KIRIM', :simbol =>'03', :status1 =>0, :st_progress =>'ACTIVE', :updated_by =>'HERMAN', :created_at =>'2013-01-10', :updated_at =>'2013-01-10')
+
+ABadanUsaha.create([
+  { kode: 'K1', nama: 'Badan Usaha 1', no_urut: 1 },
+  { kode: 'K2', nama: 'Badan Usaha 2', no_urut: 2 }
+])
+
+a_badan_usaha = ABadanUsaha.first
+a_badan_usaha_2 = ABadanUsaha.find_by_id(a_badan_usaha.id + 1)
+
+BSupplier.create([
+  { kode: "Kode1", nama: "Nama Supplier 1", id_badan_usaha: a_badan_usaha.id, email: 'supplier1@email.com', homepage: 'www.homepage.com', status1: 0 },
+  { kode: "Kode2", nama: "Nama Supplier 2", id_badan_usaha: a_badan_usaha_2.id, email: 'supplier1@email.com', homepage: 'www.homepage.com', status1: 99 }
+])
+
+b_supplier = BSupplier.first
+b_supplier_2 = BSupplier.find_by_id(b_supplier.id + 1)
+
+ANegara.create([
+  { kode: 'K1', nama: 'Negara 1', simbol: 'S1' },
+  { kode: 'K2', nama: 'Negara 2', simbol: 'S2' }
+])
+
+a_negara = ANegara.first
+a_negara_2 = ANegara.find_by_id(a_negara.id + 1)
+
+AProvinsi.create([
+  { kode: 'K1', nama: 'Provinsi 1', simbol: 'S1', id_negara: a_negara.id },
+  { kode: 'K2', nama: 'Provinsi 2', simbol: 'S2', id_negara: a_negara.id },
+  { kode: 'K3', nama: 'Provinsi 3', simbol: 'S3', id_negara: a_negara_2.id },
+  { kode: 'K4', nama: 'Provinsi 4', simbol: 'S4', id_negara: a_negara_2.id }
+])
+
+a_provinsi = AProvinsi.first
+a_provinsi_2 = AProvinsi.find_by_id(a_provinsi.id + 1)
+a_provinsi_3 = AProvinsi.find_by_id(a_provinsi.id + 2)
+a_provinsi_4 = AProvinsi.find_by_id(a_provinsi.id + 3)
+
+ACity.create([
+  { kode: 'K1', nama: 'City 1', simbol: 'S1', id_negara: a_negara.id, id_provinsi: a_provinsi.id },
+  { kode: 'K2', nama: 'City 2', simbol: 'S2', id_negara: a_negara.id, id_provinsi: a_provinsi.id },
+  { kode: 'K3', nama: 'City 3', simbol: 'S3', id_negara: a_negara.id, id_provinsi: a_provinsi_2.id },
+  { kode: 'K4', nama: 'City 4', simbol: 'S4', id_negara: a_negara.id, id_provinsi: a_provinsi_2.id },
+  { kode: 'K5', nama: 'City 5', simbol: 'S5', id_negara: a_negara_2.id, id_provinsi: a_provinsi_3.id },
+  { kode: 'K6', nama: 'City 6', simbol: 'S6', id_negara: a_negara_2.id, id_provinsi: a_provinsi_3.id },
+  { kode: 'K7', nama: 'City 7', simbol: 'S7', id_negara: a_negara_2.id, id_provinsi: a_provinsi_4.id },
+  { kode: 'K8', nama: 'City 8', simbol: 'S8', id_negara: a_negara_2.id, id_provinsi: a_provinsi_4.id }
+])
+
+a_city = ACity.first
+a_city_2 = ACity.find_by_id(a_city.id + 1)
+
+BSupplierAlamat.create([
+  { kode_alamat: 'KA1', kode: 'K1', kode_kategori: 'Kode Kategori 1', alamat_title: 'Alamat Supplier 1', id_negara: a_negara.id, id_provinsi: a_provinsi.id, id_kota: a_city.id, telepon: '11111111', fax: '11111112', kode_pos: '12345', b_supplier_id: b_supplier.id },
+  { kode_alamat: 'KA2', kode: 'K2', kode_kategori: 'Kode Kategori 2', alamat_title: 'Alamat Supplier 2', id_negara: a_negara_2.id, id_provinsi: a_provinsi_2.id, id_kota: a_city_2.id, telepon: '22222222', fax: '22222223', kode_pos: '12346', b_supplier_id: b_supplier_2.id }
+])

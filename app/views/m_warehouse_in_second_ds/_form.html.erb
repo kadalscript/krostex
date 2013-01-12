@@ -1,0 +1,45 @@
+<%= form_for(@m_warehouse_in_second_d) do |f| %>
+  <% if @m_warehouse_in_second_d.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@m_warehouse_in_second_d.errors.count, "error") %> prohibited this m_warehouse_in_second_d from being saved:</h2>
+
+      <ul>
+      <% @m_warehouse_in_second_d.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode_tmp %><br />
+    <%= f.text_field :kode_tmp %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_brg %><br />
+    <%= f.text_field :kode_brg %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_brg_ext %><br />
+    <%= f.text_field :kode_brg_ext %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_brg_lot %><br />
+    <%= f.text_field :kode_brg_lot %>
+  </div>
+  <div class="field">
+    <%= f.label :qty %><br />
+    <%= f.text_field :qty %>
+  </div>
+  <div class="field">
+    <%= f.label :created_at %><br />
+    <%= f.datetime_select :created_at %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_at %><br />
+    <%= f.datetime_select :updated_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

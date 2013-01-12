@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130112010117) do
+ActiveRecord::Schema.define(:version => 20130112031845) do
 
   create_table "a_badan_usahas", :force => true do |t|
     t.string   "kode",       :limit => 5
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(:version => 20130112010117) do
     t.string   "kode",        :limit => 5
     t.string   "nama",        :limit => 30
     t.string   "simbol",      :limit => 5
-    t.string   "id_negara",   :limit => 5
-    t.string   "id_provinsi", :limit => 5
+    t.integer  "id_negara",   :limit => 8
+    t.integer  "id_provinsi", :limit => 8
     t.string   "updated_by",  :limit => 30
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
@@ -82,21 +82,10 @@ ActiveRecord::Schema.define(:version => 20130112010117) do
     t.string   "kode",       :limit => 5
     t.string   "nama",       :limit => 15
     t.decimal  "isi_volume"
-    t.string   "id_satuan"
+    t.integer  "id_satuan"
     t.string   "updated_by", :limit => 30
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
-  end
-
-  create_table "a_kotas", :force => true do |t|
-    t.string   "kode",        :limit => 5
-    t.string   "nama",        :limit => 30
-    t.string   "simbol",      :limit => 5
-    t.string   "id_negara",   :limit => 5
-    t.string   "id_provinsi", :limit => 5
-    t.string   "updated_by",  :limit => 30
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
   end
 
   create_table "a_level_fives", :force => true do |t|
@@ -147,7 +136,7 @@ ActiveRecord::Schema.define(:version => 20130112010117) do
     t.string   "kode",       :limit => 5
     t.string   "nama",       :limit => 30
     t.string   "simbol"
-    t.string   "id_negara"
+    t.integer  "id_negara"
     t.string   "updated_by", :limit => 30
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
@@ -407,6 +396,40 @@ ActiveRecord::Schema.define(:version => 20130112010117) do
     t.decimal  "total_kurang_diskon"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+  end
+
+  create_table "m_warehouse_in_first_hs", :force => true do |t|
+    t.string   "kode_tmp"
+    t.string   "kode_disp"
+    t.datetime "tanggal"
+    t.string   "id_cabang"
+    t.string   "simbol"
+    t.integer  "jns_inv"
+    t.string   "id_reff_disp"
+    t.string   "keterangan"
+    t.string   "id_surat_jalan"
+    t.string   "id_po_disp"
+    t.string   "id_supplier"
+    t.string   "id_customer"
+    t.string   "id_gudang_potong"
+    t.integer  "is_nota"
+    t.string   "id_nota_beli_disp"
+    t.decimal  "total_qty_in"
+    t.string   "updated_by"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "status1"
+    t.string   "st_progress"
+  end
+
+  create_table "m_warehouse_in_second_ds", :force => true do |t|
+    t.string   "kode_tmp"
+    t.string   "kode_brg"
+    t.string   "kode_brg_ext"
+    t.string   "kode_brg_lot"
+    t.decimal  "qty"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end

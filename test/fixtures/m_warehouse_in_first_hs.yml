@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kode_tmp: MyString
+  kode_disp: MyString
+  tanggal: 2013-01-12 10:18:05
+  id_cabang: MyString
+  simbol: MyString
+  jns_inv: 1
+  id_reff_disp: MyString
+  keterangan: MyString
+  id_surat_jalan: MyString
+  id_po_disp: MyString
+  id_supplier: MyString
+  id_customer: MyString
+  id_gudang_potong: MyString
+  is_nota: 1
+  id_nota_beli_disp: MyString
+  total_qty_in: 9.99
+  updated_by: MyString
+  created_at: 2013-01-12 10:18:05
+  updated_at: 2013-01-12 10:18:05
+  status1: 1
+  st_progress: MyString
+
+two:
+  kode_tmp: MyString
+  kode_disp: MyString
+  tanggal: 2013-01-12 10:18:05
+  id_cabang: MyString
+  simbol: MyString
+  jns_inv: 1
+  id_reff_disp: MyString
+  keterangan: MyString
+  id_surat_jalan: MyString
+  id_po_disp: MyString
+  id_supplier: MyString
+  id_customer: MyString
+  id_gudang_potong: MyString
+  is_nota: 1
+  id_nota_beli_disp: MyString
+  total_qty_in: 9.99
+  updated_by: MyString
+  created_at: 2013-01-12 10:18:05
+  updated_at: 2013-01-12 10:18:05
+  status1: 1
+  st_progress: MyString

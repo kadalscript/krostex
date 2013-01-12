@@ -130,9 +130,10 @@ class MBeliPoFirstHsController < ApplicationController
 
     @m_beli_po_first_h = MBeliPoFirstH.find_by_id(params[:id])
     @m_beli_po_first_h.update_attributes(params[:m_beli_po_first_h].merge(        
-        id_supplier: params[:supplier_id],
-        id_valuta: params[:kurs_id],
-        nilai_rate_kurs: params[:kurs_value])
+      id_supplier: params[:supplier_id],
+      id_valuta: params[:kurs_id],
+      nilai_rate_kurs: params[:kurs_value]),
+      is_drafted: 0
     )
   end
 
