@@ -909,3 +909,14 @@ ADepartment.create([
 a_department = ADepartment.first
 a_department_2 = ADepartment.find_by_id(a_department.id + 1)
 
+AGolongan.create([
+  { kode: 'K1', nama: 'Golongan 1', simbol: 'S1', id_department: a_department.id },
+  { kode: 'K2', nama: 'Golongan 2', simbol: 'S2', id_department: a_department.id },
+  { kode: 'K3', nama: 'Golongan 3', simbol: 'S3', id_department: a_department_2.id },
+  { kode: 'K4', nama: 'Golongan 4', simbol: 'S4', id_department: a_department_2.id }
+])
+
+a_golongan = AGolongan.first
+a_golongan_2 = AGolongan.find_by_id(a_golongan.id + 1)
+a_golongan_3 = AGolongan.find_by_id(a_golongan.id + 2)
+a_golongan_4 = AGolongan.find_by_id(a_golongan.id + 3)
