@@ -1,5 +1,5 @@
 class AProvinsi < ActiveRecord::Base
-  attr_accessible :id_negara, :kode, :nama, :simbol, :updated_by
+  attr_accessible :id_negara, :kode, :nama, :simbol, :updated_by, :created_at, :updated_at
   belongs_to :a_negara, class_name: "ANegara", foreign_key: "id_negara"
   validates :kode, presence: true, length: { maximum: 5, message: TOO_LONG_CHARACTER }
   validates :nama, presence: true, length: { maximum: 15, message: TOO_LONG_CHARACTER }

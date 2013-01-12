@@ -1,5 +1,5 @@
 class ACompanyProfile < ActiveRecord::Base
-  attr_accessible :alamat_01, :alamat_02, :alamat_03, :alamat_title, :contact_person, :email, :fax, :homepage, :kode, :nama_company, :telepon
+  attr_accessible :alamat_01, :alamat_02, :alamat_03, :alamat_title, :contact_person, :email, :fax, :homepage, :kode, :nama_company, :telepon, :created_at, :updated_at
   validates :kode, uniqueness: { message: " harus unik" }, length: { maximum: 1, message: " terlalu panjang, maksimal %{count} karakter" }
   validates :nama_company, :contact_person, presence: true, length: { maximum: 50, message: " terlalu panjang, maksimal %{count} karakter" }
   validates :alamat_title, length: { maximum: 90, message: " terlalu panjang, maksimal %{count} karakter" }
