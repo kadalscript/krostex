@@ -127,14 +127,19 @@ class MBeliPoFirstHsController < ApplicationController
     params[:m_beli_po_first_h][:tanggal] = params[:m_beli_po_first_h][:tanggal].to_time
     params[:m_beli_po_first_h][:total_ppn_nominal] = params[:po_header][:total_disc_persen].to_i * params[:po_header_hidden][:total_sub_total].to_i / 100
     params[:m_beli_po_first_h][:total_sub_total_kurang_disc] = params[:po_header_hidden][:total_sub_total].to_i - params[:m_beli_po_first_h][:total_ppn_nominal].to_i
+    params[:m_beli_po_first_h][:is_drafted] = false
 
     @m_beli_po_first_h = MBeliPoFirstH.find_by_id(params[:id])
-    @m_beli_po_first_h.update_attributes(params[:m_beli_po_first_h].merge(        
-      id_supplier: params[:supplier_id],
-      id_valuta: params[:kurs_id],
-      nilai_rate_kurs: params[:kurs_value]),
-      is_drafted: 0
-    )
+
+    respond_to do |format|
+      if  @m_beli_po_first_h.update_attributes(params[:m_beli_po_first_h].merge(
+            id_supplier: params[:supplier_id],
+            id_valuta: params[:kurs_id],
+            nilai_rate_kurs: params[:kurs_value])
+          )
+          format.html { redirect_to m_beli_po_first_hs_path, notice: 'Purchase Order has been undrafted' }
+      end
+    end
   end
 
   def get_gudang
