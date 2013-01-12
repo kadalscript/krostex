@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106090551) do
+ActiveRecord::Schema.define(:version => 20130112010117) do
 
   create_table "a_badan_usahas", :force => true do |t|
     t.string   "kode",       :limit => 5
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(:version => 20130106090551) do
 
   create_table "a_provinsis", :force => true do |t|
     t.string   "kode",       :limit => 5
-    t.string   "nama",       :limit => 15
+    t.string   "nama",       :limit => 30
     t.string   "simbol"
     t.string   "id_negara"
     t.string   "updated_by", :limit => 30
@@ -320,6 +320,23 @@ ActiveRecord::Schema.define(:version => 20130106090551) do
     t.integer  "status1"
     t.string   "st_progress",   :limit => 20
     t.integer  "b_supplier_id"
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "b_supplier_contacts", :force => true do |t|
+    t.string   "kode_contact",  :limit => 15
+    t.string   "kode",          :limit => 10
+    t.string   "kode_kategori", :limit => 15
+    t.string   "nama",          :limit => 50
+    t.string   "nama_lengkap",  :limit => 90
+    t.string   "telepon",       :limit => 50
+    t.string   "handphone",     :limit => 50
+    t.string   "email",         :limit => 50
+    t.datetime "tgl_lahir"
+    t.integer  "status1",       :limit => 2
+    t.string   "st_progress",   :limit => 20
     t.string   "updated_by",    :limit => 30
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false

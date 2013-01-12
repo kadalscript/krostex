@@ -1,0 +1,115 @@
+
+<table class="table-bordered" align="center" width="100%">
+    <tr>
+        <th><%= link_to 'Tambah Contact', 'javascript:void(0)', class: 'btn btn-primary pull-left', style: 'margin-left: 20px;', id: 'formSupplier' %>
+        </th>
+    </tr>  
+
+    <tr>
+        <th width="100%">  
+            <table class="table-bordered table-hover" align="center" width="100%">
+             <% @b_supplier_contacts.each do |b_supplier_contact| %>
+                 <tr>
+                     <th>
+                        <table class="table-bordered" align="center" width="100%">
+                            <thead class="thead">
+                             <tr class="titleJudulTable thead" >
+                               <th align="left" colspan="3">&nbsp;<%= @nama_kategori_alamat %>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[
+                                   <%= link_to "Koreksi", "javascript:void(0)" , id: "koreksi", value: b_supplier_contact.id, class:'navigasi_putih' %>
+                                   &nbsp;| &nbsp;
+                                   <%= link_to "Delete", "javascript:void(0)"  , id: "delete", value: b_supplier_contact.id, class:'navigasi_putih' %> ]
+                               </th>     
+                             </tr>
+                            </thead> 
+                            <tr>
+                                  <th align="left" width="100px">&nbsp;Kode contact</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.kode_contact", b_supplier_contact['kode_contact'], disabled: 'disabled', style:"width:620px"  %>
+                                    </th> 
+                             </tr>
+                            <tr>
+                                  <th align="left" width="100px">&nbsp;Kode</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.kode", b_supplier_contact['kode'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                            </tr>
+                            <tr>
+                                  <th align="left" width="100px">&nbsp;Kode Kategori</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.kode_kategori", b_supplier_contact['kode_kategori'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>
+                            <tr>
+                                  <th align="left" width="100px">&nbsp;Nama</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.nama", b_supplier_contact['nama'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>                                                                              <tr>
+                                  <th align="left" width="100px">&nbsp;Nama Lengkap</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.nama_lengkap", b_supplier_contact['nama_lengkap'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>   
+                             <tr>
+                                  <th align="left" width="100px">&nbsp;Telepon</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.telepon", b_supplier_contact['telepon'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>
+                             <tr>
+                                  <th align="left" width="100px">&nbsp;Handphone</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.handphone", b_supplier_contact['handphone'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>     
+                             <tr>
+                                  <th align="left" width="100px">&nbsp;Email</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.email", b_supplier_contact['email'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>
+                             <tr>
+                                  <th align="left" width="100px">&nbsp;Tgl Lahir</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.tgl_lahir", b_supplier_contact['tgl_lahir'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>
+                             <tr>
+                                  <th align="left" width="100px">&nbsp;status1</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.status1", b_supplier_contact['status1'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>
+                             <tr>
+                                  <th align="left" width="100px">&nbsp;status progress</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.st_progress", b_supplier_contact['st_progress'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>    
+                             <tr>
+                                  <th align="left" width="100px">&nbsp;Update Oleh</th>  
+                                  <th align="center">:</th>
+                                  <th align="left">&nbsp;
+                                         <%= text_field_tag "b_supplier_contact.updated_by", b_supplier_contact['updated_by'], disabled: 'disabled', style:"width:620px"  %>
+                                  </th> 
+                             </tr>                                         
+                        </table>
+                     </th>
+                 <tr> 
+             <% end %>  
+            </table>
+        </th>
+  </tr>
+</table>

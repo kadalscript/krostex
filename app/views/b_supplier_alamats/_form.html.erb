@@ -6,14 +6,29 @@
       b_supplier_alamat.kode_alamat = "xxxxxxxxxxxxxx"  
 
       @ATemplates                   = ATemplateCat.where(kategori: 'ALAMAT')
-      @a_cities          = ACity.all 
+      @a_cities                     = ACity.all
+        
+      # debugger
+      # @provinsi                     = AProvinsi.where(kode: b_supplier_alamat.id_provinsi).first
+      # @negara                       = ANegara.where(kode: b_supplier_alamat.id_negara).first
+
+      @nama_provinsi                = ""  
+      @nama_negara                  = "" 
+
+
       unless !["update","destroy"].include?(action)
+
+              kota = ACity.where(kode: b_supplier_alamat.id_kota).first
+              @provinsi = AProvinsi.where(kode: kota.id_provinsi).first
+              @negara = ANegara.where(kode: kota.id_negara).first
+
+             @nama_provinsi     = @provinsi.nama    
+             @nama_negara       = @negara.nama 
              
-             @read_only         = true
+             @read_only         = false
              @read_only_key     = true
              @read_only_primary = true
              @disable_combo     = false
-             debugger 
       end   
 %>
 <div id="supplierModal">
@@ -29,34 +44,34 @@
                     <tr>
                       <th align="left">&nbsp;Kode Alamat</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :kode_alamat, :style => "width:300px" , readonly: @read_only_key, class: :required %></th>
+                      <th align="left">&nbsp;<%= f.text_field :kode_alamat, :style => "width:300px" , readonly: @read_only_key, class: :required %></th>
                     </tr>
                     <tr>
                       <th align="left">&nbsp;Kode Supplier</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :kode, :style => "width:300px", readonly: @read_only_key, class: :required %></th>
+                      <th align="left">&nbsp;<%= f.text_field :kode, :style => "width:300px", readonly: @read_only_key, class: :required %></th>
                     </tr>
                     <tr>
                       <th align="left">&nbsp;Kategori</th>
                       <th align="center">:</th>
-                      <th align="left">
+                      <th align="left">&nbsp;
                           <%= f.select :kode_kategori, options_from_collection_for_select(@ATemplates, 'kode', 'nama', :kode_kategori), {}, prompt: "- Kategori -", :style => "width:313px",disabled: @disable_combo, class: :required %>
                       </th>
                     </tr>
                     <tr>
                       <th align="left">&nbsp;Alamat</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :alamat_title, :style => "width:300px", readonly: @read_only, class: :required %></th>
+                      <th align="left">&nbsp;<%= f.text_field :alamat_title, :style => "width:300px", readonly: @read_only, class: :required %></th>
                     </tr>
                     <tr>
                       <th align="left">&nbsp;</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :alamat_01, :style => "width:300px", readonly: @read_only, class: :required %></th>
+                      <th align="left">&nbsp;<%= f.text_field :alamat_01, :style => "width:300px", readonly: @read_only, class: :required %></th>
                     </tr>
                     <tr>
                       <th align="left">&nbsp;</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :alamat_02, :style => "width:300px", readonly: @read_only, class: :required %></th>
+                      <th align="left">&nbsp;<%= f.text_field :alamat_02, :style => "width:300px", readonly: @read_only, class: :required %></th>
                     </tr>
                     <tr>
                       <th align="left">&nbsp;Kota</th>
@@ -67,12 +82,14 @@
                     <tr>
                       <th align="left">&nbsp;Provinsi</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :id_provinsi, :style => "width:300px", readonly: @read_only_primary, class: :required %></th>
+                      <th align="left">&nbsp;<%= text_field_tag "b_supplier_alamat_nama_provinsi", @nama_provinsi, readonly: @read_only_primary, style:"width:300px"  %>
+                        <%= f.hidden_field :id_provinsi, :style => "width:300px", readonly: @read_only_primary, class: :required %></th>
                     </tr>                    
                     <tr>
                       <th align="left">&nbsp;Negara</th>
                       <th align="center">:</th>
-                      <th align="left"><%= f.text_field :id_negara, :style => "width:300px", readonly: @read_only_primary, class: :required %></th>
+                      <th align="left">&nbsp;<%= text_field_tag "b_supplier_alamat_nama_negara", @nama_negara, readonly: @read_only_primary, style:"width:300px"  %>
+                        <%= f.hidden_field :id_negara, :style => "width:300px", readonly: @read_only_primary, class: :required %></th>
                     </tr>
 
                     <tr>
@@ -111,3 +128,16 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#b_supplier_alamat_id_kota').change(function(){
+      $.ajax({
+        url: "<%= b_supplier_find_by_kota_path(@b_supplier.id) %>",
+        data: {
+          id_kota: $(this).val()
+        }
+      });
+    })
+  })
+</script>

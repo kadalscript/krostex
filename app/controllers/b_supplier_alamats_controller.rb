@@ -44,30 +44,21 @@ class BSupplierAlamatsController < ApplicationController
   end
 
   def change_form
+      # kota      = ACity.where(kode: params[:id_kota]).first
+      # @provinsi = AProvinsi.where(kode: kota.id_provinsi).first
+      # @negara   = ANegara.where(kode: kota.id_negara).first
 
-      # @read_only                    = false
-      # @read_only_key                = true
-      # @read_only_primary            = true
-      # @disable_combo                = false
-      # b_supplier_alamat.kode_alamat = "xxxxxxxxxxxxxx"  
-
-      
-      
+       # @nama_provinsi = b_supplier_alamat.id_kota  
       # debugger 
-      # unless ["update","destroy"].include?(action)
-             @ATemplates                   = ATemplateCat.where(kategori: 'ALAMAT')
-             @a_cities          = ACity.all 
-             @read_only         = false
-             @read_only_key     = true
-             @read_only_primary = true
-             @disable_combo     = false
-             # debugger 
-      # end   
-      
        respond_to do |format|
-
             format.js { render }
        end
+  end
+
+  def find_by_kota
+    kota = ACity.where(kode: params[:id_kota]).first
+    @provinsi = AProvinsi.where(kode: kota.id_provinsi).first
+    @negara = ANegara.where(kode: kota.id_negara).first
   end
 
 private

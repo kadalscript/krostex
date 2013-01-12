@@ -13,15 +13,20 @@ class BSuppliersController < ApplicationController
   end
 
   def show
-    @b_supplier_alamats = @b_supplier.b_supplier_alamats.order('id')
-    @b_supplier_alamat  = BSupplierAlamat.new
+    @b_supplier_alamats  = @b_supplier.b_supplier_alamats.order('id')
+    @b_supplier_alamat   = BSupplierAlamat.new
 
-    @a_badan_usahas     = ABadanUsaha.all  
-    @a_cities           = ACity.all 
-    @read_only          = true
-    @read_only_key      = true
-    @read_only_always   = true
-    @disabled_combo     = true
+    # @b_supplier_contacts = BSupplierContact.find(params[:id])
+    @b_supplier_contacts = @b_supplier.b_supplier_contacts.order('id')
+    
+    @b_supplier_contact  = BSupplierContact.new 
+
+    @a_badan_usahas      = ABadanUsaha.all  
+    @a_cities            = ACity.all 
+    @read_only           = true
+    @read_only_key       = true
+    @read_only_always    = true
+    @disabled_combo      = true
 
     
     respond_to do |format|

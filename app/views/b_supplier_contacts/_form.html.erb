@@ -1,0 +1,73 @@
+<%= form_for(@b_supplier_contact) do |f| %>
+  <% if @b_supplier_contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@b_supplier_contact.errors.count, "error") %> prohibited this b_supplier_contact from being saved:</h2>
+
+      <ul>
+      <% @b_supplier_contact.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode_contact %><br />
+    <%= f.text_field :kode_contact %>
+  </div>
+  <div class="field">
+    <%= f.label :kode %><br />
+    <%= f.text_field :kode %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_kategori %><br />
+    <%= f.text_field :kode_kategori %>
+  </div>
+  <div class="field">
+    <%= f.label :nama %><br />
+    <%= f.text_field :nama %>
+  </div>
+  <div class="field">
+    <%= f.label :nama_lengkap %><br />
+    <%= f.text_field :nama_lengkap %>
+  </div>
+  <div class="field">
+    <%= f.label :telepon %><br />
+    <%= f.text_field :telepon %>
+  </div>
+  <div class="field">
+    <%= f.label :handphone %><br />
+    <%= f.text_field :handphone %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :tgl_lahir %><br />
+    <%= f.datetime_select :tgl_lahir %>
+  </div>
+  <div class="field">
+    <%= f.label :telepon %><br />
+    <%= f.text_field :telepon %>
+  </div>
+  <div class="field">
+    <%= f.label :status1 %><br />
+    <%= f.number_field :status1 %>
+  </div>
+  <div class="field">
+    <%= f.label :string %><br />
+    <%= f.text_field :string %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_by %><br />
+    <%= f.text_field :updated_by %>
+  </div>
+  <div class="field">
+    <%= f.label : %><br />
+    <%= f.text_field : %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
