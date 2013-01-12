@@ -5,7 +5,7 @@ class MBeliPoFirstHsController < ApplicationController
   @@table_name = MBeliPoFirstH.table_name
 
   def index
-    @m_beli_po_first_hs = MBeliPoFirstH.page(params[:page]).per(5).order('id')
+    @m_beli_po_first_hs = MBeliPoFirstH.is_not_drafted.page(params[:page]).per(5).order('id')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @m_beli_po_first_hs }

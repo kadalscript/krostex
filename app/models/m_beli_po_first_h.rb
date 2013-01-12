@@ -10,4 +10,8 @@ class MBeliPoFirstH < ActiveRecord::Base
   has_many :m_beli_po_second_ds, class_name: 'MBeliPoSecondD', foreign_key: 'kode_tmp'
   belongs_to :b_supplier, class_name: 'BSupplier', foreign_key: 'id_supplier'
   belongs_to :a_mata_uang, class_name: 'AMataUang', foreign_key: 'id_valuta'
+
+  def self.is_not_drafted
+    self.where(is_drafted: false)
+  end
 end
