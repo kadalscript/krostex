@@ -52,7 +52,9 @@ class BBarangsController < ApplicationController
       id_level_five: params[:b_barang][:id_level_five]
       )
 
-    kode = counter_alpha(prev_barang.count, 3, "BBarang.where(kode: '#{prev_barang.first.kode}').last.kode")
+    kode = counter_alpha(prev_barang.count, 3, "BBarang.where(kode: '#{prev_barang.maximum('kode')}').first.kode")
+
+    raise kode
 
     @b_barang.kode = kode
 
