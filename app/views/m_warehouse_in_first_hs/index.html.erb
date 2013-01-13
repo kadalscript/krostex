@@ -1,63 +1,27 @@
-<h1>Listing m_warehouse_in_first_hs</h1>
-
-<table>
-  <tr>
-    <th>Kode tmp</th>
-    <th>Kode disp</th>
-    <th>Tanggal</th>
-    <th>Id cabang</th>
-    <th>Simbol</th>
-    <th>Jns inv</th>
-    <th>Id reff disp</th>
-    <th>Keterangan</th>
-    <th>Id surat jalan</th>
-    <th>Id po disp</th>
-    <th>Id supplier</th>
-    <th>Id customer</th>
-    <th>Id gudang potong</th>
-    <th>Is nota</th>
-    <th>Id nota beli disp</th>
-    <th>Total qty in</th>
-    <th>Updated by</th>
-    <th>Created at</th>
-    <th>Updated at</th>
-    <th>Status1</th>
-    <th>St progress</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @m_warehouse_in_first_hs.each do |m_warehouse_in_first_h| %>
-  <tr>
-    <td><%= m_warehouse_in_first_h.kode_tmp %></td>
-    <td><%= m_warehouse_in_first_h.kode_disp %></td>
-    <td><%= m_warehouse_in_first_h.tanggal %></td>
-    <td><%= m_warehouse_in_first_h.id_cabang %></td>
-    <td><%= m_warehouse_in_first_h.simbol %></td>
-    <td><%= m_warehouse_in_first_h.jns_inv %></td>
-    <td><%= m_warehouse_in_first_h.id_reff_disp %></td>
-    <td><%= m_warehouse_in_first_h.keterangan %></td>
-    <td><%= m_warehouse_in_first_h.id_surat_jalan %></td>
-    <td><%= m_warehouse_in_first_h.id_po_disp %></td>
-    <td><%= m_warehouse_in_first_h.id_supplier %></td>
-    <td><%= m_warehouse_in_first_h.id_customer %></td>
-    <td><%= m_warehouse_in_first_h.id_gudang_potong %></td>
-    <td><%= m_warehouse_in_first_h.is_nota %></td>
-    <td><%= m_warehouse_in_first_h.id_nota_beli_disp %></td>
-    <td><%= m_warehouse_in_first_h.total_qty_in %></td>
-    <td><%= m_warehouse_in_first_h.updated_by %></td>
-    <td><%= m_warehouse_in_first_h.created_at %></td>
-    <td><%= m_warehouse_in_first_h.updated_at %></td>
-    <td><%= m_warehouse_in_first_h.status1 %></td>
-    <td><%= m_warehouse_in_first_h.st_progress %></td>
-    <td><%= link_to 'Show', m_warehouse_in_first_h %></td>
-    <td><%= link_to 'Edit', edit_m_warehouse_in_first_h_path(m_warehouse_in_first_h) %></td>
-    <td><%= link_to 'Destroy', m_warehouse_in_first_h, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<table class="table table-bordered table-hover" width="60%" align="center">
+  <thead class="thead">
+    <tr class="titleJudul" style="font-size : 12pt">
+      <th align="center" colspan="11"><%= form_title(action_name, @title) %></th>
+    </tr>
+    <tr class="blankSpot">
+      <th colspan="11" align="left">&nbsp;
+        <%= link_to ADD, new_m_warehouse_in_first_h_path, class: "navigasi btn" %>
+        <a id="searchLink" class="navigasi btn" href="javascript:void(0)" style="float:right"><%= SEARCH %></a>
+      </th>
+    </tr>
+    <tr class="titleJudulTable">
+      <th>Tanggal</th>
+      <th>Kode BTB</th>
+      <th>No Ref</th>
+      <th>Status</th>
+      <th>Nama Referensi</th>
+    </tr>
+  </thead>
+  <thead class="thead">
+    <tr class="titleJudulTable">
+      <th colspan="11" align="right">
+        <%= paginate @m_warehouse_in_first_hs %>
+      </th>
+    </tr>
+  </thead>
 </table>
-
-<br />
-
-<%= link_to 'New M warehouse in first h', new_m_warehouse_in_first_h_path %>

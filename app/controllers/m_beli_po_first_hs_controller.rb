@@ -36,20 +36,6 @@ class MBeliPoFirstHsController < ApplicationController
     @m_beli_po_first_h = MBeliPoFirstH.find(params[:id])
   end
 
-  def create
-    @m_beli_po_first_h = MBeliPoFirstH.new(params[:m_beli_po_first_h])
-
-    respond_to do |format|
-      if @m_beli_po_first_h.save
-        format.html { redirect_to @m_beli_po_first_h, notice: 'M beli po first h was successfully created.' }
-        format.json { render json: @m_beli_po_first_h, status: :created, location: @m_beli_po_first_h }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @m_beli_po_first_h.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def update
     @m_beli_po_first_h = MBeliPoFirstH.find(params[:id])
 

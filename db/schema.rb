@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130112031845) do
+ActiveRecord::Schema.define(:version => 20130113083513) do
 
   create_table "a_badan_usahas", :force => true do |t|
     t.string   "kode",       :limit => 5
@@ -420,6 +420,7 @@ ActiveRecord::Schema.define(:version => 20130112031845) do
     t.datetime "updated_at",        :null => false
     t.integer  "status1"
     t.string   "st_progress"
+    t.boolean  "is_drafted"
   end
 
   create_table "m_warehouse_in_second_ds", :force => true do |t|

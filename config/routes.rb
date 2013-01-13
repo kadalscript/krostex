@@ -1,10 +1,8 @@
 Hermanstartup::Application.routes.draw do
   resources :m_warehouse_in_second_ds
-
-
-  resources :m_warehouse_in_first_hs
-
-
+  resources :m_warehouse_in_first_hs do
+    match 'draft'
+  end
   resources :m_beli_po_first_hs do
     collection do
       match "get_supplier"
