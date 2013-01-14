@@ -24,6 +24,7 @@ Hermanstartup::Application.routes.draw do
   resources :a_gudangs
   resources :a_company_profiles
   resources :a_satuans
+  resources :a_setting_programs
   resources :a_kotas
   resources :a_provinsis
   resources :a_negaras
