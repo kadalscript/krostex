@@ -7,6 +7,7 @@ class ASatuan < ActiveRecord::Base
   before_create :check_updater
   before_save :check_updater
   has_many :a_kemasans, class_name: "AKemasan", foreign_key: "id_satuan"
+  has_many :warehouse_details, class_name: 'MWarehouseInSecondD', foreign_key: 'satuan_id'
   before_destroy :check_childs
 
   def check_updater
