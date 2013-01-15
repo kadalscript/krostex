@@ -148,6 +148,7 @@ class MBeliPoFirstHsController < ApplicationController
     type_id = params[:type_id]
     golongan_id = params[:golongan_id]
     department_id = params[:department_id]
+    @feature = params[:feature]
 
     if !level_five_id.blank?
       @b_barangs = BBarang.where(id_level_five: level_five_id)

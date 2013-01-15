@@ -1,0 +1,58 @@
+<style>
+  div.span8 { color: 'black' }
+</style>
+<div class="row16">
+  <div class="span8" style="color: black">
+    <div class="control-group">
+      <%= label_tag :id_gudang_potong, "Gudang".titleize, class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :id_gudang_potong_field1, "", class: 'span2' %>
+        <%= text_field_tag :id_gudang_potong_field2, "", class: 'span2' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= label_tag :no_btb, "No BTB".titleize, class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :no_btb, "" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= label_tag :no_po, "No PO", class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :no_po, "" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= label_tag :supplier, "Supplier".titleize, class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :supplier, "" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= label_tag :tgl_po, "Tanggal PO", class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :tgl_po, "" %>
+      </div>
+    </div>
+  </div>
+  <div class="span8" style="color: black;">
+    <div class="control-group">
+      <%= label_tag :tanggal, "Tanggal", class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :tanggal, "" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= label_tag :sj_supplier, "SJ Supplier", class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :sj_supplier, "" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(function() {
+  $('#tanggal').datepicker();
+});
+</script>

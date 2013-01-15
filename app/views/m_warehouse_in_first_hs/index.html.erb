@@ -10,13 +10,17 @@
       </th>
     </tr>
     <tr class="titleJudulTable">
-      <th>Tanggal</th>
-      <th>Kode BTB</th>
-      <th>No Ref</th>
-      <th>Status</th>
-      <th>Nama Referensi</th>
+      <% @column_titles.each do |column_title| %>
+        <th><%= column_title.upcase %></th>
+      <% end %>
     </tr>
   </thead>
+  <% if @m_warehouse_in_first_hs.count > 0 %>
+    <% @m_warehouse_in_first_hs.each do |m_warehouse_in_first_h| %>
+    <% end %>
+  <% else %>
+    <tr><td colspan="<%= @column_titles.count %>" style="text-align: center"><%= EMPTY_DATA %></td></tr>
+  <% end %>
   <thead class="thead">
     <tr class="titleJudulTable">
       <th colspan="11" align="right">

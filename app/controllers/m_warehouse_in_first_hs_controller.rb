@@ -5,7 +5,7 @@ class MWarehouseInFirstHsController < ApplicationController
   @@table_name = MBeliPoFirstH.table_name
 
   def index
-    @m_warehouse_in_first_hs = MWarehouseInFirstH.page(params[:page]).per(5).order('id')
+    @m_warehouse_in_first_hs = MWarehouseInFirstH.where(is_drafted: false).page(params[:page]).per(5).order('id')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @m_warehouse_in_first_hs }
@@ -23,16 +23,30 @@ class MWarehouseInFirstHsController < ApplicationController
   end
 
   def draft
-    @m_warehouse_in_first_h = MWarehouseInFirstH.find_by_id(params[:m_warehouse_in_first_h])
-
+    @m_warehouse_in_first_h = MWarehouseInFirstH.find_by_id(params[:m_warehouse_in_first_h_id])
+    @m_warehouse_in_second_ds = @m_warehouse_in_first_h.m_warehouse_in_second_ds.order('id')
     respond_to do |format|
       format.html
     end
   end
-  
+
+  def undraft
+    respond_to do |format|
+      format.html { redirect_to m_warehouse_in_first_hs_path }
+    end
+  end
+
+  def destroy
+    
+  end
+
 private
 
   def get_miscellaneous
     @title = @@title
+    @column_titles = ["tanggal", "kode btb", "no ref", "status", "nama referensi"]
+    @basic_columns = ["no", "kode barang", "nama barang", "qty", "satuan", "no lot"]
+    @search_columns = @basic_columns + ["check"]
+    @detailed_columns = @basic_columns + ["total", "nav"]
   end
 end
