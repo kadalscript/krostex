@@ -16,7 +16,7 @@
           <td><%= barang.kode %></td>
           <td><%= barang.nama %></td>
           <td><%= text_field_tag "detail[qty][]" %></td>
-          <td><%= select_tag("detail[kemasan_id][]", options_for_select(ASatuan.all.collect { |satuan| [ satuan.nama, satuan.id ] } )) %></td>
+          <td><%= select_tag("detail[satuan_id][]", options_for_select(ASatuan.all.collect { |satuan| [ satuan.nama, satuan.id ] } )) %></td>
           <td><%= text_field_tag "detail[no_lot][]" %></td>
           <td><%= check_box_tag "detail[checked][#{index}][]" %></td>
         </tr>

@@ -8,7 +8,8 @@ class MWarehouseInSecondDsController < ApplicationController
         kode_tmp: params[:m_warehouse_in_first_h_id],
         kode_brg: barang.kode,
         kode_brg_lot: detail[:no_lot][key.to_i].gsub(/\+s/, "").strip,
-        qty: detail[:qty][key.to_i]
+        qty: detail[:qty][key.to_i],
+        satuan_id: detail[:satuan_id][key.to_i]
       )
       @btb.save!
     end
