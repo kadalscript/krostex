@@ -90,7 +90,7 @@ $(function() {
   $('#search_barang').click(function() {
     if ($('#department_id').val() != '') {
       $.ajax({
-        url: '<%= populate_barangs_m_beli_po_first_hs_path %>?feature=warehouse&id=<%= params[:id] %>' + '&department_id=' + $('#department_id').val() + '&golongan_id=' + $('#golongan_id').val() + '&type_id=' + $('#type_id').val() + '&level_four_id=' + $('#level_four_id').val() + '&level_five_id=' + $('#level_five_id').val() ,
+        url: '<%= populate_barangs_m_beli_po_first_hs_path %>?feature=warehouse&id=<%= params[:m_warehouse_in_first_h_id] %>' + '&department_id=' + $('#department_id').val() + '&golongan_id=' + $('#golongan_id').val() + '&type_id=' + $('#type_id').val() + '&level_four_id=' + $('#level_four_id').val() + '&level_five_id=' + $('#level_five_id').val() ,
         beforeSend: function() {
           $('tbody#populated_data').html('<tr><td colspan="<%= @search_columns.count %>" style="text-align: center"><%= image_tag('loader.gif', width: '30px') %></td></tr>');
         },
