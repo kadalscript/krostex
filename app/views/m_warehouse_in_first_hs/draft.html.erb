@@ -22,7 +22,7 @@
               <td><%= detail.satuan.nama %></td>
               <td><%= detail.kode_brg_lot %></td>
               <td><%= detail.harga %></td>
-              <td>Total</td>
+              <td><%= detail.qty * detail.harga %></td>
               <td>
                 <%= link_to "Edit", "javascript:void(0)", id: 'edit_detail', value: "#{detail.id}" %> &nbsp - &nbsp
                 <%= link_to "Destroy", "javascript:void(0)", id: 'destroy_detail', value: "#{detail.id}" %>
