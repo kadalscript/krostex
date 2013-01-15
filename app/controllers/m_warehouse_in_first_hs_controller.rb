@@ -45,7 +45,7 @@ private
   def get_miscellaneous
     @title = @@title
     @column_titles = ["tanggal", "kode btb", "no ref", "status", "nama referensi"]
-    @basic_columns = ["no", "kode barang", "nama barang", "qty", "satuan", "no lot"]
+    @basic_columns = ["no", "kode barang", "nama barang", "qty", "satuan", "no lot", "harga"]
     @search_columns = @basic_columns + ["check"]
     @detailed_columns = @basic_columns + ["total", "nav"]
   end
