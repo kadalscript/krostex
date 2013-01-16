@@ -39,7 +39,7 @@
     <div class="control-group">
       <%= label_tag :tanggal, "Tanggal", class: 'control-label' %>
       <div class="controls">
-        <%= text_field_tag :tanggal, "" %>
+        <%= text_field_tag :tanggal, @m_warehouse_in_first_h.tanggal.blank? ? "" : @m_warehouse_in_first_h.tanggal.strftime("%d/%m/%Y"), 'data-date-format' => 'dd/mm/yyyy' %>
       </div>
     </div>
     <div class="control-group">

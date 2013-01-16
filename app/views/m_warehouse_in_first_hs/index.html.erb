@@ -16,7 +16,14 @@
     </tr>
   </thead>
   <% if @m_warehouse_in_first_hs.count > 0 %>
-    <% @m_warehouse_in_first_hs.each do |m_warehouse_in_first_h| %>
+    <% @m_warehouse_in_first_hs.each do |header| %>
+      <tr>
+        <td><%= header.tanggal %></td>
+        <td>Kode BTB</td>
+        <td>No ref</td>
+        <td>Status</td>
+        <td>Nama referensi</td>
+      </tr>
     <% end %>
   <% else %>
     <tr><td colspan="<%= @column_titles.count %>" style="text-align: center"><%= EMPTY_DATA %></td></tr>

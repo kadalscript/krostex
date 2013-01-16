@@ -31,8 +31,12 @@ class MWarehouseInFirstHsController < ApplicationController
   end
 
   def undraft
+    @m_warehouse_in_first_h = MWarehouseInFirstH.find_by_id(params[:m_warehouse_in_first_h_id])
+
     respond_to do |format|
-      format.html { redirect_to m_warehouse_in_first_hs_path }
+      if @m_warehouse_in_first_h.update_attributes(tanggal: params[:tanggal].to_date, is_drafted: false)
+        format.html { redirect_to m_warehouse_in_first_hs_path }
+      end
     end
   end
 
