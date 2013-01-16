@@ -36,8 +36,22 @@ class MWarehouseInFirstHsController < ApplicationController
     end
   end
 
-  def destroy
+  def modify_destroy_form
+    @m_warehouse_in_first_h = MWarehouseInFirstH.find_by_id(params[:m_warehouse_in_first_h_id])
+    @m_warehouse_in_second_d = MWarehouseInSecondD.find_by_id(params[:detail_id])
+
+    respond_to do |format|
+      format.js { render }
+    end
+  end
+
+  def modify_edit_form
+    @m_warehouse_in_first_h = MWarehouseInFirstH.find_by_id(params[:m_warehouse_in_first_h_id])
+    @m_warehouse_in_second_d = MWarehouseInSecondD.find_by_id(params[:detail_id])
     
+    respond_to do |format|
+      format.js { render }
+    end
   end
 
 private

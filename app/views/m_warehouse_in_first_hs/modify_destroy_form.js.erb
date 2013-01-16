@@ -1,0 +1,7 @@
+$('form#destroying_form').attr('action', '<%= m_warehouse_in_first_h_m_warehouse_in_second_d_path(@m_warehouse_in_first_h, @m_warehouse_in_second_d) %>');
+$('#destroy_kode_barang').attr('value', '<%= @m_warehouse_in_second_d.barang.kode %>');
+$('#destroy_nama_barang').attr('value', '<%= @m_warehouse_in_second_d.barang.nama %>');
+$('#destroy_qty').attr('value', '<%= @m_warehouse_in_second_d.qty %>');
+$('#destroy_satuan').attr('value', '<%= @m_warehouse_in_second_d.satuan.nama %>');
+$('#destroy_no_lot').attr('value', '<%= @m_warehouse_in_second_d.kode_brg_lot %>');
+$('#destroy_harga').attr('value', '<%= @m_warehouse_in_second_d.harga %>');

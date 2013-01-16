@@ -16,8 +16,8 @@
           <% @m_warehouse_in_second_ds.each_with_index do |detail, index| %>
             <tr>
               <td><%= index + 1 %></td>
-              <td><%= detail.kode_brg %></td>
-              <td><%= BBarang.find_by_kode(detail.kode_brg).nama %></td>
+              <td><%= detail.barang.kode %></td>
+              <td><%= detail.barang.nama %></td>
               <td><%= detail.qty %></td>
               <td><%= detail.satuan.nama %></td>
               <td><%= detail.kode_brg_lot %></td>
@@ -74,6 +74,7 @@
   </div>
 <% end %>
 
+<%= render partial: 'edit_modal' %>
 <%= render partial: 'destroy_modal' %>
 
 <script>
@@ -183,6 +184,14 @@ $(function() {
     });
 
     $('#destroy_show').modal();
+  });
+
+  $('a#edit_detail').click(function() {
+    $.ajax({
+      url: '<%= m_warehouse_in_first_h_modify_edit_form_path(@m_warehouse_in_first_h) %>?detail_id=' + $(this).attr('value')
+    });
+
+    $('#edit').modal();
   });
 });
 </script>

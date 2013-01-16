@@ -1,13 +1,51 @@
 <!-- Modal -->
-<div id="destroy_show" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Destroy</h3>
+<%= form_tag(m_warehouse_in_first_h_m_warehouse_in_second_d_path(@m_warehouse_in_first_h, ''), method: :delete, class: 'form-horizontal', id: 'destroying_form') do %>
+  <div id="destroy_show" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Destroy</h3>
+    </div>
+    <div class="modal-body">
+      <div class="control-group">
+        <%= label_tag :destroy_kode_barang, "Kode Barang", class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :destroy_kode_barang, "", disabled: 'disabled' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :destroy_nama_barang, "Nama Barang", class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :destroy_nama_barang, "", disabled: 'disabled' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :destroy_qty, "Qty", class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :destroy_qty, "", disabled: 'disabled' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :destroy_satuan, "Satuan", class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :destroy_satuan, "", disabled: 'disabled' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :destroy_no_lot, "No Lot", class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :destroy_no_lot, "", disabled: 'disabled' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :destroy_harga, "Harga", class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :destroy_harga, "", disabled: 'disabled' %>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <%= button_tag "Delete", class: 'btn btn-primary', confirm: 'Are you sure?' %>
+    </div>
   </div>
-  <div class="modal-body">
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    <%= button_tag "Delete", class: 'btn btn-primary', confirm: 'Are you sure?' %>
-  </div>
-</div>
+<% end %>

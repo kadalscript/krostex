@@ -19,4 +19,25 @@ class MWarehouseInSecondDsController < ApplicationController
       format.html { redirect_to m_warehouse_in_first_h_draft_path(@m_warehouse_in_first_h) }
     end
   end
+
+  def destroy
+    @m_warehouse_in_second_d = MWarehouseInSecondD.find_by_id(params[:id])
+
+    respond_to do |format|
+      if @m_warehouse_in_second_d.destroy
+        format.html { redirect_to m_warehouse_in_first_h_draft_path(params[:m_warehouse_in_first_h_id]), notice: SUCCESSFULLY_DELETE_DATA }
+      end
+    end
+  end
+
+  def update
+    @m_warehouse_in_first_h = MWarehouseInFirstH.find_by_id(params[:m_warehouse_in_first_h_id])
+    @m_warehouse_in_second_d = MWarehouseInSecondD.find_by_id(params[:id])
+
+    respond_to do |format|
+      if @m_warehouse_in_second_d.update_attributes(qty: params[:qty], satuan_id: params[:satuan][:id], kode_brg_lot: params[:no_lot], harga: params[:harga])
+        format.html { redirect_to m_warehouse_in_first_h_draft_path(@m_warehouse_in_first_h), notice: SUCCESSFULLY_UPDATE_DATA }
+      end
+    end
+  end
 end

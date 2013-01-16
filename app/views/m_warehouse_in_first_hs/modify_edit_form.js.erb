@@ -1,0 +1,7 @@
+$('form#editing_form').attr('action', '<%= m_warehouse_in_first_h_m_warehouse_in_second_d_path(@m_warehouse_in_first_h, @m_warehouse_in_second_d) %>');
+$('#kode_barang').attr('value', '<%= @m_warehouse_in_second_d.barang.kode %>');
+$('#nama_barang').attr('value', '<%= @m_warehouse_in_second_d.barang.nama %>');
+$('#qty').attr('value', '<%= @m_warehouse_in_second_d.qty %>');
+$('#satuan_id').attr('value', '<%= @m_warehouse_in_second_d.satuan_id %>');
+$('#no_lot').attr('value', '<%= @m_warehouse_in_second_d.kode_brg_lot %>');
+$('#harga').attr('value', '<%= @m_warehouse_in_second_d.harga %>');
