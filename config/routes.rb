@@ -86,5 +86,12 @@ Hermanstartup::Application.routes.draw do
 
   get "main/index"
 
+  # Notas routing
+  resources :m_beli_nota_first_hs do
+    resources :m_beli_nota_second_ds # Nota details routing
+    match :draft # Adding draft action to notas routing
+    match :undraft # Adding undraft action to notas routing
+  end
+
   root :to => 'main#index'
 end

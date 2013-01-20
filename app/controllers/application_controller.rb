@@ -53,7 +53,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
 protected
   def attributes
     @attributes = { style: "width: 300px;" }
@@ -74,5 +73,9 @@ protected
       format.html { render file: "#{Rails.root}/app/views/#{table_name}/_form" }
       format.json { render json: object }
     end
+  end
+
+  def not_found
+    redirect_to '/404.html'
   end
 end
