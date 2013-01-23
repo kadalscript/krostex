@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kode_account: MyString
+  kode: MyString
+  kode_bank: MyString
+  nama_pemilik: MyString
+  nama_cabang: MyString
+  status1: 1
+  st_progress: MyString
+  updated_by: MyString
+  : MyString
+
+two:
+  kode_account: MyString
+  kode: MyString
+  kode_bank: MyString
+  nama_pemilik: MyString
+  nama_cabang: MyString
+  status1: 1
+  st_progress: MyString
+  updated_by: MyString
+  : MyString

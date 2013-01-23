@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kode: MyString
+  nama: MyString
+  simbol: MyString
+  status1: 1
+  st_progress: MyString
+  updated_by: MyString
+  : MyString
+
+two:
+  kode: MyString
+  nama: MyString
+  simbol: MyString
+  status1: 1
+  st_progress: MyString
+  updated_by: MyString
+  : MyString
