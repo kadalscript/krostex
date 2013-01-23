@@ -1,0 +1,53 @@
+<style>
+  div.span8 { color: 'black' }
+</style>
+<div class="row16">
+  <div class="span8" style="color: black;">
+    <div class="control-group">
+      <%= f.label :id_cabang, "Cabang".titleize, class: 'control-label' %>
+      <div class="controls">
+        <%= f.select(:id_cabang, @company_profiles.map { |company_profile| [ company_profile.nama_company, company_profile.kode ] } ) %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :kode_disp, "No Nota".titleize, class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :kode_disp %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :tanggal, "Tanggal".titleize, class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag 'nota[tanggal]', @nota.tanggal.strftime("%d/%m/%Y"), 'data-date-format' => 'dd/mm/yyyy' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :id_valuta, "Kurs".titleize, class: 'control-label' %>
+      <div class="controls">
+        <%= f.select(:id_valuta, @kurs.map { |kurs| [kurs.nama, kurs.id] }) %>
+      </div>
+    </div>
+  </div>
+  <div class="span8" style="color: black;">
+    <div class="control-group">
+      <%= f.label :no_po_disp, "No PO".titleize, class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :no_po_disp %>
+      </div>
+    </div>
+  </div>
+  <div class="span8" style="color: black;">
+    <div class="control-group">
+      <%= f.label :id_supplier, "Supplier".titleize, class: 'control-label' %>
+      <div class="controls">
+        <%= f.select(:id_supplier, @suppliers.map { |supplier| [ supplier.nama, supplier.id ] }) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(function() {
+  $('#nota_tanggal').datepicker();
+});
+</script>

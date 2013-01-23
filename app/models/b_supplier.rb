@@ -3,7 +3,8 @@ class BSupplier < ActiveRecord::Base
   has_many    :b_supplier_alamats
   has_many    :b_supplier_contacts
   has_many    :m_beli_po_first_hs, class_name: 'MBeliPoFirstH', foreign_key: 'id_supplier'
-  belongs_to  :a_badan_usaha, class_name: "ABadanUsaha", foreign_key: 'kode'
+  has_many :notas, class_name: 'MBeliNotaFirstH', foreign_key: 'id_supplier' # Related to many nota
+  belongs_to  :a_badan_usaha, class_name: "ABadanUsaha", foreign_key: 'kode' 
   before_save :fungsi_before_save
 
   def fungsi_before_save
