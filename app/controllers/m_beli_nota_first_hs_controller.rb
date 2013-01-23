@@ -30,9 +30,10 @@ class MBeliNotaFirstHsController < ApplicationController
     end
   end
 
-  def undraft    
+  def undraft
+    data = params[:m_beli_nota_first_h].merge(params[:nota])
     respond_to do |format|
-      if @nota.update_attributes(is_drafted: false)
+      if @nota.update_attributes(data, is_drafted: false)
         format.html { redirect_to m_beli_nota_first_hs_path }
       end
     end
