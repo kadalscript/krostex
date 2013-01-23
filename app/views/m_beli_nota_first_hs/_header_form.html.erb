@@ -50,6 +50,12 @@
         <%= text_field_tag 'nota[tgl_jth_tempo]', @nota.tgl_jth_tempo.blank? ? '' : @nota.tgl_jth_tempo.strftime("%d/%m/%Y"), 'data-date-format' => 'dd/mm/yyyy' %>
       </div>
     </div>
+    <div class="control-group">
+      <%= label_tag :bukti_terima_barang, "Bukti terima barang".titleize, class: 'control-label' %>
+      <div class="controls">
+        <%= text_area_tag :bukti_terima_barang, "" %>
+      </div>
+    </div>
   </div>
 </div>
 
