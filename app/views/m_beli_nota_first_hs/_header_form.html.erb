@@ -44,12 +44,20 @@
         <%= text_area_tag :alamat_supplier, "", disabled: 'disabled' %>
       </div>
     </div>
+    <div class="control-group">
+      <%= f.label :tgl_jth_tempo, "Jatuh tempo".titleize, class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag 'nota[tgl_jth_tempo]', @nota.tgl_jth_tempo.blank? ? '' : @nota.tgl_jth_tempo.strftime("%d/%m/%Y"), 'data-date-format' => 'dd/mm/yyyy' %>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
 $(function() {
   $('#nota_tanggal').datepicker();
+  $('#nota_tgl_jth_tempo').datepicker();
+
   $('#m_beli_nota_first_h_id_supplier').change(function() {
     var supplier = $('#m_beli_nota_first_h_id_supplier');
     $.ajax({
