@@ -40,7 +40,8 @@
     <div class="control-group">
       <%= f.label :id_supplier, "Supplier".titleize, class: 'control-label' %>
       <div class="controls">
-        <%= f.select(:id_supplier, @suppliers.map { |supplier| [ supplier.nama, supplier.id ] }) %>
+        <%= f.select(:id_supplier, @suppliers.map { |supplier| [ supplier.nama, supplier.id ] }) %><br /><br />
+        <%= text_area_tag :alamat_supplier, "" %>
       </div>
     </div>
   </div>
