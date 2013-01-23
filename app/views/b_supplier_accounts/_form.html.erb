@@ -1,0 +1,53 @@
+<%= form_for(@b_supplier_account) do |f| %>
+  <% if @b_supplier_account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@b_supplier_account.errors.count, "error") %> prohibited this b_supplier_account from being saved:</h2>
+
+      <ul>
+      <% @b_supplier_account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode_account %><br />
+    <%= f.text_field :kode_account %>
+  </div>
+  <div class="field">
+    <%= f.label :kode %><br />
+    <%= f.text_field :kode %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_bank %><br />
+    <%= f.text_field :kode_bank %>
+  </div>
+  <div class="field">
+    <%= f.label :nama_pemilik %><br />
+    <%= f.text_field :nama_pemilik %>
+  </div>
+  <div class="field">
+    <%= f.label :nama_cabang %><br />
+    <%= f.text_field :nama_cabang %>
+  </div>
+  <div class="field">
+    <%= f.label :status1 %><br />
+    <%= f.number_field :status1 %>
+  </div>
+  <div class="field">
+    <%= f.label :st_progress %><br />
+    <%= f.text_field :st_progress %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_by %><br />
+    <%= f.text_field :updated_by %>
+  </div>
+  <div class="field">
+    <%= f.label : %><br />
+    <%= f.text_field : %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

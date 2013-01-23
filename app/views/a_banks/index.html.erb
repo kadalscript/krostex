@@ -1,0 +1,35 @@
+<h1>Listing a_banks</h1>
+
+<table>
+  <tr>
+    <th>Kode</th>
+    <th>Nama</th>
+    <th>Simbol</th>
+    <th>Status1</th>
+    <th>St progress</th>
+    <th>Updated by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @a_banks.each do |a_bank| %>
+  <tr>
+    <td><%= a_bank.kode %></td>
+    <td><%= a_bank.nama %></td>
+    <td><%= a_bank.simbol %></td>
+    <td><%= a_bank.status1 %></td>
+    <td><%= a_bank.st_progress %></td>
+    <td><%= a_bank.updated_by %></td>
+    <td><%= a_bank. %></td>
+    <td><%= link_to 'Show', a_bank %></td>
+    <td><%= link_to 'Edit', edit_a_bank_path(a_bank) %></td>
+    <td><%= link_to 'Destroy', a_bank, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New A bank', new_a_bank_path %>

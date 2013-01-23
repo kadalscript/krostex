@@ -1,0 +1,39 @@
+<h1>Listing b_supplier_accounts</h1>
+
+<table>
+  <tr>
+    <th>Kode account</th>
+    <th>Kode</th>
+    <th>Kode bank</th>
+    <th>Nama pemilik</th>
+    <th>Nama cabang</th>
+    <th>Status1</th>
+    <th>St progress</th>
+    <th>Updated by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @b_supplier_accounts.each do |b_supplier_account| %>
+  <tr>
+    <td><%= b_supplier_account.kode_account %></td>
+    <td><%= b_supplier_account.kode %></td>
+    <td><%= b_supplier_account.kode_bank %></td>
+    <td><%= b_supplier_account.nama_pemilik %></td>
+    <td><%= b_supplier_account.nama_cabang %></td>
+    <td><%= b_supplier_account.status1 %></td>
+    <td><%= b_supplier_account.st_progress %></td>
+    <td><%= b_supplier_account.updated_by %></td>
+    <td><%= b_supplier_account. %></td>
+    <td><%= link_to 'Show', b_supplier_account %></td>
+    <td><%= link_to 'Edit', edit_b_supplier_account_path(b_supplier_account) %></td>
+    <td><%= link_to 'Destroy', b_supplier_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New B supplier account', new_b_supplier_account_path %>
