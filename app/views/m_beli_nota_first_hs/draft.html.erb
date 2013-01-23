@@ -63,5 +63,112 @@ $(function() {
   $('#showingSearch').click(function() {
     $('#searchModal').modal();
   });
+
+  $('#department_id').attr('val', '');
+  $('#golongan_id').attr('disabled', 'disabled');
+  $('#type_id').attr('disabled', 'disabled');
+  $('#level_four_id').attr('disabled', 'disabled');
+  $('#level_five_id').attr('disabled', 'disabled');
+
+  $('#showingSearch').click(function() {
+    $('#searchModal').modal();
+  });
+
+  $('a#edit_detail').click(function() {
+    $.ajax({
+    });
+
+    $('#edit').modal();
+  });
+
+  $('a#destroy_detail').click(function() {
+    $.ajax({
+    });
+
+    $('#destroy_show').modal();
+  });
+
+  $('#m_beli_po_first_h_tanggal').datepicker();
+  $('#department_id').change(function() {
+    if ($('#department_id').val() != '') {
+      $('#golongan_id').removeAttr('disabled');
+      $.ajax({
+        url: '<%= get_golongan_m_beli_po_first_hs_path %>?id=' + $('#department_id').val()
+      });
+      $('#type_id').attr('value', '');
+      $('#type_id').attr('disabled', 'disabled');
+      $('#level_four_id').attr('value', '');
+      $('#level_four_id').attr('disabled', 'disabled');
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    } else if ($('#department_id').val() == '') {
+      $('#golongan_id').attr('value', '');
+      $('#golongan_id').attr('disabled', 'disabled');
+      $('#type_id').attr('value', '');
+      $('#type_id').attr('disabled', 'disabled');
+      $('#level_four_id').attr('value', '');
+      $('#level_four_id').attr('disabled', 'disabled');
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    }
+  });
+
+  $('#golongan_id').change(function() {
+    if ($('#golongan_id').val() != '') {
+      $('#type_id').removeAttr('disabled');
+      $.ajax({
+        url: '<%= get_type_m_beli_po_first_hs_path %>?id=' + $('#golongan_id').val()
+      });
+      $('#level_four_id').attr('value', '');
+      $('#level_four_id').attr('disabled', 'disabled');
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    } else if ($('#golongan_id').val() == '') {
+      $('#type_id').attr('value', '');
+      $('#type_id').attr('disabled', 'disabled');
+      $('#level_four_id').attr('value', '');
+      $('#level_four_id').attr('disabled', 'disabled');
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    }
+  });
+
+  $('#type_id').change(function() {
+    if ($('#type_id').val() != '') {
+      $('#level_four_id').removeAttr('disabled');
+      $.ajax({
+        url: '<%= get_level_four_m_beli_po_first_hs_path %>?id=' + $('#type_id').val()
+      });
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    } else if ($('#type_id').val() == '') {
+      $('#level_four_id').attr('value', '');
+      $('#level_four_id').attr('disabled', 'disabled');
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    }
+  });
+
+  $('#level_four_id').change(function() {
+    if ($('#level_four_id').val() != '') {
+      $('#level_five_id').removeAttr('disabled');
+      $.ajax({
+        url: '<%= get_level_five_m_beli_po_first_hs_path %>?id=' + $('#level_four_id').val()
+      });
+    } else if ($('#level_four_id').val() == '') {
+      $('#level_five_id').attr('value', '');
+      $('#level_five_id').attr('disabled', 'disabled');
+    }
+  });
+
+  $('#search_barang').click(function() {
+    if ($('#department_id').val() != '') {
+      $.ajax({
+      });
+    } else {
+      alert('Department is empty');
+      return false;
+    }
+  });
 });
 </script>
