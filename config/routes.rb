@@ -1,10 +1,6 @@
 Hermanstartup::Application.routes.draw do
   resources :b_supplier_accounts
-
-
   resources :a_banks
-
-
   resources :m_warehouse_in_first_hs do
     match 'draft'
     match 'undraft'
@@ -97,6 +93,7 @@ Hermanstartup::Application.routes.draw do
     resources :m_beli_nota_second_ds # Nota details routing
     match :draft # Adding draft action to notas routing
     match :undraft # Adding undraft action to notas routing
+    match :get_alamat_supplier # Adding action for getting alamat supplier
   end
 
   root :to => 'main#index'

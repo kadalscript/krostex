@@ -5,6 +5,7 @@ class ACity < ActiveRecord::Base
   validates :updated_by, length: { maximum: 30, message: TOO_LONG_CHARACTER }
   belongs_to :a_provinsi, class_name: "AProvinsi", foreign_key: 'id_provinsi'
   belongs_to :a_negara, class_name: "ANegara", foreign_key: 'id_negara'
+  has_many :supplier_alamat, class_name: 'BSupplierAlamat', foreign_key: 'id_kota'
   before_create :check_updater
   before_save :check_updater
 

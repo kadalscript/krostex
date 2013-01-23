@@ -9,7 +9,7 @@ class CreateBSupplierAlamats < ActiveRecord::Migration
       t.string :alamat_02, limit: 90
       t.string :id_negara, limit: 5
       t.string :id_provinsi, limit: 5
-      t.string :id_kota, limit: 5
+      t.integer :id_kota, limit: 5
       t.string :telepon, limit: 30
       t.string :fax, limit: 30
       t.string :kode_pos, limit: 5

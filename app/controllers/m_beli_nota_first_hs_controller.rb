@@ -38,6 +38,10 @@ class MBeliNotaFirstHsController < ApplicationController
     end
   end
 
+  def get_alamat_supplier
+    @supplier = BSupplier.find_by_id(params[:id])
+  end
+
 private
 
   # Populating miscellaneous data

@@ -40,7 +40,7 @@
     <div class="control-group">
       <%= f.label :id_supplier, "Supplier".titleize, class: 'control-label' %>
       <div class="controls">
-        <%= f.select(:id_supplier, @suppliers.map { |supplier| [ supplier.nama, supplier.id ] }) %><br /><br />
+        <%= f.select(:id_supplier, @suppliers.map { |supplier| [ supplier.nama, supplier.id ] }, prompt: '- Supplier -') %><br /><br />
         <%= text_area_tag :alamat_supplier, "", disabled: 'disabled' %>
       </div>
     </div>
@@ -50,5 +50,11 @@
 <script>
 $(function() {
   $('#nota_tanggal').datepicker();
+  $('#m_beli_nota_first_h_id_supplier').change(function() {
+    var supplier = $('#m_beli_nota_first_h_id_supplier');
+    $.ajax({
+      url: '<%= m_beli_nota_first_h_get_alamat_supplier_path(@nota) %>?id=' + supplier.attr('value')
+    });
+  });
 });
 </script>
