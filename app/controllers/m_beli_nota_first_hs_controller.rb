@@ -50,6 +50,7 @@ private
     @title = @@title # Initializing title
     @column_titles = ["tanggal", "no nota", "no po", "supplier", "valuta", "nominal po", "nominal btb", "nominal retur", "nominal dp"] # Initializing column titles
     @detailed_columns = ["kode barang", "nama barang", "unit/price", "qty", "satuan", "discount", "nominal"]
+    @search_columns = []
     @kurs = AMataUang.all
   end
 
