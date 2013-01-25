@@ -1,7 +1,8 @@
-<!-- List banks -->
 <table class="table table-bordered table-hover" width="60%" align="center">
   <thead class="thead">
-    <tr class="titleJudul" style="font-size : 12pt"><th align="center" colspan="11"><%= form_title(action_name, @title) %></th></tr>
+    <tr class="titleJudul" style="font-size : 12pt">
+      <th align="center" colspan="11"><%= form_title(action_name, @title) %></th>
+    </tr>
     <tr class="blankSpot">
       <th colspan="11" align="left">&nbsp;
         <%= link_to ADD, new_a_bank_path, class: "navigasi btn" %>
@@ -9,26 +10,26 @@
       </th>
     </tr>
     <tr class="titleJudulTable">
-      <th>Kode</th>
-      <th>Nama</th>
-      <th>Negara</th>
-      <th>Kota</th>
+      <% ABank.column_names.each do |column_name| %>
+        <% if @visible_columns.include?(column_name) %>
+          <th><%= ABank.human_attribute_name(column_name).titleize %></th>
+        <% end %>
+      <% end %>
     </tr>
   </thead>
   <% if @banks.count > 0 %>
-    <!-- Listing data -->
     <% @banks.each do |bank| %>
-      <tr onclick="redirectTo('<%= a_bank_path(a_bank.id) %>')">
-        <th align="left">&nbsp; Isi kolum</th>
+      <tr onclick="redirectTo('<%= a_bank_path(bank) %>')">
+        <% ABank.column_names.each do |column_name| %>
+          <% if @visible_columns.include?(column_name) %>
+            <td><%= column_name == "updated_at" ? formatting_updated_at(bank[column_name]) : bank[column_name] %></td>
+          <% end %>
+        <% end %>
       </tr>
     <% end %>
-    <!-- Listing data -->
   <% else %>
-    <!-- Showing empty data -->
-    <tr><td colspan="4" style="text-align: center"><%= EMPTY_DATA %></td></tr>
-    <!-- Showing empty data -->
+    <tr><td colspan="<%= @visible_columns.count %>" style="text-align: center"><%= EMPTY_DATA %></td></tr>
   <% end %>
-  <!-- Paginating -->
   <thead class="thead">
     <tr class="titleJudulTable">
       <th colspan="11" align="right">
@@ -36,9 +37,49 @@
       </th>
     </tr>
   </thead>
-  <!-- Paginating -->
 </table>
-<!-- List banks -->
-<!-- Back button -->
-<%= link_to BACK, a_cities_path, class: 'btn btn-success' if action_name == 'search' %>
-<!-- Back button -->
+
+<!-- Modal -->
+<div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <%= form_tag a_banks_search_path, class: 'form-horizontal' do %>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel"><%= SEARCH %> bank</h3>
+    </div>
+    <div class="modal-body">
+      <% @hidden_columns << "updated_at" %>
+      <% ABank.column_names.each do |column_name| %>
+        <% unless @hidden_columns.include?(column_name) %>
+          <div class="control-group">
+            <%= label_tag column_name, ABank.human_attribute_name(column_name).titleize, class: 'control-label' %>
+            <div class="controls">
+              <%= text_field_tag column_name %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true"><%= CLOSE %></button>
+      <button class="btn btn-primary" id="search"><%= SEARCH %></button>&nbsp &nbsp<span id="empty" style="color: red; display: none;">* Setidaknya satu field harus diisi</span>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to BACK, a_banks_path, class: 'btn btn-success' if action_name == 'search' %>
+
+<script>
+$(function() {
+  $('#searchLink').click(function() {
+    $('#searchModal').modal();
+  });
+
+  $('#search').click(function() {
+    if (($('#kode').val() == "") && ($('#nama').val() == "") && ($('#simbol').val() == ""))
+        {
+          $('#empty').fadeIn();
+          return false;
+        }
+  });
+});
+</script>

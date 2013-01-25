@@ -1,0 +1,7 @@
+<tr>
+  <th colspan="3" align="left">&nbsp;
+    <%= link_to ADD, new_a_bank_path if @bank.id  %>
+    &nbsp;|&nbsp;<%= link_to EDIT, edit_a_bank_path(@bank) if @bank.id %>
+    &nbsp;|&nbsp;<%= link_to DELETE, a_banks_destroy_show_path(@bank) unless ["destroy_show", "create"].include?(action_name) %>
+  </th>
+</tr>
