@@ -1,83 +1,92 @@
 class ABanksController < ApplicationController
-  # GET /a_banks
-  # GET /a_banks.json
-  def index
-    @a_banks = ABank.all
+  before_filter :attributes, only: [:new, :show, :edit, :destroy_show, :create, :update]
+  before_filter :find_bank_by_id, only: [:show, :edit, :update, :destroy, :destroy_show]
+  before_filter :get_miscellaneous
 
+  @@title = 'bank'
+  @@table_name = ABank.table_name
+
+  def index
+    @banks = ABank.page(params[:page]).per(PAGINATE).order('id')
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @a_banks }
+      format.json { render json: @banks }
     end
   end
 
-  # GET /a_banks/1
-  # GET /a_banks/1.json
   def show
-    @a_bank = ABank.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @a_bank }
-    end
+    common_form(@@table_name, @@title, @bank)
   end
 
-  # GET /a_banks/new
-  # GET /a_banks/new.json
   def new
-    @a_bank = ABank.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @a_bank }
-    end
+    @bank = ABank.new
+    common_form(@@table_name, @@title, @bank)
   end
 
-  # GET /a_banks/1/edit
   def edit
-    @a_bank = ABank.find(params[:id])
+    common_form(@@table_name, @@title, @bank)
   end
 
-  # POST /a_banks
-  # POST /a_banks.json
   def create
-    @a_bank = ABank.new(params[:a_bank])
-
+    @bank = ABank.new(params[:a_bank])
     respond_to do |format|
-      if @a_bank.save
-        format.html { redirect_to @a_bank, notice: 'A bank was successfully created.' }
-        format.json { render json: @a_bank, status: :created, location: @a_bank }
+      if @bank.save
+        format.html { redirect_to @bank, notice: SUCCESSFULLY_SAVE_DATA }
+        format.json { render json: @bank, status: :created, location: @bank }
       else
-        format.html { render action: "new" }
-        format.json { render json: @a_bank.errors, status: :unprocessable_entity }
+        format.html { common_form(@@table_name, @@title, @bank) }
+        format.json { render json: @bank.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /a_banks/1
-  # PUT /a_banks/1.json
   def update
-    @a_bank = ABank.find(params[:id])
-
     respond_to do |format|
-      if @a_bank.update_attributes(params[:a_bank])
-        format.html { redirect_to @a_bank, notice: 'A bank was successfully updated.' }
+      if @bank.update_attributes(params[:a_bank])
+        format.html { redirect_to @bank, notice: SUCCESSFULLY_UPDATE_DATA }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @a_bank.errors, status: :unprocessable_entity }
+        format.html { common_form(@@table_name, @@title, @bank) }
+        format.json { render json: @bank.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /a_banks/1
-  # DELETE /a_banks/1.json
   def destroy
-    @a_bank = ABank.find(params[:id])
-    @a_bank.destroy
-
+    @bank.destroy
     respond_to do |format|
-      format.html { redirect_to a_banks_url }
+      format.html { redirect_to a_banks_url, notice: SUCCESSFULLY_DELETE_DATA }
       format.json { head :no_content }
     end
+  end
+
+  def destroy_show
+    common_form(@@table_name, @@title, @bank)
+  end
+
+  def search
+    queries = {}
+    ABank.column_names.each { |column_name| queries.merge!({ column_name => params[column_name] }) if params[column_name].present? }
+    @banks = ABank.where(queries).page(params[:page]).per(12)
+    notifications = ""
+    queries.each_pair { |key, value| notifications += "#{ABank.human_attribute_name(key).titleize} = \"#{value}\"<br />" }
+    flash.now[:notice] = "Hasil pencarian :<br /> #{notifications}".html_safe
+    render template: "#{@@table_name}/index"
+  end
+
+private
+  def find_bank_by_id
+    @bank = ABank.find_by_id(params[:id])
+    if @bank.blank?
+      flash[:alert] = NOT_FOUND_DATA
+      redirect_to a_banks_path
+    end
+  end
+
+  def get_miscellaneous
+    @title = @@title
+    @hidden_columns = ["id", "created_at"]
+    @visible_columns = ["kode", "nama", "simbol"]
+    @read_only_attributes = { readonly: true, disabled: 'disabled', style: 'width: 300px;' }
   end
 end

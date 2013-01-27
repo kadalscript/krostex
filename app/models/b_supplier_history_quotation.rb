@@ -1,5 +1,5 @@
 class BSupplierHistoryQuotation < ActiveRecord::Base
-  attr_accessible : :kode, :kode_brg, :kode_brg_ext,
+  attr_accessible   :kode, :kode_brg, :kode_brg_ext,
                     :penawaran_harga_1      , :penawaran_harga_2      , :penawaran_harga_3      , :penawaran_harga_4      , :penawaran_harga_cur,
                     :penawaran_kode_1       , :penawaran_kode_2       , :penawaran_kode_3       , :penawaran_kode_4       , :penawaran_kode_cur,
                     :penawaran_kode_satuan_1, :penawaran_kode_satuan_2, :penawaran_kode_satuan_3, :penawaran_kode_satuan_4, :penawaran_kode_satuan_cur,

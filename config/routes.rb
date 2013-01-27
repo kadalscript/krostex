@@ -1,10 +1,6 @@
 Hermanstartup::Application.routes.draw do
   resources :b_supplier_accounts
-
-
   resources :a_banks
-
-
   resources :m_warehouse_in_first_hs do
     match 'draft'
     match 'undraft'
@@ -61,7 +57,7 @@ Hermanstartup::Application.routes.draw do
   ["a_template_cats", "a_departments", "a_golongans", "a_types", "a_level_fours",
    "a_level_fives", "a_cities", "a_gudangs", "a_company_profiles", "a_satuans",
    "a_badan_usahas", "a_kemasans", "a_negaras", "a_provinsis", "b_suppliers",
-   "a_mata_uangs", "b_barangs", "m_beli_po_first_hs"].each do |item|
+   "a_mata_uangs", "b_barangs", "m_beli_po_first_hs", "a_banks"].each do |item|
     match "#{item}/:id/destroy_show" => "#{item}#destroy_show", as: "#{item}_destroy_show"
     match "#{item}/search" => "#{item}#search"
   end
@@ -97,6 +93,7 @@ Hermanstartup::Application.routes.draw do
     resources :m_beli_nota_second_ds # Nota details routing
     match :draft # Adding draft action to notas routing
     match :undraft # Adding undraft action to notas routing
+    match :get_alamat_supplier # Adding action for getting alamat supplier
   end
 
   root :to => 'main#index'

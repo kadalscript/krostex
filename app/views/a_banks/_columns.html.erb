@@ -1,0 +1,7 @@
+<% ABank.column_names.each do |column_name| %>
+  <% if @visible_columns.include?(column_name) %>
+    <% if !(["new", "create"].include?(action_name) && ["updated_at", "updated_by"].include?(column_name)) %>
+      <%= raw(showing_row(ABank, column_name, attributes, f, @bank)) %>
+    <% end %>
+  <% end %>
+<% end %>

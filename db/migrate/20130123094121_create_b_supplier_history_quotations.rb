@@ -7,7 +7,7 @@ class CreateBSupplierHistoryQuotations < ActiveRecord::Migration
       t.integer :status1, limit: 2
       t.string :st_progress, limit: 20
       t.string :updated_by, limit: 30
-      t.string : id_satuan_kemasan, limit: 10
+      t.string :id_satuan_kemasan, limit: 10
       t.integer :pos_penawaran_x, limit: 2
       t.string :penawaran_kode_cur, limit: 20
       t.datetime :penawaran_tgl_cur

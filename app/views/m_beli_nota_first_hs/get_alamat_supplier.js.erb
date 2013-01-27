@@ -1,0 +1,5 @@
+<% if @supplier.blank? %>
+  $('#alamat_supplier').html("Tidak ditemukan");
+<% else %>
+  $('#alamat_supplier').html("<%= "#{@supplier.alamat.first.alamat_title} #{@supplier.alamat.first.kota.nama}" %>");
+<% end %>

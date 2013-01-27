@@ -16,8 +16,17 @@
     </tr>
   </thead>
   <% if @notas.count > 0 %>
-    <% @notas.each do |m_beli_po_first_h| %>
+    <% @notas.each do |nota| %>
       <tr>
+        <td><%= nota.tanggal.strftime("%x") %></td>
+        <td><%= nota.kode_disp %></td>
+        <td><%= nota.no_po_disp %></td>
+        <td><%= nota.supplier.blank? ? '' : nota.supplier.nama %></td>
+        <td><%= nota.valuta.blank? ? '' : nota.valuta.simbol %></td>
+        <td><%= nota.total_grand_total_po %></td>
+        <td><%= nota.total_grand_total %></td>
+        <td><%= nota.total_grand_total_retur %></td>
+        <td><%= nota.total_dp %></td>
       </tr>
     <% end %>
   <% else %>

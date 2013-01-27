@@ -1,87 +1,54 @@
+<!-- Stylesheet -->
 <style>
-  div.span8 { color: 'black' }
+label, span { color: black; }
+div.header-data { margin: 0 250px; }
 </style>
-<div class="row16">
-  <div class="span8" style="color: black;">
-    <div class="control-group">
-      <%= f.label :no_penawaran, "No penawaran".titleize, class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :no_penawaran %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :supplier_id, "Supplier", class: 'control-label' %>
-      <div class="controls">
-        <%= select_tag(:supplier_id, options_for_select(BSupplier.all.collect { |supplier| [ supplier.nama, supplier.id ] }), prompt: '- Supplier -') %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :alamat_supplier, "Alamat Supplier", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :alamat_supplier, NOT_FOUND_DATA, { read_only: true, disabled: 'disabled' } %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :telepon_supplier, "Telepon Supplier", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :telepon_supplier, NOT_FOUND_DATA, { read_only: true, disabled: 'disabled' } %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :fax_supplier, "Fax Supplier", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :fax_supplier, NOT_FOUND_DATA, { read_only: true, disabled: 'disabled' } %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :kurs_id, "Kurs", class: 'control-label' %>
-      <div class="controls">
-        <%= select_tag(:kurs_id, options_for_select(AMataUang.all.collect { |mata_uang| [ mata_uang.nama, mata_uang.id ] }), prompt: '- Mata Uang -', class: 'span2') %>
-        &nbsp &nbsp &nbsp <%= text_field_tag :kurs_value, "", class: 'span1', disabled: 'disabled' %>
-        &nbsp <span id="simbol_mata_uang">Rp</span>
-      </div>
-    </div>
-  </div>
-  <div class="span8" style="color: black;">
-    <div class="control-group">
-      <%= f.label :kode_disp, "No PO", class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :kode_disp %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :tanggal, "Tanggal", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag "m_beli_po_first_h[tanggal]", @m_beli_po_first_h.tanggal.strftime("%d/%m/%Y"), 'data-date-format' => 'dd/mm/yyyy' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :gudang_id, "Gudang", class: 'control-label' %>
-      <div class="controls">
-        <%= select_tag(:gudang_id, options_for_select(ACompanyProfile.all.collect { |company_profile| [ company_profile.nama_company, company_profile.id ] }), prompt: '- Gudang -') %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :alamat_gudang, "Alamat Gudang", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :alamat_gudang, NOT_FOUND_DATA, { read_only: true, disabled: 'disabled' }  %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :telepon_gudang, "Telepon Gudang", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :telepon_gudang, NOT_FOUND_DATA, { read_only: true, disabled: 'disabled' }  %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :fax_gudang, "Fax Gudang", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :fax_gudang, NOT_FOUND_DATA, { read_only: true, disabled: 'disabled' }  %>
-      </div>
-    </div>
-  </div>
+<!-- Stylesheet -->
+
+<div class="header-data">
+  <table class="table-condensed"  style="float: left">
+    <tr>
+      <td><%= f.label :no_penawaran, "No penawaran".titleize %></td>
+      <td><%= f.text_field :no_penawaran %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :supplier_id, "Supplier" %></td>
+      <td><%= select_tag(:supplier_id, options_for_select(BSupplier.all.collect { |supplier| [ supplier.nama, supplier.id ] }), prompt: '- Supplier -') %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :alamat_supplier, "Alamat Supplier" %></td>
+      <td><%= text_area_tag :alamat_supplier, NOT_FOUND_DATA, { read_only: true, disabled: 'disabled' } %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :kurs_id, "Kurs" %></td>
+      <td>
+        <%= select_tag(:kurs_id, options_for_select(AMataUang.all.collect { |mata_uang| [ mata_uang.nama, mata_uang.id ] }), prompt: '- Mata Uang -', style: 'width: 125px;') %>
+        <%= text_field_tag :kurs_value, "", disabled: 'disabled', style: 'width: 75px' %> <span id="simbol_mata_uang">Rp</span>
+      </td>
+    </tr>
+  </table>
+
+  <table class="table-condensed" style="float: left; margin-left: 20px;">
+    <tr>
+      <td><%= f.label :kode_disp, "No PO" %></td>
+      <td><%= f.text_field :kode_disp %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :tanggal, "Tanggal" %></td>
+      <td><%= text_field_tag "m_beli_po_first_h[tanggal]", @m_beli_po_first_h.tanggal.strftime("%d/%m/%Y"), 'data-date-format' => 'dd/mm/yyyy' %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :gudang_id, "Gudang" %></td>
+      <td><%= select_tag(:gudang_id, options_for_select(ACompanyProfile.all.collect { |company_profile| [ company_profile.nama_company, company_profile.id ] }), prompt: '- Gudang -') %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :alamat_gudang, "Alamat Gudang" %></td>
+      <td><%= text_area_tag :alamat_gudang, NOT_FOUND_DATA, { read_only: true, disabled: 'disabled' } %></td>
+    </tr>
+  </table>
 </div>
 
+<!-- Javascript -->
 <script>
 $(function() {
   $('#supplier_id').change(function() {
@@ -108,3 +75,4 @@ $(function() {
   });
 });
 </script>
+<!-- Javascript -->
