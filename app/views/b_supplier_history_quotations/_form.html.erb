@@ -1,0 +1,189 @@
+<%= form_for(@b_supplier_history_quotation) do |f| %>
+  <% if @b_supplier_history_quotation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@b_supplier_history_quotation.errors.count, "error") %> prohibited this b_supplier_history_quotation from being saved:</h2>
+
+      <ul>
+      <% @b_supplier_history_quotation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode %><br />
+    <%= f.text_field :kode %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_brg %><br />
+    <%= f.text_field :kode_brg %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_brg_ext %><br />
+    <%= f.text_field :kode_brg_ext %>
+  </div>
+  <div class="field">
+    <%= f.label :status1 %><br />
+    <%= f.number_field :status1 %>
+  </div>
+  <div class="field">
+    <%= f.label :st_progress %><br />
+    <%= f.text_field :st_progress %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_by %><br />
+    <%= f.text_field :updated_by %>
+  </div>
+  <div class="field">
+    <%= f.label : %><br />
+    <%= f.text_field : %>
+  </div>
+  <div class="field">
+    <%= f.label :pos_penawaran_x %><br />
+    <%= f.number_field :pos_penawaran_x %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_cur %><br />
+    <%= f.text_field :penawaran_kode_cur %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_tgl_cur %><br />
+    <%= f.datetime_select :penawaran_tgl_cur %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_valuta_cur %><br />
+    <%= f.text_field :penawaran_kode_valuta_cur %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_harga_cur %><br />
+    <%= f.text_field :penawaran_harga_cur %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_min_order_cur %><br />
+    <%= f.text_field :penawaran_min_order_cur %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_satuan_cur %><br />
+    <%= f.text_field :penawaran_kode_satuan_cur %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_waktu_kirim_cur %><br />
+    <%= f.number_field :penawaran_waktu_kirim_cur %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_1 %><br />
+    <%= f.text_field :penawaran_kode_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_tgl_1 %><br />
+    <%= f.datetime_select :penawaran_tgl_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_valuta_1 %><br />
+    <%= f.text_field :penawaran_kode_valuta_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_harga_1 %><br />
+    <%= f.text_field :penawaran_harga_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_min_order_1 %><br />
+    <%= f.text_field :penawaran_min_order_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_satuan_1 %><br />
+    <%= f.text_field :penawaran_kode_satuan_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_waktu_kirim_1 %><br />
+    <%= f.number_field :penawaran_waktu_kirim_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_2 %><br />
+    <%= f.text_field :penawaran_kode_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_tgl_2 %><br />
+    <%= f.datetime_select :penawaran_tgl_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_valuta_2 %><br />
+    <%= f.text_field :penawaran_kode_valuta_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_harga_2 %><br />
+    <%= f.text_field :penawaran_harga_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_min_order_2 %><br />
+    <%= f.text_field :penawaran_min_order_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_satuan_2 %><br />
+    <%= f.text_field :penawaran_kode_satuan_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_waktu_kirim_2 %><br />
+    <%= f.number_field :penawaran_waktu_kirim_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_3 %><br />
+    <%= f.text_field :penawaran_kode_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_tgl_3 %><br />
+    <%= f.datetime_select :penawaran_tgl_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_valuta_3 %><br />
+    <%= f.text_field :penawaran_kode_valuta_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_harga_3 %><br />
+    <%= f.text_field :penawaran_harga_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_min_order_3 %><br />
+    <%= f.text_field :penawaran_min_order_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_satuan_3 %><br />
+    <%= f.text_field :penawaran_kode_satuan_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_waktu_kirim_3 %><br />
+    <%= f.number_field :penawaran_waktu_kirim_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_4 %><br />
+    <%= f.text_field :penawaran_kode_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_tgl_4 %><br />
+    <%= f.datetime_select :penawaran_tgl_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_valuta_4 %><br />
+    <%= f.text_field :penawaran_kode_valuta_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_harga_4 %><br />
+    <%= f.text_field :penawaran_harga_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_min_order_4 %><br />
+    <%= f.text_field :penawaran_min_order_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_kode_satuan_4 %><br />
+    <%= f.text_field :penawaran_kode_satuan_4 %>
+  </div>
+  <div class="field">
+    <%= f.label :penawaran_waktu_kirim_4 %><br />
+    <%= f.number_field :penawaran_waktu_kirim_4 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
