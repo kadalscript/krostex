@@ -1,5 +1,75 @@
-<h1>New b_supplier_history_quotation</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', b_supplier_history_quotations_path %>
+<table class="table table-bordered table-hover" width="60%" align="center">
+  <thead class="thead">
+    <tr class="titleJudul" style="font-size : 12pt">
+      <th align="center" colspan="11"><%= form_title(action_name, @title) %></th>
+    </tr>
+    <tr class="blankSpot">
+      <th colspan="11" align="left">&nbsp;
+        <%= link_to ADD, "javascript:void(0)", class: "navigasi btn" %>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <div style="width: 500px; float: left">
+          <table class="table-consended">
+            <tr>
+              <td><label>SUPPLIER</label></td>
+              <td>
+                <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                <input type="text" style="width: 200px; float: left;" />
+              </td>
+            </tr>
+            <tr>
+              <td><label>TANGGAL</label></td>
+              <td><input type="text" style="width: 269px" /></td>
+            </tr>
+            <tr>
+              <td><label>NAMA BARANG</label></td>
+              <td>
+                <input type="text" style="width: 95px; float: left; margin-right: 5px;" />
+                <input type="text" style="width: 155px; float: left;" />
+              </td>
+            </tr>
+            <tr>
+              <td><label>NO PENAWARAN</label></td>
+              <td><input type="text" style="width: 269px" /></td>
+            </tr>
+            <tr>
+              <td><label>VALUTA</label></td>
+              <td>
+                <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                <input type="text" style="width: 200px; float: left;" />
+              </td>
+            </tr>
+            <tr>
+              <td><label>HARGA</label></td>
+              <td><input type="text" style="width: 269px" /></td>
+            </tr>
+            <tr>
+              <td><label>MIN ORDER</label></td>
+              <td><input type="text" style="width: 269px" /></td>
+            </tr>
+            <tr>
+              <td><label>SATUAN</label></td>
+              <td>
+                <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                <input type="text" style="width: 200px; float: left;" />
+              </td>
+            </tr>
+            <tr>
+              <td><label>KEMASAN</label></td>
+              <td>
+                <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                <input type="text" style="width: 200px; float: left;" />
+              </td>
+            </tr>
+            <tr>
+              <td><label>WAKTU KIRIM</label></td>
+              <td><input type="text" style="width: 230px" /> HARI</td>
+            </tr>
+          </table>
+        </div>
+        <div style="width: 600px; float: left">aksdjlasd</div>
+      </td>
+    </tr>
+</table>

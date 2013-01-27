@@ -1,12 +1,13 @@
 class BSupplierHistoryQuotationsController < ApplicationController
-  # GET /b_supplier_history_quotations
-  # GET /b_supplier_history_quotations.json
+  before_filter :miscellaneous
+
   def index
-    @b_supplier_history_quotations = BSupplierHistoryQuotation.all
+    @supplier_history_quotations = BSupplierHistoryQuotation.page(params[:page]).per(PAGINATE)
+    @header_columns = ["kode barang", "nama barang", "kemasan", "harga 1", "harga 2", "harga 3", "harga 4"]
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @b_supplier_history_quotations }
+      format.json { render json: @supplier_history_quotations }
     end
   end
 
@@ -79,5 +80,11 @@ class BSupplierHistoryQuotationsController < ApplicationController
       format.html { redirect_to b_supplier_history_quotations_url }
       format.json { head :no_content }
     end
+  end
+
+private
+
+  def miscellaneous
+    @title = 'Supplier History Quotation'
   end
 end

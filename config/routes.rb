@@ -97,5 +97,7 @@ Hermanstartup::Application.routes.draw do
     match :get_alamat_supplier # Adding action for getting alamat supplier
   end
 
+  resources :b_supplier_history_quotations
+
   root :to => 'main#index'
 end

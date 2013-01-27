@@ -948,3 +948,11 @@ AKemasan.create([
   { kode: 'K1', nama: 'Kemasan 1', isi_volume: 1, id_satuan: a_satuan.id },
   { kode: 'K2', nama: 'Kemasan 2', isi_volume: 2, id_satuan: a_satuan_2.id }
 ])
+
+BSupplierHistoryQuotation.create([
+  { kode: 'K1', kode_brg: 'B1' },
+  { kode: 'K2', kode_brg: 'B2' },
+  { kode: 'K3', kode_brg: 'B3' },
+  { kode: 'K4', kode_brg: 'B4' },
+  { kode: 'K5', kode_brg: 'B5' }
+])

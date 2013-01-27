@@ -554,7 +554,7 @@ ActiveRecord::Schema.define(:version => 20130127090553) do
     t.datetime "tanggal"
     t.string   "id_cabang"
     t.string   "simbol"
-    t.string   "jns_inv",           :limit => 15
+    t.integer  "jns_inv"
     t.string   "id_reff_disp"
     t.string   "keterangan"
     t.string   "id_surat_jalan"
@@ -580,17 +580,12 @@ ActiveRecord::Schema.define(:version => 20130127090553) do
     t.string   "kode_brg_ext"
     t.string   "kode_brg_lot"
     t.decimal  "qty"
-<<<<<<< HEAD
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.decimal  "qty_kemasan"
-    t.string   "id_satuan_kemasan", :limit => 5
-=======
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
     t.integer  "satuan_id"
     t.integer  "harga"
->>>>>>> c2a888a787a0b9014edc2c602b5782fde2ca71e8
+    t.decimal  "qty_kemasan"
+    t.string   "id_satuan_kemasan", :limit => 5
   end
 
 end
