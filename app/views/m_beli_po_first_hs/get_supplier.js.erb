@@ -1,3 +1,3 @@
-$('#alamat_supplier').attr('value', '<%= @b_supplier.blank? ? NOT_FOUND_DATA : @b_supplier.b_supplier_alamats.first.alamat_title %>')
-$('#telepon_supplier').attr('value', '<%= @b_supplier.blank? ? NOT_FOUND_DATA : @b_supplier.b_supplier_alamats.first.telepon %>')
-$('#fax_supplier').attr('value', '<%= @b_supplier.blank? ? NOT_FOUND_DATA : @b_supplier.b_supplier_alamats.first.fax %>')
+$('#alamat_supplier').attr('value', '<%= @b_supplier.blank? ? NOT_FOUND_DATA : @b_supplier.alamat.first.alamat_title %>')
+$('#telepon_supplier').attr('value', '<%= @b_supplier.blank? ? NOT_FOUND_DATA : @b_supplier.alamat.first.telepon %>')
+$('#fax_supplier').attr('value', '<%= @b_supplier.blank? ? NOT_FOUND_DATA : @b_supplier.alamat.first.fax %>')

@@ -375,6 +375,7 @@ ActiveRecord::Schema.define(:version => 20130127090551) do
     t.integer  "status1",                   :limit => 2
     t.string   "st_progress",               :limit => 20
     t.string   "updated_by",                :limit => 30
+    t.string   "id_satuan_kemasan",         :limit => 10
     t.integer  "pos_penawaran_x",           :limit => 2
     t.string   "penawaran_kode_cur",        :limit => 20
     t.datetime "penawaran_tgl_cur"
@@ -413,7 +414,6 @@ ActiveRecord::Schema.define(:version => 20130127090551) do
     t.integer  "penawaran_waktu_kirim_4"
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
-    t.string   "id_satuan_kemasan",         :limit => 5
   end
 
   create_table "b_suppliers", :force => true do |t|
@@ -430,7 +430,7 @@ ActiveRecord::Schema.define(:version => 20130127090551) do
   end
 
   create_table "m_beli_nota_first_hs", :force => true do |t|
-    t.string   "kode_tmp",                    :limit => 20
+    t.integer  "kode_tmp"
     t.string   "kode_disp"
     t.string   "id_cabang"
     t.string   "simbol"
@@ -458,13 +458,14 @@ ActiveRecord::Schema.define(:version => 20130127090551) do
     t.decimal  "qty_all_nota"
     t.integer  "is_ap"
     t.string   "id_ap_disp"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.boolean  "is_drafted"
+    t.string   "no_revisi",                   :limit => 2
   end
 
   create_table "m_beli_nota_second_ds", :force => true do |t|
-    t.string   "kode_tmp",                         :limit => 20
+    t.integer  "kode_tmp"
     t.string   "kode_barang"
     t.decimal  "qty"
     t.string   "id_valuta"
@@ -473,8 +474,8 @@ ActiveRecord::Schema.define(:version => 20130127090551) do
     t.decimal  "total_qty_kali_harga"
     t.decimal  "total_qty_kali_harga_kali_diskon"
     t.decimal  "total_kurang_diskon"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "m_beli_po_first_hs", :force => true do |t|
@@ -513,11 +514,10 @@ ActiveRecord::Schema.define(:version => 20130127090551) do
     t.datetime "updated_at",                                :null => false
     t.boolean  "is_drafted"
     t.string   "id_gudang_kirim",             :limit => 10
-    t.string   "no_revisi",                   :limit => 2
   end
 
   create_table "m_beli_po_second_ds", :force => true do |t|
-    t.string   "kode_tmp",                         :limit => 20
+    t.integer  "kode_tmp"
     t.string   "kode_brg"
     t.decimal  "qty_kemasan"
     t.string   "id_satuan_kemasan"
@@ -529,9 +529,9 @@ ActiveRecord::Schema.define(:version => 20130127090551) do
     t.decimal  "total_qty_kali_harga"
     t.decimal  "total_qty_kali_harga_kali_diskon"
     t.decimal  "total_kurang_diskon"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
-    t.string   "kode_brg_ext",                     :limit => 30
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "kode_brg_ext"
   end
 
   create_table "m_warehouse_in_first_hs", :force => true do |t|
@@ -552,12 +552,12 @@ ActiveRecord::Schema.define(:version => 20130127090551) do
     t.string   "id_nota_beli_disp"
     t.decimal  "total_qty_in"
     t.string   "updated_by"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "status1"
     t.string   "st_progress"
     t.boolean  "is_drafted"
-    t.string   "nama_referensi",    :limit => 70
+    t.string   "nama_referensi"
   end
 
   create_table "m_warehouse_in_second_ds", :force => true do |t|
