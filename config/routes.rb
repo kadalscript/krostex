@@ -1,4 +1,5 @@
 Hermanstartup::Application.routes.draw do
+  resources :b_barang_exts
   resources :b_supplier_accounts
   resources :a_banks
   resources :m_warehouse_in_first_hs do
