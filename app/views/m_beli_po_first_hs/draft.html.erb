@@ -18,8 +18,8 @@
         <% @m_beli_po_second_ds.each_with_index do |detail, index| %>
           <tr>
             <td><%= index + 1 %></td>
-            <td><%= detail.kode_barang %></td>
-            <td><%= BBarang.find_by_kode(detail.kode_barang).nama %></td>
+            <td><%= detail.kode_brg %></td>
+            <td>Nama barang</td>
             <td><%= detail.qty_kemasan %></td>
             <td><%= detail.a_kemasan.nama %></td>
             <td><%= detail.qty %></td>

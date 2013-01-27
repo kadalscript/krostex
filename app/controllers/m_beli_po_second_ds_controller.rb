@@ -31,9 +31,9 @@ class MBeliPoSecondDsController < ApplicationController
         format.html { redirect_to draft_m_beli_po_first_hs_path(@m_beli_po_first_h), alert: 'Penyimpanan data gagal' }
       else
         detail[:checked].each do |key, value|
-          barang = BBarang.find_by_id(detail[:id][key.to_i])
+          barang = BSupplierHistoryQuotation.find_by_id(detail[:id][key.to_i])
           @po_detail = MBeliPoSecondD.new(
-            kode_barang: barang.kode,
+            kode_brg: barang.kode,
             kode_tmp: @m_beli_po_first_h.id,
             qty_kemasan: detail[:qty1][key.to_i],
             id_satuan_kemasan: detail[:kemasan_id][key.to_i],

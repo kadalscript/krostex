@@ -29,7 +29,7 @@
 <% else %>
   <% barang_ids = [] %>
   <% barangs.each do |barang| %>
-    <% unless MBeliPoSecondD.where(kode_barang: barang.kode).where(kode_tmp: params[:id]).blank? %>
+    <% unless MBeliPoSecondD.where(kode_brg: barang.kode).where(kode_tmp: params[:id]).blank? %>
       <% barang_ids << MBeliPoSecondD.where(kode_barang: barang.kode).where(kode_tmp: params[:id]) %>
     <% end %>
   <% end %>
@@ -38,11 +38,11 @@
   <% else %>
     <% index = 0 %>
     <% barangs.each do |barang| %>
-      <% if MBeliPoSecondD.where(kode_barang: barang.kode).where(kode_tmp: params[:id]).blank? %>
+      <% if MBeliPoSecondD.where(kode_brg: barang.kode).where(kode_tmp: params[:id]).blank? %>
         <tr>
           <td><%= index + 1 %></td>
           <td><%= barang.kode %></td>
-          <td><%= barang.nama %></td>
+          <td>Nama barang</td>
           <td><%= text_field_tag "detail[qty1][]" %></td>
           <td><%= select_tag("detail[kemasan_id][]", options_for_select(AKemasan.all.collect { |kemasan| [ kemasan.nama, kemasan.id ] } )) %></td>
           <td><%= text_field_tag "detail[qty2][]" %></td>

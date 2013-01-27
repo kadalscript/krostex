@@ -150,17 +150,18 @@ class MBeliPoFirstHsController < ApplicationController
     department_id = params[:department_id]
     @feature = params[:feature]
 
-    if !level_five_id.blank?
-      @b_barangs = BBarang.where(id_level_five: level_five_id)
-    elsif !level_four_id.blank?
-      @b_barangs = BBarang.where(id_level_four: level_four_id)
-    elsif !type_id.blank?
-      @b_barangs = BBarang.where(id_type: type_id)
-    elsif !golongan_id.blank?
-      @b_barangs = BBarang.where(id_golongan: golongan_id)
-    elsif !department_id.blank?
-      @b_barangs = BBarang.where(id_department: department_id)
-    end
+#    if !level_five_id.blank?
+#      @b_barangs = BBarang.where(id_level_five: level_five_id)
+#    elsif !level_four_id.blank?
+#      @b_barangs = BBarang.where(id_level_four: level_four_id)
+#    elsif !type_id.blank?
+#      @b_barangs = BBarang.where(id_type: type_id)
+#    elsif !golongan_id.blank?
+#      @b_barangs = BBarang.where(id_golongan: golongan_id)
+#    elsif !department_id.blank?
+#      @b_barangs = BBarang.where(id_department: department_id)
+#    end
+    @b_barangs = BSupplierHistoryQuotation.all
   end
 
   def modify_destroy_form
