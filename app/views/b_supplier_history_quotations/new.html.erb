@@ -6,6 +6,8 @@
     <tr class="blankSpot">
       <th colspan="11" align="left">&nbsp;
         <%= link_to ADD, "javascript:void(0)", class: "navigasi btn" %>
+        <%= link_to SAVE, "javascript:void(0)", class: "navigasi btn" %>
+        <%= link_to CLOSE, "javascript:void(0)", class: "navigasi btn" %>
       </th>
     </tr>
     <tr>
@@ -69,7 +71,82 @@
             </tr>
           </table>
         </div>
-        <div style="width: 600px; float: left">aksdjlasd</div>
+        <div style="width: 750px; float: left">
+          <h4>HISTORY</h4>
+          <table>
+            <thead>
+              <% @right_table_columns.each do |column| %>
+                <th><%= column.upcase %></th>
+              <% end %>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" style="width: 25px" value="01" /></td>
+                <td><input type="text" style="width: 100px" /></td>
+                <td><input type="text" style="width: 100px" /></td>
+                <td>
+                  <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
+                  <input type="text" style="width: 50px; float: left;" />
+                </td>
+                <td>
+                  <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                  <input type="text" style="width: 50px; float: left;" />
+                </td>
+                <td>
+                  <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                </td>
+              </tr>
+              <tr>
+                <td><input type="text" style="width: 25px" value="02" /></td>
+                <td><input type="text" style="width: 100px" /></td>
+                <td><input type="text" style="width: 100px" /></td>
+                <td>
+                  <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
+                  <input type="text" style="width: 50px; float: left;" />
+                </td>
+                <td>
+                  <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                  <input type="text" style="width: 50px; float: left;" />
+                </td>
+                <td>
+                  <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                </td>
+              </tr>
+              <tr>
+                <td><input type="text" style="width: 25px" value="03" /></td>
+                <td><input type="text" style="width: 100px" /></td>
+                <td><input type="text" style="width: 100px" /></td>
+                <td>
+                  <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
+                  <input type="text" style="width: 50px; float: left;" />
+                </td>
+                <td>
+                  <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                  <input type="text" style="width: 50px; float: left;" />
+                </td>
+                <td>
+                  <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                </td>
+              </tr>
+              <tr>
+                <td><input type="text" style="width: 25px" value="04" /></td>
+                <td><input type="text" style="width: 100px" /></td>
+                <td><input type="text" style="width: 100px" /></td>
+                <td>
+                  <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
+                  <input type="text" style="width: 50px; float: left;" />
+                </td>
+                <td>
+                  <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                  <input type="text" style="width: 50px; float: left;" />
+                </td>
+                <td>
+                  <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </td>
     </tr>
 </table>

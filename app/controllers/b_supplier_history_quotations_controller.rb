@@ -22,10 +22,9 @@ class BSupplierHistoryQuotationsController < ApplicationController
     end
   end
 
-  # GET /b_supplier_history_quotations/new
-  # GET /b_supplier_history_quotations/new.json
   def new
     @b_supplier_history_quotation = BSupplierHistoryQuotation.new
+    @right_table_columns = ["no", "no penawaran", "tanggal", "harga", "qty order", "waktu kirim"]
 
     respond_to do |format|
       format.html # new.html.erb
