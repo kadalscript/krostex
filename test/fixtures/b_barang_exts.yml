@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kode: MyString
+  kode_ext: MyString
+  kode_alias: MyString
+  nama_ext: MyString
+  id_supplier: MyString
+  id_size: MyString
+  id_warna: MyString
+  id_satuan_kemasan: MyString
+  updated_by: MyString
+
+two:
+  kode: MyString
+  kode_ext: MyString
+  kode_alias: MyString
+  nama_ext: MyString
+  id_supplier: MyString
+  id_size: MyString
+  id_warna: MyString
+  id_satuan_kemasan: MyString
+  updated_by: MyString

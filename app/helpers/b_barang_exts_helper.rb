@@ -1,0 +1,2 @@
+module BBarangExtsHelper
+end

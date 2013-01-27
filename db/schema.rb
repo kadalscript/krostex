@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127090551) do
+ActiveRecord::Schema.define(:version => 20130127090553) do
 
   create_table "a_badan_usahas", :force => true do |t|
     t.string   "kode",       :limit => 5
@@ -311,6 +311,20 @@ ActiveRecord::Schema.define(:version => 20130127090551) do
     t.datetime "updated_at",                         :null => false
   end
 
+  create_table "b_barang_exts", :force => true do |t|
+    t.string   "kode",              :limit => 20
+    t.string   "kode_ext",          :limit => 20
+    t.string   "kode_alias",        :limit => 30
+    t.string   "nama_ext",          :limit => 90
+    t.string   "id_supplier",       :limit => 10
+    t.string   "id_size",           :limit => 10
+    t.string   "id_warna",          :limit => 10
+    t.string   "id_satuan_kemasan", :limit => 5
+    t.string   "updated_by",        :limit => 30
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
   create_table "b_barangs", :force => true do |t|
     t.string   "kode",          :limit => 10
     t.string   "nama",          :limit => 30
@@ -552,7 +566,7 @@ ActiveRecord::Schema.define(:version => 20130127090551) do
     t.datetime "tanggal"
     t.string   "id_cabang"
     t.string   "simbol"
-    t.integer  "jns_inv"
+    t.string   "jns_inv",           :limit => 15
     t.string   "id_reff_disp"
     t.string   "keterangan"
     t.string   "id_surat_jalan"
@@ -578,8 +592,10 @@ ActiveRecord::Schema.define(:version => 20130127090551) do
     t.string   "kode_brg_ext"
     t.string   "kode_brg_lot"
     t.decimal  "qty"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.decimal  "qty_kemasan"
+    t.string   "id_satuan_kemasan", :limit => 5
   end
 
 end

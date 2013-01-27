@@ -1,0 +1,53 @@
+<%= form_for(@b_barang_ext) do |f| %>
+  <% if @b_barang_ext.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@b_barang_ext.errors.count, "error") %> prohibited this b_barang_ext from being saved:</h2>
+
+      <ul>
+      <% @b_barang_ext.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode %><br />
+    <%= f.text_field :kode %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_ext %><br />
+    <%= f.text_field :kode_ext %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_alias %><br />
+    <%= f.text_field :kode_alias %>
+  </div>
+  <div class="field">
+    <%= f.label :nama_ext %><br />
+    <%= f.text_field :nama_ext %>
+  </div>
+  <div class="field">
+    <%= f.label :id_supplier %><br />
+    <%= f.text_field :id_supplier %>
+  </div>
+  <div class="field">
+    <%= f.label :id_size %><br />
+    <%= f.text_field :id_size %>
+  </div>
+  <div class="field">
+    <%= f.label :id_warna %><br />
+    <%= f.text_field :id_warna %>
+  </div>
+  <div class="field">
+    <%= f.label :id_satuan_kemasan %><br />
+    <%= f.text_field :id_satuan_kemasan %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_by %><br />
+    <%= f.text_field :updated_by %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

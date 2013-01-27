@@ -1,0 +1,39 @@
+<h1>Listing b_barang_exts</h1>
+
+<table>
+  <tr>
+    <th>Kode</th>
+    <th>Kode ext</th>
+    <th>Kode alias</th>
+    <th>Nama ext</th>
+    <th>Id supplier</th>
+    <th>Id size</th>
+    <th>Id warna</th>
+    <th>Id satuan kemasan</th>
+    <th>Updated by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @b_barang_exts.each do |b_barang_ext| %>
+  <tr>
+    <td><%= b_barang_ext.kode %></td>
+    <td><%= b_barang_ext.kode_ext %></td>
+    <td><%= b_barang_ext.kode_alias %></td>
+    <td><%= b_barang_ext.nama_ext %></td>
+    <td><%= b_barang_ext.id_supplier %></td>
+    <td><%= b_barang_ext.id_size %></td>
+    <td><%= b_barang_ext.id_warna %></td>
+    <td><%= b_barang_ext.id_satuan_kemasan %></td>
+    <td><%= b_barang_ext.updated_by %></td>
+    <td><%= link_to 'Show', b_barang_ext %></td>
+    <td><%= link_to 'Edit', edit_b_barang_ext_path(b_barang_ext) %></td>
+    <td><%= link_to 'Destroy', b_barang_ext, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New B barang ext', new_b_barang_ext_path %>
