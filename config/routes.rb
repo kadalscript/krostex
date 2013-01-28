@@ -98,7 +98,10 @@ Hermanstartup::Application.routes.draw do
   end
 
   resources :b_supplier_history_quotations do
-    match :get_suppliers, on: :collection
+    collection do
+      match :get_suppliers
+      match :get_barangs
+    end
   end
 
   root :to => 'main#index'

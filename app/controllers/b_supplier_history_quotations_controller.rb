@@ -70,7 +70,11 @@ class BSupplierHistoryQuotationsController < ApplicationController
   end
 
   def get_suppliers
-    @supplier = BSupplier.find_by_id(params[:id])
+    @supplier = BSupplier.find_by_kode(params[:id])
+  end
+
+  def get_barangs
+    @barang = BBarang.find_by_kode(params[:id])
   end
 
 private

@@ -1,5 +1,8 @@
 <style>
-#b_supplier_history_quotation_kode { width: 80px; float: left; margin-right: 10px; }
+#b_supplier_history_quotation_kode,
+#b_supplier_history_quotation_kode_brg,
+#b_supplier_history_quotation_penawaran_kode_valuta_cur,
+#b_supplier_history_quotation_penawaran_kode_satuan_cur { width: 115px; float: left; margin-right: 10px; }
 </style>
 <%= form_for @supplier_history_quotation do |f| %>
   <table class="table table-bordered table-hover" width="60%" align="center">
@@ -16,62 +19,55 @@
       </tr>
       <tr>
         <td>
-          <div style="width: 500px; float: left">
+          <div style="width: 520px; float: left">
             <table class="table-consended">
               <tr>
                 <td><%= f.label :kode, "supplier".upcase %></td>
                 <td>
-                  <%= f.select :kode, options_for_select(BSupplier.all.map { |supplier| [ supplier.kode, supplier.id ] }), prompt: '-'  %>
+                  <%= f.select :kode, options_for_select(BSupplier.all.map { |supplier| [ supplier.kode, supplier.kode ] }), prompt: '- Supplier -'  %>
                   <%= text_field_tag :supplier_name, "- undefined -", style: 'width: 180px; float: left;', disabled: 'disabled' %>
                 </td>
               </tr>
               <tr>
-                <td><%= f.label :tanggal, "tanggal".upcase %></td>
-                <td><%= f.text_field :penawaran_tgl_cur, style: 'width: 269px;' %></td>
+                <td><%= f.label :penawaran_tgl_cur, "tanggal".upcase %></td>
+                <td><%= f.text_field :penawaran_tgl_cur, style: 'width: 305px;' %></td>
               </tr>
               <tr>
-                <td><label>NAMA BARANG</label></td>
+                <td><%= f.label :kode_brg, "Nama Barang".upcase %></td>
                 <td>
-                  <input type="text" style="width: 95px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 155px; float: left;" />
+                  <%= f.select :kode_brg, options_for_select(BBarang.all.map { |barang| [ barang.nama, barang.kode ] }), prompt: '- Barang -' %>
+                  <%= text_field_tag :nama_barang, "- undefined -", style: 'width: 180px; float: left;', disabled: 'disabled' %>
                 </td>
               </tr>
               <tr>
-                <td><label>NO PENAWARAN</label></td>
-                <td><input type="text" style="width: 269px" /></td>
+                <td><%= f.label :penawaran_kode_cur, "no penawaran".upcase %></td>
+                <td><%= f.text_field :penawaran_kode_cur, style: 'width: 305px;' %></td>
               </tr>
               <tr>
-                <td><label>VALUTA</label></td>
+                <td><%= f.label :penawaran_kode_valuta_cur, "valuta".upcase %></td>
                 <td>
-                  <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 200px; float: left;" />
+                  <%= f.select :penawaran_kode_valuta_cur, options_for_select(AMataUang.all.map { |mata_uang| [ mata_uang.nama, mata_uang.kode ] }), prompt: '- Valuta -' %>
+                  <%= text_field_tag :mata_uang, "- undefined -", style: 'width: 180px; float: left;', disabled: 'disabled' %>
                 </td>
               </tr>
               <tr>
-                <td><label>HARGA</label></td>
-                <td><input type="text" style="width: 269px" /></td>
+                <td><%= f.label :penawaran_harga_cur, "harga".upcase %></td>
+                <td><%= f.text_field :penawaran_harga_cur, style: 'width: 305px;' %></td>
               </tr>
               <tr>
-                <td><label>MIN ORDER</label></td>
-                <td><input type="text" style="width: 269px" /></td>
+                <td><%= f.label :penawaran_min_order_cur, "min order".upcase %></td>
+                <td><%= f.text_field :penawaran_min_order_cur, style: 'width: 305px;' %></td>
               </tr>
               <tr>
-                <td><label>SATUAN</label></td>
+                <td><%= f.label :penawaran_kode_satuan_cur, "satuan".upcase %></td>
                 <td>
-                  <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 200px; float: left;" />
+                  <%= f.select :penawaran_kode_satuan_cur, options_for_select(ASatuan.all.map { |satuan| [ satuan.nama, satuan.simbol ] }), prompt: '- Satuan -' %>
+                  <%= text_field_tag :satuan, "- undefined -", style: 'width: 180px; float: left;', disabled: 'disabled' %>
                 </td>
               </tr>
               <tr>
-                <td><label>KEMASAN</label></td>
-                <td>
-                  <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 200px; float: left;" />
-                </td>
-              </tr>
-              <tr>
-                <td><label>WAKTU KIRIM</label></td>
-                <td><input type="text" style="width: 230px" /> HARI</td>
+                <td><%= f.label :penawaran_waktu_kirim_cur, "waktu kirim".upcase %></td>
+                <td><%= f.text_field :penawaran_min_order_cur, style: 'width: 255px;' %>&nbsp HARI</td>
               </tr>
             </table>
           </div>
@@ -159,6 +155,8 @@
 <script>
 var supplier_id = $('#b_supplier_history_quotation_kode');
 var tanggal_current = $('#b_supplier_history_quotation_penawaran_tgl_cur');
+var kode_brg = $('#b_supplier_history_quotation_kode_brg');
+var valuta_id = $('#b_supplier_history_quotation_penawaran_kode_valuta_cur');
 
 supplier_id.change(function() {
   $.ajax({
@@ -166,5 +164,16 @@ supplier_id.change(function() {
   });
 });
 
+kode_brg.change(function() {
+  $.ajax({
+    url: '<%= get_barangs_b_supplier_history_quotations_path %>?id=' + kode_brg.val()
+  });
+});
+
 tanggal_current.datepicker();
+
+valuta_id.change(function() {
+  $.ajax({
+  });
+});
 </script>
