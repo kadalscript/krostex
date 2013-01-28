@@ -38,7 +38,7 @@ class BSupplierHistoryQuotationsController < ApplicationController
   end
 
   def create
-    debugger
+    @supplier_history_quotation = BSupplierHistoryQuotation.new(params[:b_supplier_history_quotation])
   end
 
   # PUT /b_supplier_history_quotations/1
@@ -70,13 +70,21 @@ class BSupplierHistoryQuotationsController < ApplicationController
   end
 
   def get_suppliers
-    @supplier = BSupplier.find_by_kode(params[:id])
+    @supplier = BSupplier.find_by_kode(params[:kode])
   end
 
   def get_barangs
-    @barang = BBarang.find_by_kode(params[:id])
+    @barang = BBarang.find_by_kode(params[:kode])
   end
 
+  def get_valuta
+    @valuta = AMataUang.find_by_kode(params[:kode])
+  end
+
+  def get_satuan
+    @satuan = ASatuan.find_by_simbol(params[:simbol])
+  end
+  
 private
 
   def miscellaneous

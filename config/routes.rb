@@ -101,6 +101,8 @@ Hermanstartup::Application.routes.draw do
     collection do
       match :get_suppliers
       match :get_barangs
+      match :get_valuta
+      match :get_satuan
     end
   end
 

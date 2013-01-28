@@ -35,7 +35,7 @@
               <tr>
                 <td><%= f.label :kode_brg, "Nama Barang".upcase %></td>
                 <td>
-                  <%= f.select :kode_brg, options_for_select(BBarang.all.map { |barang| [ barang.nama, barang.kode ] }), prompt: '- Barang -' %>
+                  <%= f.select :kode_brg, options_for_select(BBarang.all.map { |barang| [ barang.kode, barang.kode ] }), prompt: '- Barang -' %>
                   <%= text_field_tag :nama_barang, "- undefined -", style: 'width: 180px; float: left;', disabled: 'disabled' %>
                 </td>
               </tr>
@@ -46,7 +46,7 @@
               <tr>
                 <td><%= f.label :penawaran_kode_valuta_cur, "valuta".upcase %></td>
                 <td>
-                  <%= f.select :penawaran_kode_valuta_cur, options_for_select(AMataUang.all.map { |mata_uang| [ mata_uang.nama, mata_uang.kode ] }), prompt: '- Valuta -' %>
+                  <%= f.select :penawaran_kode_valuta_cur, options_for_select(AMataUang.all.map { |mata_uang| [ mata_uang.simbol, mata_uang.kode ] }), prompt: '- Valuta -' %>
                   <%= text_field_tag :mata_uang, "- undefined -", style: 'width: 180px; float: left;', disabled: 'disabled' %>
                 </td>
               </tr>
@@ -61,7 +61,7 @@
               <tr>
                 <td><%= f.label :penawaran_kode_satuan_cur, "satuan".upcase %></td>
                 <td>
-                  <%= f.select :penawaran_kode_satuan_cur, options_for_select(ASatuan.all.map { |satuan| [ satuan.nama, satuan.simbol ] }), prompt: '- Satuan -' %>
+                  <%= f.select :penawaran_kode_satuan_cur, options_for_select(ASatuan.all.map { |satuan| [ satuan.simbol, satuan.simbol ] }), prompt: '- Satuan -' %>
                   <%= text_field_tag :satuan, "- undefined -", style: 'width: 180px; float: left;', disabled: 'disabled' %>
                 </td>
               </tr>
@@ -157,23 +157,17 @@ var supplier_id = $('#b_supplier_history_quotation_kode');
 var tanggal_current = $('#b_supplier_history_quotation_penawaran_tgl_cur');
 var kode_brg = $('#b_supplier_history_quotation_kode_brg');
 var valuta_id = $('#b_supplier_history_quotation_penawaran_kode_valuta_cur');
+var satuan_id = $('#b_supplier_history_quotation_penawaran_kode_satuan_cur');
 
-supplier_id.change(function() {
+supplier_id.change(function() { $.ajax({ url: '<%= get_suppliers_b_supplier_history_quotations_path %>?kode=' + supplier_id.val() }); });
+kode_brg.change(function() { $.ajax({ url: '<%= get_barangs_b_supplier_history_quotations_path %>?kode=' + kode_brg.val() }); });
+valuta_id.change(function() { $.ajax({ url: '<%= get_valuta_b_supplier_history_quotations_path %>?kode=' + valuta_id.val() }); });
+satuan_id.change(function() {
   $.ajax({
-    url: '<%= get_suppliers_b_supplier_history_quotations_path %>?id=' + supplier_id.val()
-  });
-});
-
-kode_brg.change(function() {
-  $.ajax({
-    url: '<%= get_barangs_b_supplier_history_quotations_path %>?id=' + kode_brg.val()
+    url: '<%= get_satuan_b_supplier_history_quotations_path %>?simbol=' + satuan_id.val()
   });
 });
 
 tanggal_current.datepicker();
 
-valuta_id.change(function() {
-  $.ajax({
-  });
-});
 </script>
