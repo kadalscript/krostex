@@ -103,6 +103,7 @@ Hermanstartup::Application.routes.draw do
       match :get_barangs
       match :get_valuta
       match :get_satuan
+      match :get_kemasan
     end
   end
 

@@ -2,7 +2,8 @@
 #b_supplier_history_quotation_kode,
 #b_supplier_history_quotation_kode_brg,
 #b_supplier_history_quotation_penawaran_kode_valuta_cur,
-#b_supplier_history_quotation_penawaran_kode_satuan_cur { width: 115px; float: left; margin-right: 10px; }
+#b_supplier_history_quotation_penawaran_kode_satuan_cur,
+#b_supplier_history_quotation_id_satuan_kemasan { width: 115px; float: left; margin-right: 10px; }
 </style>
 <%= form_for @supplier_history_quotation do |f| %>
   <table class="table table-bordered table-hover" width="60%" align="center">
@@ -12,7 +13,6 @@
       </tr>
       <tr class="blankSpot">
         <th colspan="11" align="left">&nbsp;
-          <%= link_to ADD, "javascript:void(0)", class: "navigasi btn" %>
           <%= button_tag "Simpan", class: 'navigasi btn' %>
           <%= link_to CLOSE, "javascript:void(0)", class: "navigasi btn" %>
         </th>
@@ -63,6 +63,13 @@
                 <td>
                   <%= f.select :penawaran_kode_satuan_cur, options_for_select(ASatuan.all.map { |satuan| [ satuan.simbol, satuan.simbol ] }), prompt: '- Satuan -' %>
                   <%= text_field_tag :satuan, "- undefined -", style: 'width: 180px; float: left;', disabled: 'disabled' %>
+                </td>
+              </tr>
+              <tr>
+                <td><%= f.label :id_satuan_kemasan, "Kemasan".upcase %></td>
+                <td>
+                  <%= f.select :id_satuan_kemasan, options_for_select(AKemasan.all.map { |kemasan| [ kemasan.kode, kemasan.kode ] }), prompt: '- Kemasan -' %>
+                  <%= text_field_tag :kemasan, "- undefined -", style: 'width: 180px; float: left;', disabled: 'disabled' %>
                 </td>
               </tr>
               <tr>
@@ -158,13 +165,15 @@ var tanggal_current = $('#b_supplier_history_quotation_penawaran_tgl_cur');
 var kode_brg = $('#b_supplier_history_quotation_kode_brg');
 var valuta_id = $('#b_supplier_history_quotation_penawaran_kode_valuta_cur');
 var satuan_id = $('#b_supplier_history_quotation_penawaran_kode_satuan_cur');
+var kemasan_id = $('#b_supplier_history_quotation_id_satuan_kemasan');
 
 supplier_id.change(function() { $.ajax({ url: '<%= get_suppliers_b_supplier_history_quotations_path %>?kode=' + supplier_id.val() }); });
 kode_brg.change(function() { $.ajax({ url: '<%= get_barangs_b_supplier_history_quotations_path %>?kode=' + kode_brg.val() }); });
 valuta_id.change(function() { $.ajax({ url: '<%= get_valuta_b_supplier_history_quotations_path %>?kode=' + valuta_id.val() }); });
-satuan_id.change(function() {
+satuan_id.change(function() { $.ajax({ url: '<%= get_satuan_b_supplier_history_quotations_path %>?simbol=' + satuan_id.val() }); });
+kemasan_id.change(function() {
   $.ajax({
-    url: '<%= get_satuan_b_supplier_history_quotations_path %>?simbol=' + satuan_id.val()
+    url: '<%= get_kemasan_b_supplier_history_quotations_path %>?kode=' + kemasan_id.val()
   });
 });
 

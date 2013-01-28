@@ -6,7 +6,6 @@
     <tr class="blankSpot">
       <th colspan="11" align="left">&nbsp;
         <%= link_to ADD, new_b_supplier_history_quotation_path, class: "navigasi btn" %>
-        <a id="searchLink" class="navigasi btn" href="javascript:void(0)" style="float:right"><%= SEARCH %></a>
       </th>
     </tr>
     <tr class="titleJudulTable">
@@ -18,7 +17,13 @@
   <% if @supplier_history_quotations.count > 0 %>
     <% @supplier_history_quotations.each do |history| %>
       <tr>
-        <td></td>
+        <td><%= history.barang.kode %></td>
+        <td><%= history.barang.nama %></td>
+        <td><%= history.kemasan.nama %></td>
+        <td><%= history.penawaran_harga_1 %></td>
+        <td><%= history.penawaran_harga_2 %></td>
+        <td><%= history.penawaran_harga_3 %></td>
+        <td><%= history.penawaran_harga_4 %></td>
       </tr>
     <% end %>
   <% else %>

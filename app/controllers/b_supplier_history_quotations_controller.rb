@@ -39,6 +39,11 @@ class BSupplierHistoryQuotationsController < ApplicationController
 
   def create
     @supplier_history_quotation = BSupplierHistoryQuotation.new(params[:b_supplier_history_quotation])
+    respond_to do |format|
+      if @supplier_history_quotation.save
+        format.html { redirect_to b_supplier_history_quotations_path }
+      end
+    end
   end
 
   # PUT /b_supplier_history_quotations/1
@@ -83,6 +88,10 @@ class BSupplierHistoryQuotationsController < ApplicationController
 
   def get_satuan
     @satuan = ASatuan.find_by_simbol(params[:simbol])
+  end
+
+  def get_kemasan
+    @kemasan = AKemasan.find_by_kode(params[:kode])
   end
   
 private
