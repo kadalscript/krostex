@@ -1,152 +1,166 @@
-<table class="table table-bordered table-hover" width="60%" align="center">
-  <thead class="thead">
-    <tr class="titleJudul" style="font-size : 12pt">
-      <th align="center" colspan="11"><%= form_title(action_name, @title) %></th>
-    </tr>
-    <tr class="blankSpot">
-      <th colspan="11" align="left">&nbsp;
-        <%= link_to ADD, "javascript:void(0)", class: "navigasi btn" %>
-        <%= link_to SAVE, "javascript:void(0)", class: "navigasi btn" %>
-        <%= link_to CLOSE, "javascript:void(0)", class: "navigasi btn" %>
-      </th>
-    </tr>
-    <tr>
-      <td>
-        <div style="width: 500px; float: left">
-          <table class="table-consended">
-            <tr>
-              <td><label>SUPPLIER</label></td>
-              <td>
-                <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
-                <input type="text" style="width: 200px; float: left;" />
-              </td>
-            </tr>
-            <tr>
-              <td><label>TANGGAL</label></td>
-              <td><input type="text" style="width: 269px" /></td>
-            </tr>
-            <tr>
-              <td><label>NAMA BARANG</label></td>
-              <td>
-                <input type="text" style="width: 95px; float: left; margin-right: 5px;" />
-                <input type="text" style="width: 155px; float: left;" />
-              </td>
-            </tr>
-            <tr>
-              <td><label>NO PENAWARAN</label></td>
-              <td><input type="text" style="width: 269px" /></td>
-            </tr>
-            <tr>
-              <td><label>VALUTA</label></td>
-              <td>
-                <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
-                <input type="text" style="width: 200px; float: left;" />
-              </td>
-            </tr>
-            <tr>
-              <td><label>HARGA</label></td>
-              <td><input type="text" style="width: 269px" /></td>
-            </tr>
-            <tr>
-              <td><label>MIN ORDER</label></td>
-              <td><input type="text" style="width: 269px" /></td>
-            </tr>
-            <tr>
-              <td><label>SATUAN</label></td>
-              <td>
-                <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
-                <input type="text" style="width: 200px; float: left;" />
-              </td>
-            </tr>
-            <tr>
-              <td><label>KEMASAN</label></td>
-              <td>
-                <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
-                <input type="text" style="width: 200px; float: left;" />
-              </td>
-            </tr>
-            <tr>
-              <td><label>WAKTU KIRIM</label></td>
-              <td><input type="text" style="width: 230px" /> HARI</td>
-            </tr>
-          </table>
-        </div>
-        <div style="width: 750px; float: left">
-          <h4>HISTORY</h4>
-          <table>
-            <thead>
-              <% @right_table_columns.each do |column| %>
-                <th><%= column.upcase %></th>
-              <% end %>
-            </thead>
-            <tbody>
+<style>
+#b_supplier_history_quotation_kode { width: 80px; float: left; margin-right: 10px; }
+</style>
+<%= form_for @supplier_history_quotation do |f| %>
+  <table class="table table-bordered table-hover" width="60%" align="center">
+    <thead class="thead">
+      <tr class="titleJudul" style="font-size : 12pt">
+        <th align="center" colspan="11"><%= form_title(action_name, @title) %></th>
+      </tr>
+      <tr class="blankSpot">
+        <th colspan="11" align="left">&nbsp;
+          <%= link_to ADD, "javascript:void(0)", class: "navigasi btn" %>
+          <%= button_tag "Simpan", class: 'navigasi btn' %>
+          <%= link_to CLOSE, "javascript:void(0)", class: "navigasi btn" %>
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <div style="width: 500px; float: left">
+            <table class="table-consended">
               <tr>
-                <td><input type="text" style="width: 25px" value="01" /></td>
-                <td><input type="text" style="width: 100px" /></td>
-                <td><input type="text" style="width: 100px" /></td>
+                <td><%= f.label :supplier, "supplier".upcase %></td>
                 <td>
-                  <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 50px; float: left;" />
-                </td>
-                <td>
-                  <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 50px; float: left;" />
-                </td>
-                <td>
-                  <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                  <%= f.select :kode, options_for_select(BSupplier.all.map { |supplier| [ supplier.kode, supplier.id ] }), prompt: '-'  %>
+                  <%= text_field_tag :supplier_name, "- undefined -", style: 'width: 180px; float: left;', disabled: 'disabled' %>
                 </td>
               </tr>
               <tr>
-                <td><input type="text" style="width: 25px" value="02" /></td>
-                <td><input type="text" style="width: 100px" /></td>
-                <td><input type="text" style="width: 100px" /></td>
+                <td><label>TANGGAL</label></td>
+                <td><input type="text" style="width: 269px" /></td>
+              </tr>
+              <tr>
+                <td><label>NAMA BARANG</label></td>
                 <td>
-                  <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 50px; float: left;" />
-                </td>
-                <td>
-                  <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 50px; float: left;" />
-                </td>
-                <td>
-                  <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                  <input type="text" style="width: 95px; float: left; margin-right: 5px;" />
+                  <input type="text" style="width: 155px; float: left;" />
                 </td>
               </tr>
               <tr>
-                <td><input type="text" style="width: 25px" value="03" /></td>
-                <td><input type="text" style="width: 100px" /></td>
-                <td><input type="text" style="width: 100px" /></td>
-                <td>
-                  <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 50px; float: left;" />
-                </td>
+                <td><label>NO PENAWARAN</label></td>
+                <td><input type="text" style="width: 269px" /></td>
+              </tr>
+              <tr>
+                <td><label>VALUTA</label></td>
                 <td>
                   <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 50px; float: left;" />
-                </td>
-                <td>
-                  <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                  <input type="text" style="width: 200px; float: left;" />
                 </td>
               </tr>
               <tr>
-                <td><input type="text" style="width: 25px" value="04" /></td>
-                <td><input type="text" style="width: 100px" /></td>
-                <td><input type="text" style="width: 100px" /></td>
-                <td>
-                  <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 50px; float: left;" />
-                </td>
+                <td><label>HARGA</label></td>
+                <td><input type="text" style="width: 269px" /></td>
+              </tr>
+              <tr>
+                <td><label>MIN ORDER</label></td>
+                <td><input type="text" style="width: 269px" /></td>
+              </tr>
+              <tr>
+                <td><label>SATUAN</label></td>
                 <td>
                   <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
-                  <input type="text" style="width: 50px; float: left;" />
-                </td>
-                <td>
-                  <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                  <input type="text" style="width: 200px; float: left;" />
                 </td>
               </tr>
-            </tbody>
-          </table>
-        </div>
-      </td>
-    </tr>
-</table>
+              <tr>
+                <td><label>KEMASAN</label></td>
+                <td>
+                  <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                  <input type="text" style="width: 200px; float: left;" />
+                </td>
+              </tr>
+              <tr>
+                <td><label>WAKTU KIRIM</label></td>
+                <td><input type="text" style="width: 230px" /> HARI</td>
+              </tr>
+            </table>
+          </div>
+          <div style="width: 750px; float: left">
+            <h4>HISTORY</h4>
+            <table>
+              <thead>
+                <% @right_table_columns.each do |column| %>
+                  <th><%= column.upcase %></th>
+                <% end %>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="text" style="width: 25px" value="01" /></td>
+                  <td><input type="text" style="width: 100px" /></td>
+                  <td><input type="text" style="width: 100px" /></td>
+                  <td>
+                    <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
+                    <input type="text" style="width: 50px; float: left;" />
+                  </td>
+                  <td>
+                    <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                    <input type="text" style="width: 50px; float: left;" />
+                  </td>
+                  <td>
+                    <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="text" style="width: 25px" value="02" /></td>
+                  <td><input type="text" style="width: 100px" /></td>
+                  <td><input type="text" style="width: 100px" /></td>
+                  <td>
+                    <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
+                    <input type="text" style="width: 50px; float: left;" />
+                  </td>
+                  <td>
+                    <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                    <input type="text" style="width: 50px; float: left;" />
+                  </td>
+                  <td>
+                    <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="text" style="width: 25px" value="03" /></td>
+                  <td><input type="text" style="width: 100px" /></td>
+                  <td><input type="text" style="width: 100px" /></td>
+                  <td>
+                    <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
+                    <input type="text" style="width: 50px; float: left;" />
+                  </td>
+                  <td>
+                    <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                    <input type="text" style="width: 50px; float: left;" />
+                  </td>
+                  <td>
+                    <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                  </td>
+                </tr>
+                <tr>
+                  <td><input type="text" style="width: 25px" value="04" /></td>
+                  <td><input type="text" style="width: 100px" /></td>
+                  <td><input type="text" style="width: 100px" /></td>
+                  <td>
+                    <input type="text" style="width: 30px; float: left; margin-right: 5px;" />
+                    <input type="text" style="width: 50px; float: left;" />
+                  </td>
+                  <td>
+                    <input type="text" style="width: 50px; float: left; margin-right: 5px;" />
+                    <input type="text" style="width: 50px; float: left;" />
+                  </td>
+                  <td>
+                    <input type="text" style="width: 50px; float: left;" /> &nbsp HARI
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+  </table>
+<% end %>
+
+<script>
+var supplier_id = $('#b_supplier_history_quotation_kode');
+supplier_id.change(function() {
+  $.ajax({
+    url: '<%= get_suppliers_b_supplier_history_quotations_path %>?id=' + supplier_id.val()
+  });
+});
+</script>

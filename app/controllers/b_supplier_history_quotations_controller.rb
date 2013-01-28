@@ -23,12 +23,12 @@ class BSupplierHistoryQuotationsController < ApplicationController
   end
 
   def new
-    @b_supplier_history_quotation = BSupplierHistoryQuotation.new
+    @supplier_history_quotation = BSupplierHistoryQuotation.new
     @right_table_columns = ["no", "no penawaran", "tanggal", "harga", "qty order", "waktu kirim"]
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @b_supplier_history_quotation }
+      format.json { render json: @supplier_history_quotation }
     end
   end
 
@@ -37,20 +37,8 @@ class BSupplierHistoryQuotationsController < ApplicationController
     @b_supplier_history_quotation = BSupplierHistoryQuotation.find(params[:id])
   end
 
-  # POST /b_supplier_history_quotations
-  # POST /b_supplier_history_quotations.json
   def create
-    @b_supplier_history_quotation = BSupplierHistoryQuotation.new(params[:b_supplier_history_quotation])
-
-    respond_to do |format|
-      if @b_supplier_history_quotation.save
-        format.html { redirect_to @b_supplier_history_quotation, notice: 'B supplier history quotation was successfully created.' }
-        format.json { render json: @b_supplier_history_quotation, status: :created, location: @b_supplier_history_quotation }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @b_supplier_history_quotation.errors, status: :unprocessable_entity }
-      end
-    end
+    debugger
   end
 
   # PUT /b_supplier_history_quotations/1
@@ -79,6 +67,10 @@ class BSupplierHistoryQuotationsController < ApplicationController
       format.html { redirect_to b_supplier_history_quotations_url }
       format.json { head :no_content }
     end
+  end
+
+  def get_suppliers
+    @supplier = BSupplier.find_by_id(params[:id])
   end
 
 private
