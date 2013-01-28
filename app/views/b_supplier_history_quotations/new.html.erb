@@ -19,15 +19,15 @@
           <div style="width: 500px; float: left">
             <table class="table-consended">
               <tr>
-                <td><%= f.label :supplier, "supplier".upcase %></td>
+                <td><%= f.label :kode, "supplier".upcase %></td>
                 <td>
                   <%= f.select :kode, options_for_select(BSupplier.all.map { |supplier| [ supplier.kode, supplier.id ] }), prompt: '-'  %>
                   <%= text_field_tag :supplier_name, "- undefined -", style: 'width: 180px; float: left;', disabled: 'disabled' %>
                 </td>
               </tr>
               <tr>
-                <td><label>TANGGAL</label></td>
-                <td><input type="text" style="width: 269px" /></td>
+                <td><%= f.label :tanggal, "tanggal".upcase %></td>
+                <td><%= f.text_field :penawaran_tgl_cur, style: 'width: 269px;' %></td>
               </tr>
               <tr>
                 <td><label>NAMA BARANG</label></td>
@@ -158,9 +158,13 @@
 
 <script>
 var supplier_id = $('#b_supplier_history_quotation_kode');
+var tanggal_current = $('#b_supplier_history_quotation_penawaran_tgl_cur');
+
 supplier_id.change(function() {
   $.ajax({
     url: '<%= get_suppliers_b_supplier_history_quotations_path %>?id=' + supplier_id.val()
   });
 });
+
+tanggal_current.datepicker();
 </script>
