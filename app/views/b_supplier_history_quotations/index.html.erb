@@ -17,9 +17,9 @@
   <% if @supplier_history_quotations.count > 0 %>
     <% @supplier_history_quotations.each do |history| %>
       <tr>
-        <td><%= history.barang.kode %></td>
-        <td><%= history.barang.nama %></td>
-        <td><%= history.kemasan.nama %></td>
+        <td><%= history.barang.blank? ? '-' : history.barang.kode %></td>
+        <td><%= history.barang.blank? ? '-' : history.barang.nama %></td>
+        <td><%= history.kemasan.blank? ? '-' : history.kemasan.nama %></td>
         <td><%= history.penawaran_harga_1 %></td>
         <td><%= history.penawaran_harga_2 %></td>
         <td><%= history.penawaran_harga_3 %></td>
