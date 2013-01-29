@@ -4,3 +4,5 @@ class ChangeKodeBrgExtAndKodeBarangMBeliPoSecondDs < ActiveRecord::Migration
     rename_column :m_beli_po_second_ds, :kode_barang, :kode_brg
   end
 end
+
+
