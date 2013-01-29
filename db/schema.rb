@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130127090553) do
+ActiveRecord::Schema.define(:version => 20130128050232) do
 
   create_table "a_badan_usahas", :force => true do |t|
     t.string   "kode",       :limit => 5
@@ -543,9 +543,11 @@ ActiveRecord::Schema.define(:version => 20130127090553) do
     t.decimal  "total_qty_kali_harga"
     t.decimal  "total_qty_kali_harga_kali_diskon"
     t.decimal  "total_kurang_diskon"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.string   "kode_brg_ext"
+    t.decimal  "qty_kemasan_btb"
+    t.string   "no_revisi",                        :limit => 2
   end
 
   create_table "m_warehouse_in_first_hs", :force => true do |t|
