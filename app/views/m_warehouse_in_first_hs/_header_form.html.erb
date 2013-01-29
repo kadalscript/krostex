@@ -1,58 +1,59 @@
 <style>
-  div.span8 { color: 'black' }
+label { color: black; }
+.general-text-field { width: 271px; }
 </style>
-<div class="row16">
-  <div class="span8" style="color: black">
-    <div class="control-group">
-      <%= label_tag :id_gudang_potong, "Gudang".titleize, class: 'control-label' %>
-      <div class="controls">
+
+<div style="margin: 0 155px;">
+  <table style="float: left">
+    <tr>
+      <td><%= label_tag :id_gudang_potong, "Gudang".titleize, class: 'control-label' %></td>
+      <td>
         <%= text_field_tag :id_gudang_potong_field1, "", class: 'span2' %>
         <%= text_field_tag :id_gudang_potong_field2, "", class: 'span2' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :no_btb, "No BTB".titleize, class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :no_btb, "" %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :no_po, "No PO", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :no_po, "" %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :supplier, "Supplier".titleize, class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :supplier, "" %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :tgl_po, "Tanggal PO", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :tgl_po, "" %>
-      </div>
-    </div>
-  </div>
-  <div class="span8" style="color: black;">
-    <div class="control-group">
-      <%= label_tag :tanggal, "Tanggal", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :tanggal, @m_warehouse_in_first_h.tanggal.blank? ? "" : @m_warehouse_in_first_h.tanggal.strftime("%d/%m/%Y"), 'data-date-format' => 'dd/mm/yyyy' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= label_tag :sj_supplier, "SJ Supplier", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :sj_supplier, "" %>
-      </div>
-    </div>
-  </div>
+      </td>
+    </tr>
+    <tr>
+      <td><%= label_tag :no_btb, "No BTB".titleize, class: 'control-label' %></td>
+      <td><%= text_field_tag :no_btb, "", class: 'general-text-field' %></td>
+    </tr>
+    <tr>
+      <th colspan="2"><label>Data Purchase Order</label></th>
+    </tr>
+    <tr>
+      <td><%= label_tag :no_po, "No PO", class: 'control-label' %></td>
+      <td><%= text_field_tag :no_po, "", class: 'general-text-field' %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :supplier, "Supplier".titleize, class: 'control-label' %></td>
+      <td><%= text_field_tag :supplier, "" %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :tgl_po, "Tanggal PO", class: 'control-label' %></td>
+      <td><%= text_field_tag :tgl_po, "" %></td>
+    </tr>
+  </table>
+
+  <table style="float: left;">
+    <tr>
+      <td><%= label_tag :tanggal, "Tanggal", class: 'control-label' %></td>
+      <td><%= text_field_tag :tanggal, @m_warehouse_in_first_h.tanggal.blank? ? "" : @m_warehouse_in_first_h.tanggal.strftime("%d/%m/%Y"), 'data-date-format' => 'dd/mm/yyyy' %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :sj_supplier, "SJ Supplier", class: 'control-label' %></td>
+      <td><%= text_field_tag :sj_supplier, "" %></td>
+    </tr>
+    <tr>
+      <th colspan="2"><%= label_tag :keterangan, "Keterangan" %></th>
+    </tr>
+    <tr>
+      <th colspan="2" rowspan="3"><%= text_area_tag :keterangan, "", style: 'height: 100px;' %></th>
+    </tr>
+  </table>
 </div>
 
 <script>
 $(function() {
   $('#tanggal').datepicker();
+  $('#tgl_po').datepicker();
 });
 </script>
