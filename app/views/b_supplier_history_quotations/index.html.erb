@@ -20,10 +20,10 @@
         <td><%= history.barang.blank? ? '-' : history.barang.kode %></td>
         <td><%= history.barang.blank? ? '-' : history.barang.nama %></td>
         <td><%= history.kemasan.blank? ? '-' : history.kemasan.nama %></td>
-        <td><%= history.penawaran_harga_1 %></td>
-        <td><%= history.penawaran_harga_2 %></td>
-        <td><%= history.penawaran_harga_3 %></td>
-        <td><%= history.penawaran_harga_4 %></td>
+        <td><%= link_to history.penawaran_harga_1, 'javascript:void(0)' %></td>
+        <td><%= link_to history.penawaran_harga_2, 'javascript:void(0)' %></td>
+        <td><%= link_to history.penawaran_harga_3, 'javascript:void(0)' %></td>
+        <td><%= link_to history.penawaran_harga_4, 'javascript:void(0)' %></td>
       </tr>
     <% end %>
   <% else %>
