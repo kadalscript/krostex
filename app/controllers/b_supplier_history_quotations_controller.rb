@@ -95,7 +95,6 @@ class BSupplierHistoryQuotationsController < ApplicationController
   end
 
   def get_self_data
-    
   end
 
 private
