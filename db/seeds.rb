@@ -949,10 +949,44 @@ AKemasan.create([
   { kode: 'K2', nama: 'Kemasan 2', isi_volume: 2, id_satuan: a_satuan_2.id }
 ])
 
+supplier = BSupplier.first
+barang = BBarang.first
+kemasan = AKemasan.first
+valuta = AMataUang.first
+satuan = ASatuan.first
+  
 BSupplierHistoryQuotation.create([
-  { kode: 'K1', kode_brg: 'B1' },
-  { kode: 'K2', kode_brg: 'B2' },
-  { kode: 'K3', kode_brg: 'B3' },
-  { kode: 'K4', kode_brg: 'B4' },
-  { kode: 'K5', kode_brg: 'B5' }
+  { 
+    kode: supplier.kode, 
+    kode_brg: barang.kode,
+    id_satuan_kemasan: kemasan.kode,
+    penawaran_kode_cur: 1234, 
+    penawaran_tgl_cur: DateTime.now,
+    penawaran_kode_valuta_cur: valuta.kode,
+    penawaran_harga_cur: 10000, 
+    penawaran_min_order_cur: 100,
+    penawaran_kode_satuan_cur: satuan.simbol,
+    penawaran_waktu_kirim_cur: 10,
+    penawaran_kode_2: 1235,
+    penawaran_tgl_2: 1.hours.from_now,
+    penawaran_kode_valuta_2: valuta.kode,
+    penawaran_harga_2: 20000,
+    penawaran_min_order_2: 200,
+    penawaran_kode_satuan_2: satuan.simbol,
+    penawaran_waktu_kirim_2: 20,
+    penawaran_kode_3: 1236,
+    penawaran_tgl_3: 2.hours.from_now,
+    penawaran_kode_valuta_3: valuta.kode,
+    penawaran_harga_3: 30000,
+    penawaran_min_order_3: 300,
+    penawaran_kode_satuan_3: satuan.simbol,
+    penawaran_waktu_kirim_3: 30,
+    penawaran_kode_4: 1237,
+    penawaran_tgl_4: 3.hours.from_now,
+    penawaran_kode_valuta_4: valuta.kode,
+    penawaran_harga_4: 40000,
+    penawaran_min_order_4: 400,
+    penawaran_kode_satuan_4: satuan.simbol,
+    penawaran_waktu_kirim_4: 40
+  }
 ])
