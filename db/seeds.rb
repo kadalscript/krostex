@@ -954,6 +954,11 @@ barang = BBarang.first
 kemasan = AKemasan.first
 valuta = AMataUang.first
 satuan = ASatuan.first
+second_supplier = BSupplier.find_by_id(supplier.id + 1)
+second_barang = BBarang.find_by_id(barang.id + 1)
+second_kemasan = AKemasan.find_by_id(kemasan.id + 1)
+second_valuta = AMataUang.find_by_id(valuta.id + 1)
+second_satuan = ASatuan.find_by_id(satuan.id + 1)
   
 BSupplierHistoryQuotation.create([
   { 
@@ -988,5 +993,38 @@ BSupplierHistoryQuotation.create([
     penawaran_min_order_4: 400,
     penawaran_kode_satuan_4: satuan.simbol,
     penawaran_waktu_kirim_4: 40
+  },
+  {
+    kode: second_supplier.kode,
+    kode_brg: second_barang.kode,
+    id_satuan_kemasan: second_kemasan.kode,
+    penawaran_kode_cur: 1244,
+    penawaran_tgl_cur: DateTime.now,
+    penawaran_kode_valuta_cur: second_valuta.kode,
+    penawaran_harga_cur: 11000,
+    penawaran_min_order_cur: 110,
+    penawaran_kode_satuan_cur: second_satuan.simbol,
+    penawaran_waktu_kirim_cur: 11,
+    penawaran_kode_2: 1245,
+    penawaran_tgl_2: 1.hours.from_now,
+    penawaran_kode_valuta_2: second_valuta.kode,
+    penawaran_harga_2: 21000,
+    penawaran_min_order_2: 210,
+    penawaran_kode_satuan_2: second_satuan.simbol,
+    penawaran_waktu_kirim_2: 21,
+    penawaran_kode_3: 1246,
+    penawaran_tgl_3: 2.hours.from_now,
+    penawaran_kode_valuta_3: second_valuta.kode,
+    penawaran_harga_3: 31000,
+    penawaran_min_order_3: 310,
+    penawaran_kode_satuan_3: second_satuan.simbol,
+    penawaran_waktu_kirim_3: 31,
+    penawaran_kode_4: 1247,
+    penawaran_tgl_4: 3.hours.from_now,
+    penawaran_kode_valuta_4: second_valuta.kode,
+    penawaran_harga_4: 41000,
+    penawaran_min_order_4: 410,
+    penawaran_kode_satuan_4: second_satuan.simbol,
+    penawaran_waktu_kirim_4: 41
   }
 ])
