@@ -20,10 +20,10 @@
         <td><%= history.barang.blank? ? '-' : history.barang.kode %></td>
         <td><%= history.barang.blank? ? '-' : history.barang.nama %></td>
         <td><%= history.kemasan.blank? ? '-' : history.kemasan.nama %></td>
-        <td><%= link_to history.penawaran_harga_1, 'javascript:void(0)' %></td>
-        <td><%= link_to history.penawaran_harga_2, 'javascript:void(0)' %></td>
-        <td><%= link_to history.penawaran_harga_3, 'javascript:void(0)' %></td>
-        <td><%= link_to history.penawaran_harga_4, 'javascript:void(0)' %></td>
+        <td><%= link_to history.penawaran_harga_1, 'javascript:void(0)', 'data-content' => '', 'data-placement' => 'top', rel: 'popover', 'data-original-title' => 'Detail Harga 1', id: 'harga_1' %></td>
+        <td><%= link_to history.penawaran_harga_2, 'javascript:void(0)', 'data-content' => '', 'data-placement' => 'top', rel: 'popover', 'data-original-title' => 'Detail Harga 2', id: 'harga_2' %></td>
+        <td><%= link_to history.penawaran_harga_3, 'javascript:void(0)', 'data-content' => '', 'data-placement' => 'top', rel: 'popover', 'data-original-title' => 'Detail Harga 3', id: 'harga_3' %></td>
+        <td><%= link_to history.penawaran_harga_4, 'javascript:void(0)', 'data-content' => '', 'data-placement' => 'top', rel: 'popover', 'data-original-title' => 'Detail Harga 4', id: 'harga_4' %></td>
       </tr>
     <% end %>
   <% else %>
@@ -37,3 +37,12 @@
     </tr>
   </thead>
 </table>
+
+<script>
+var harga = ["harga_1", "harga_2", "harga_3", "harga_4"];
+
+for (var i = 0; i <= harga.length; i++) {
+  $('a#' + harga[i]).mouseenter(function() { $(this).popover('show'); });
+  $('a#' + harga[i]).mouseleave(function() { $(this).popover('hide'); });
+}
+</script>
