@@ -1,0 +1,2 @@
+module MWarehouseOutAHsHelper
+end

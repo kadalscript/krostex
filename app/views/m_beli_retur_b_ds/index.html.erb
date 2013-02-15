@@ -1,0 +1,41 @@
+<h1>Listing m_beli_retur_b_ds</h1>
+
+<table>
+  <tr>
+    <th>Kode tmp</th>
+    <th>Kode barang</th>
+    <th>Qty</th>
+    <th>Id valuta</th>
+    <th>Harga</th>
+    <th>Diskon</th>
+    <th>Total qty kali harga</th>
+    <th>Total qty kali harga kali diskon</th>
+    <th>Total kurang diskon</th>
+    <th>Kode brg ext</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @m_beli_retur_b_ds.each do |m_beli_retur_b_d| %>
+  <tr>
+    <td><%= m_beli_retur_b_d.kode_tmp %></td>
+    <td><%= m_beli_retur_b_d.kode_barang %></td>
+    <td><%= m_beli_retur_b_d.qty %></td>
+    <td><%= m_beli_retur_b_d.id_valuta %></td>
+    <td><%= m_beli_retur_b_d.harga %></td>
+    <td><%= m_beli_retur_b_d.diskon %></td>
+    <td><%= m_beli_retur_b_d.total_qty_kali_harga %></td>
+    <td><%= m_beli_retur_b_d.total_qty_kali_harga_kali_diskon %></td>
+    <td><%= m_beli_retur_b_d.total_kurang_diskon %></td>
+    <td><%= m_beli_retur_b_d.kode_brg_ext %></td>
+    <td><%= link_to 'Show', m_beli_retur_b_d %></td>
+    <td><%= link_to 'Edit', edit_m_beli_retur_b_d_path(m_beli_retur_b_d) %></td>
+    <td><%= link_to 'Destroy', m_beli_retur_b_d, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New M beli retur b d', new_m_beli_retur_b_d_path %>

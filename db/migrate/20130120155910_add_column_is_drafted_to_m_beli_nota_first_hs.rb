@@ -4,3 +4,4 @@ class AddColumnIsDraftedToMBeliNotaFirstHs < ActiveRecord::Migration
     add_column :m_beli_nota_first_hs, :no_revisi, :string, limit: 2
   end
 end
+

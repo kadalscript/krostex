@@ -1,0 +1,47 @@
+<h1>Listing m_warehouse_ks_brg_b_ds</h1>
+
+<table>
+  <tr>
+    <th>Id cabang</th>
+    <th>Id gudang</th>
+    <th>Tipe stok</th>
+    <th>Kode brg</th>
+    <th>Kode brg lot</th>
+    <th>Tanggal</th>
+    <th>Simbol</th>
+    <th>Keterangan</th>
+    <th>Catatan</th>
+    <th>Qty awal</th>
+    <th>Qty masuk</th>
+    <th>Qty keluar</th>
+    <th>Qty saldo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @m_warehouse_ks_brg_b_ds.each do |m_warehouse_ks_brg_b_d| %>
+  <tr>
+    <td><%= m_warehouse_ks_brg_b_d.id_cabang %></td>
+    <td><%= m_warehouse_ks_brg_b_d.id_gudang %></td>
+    <td><%= m_warehouse_ks_brg_b_d.tipe_stok %></td>
+    <td><%= m_warehouse_ks_brg_b_d.kode_brg %></td>
+    <td><%= m_warehouse_ks_brg_b_d.kode_brg_lot %></td>
+    <td><%= m_warehouse_ks_brg_b_d.tanggal %></td>
+    <td><%= m_warehouse_ks_brg_b_d.simbol %></td>
+    <td><%= m_warehouse_ks_brg_b_d.keterangan %></td>
+    <td><%= m_warehouse_ks_brg_b_d.catatan %></td>
+    <td><%= m_warehouse_ks_brg_b_d.qty_awal %></td>
+    <td><%= m_warehouse_ks_brg_b_d.qty_masuk %></td>
+    <td><%= m_warehouse_ks_brg_b_d.qty_keluar %></td>
+    <td><%= m_warehouse_ks_brg_b_d.qty_saldo %></td>
+    <td><%= link_to 'Show', m_warehouse_ks_brg_b_d %></td>
+    <td><%= link_to 'Edit', edit_m_warehouse_ks_brg_b_d_path(m_warehouse_ks_brg_b_d) %></td>
+    <td><%= link_to 'Destroy', m_warehouse_ks_brg_b_d, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New M warehouse ks brg b d', new_m_warehouse_ks_brg_b_d_path %>

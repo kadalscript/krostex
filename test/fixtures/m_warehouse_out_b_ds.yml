@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kode_tmp: MyString
+  kode_brg: MyString
+  kode_brg_ext: MyString
+  kode_brg_lot: MyString
+  qty: 9.99
+  created_at: 2013-02-12 11:18:15
+  updated_at: 2013-02-12 11:18:15
+
+two:
+  kode_tmp: MyString
+  kode_brg: MyString
+  kode_brg_ext: MyString
+  kode_brg_lot: MyString
+  qty: 9.99
+  created_at: 2013-02-12 11:18:15
+  updated_at: 2013-02-12 11:18:15

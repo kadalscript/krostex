@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id_cabang: MyString
+  id_gudang: MyString
+  kode_brg: MyString
+  kode_brg_ext: MyString
+  qty_real: 9.99
+  qty_mc: 9.99
+
+two:
+  id_cabang: MyString
+  id_gudang: MyString
+  kode_brg: MyString
+  kode_brg_ext: MyString
+  qty_real: 9.99
+  qty_mc: 9.99

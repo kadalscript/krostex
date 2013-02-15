@@ -1,0 +1,69 @@
+<%= form_for(@m_warehouse_ks_brg_b_d) do |f| %>
+  <% if @m_warehouse_ks_brg_b_d.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@m_warehouse_ks_brg_b_d.errors.count, "error") %> prohibited this m_warehouse_ks_brg_b_d from being saved:</h2>
+
+      <ul>
+      <% @m_warehouse_ks_brg_b_d.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id_cabang %><br />
+    <%= f.text_field :id_cabang %>
+  </div>
+  <div class="field">
+    <%= f.label :id_gudang %><br />
+    <%= f.text_field :id_gudang %>
+  </div>
+  <div class="field">
+    <%= f.label :tipe_stok %><br />
+    <%= f.text_field :tipe_stok %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_brg %><br />
+    <%= f.text_field :kode_brg %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_brg_lot %><br />
+    <%= f.text_field :kode_brg_lot %>
+  </div>
+  <div class="field">
+    <%= f.label :tanggal %><br />
+    <%= f.datetime_select :tanggal %>
+  </div>
+  <div class="field">
+    <%= f.label :simbol %><br />
+    <%= f.text_field :simbol %>
+  </div>
+  <div class="field">
+    <%= f.label :keterangan %><br />
+    <%= f.text_field :keterangan %>
+  </div>
+  <div class="field">
+    <%= f.label :catatan %><br />
+    <%= f.text_field :catatan %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_awal %><br />
+    <%= f.text_field :qty_awal %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_masuk %><br />
+    <%= f.text_field :qty_masuk %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_keluar %><br />
+    <%= f.text_field :qty_keluar %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_saldo %><br />
+    <%= f.text_field :qty_saldo %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
