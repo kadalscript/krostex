@@ -13,6 +13,36 @@
 
 ActiveRecord::Schema.define(:version => 20130213170437) do
 
+  create_table "a_area_a_negaras", :force => true do |t|
+    t.string   "kode",       :limit => 5
+    t.string   "nama",       :limit => 30
+    t.string   "simbol",     :limit => 5
+    t.string   "updated_by", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "a_area_b_provinsis", :force => true do |t|
+    t.string   "kode",       :limit => 10
+    t.string   "nama",       :limit => 30
+    t.string   "simbol",     :limit => 5
+    t.string   "id_negara",  :limit => 5
+    t.string   "updated_by", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "a_area_c_cities", :force => true do |t|
+    t.string   "kode",        :limit => 10
+    t.string   "nama",        :limit => 30
+    t.string   "simbol",      :limit => 5
+    t.string   "id_negara",   :limit => 5
+    t.string   "id_provinsi", :limit => 10
+    t.string   "updated_by",  :limit => 30
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
   create_table "a_badan_usahas", :force => true do |t|
     t.string   "kode",       :limit => 5
     t.string   "nama",       :limit => 15
@@ -26,26 +56,70 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.string   "kode",        :limit => 10
     t.string   "nama",        :limit => 35
     t.string   "simbol",      :limit => 5
-    t.integer  "status1",     :limit => 2
+    t.integer  "status1",     :limit => 2,  :default => 0
     t.string   "st_progress", :limit => 20
     t.string   "updated_by",  :limit => 30
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
-  create_table "a_cities", :force => true do |t|
-    t.string   "kode",        :limit => 5
-    t.string   "nama",        :limit => 30
-    t.string   "simbol",      :limit => 5
-    t.string   "id_negara",   :limit => 5
-    t.string   "id_provinsi", :limit => 5
-    t.string   "updated_by",  :limit => 30
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+  create_table "a_brg_a_departments", :force => true do |t|
+    t.string   "kode",       :limit => 5
+    t.string   "nama",       :limit => 30
+    t.string   "simbol",     :limit => 5
+    t.string   "updated_by", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "a_brg_b_golongans", :force => true do |t|
+    t.string   "kode",          :limit => 5
+    t.string   "nama",          :limit => 30
+    t.string   "simbol",        :limit => 5
+    t.string   "id_department", :limit => 5
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "a_brg_c_types", :force => true do |t|
+    t.string   "kode",          :limit => 5
+    t.string   "nama",          :limit => 30
+    t.string   "simbol",        :limit => 5
+    t.string   "id_department", :limit => 5
+    t.string   "id_golongan",   :limit => 5
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "a_brg_d_level_fours", :force => true do |t|
+    t.string   "kode",          :limit => 5
+    t.string   "nama",          :limit => 30
+    t.string   "simbol",        :limit => 5
+    t.string   "id_department", :limit => 5
+    t.string   "id_golongan",   :limit => 5
+    t.string   "id_type",       :limit => 5
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "a_brg_e_level_fives", :force => true do |t|
+    t.string   "kode",          :limit => 5
+    t.string   "nama",          :limit => 30
+    t.string   "simbol",        :limit => 5
+    t.string   "id_department", :limit => 5
+    t.string   "id_golongan",   :limit => 5
+    t.string   "id_type",       :limit => 5
+    t.string   "id_level_four", :limit => 5
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "a_company_profiles", :force => true do |t|
-    t.string   "kode",           :limit => 1
+    t.string   "kode",           :limit => 5
     t.string   "nama_company",   :limit => 50
     t.string   "contact_person", :limit => 50
     t.string   "alamat_title",   :limit => 90
@@ -60,109 +134,35 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.datetime "updated_at",                   :null => false
   end
 
-  create_table "a_departments", :force => true do |t|
-    t.string   "kode",       :limit => 5
-    t.string   "nama",       :limit => 30
-    t.string   "simbol",     :limit => 5
-    t.string   "updated_by", :limit => 30
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-  end
-
-  create_table "a_golongans", :force => true do |t|
-    t.string   "kode",          :limit => 5
-    t.string   "nama",          :limit => 30
-    t.string   "simbol",        :limit => 5
-    t.string   "id_department", :limit => 5
-    t.string   "updated_by",    :limit => 30
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
   create_table "a_gudangs", :force => true do |t|
-    t.string   "simbol"
-    t.string   "nama"
-    t.integer  "status1"
-    t.string   "st_progress"
-    t.string   "update_by"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "simbol",       :limit => 5
+    t.string   "nama",         :limit => 30
+    t.integer  "status1",      :limit => 2,  :default => 0
+    t.string   "st_progress",  :limit => 20
+    t.string   "update_by",    :limit => 30
     t.string   "alamat_title", :limit => 99
     t.string   "alamat_01",    :limit => 99
     t.string   "alamat_02",    :limit => 99
     t.string   "alamat_03",    :limit => 99
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "a_kemasans", :force => true do |t|
-    t.string   "kode",       :limit => 5
+    t.string   "kode",       :limit => 10
     t.string   "nama",       :limit => 15
     t.decimal  "isi_volume"
-    t.string   "id_satuan"
+    t.integer  "id_satuan",                :default => 0
     t.string   "updated_by", :limit => 30
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-  end
-
-  create_table "a_kotas", :force => true do |t|
-    t.string   "kode",        :limit => 5
-    t.string   "nama",        :limit => 30
-    t.string   "simbol",      :limit => 5
-    t.string   "id_negara",   :limit => 5
-    t.string   "id_provinsi", :limit => 5
-    t.string   "updated_by",  :limit => 30
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  create_table "a_level_fives", :force => true do |t|
-    t.string   "kode",          :limit => 5
-    t.string   "nama",          :limit => 30
-    t.string   "simbol",        :limit => 5
-    t.string   "id_department", :limit => 5
-    t.string   "id_golongan",   :limit => 5
-    t.string   "id_type",       :limit => 5
-    t.string   "id_level_four", :limit => 5
-    t.string   "updated_by",    :limit => 30
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
-  create_table "a_level_fours", :force => true do |t|
-    t.string   "kode",          :limit => 5
-    t.string   "nama",          :limit => 30
-    t.string   "simbol",        :limit => 5
-    t.string   "id_department", :limit => 5
-    t.string   "id_golongan",   :limit => 5
-    t.string   "id_type",       :limit => 5
-    t.string   "updated_by",    :limit => 30
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "a_mata_uangs", :force => true do |t|
-    t.string   "kode",       :limit => 2
+    t.string   "kode",       :limit => 5
     t.string   "simbol",     :limit => 5
     t.string   "nama",       :limit => 15
     t.integer  "no_urut"
-    t.string   "updated_by", :limit => 30
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-  end
-
-  create_table "a_negaras", :force => true do |t|
-    t.string   "kode",       :limit => 5
-    t.string   "nama",       :limit => 30
-    t.string   "simbol",     :limit => 5
-    t.string   "updated_by", :limit => 30
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-  end
-
-  create_table "a_provinsis", :force => true do |t|
-    t.string   "kode",       :limit => 5
-    t.string   "nama",       :limit => 30
-    t.string   "simbol"
-    t.string   "id_negara"
     t.string   "updated_by", :limit => 30
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
@@ -178,12 +178,13 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
   end
 
   create_table "a_setting_programs", :force => true do |t|
-    t.string   "id_company"
-    t.string   "id_gudang"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.string   "id_company",              :limit => 10
+    t.string   "id_gudang",               :limit => 10
+    t.integer  "is_trigger",              :limit => 2
     t.string   "id_gudang_reject",        :limit => 10
     t.string   "kat_alamat_ktr_supplier", :limit => 20
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "a_template_cats", :force => true do |t|
@@ -198,54 +199,43 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.datetime "updated_at",                :null => false
   end
 
-  create_table "a_types", :force => true do |t|
-    t.string   "kode",          :limit => 5
-    t.string   "nama",          :limit => 30
-    t.string   "simbol",        :limit => 5
-    t.string   "id_department", :limit => 5
-    t.string   "id_golongan",   :limit => 5
-    t.string   "updated_by",    :limit => 30
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
   create_table "admin_ms_groups", :force => true do |t|
     t.string   "id_group",        :limit => 5
     t.string   "namagroup",       :limit => 20
-    t.integer  "statusgroup"
+    t.integer  "statusgroup",                   :default => 0
     t.string   "id_group_parent", :limit => 5
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "admin_ms_menu_generates", :force => true do |t|
-    t.string   "ip_address"
-    t.string   "no_urut"
-    t.string   "id_menu"
-    t.string   "simbol"
-    t.string   "keterangan"
-    t.string   "nm_url"
-    t.integer  "status"
-    t.string   "id_menuref"
-    t.integer  "tipemenu"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "ip_address", :limit => 15
+    t.string   "no_urut",    :limit => 4
+    t.string   "id_menu",    :limit => 5
+    t.string   "simbol",     :limit => 5
+    t.string   "keterangan", :limit => 50
+    t.string   "nm_url",     :limit => 100
+    t.integer  "status",     :limit => 2,   :default => 0
+    t.string   "id_menuref", :limit => 15
+    t.integer  "tipemenu",   :limit => 2,   :default => 0
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "admin_ms_menu_group_navs", :force => true do |t|
-    t.string   "id_menu"
-    t.string   "id_group"
-    t.integer  "id_navigasi"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "id_menu",     :limit => 5
+    t.string   "id_group",    :limit => 5
+    t.integer  "id_navigasi", :limit => 2, :default => 0
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "admin_ms_menu_groups", :force => true do |t|
-    t.string   "id_menu",    :limit => 4
-    t.string   "id_group",   :limit => 2
-    t.integer  "statusmenu", :limit => 2
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.string   "id_menu",    :limit => 5
+    t.string   "id_group",   :limit => 5
+    t.integer  "statusmenu", :limit => 2, :default => 0
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   create_table "admin_ms_menus", :force => true do |t|
@@ -262,53 +252,70 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
   end
 
   create_table "admin_ms_modul_navigasis", :force => true do |t|
-    t.integer  "id_navigasi"
-    t.integer  "id_modul"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "id_navigasi", :default => 0
+    t.integer  "id_modul",    :default => 0
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "admin_ms_moduls", :force => true do |t|
-    t.integer  "id_modul"
+    t.integer  "id_modul",   :limit => 8
     t.string   "keterangan", :limit => 50
-    t.integer  "status1",    :limit => 2
+    t.integer  "status1",    :limit => 2,  :default => 0
     t.string   "nm_url",     :limit => 99
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   create_table "admin_ms_navigasis", :force => true do |t|
-    t.integer  "id_navigasi"
-    t.string   "nama_navigasi"
-    t.string   "nama_button"
-    t.integer  "status1"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "id_navigasi",                 :default => 0
+    t.string   "nama_navigasi", :limit => 30
+    t.string   "nama_button",   :limit => 30
+    t.integer  "status1",       :limit => 2,  :default => 0
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "admin_ms_url_backs", :force => true do |t|
-    t.string   "kode"
-    t.string   "url_back"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "kode",       :limit => 20
+    t.string   "url_back",   :limit => 3000
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "admin_ms_users", :force => true do |t|
-    t.string   "login_name",         :default => "", :null => false
-    t.string   "encrypted_password", :default => "", :null => false
-    t.string   "id_group"
-    t.string   "user_name"
-    t.integer  "status"
-    t.integer  "limitlogin"
+    t.string   "login_name",                       :default => "", :null => false
+    t.string   "encrypted_password",               :default => "", :null => false
+    t.string   "id_group",           :limit => 5
+    t.string   "user_name",          :limit => 30
+    t.integer  "status",                           :default => 0
+    t.integer  "limitlogin",                       :default => 0
     t.datetime "tglcreate"
     t.datetime "tglpasswordexpired"
     t.datetime "tgllastlogin"
-    t.string   "pin"
-    t.integer  "is_level1"
-    t.integer  "is_level2"
-    t.integer  "is_level3"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.string   "pin",                :limit => 10
+    t.integer  "is_level1",                        :default => 0
+    t.integer  "is_level2",                        :default => 0
+    t.integer  "is_level3",                        :default => 0
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+  end
+
+  create_table "b_barang_as", :force => true do |t|
+    t.string   "kode",          :limit => 20
+    t.string   "nama",          :limit => 50
+    t.string   "id_department", :limit => 5
+    t.string   "id_golongan",   :limit => 5
+    t.string   "id_type",       :limit => 5
+    t.string   "id_level_four", :limit => 5
+    t.string   "id_level_five", :limit => 5
+    t.string   "id_satuan",     :limit => 5
+    t.decimal  "min_stok",                    :default => 0.0
+    t.decimal  "max_stok",                    :default => 0.0
+    t.decimal  "reorder_stok",                :default => 0.0
+    t.string   "updated_by",    :limit => 30
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "b_barang_exts", :force => true do |t|
@@ -325,59 +332,40 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.datetime "updated_at",                      :null => false
   end
 
-  create_table "b_barangs", :force => true do |t|
-    t.string   "kode",          :limit => 10
-    t.string   "nama",          :limit => 30
-    t.string   "id_department", :limit => 5
-    t.string   "id_golongan",   :limit => 5
-    t.string   "id_type",       :limit => 5
-    t.string   "id_level_four", :limit => 5
-    t.string   "id_level_five", :limit => 5
-    t.string   "id_satuan",     :limit => 5
-    t.decimal  "min_stok"
-    t.decimal  "max_stok"
-    t.decimal  "reorder_stok"
-    t.string   "updated_by",    :limit => 30
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.string   "count_id",      :limit => 5
+  create_table "b_supplier_as", :force => true do |t|
+    t.string   "kode",           :limit => 10
+    t.string   "nama",           :limit => 50
+    t.string   "id_badan_usaha", :limit => 2
+    t.string   "email",          :limit => 50
+    t.string   "homepage",       :limit => 90
+    t.integer  "status1",        :limit => 2,  :default => 0
+    t.string   "st_progress",    :limit => 20
+    t.string   "updated_by",     :limit => 30
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
-  create_table "b_supplier_accounts", :force => true do |t|
-    t.string   "kode_account", :limit => 20
-    t.string   "kode",         :limit => 10
-    t.string   "kode_bank",    :limit => 5
-    t.string   "nama_pemilik", :limit => 50
-    t.string   "nama_cabang",  :limit => 35
-    t.integer  "status1",      :limit => 2
-    t.string   "st_progress",  :limit => 20
-    t.string   "updated_by",   :limit => 30
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-  end
-
-  create_table "b_supplier_alamats", :force => true do |t|
+  create_table "b_supplier_b_alamats", :force => true do |t|
     t.string   "kode_alamat",   :limit => 15
     t.string   "kode",          :limit => 10
-    t.string   "kode_kategori"
+    t.string   "kode_kategori", :limit => 15
     t.string   "alamat_title",  :limit => 90
     t.string   "alamat_01",     :limit => 90
     t.string   "alamat_02",     :limit => 90
     t.string   "id_negara",     :limit => 5
-    t.string   "id_provinsi",   :limit => 5
-    t.string   "id_kota",       :limit => 5
+    t.string   "id_provinsi",   :limit => 10
+    t.string   "id_kota",       :limit => 10
     t.string   "telepon",       :limit => 30
     t.string   "fax",           :limit => 30
     t.string   "kode_pos",      :limit => 5
-    t.integer  "status1"
+    t.integer  "status1",       :limit => 2
     t.string   "st_progress",   :limit => 20
-    t.integer  "b_supplier_id"
     t.string   "updated_by",    :limit => 30
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
   end
 
-  create_table "b_supplier_contacts", :force => true do |t|
+  create_table "b_supplier_c_contacts", :force => true do |t|
     t.string   "kode_contact",  :limit => 15
     t.string   "kode",          :limit => 10
     t.string   "kode_kategori", :limit => 15
@@ -394,7 +382,20 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.datetime "updated_at",                  :null => false
   end
 
-  create_table "b_supplier_history_quotations", :force => true do |t|
+  create_table "b_supplier_d_accounts", :force => true do |t|
+    t.string   "kode_account", :limit => 20
+    t.string   "kode",         :limit => 10
+    t.string   "kode_bank",    :limit => 5
+    t.string   "nama_pemilik", :limit => 50
+    t.string   "nama_cabang",  :limit => 35
+    t.integer  "status1",      :limit => 2
+    t.string   "st_progress",  :limit => 20
+    t.string   "updated_by",   :limit => 30
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "b_supplier_e_history_quotations", :force => true do |t|
     t.string   "kode",                      :limit => 10
     t.string   "kode_brg",                  :limit => 10
     t.string   "kode_brg_ext",              :limit => 20
@@ -439,139 +440,14 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.integer  "penawaran_waktu_kirim_4"
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
-    t.string   "id_satuan_kemasan",         :limit => 5
   end
 
-  create_table "b_suppliers", :force => true do |t|
-    t.string   "kode",           :limit => 10
-    t.string   "nama",           :limit => 50
-    t.string   "id_badan_usaha", :limit => 2
-    t.string   "email",          :limit => 50
-    t.string   "homepage"
-    t.integer  "status1"
-    t.string   "st_progress",    :limit => 20
-    t.string   "updated_by",     :limit => 30
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-  end
-
-  create_table "m_beli_nota_first_hs", :force => true do |t|
-    t.string   "kode_tmp",                    :limit => 20
-    t.string   "kode_disp"
-    t.string   "id_cabang"
-    t.string   "simbol"
-    t.datetime "tanggal"
-    t.string   "no_po_disp"
-    t.string   "id_supplier"
-    t.string   "id_valuta"
-    t.decimal  "nilai_rate_kurs"
-    t.decimal  "total_sub_total"
-    t.decimal  "total_disc_persen"
-    t.decimal  "total_disc_nominal"
-    t.decimal  "total_sub_total_kurang_disc"
-    t.decimal  "total_ppn_disc"
-    t.decimal  "total_ppn_nominal"
-    t.decimal  "total_grand_total"
-    t.decimal  "total_grand_total_po"
-    t.decimal  "total_dp"
-    t.decimal  "total_grand_total_retur"
-    t.datetime "tgl_jth_tempo"
-    t.string   "keterangan"
-    t.string   "no_btb_list_disp"
-    t.string   "updated_by"
-    t.integer  "status1"
-    t.string   "st_progress"
-    t.decimal  "qty_all_nota"
-    t.integer  "is_ap"
-    t.string   "id_ap_disp"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.boolean  "is_drafted"
-    t.string   "no_revisi",                   :limit => 2
-  end
-
-  create_table "m_beli_nota_second_ds", :force => true do |t|
-    t.string   "kode_tmp",                         :limit => 20
-    t.string   "kode_brg",                         :limit => 20
-    t.decimal  "qty"
-    t.string   "id_valuta"
-    t.decimal  "harga"
-    t.decimal  "diskon"
-    t.decimal  "total_qty_kali_harga"
-    t.decimal  "total_qty_kali_harga_kali_diskon"
-    t.decimal  "total_kurang_diskon"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
-    t.string   "kode_brg_ext",                     :limit => 30
-  end
-
-  create_table "m_beli_po_first_hs", :force => true do |t|
-    t.string   "kode_tmp"
-    t.string   "kode_disp"
-    t.string   "id_cabang"
-    t.string   "simbol"
-    t.datetime "tanggal"
-    t.string   "no_penawaran"
-    t.string   "id_supplier"
-    t.string   "id_alamat_supplier"
-    t.string   "id_valuta"
-    t.decimal  "nilai_rate_kurs"
-    t.decimal  "total_sub_total"
-    t.decimal  "total_disc_persen"
-    t.decimal  "total_disc_nominal"
-    t.decimal  "total_sub_total_kurang_disc"
-    t.decimal  "total_ppn_disc"
-    t.decimal  "total_ppn_nominal"
-    t.decimal  "total_grand_total"
-    t.datetime "tgl_kirim"
-    t.datetime "tgl_jth_tempo"
-    t.string   "keterangan"
-    t.string   "keterangan_syarat_bayar"
-    t.string   "updated_by"
-    t.integer  "status1"
-    t.string   "st_progress"
-    t.decimal  "qty_all_po"
-    t.decimal  "qty_all_btb"
-    t.decimal  "qty_all_close"
-    t.decimal  "total_nota"
-    t.decimal  "total_retur"
-    t.integer  "is_close_btb"
-    t.integer  "is_close_po"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.boolean  "is_drafted"
-    t.string   "id_gudang_kirim",             :limit => 10
-    t.string   "no_revisi",                   :limit => 2
-    t.string   "no_po_disp",                  :limit => 20
-    t.decimal  "total_grand_total_po"
-    t.decimal  "total_dp"
-    t.decimal  "total_grand_total_retur"
-  end
-
-  create_table "m_beli_po_second_ds", :force => true do |t|
-    t.string   "kode_tmp",                         :limit => 20
-    t.string   "kode_brg"
-    t.decimal  "qty_kemasan"
-    t.string   "id_satuan_kemasan"
-    t.decimal  "qty"
-    t.decimal  "qty_btb"
-    t.string   "id_valuta"
-    t.decimal  "harga"
-    t.decimal  "diskon"
-    t.decimal  "total_qty_kali_harga"
-    t.decimal  "total_qty_kali_harga_kali_diskon"
-    t.decimal  "total_kurang_diskon"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
-    t.string   "kode_brg_ext",                     :limit => 30
-    t.decimal  "qty_kemasan_btb"
-  end
-
-  create_table "m_beli_retur_a_hs", :force => true do |t|
+  create_table "m_beli_nota_a_hs", :force => true do |t|
     t.string   "kode_tmp",                    :limit => 20
     t.string   "kode_disp",                   :limit => 20
     t.string   "id_cabang",                   :limit => 2
     t.string   "simbol",                      :limit => 5
+    t.string   "no_revisi",                   :limit => 2
     t.datetime "tanggal"
     t.string   "no_po_disp",                  :limit => 20
     t.string   "id_supplier",                 :limit => 10
@@ -587,6 +463,112 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.decimal  "total_grand_total_po"
     t.decimal  "total_dp"
     t.decimal  "total_grand_total_retur"
+    t.datetime "tgl_jth_tempo"
+    t.string   "keterangan",                  :limit => 200
+    t.string   "updated_by",                  :limit => 30
+    t.integer  "status1",                                    :default => 0
+    t.string   "no_btb_list_disp",            :limit => 20
+    t.string   "st_progress",                 :limit => 20
+    t.decimal  "qty_all_nota",                               :default => 0.0
+    t.integer  "is_ap",                                      :default => 0
+    t.string   "id_ap_disp",                  :limit => 20
+    t.boolean  "is_drafted"
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  create_table "m_beli_nota_b_ds", :force => true do |t|
+    t.string   "kode_tmp",                         :limit => 20
+    t.string   "kode_brg",                         :limit => 20
+    t.string   "kode_brg_ext",                     :limit => 30
+    t.decimal  "qty_kemasan_unit",                               :default => 0.0
+    t.decimal  "qty_kemasan",                                    :default => 0.0
+    t.decimal  "qty",                                            :default => 0.0
+    t.string   "id_valuta",                        :limit => 2
+    t.decimal  "harga",                                          :default => 0.0
+    t.decimal  "diskon",                                         :default => 0.0
+    t.decimal  "total_qty_kali_harga",                           :default => 0.0
+    t.decimal  "total_qty_kali_harga_kali_diskon",               :default => 0.0
+    t.decimal  "total_kurang_diskon",                            :default => 0.0
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
+  end
+
+  create_table "m_beli_po_a_hs", :force => true do |t|
+    t.string   "kode_tmp",                    :limit => 20
+    t.string   "kode_disp",                   :limit => 20
+    t.string   "id_cabang",                   :limit => 5
+    t.string   "simbol",                      :limit => 5
+    t.datetime "tanggal"
+    t.string   "no_penawaran",                :limit => 20
+    t.string   "id_supplier",                 :limit => 10
+    t.string   "id_alamat_supplier",          :limit => 15
+    t.string   "id_valuta",                   :limit => 5
+    t.decimal  "nilai_rate_kurs",                            :default => 0.0
+    t.decimal  "total_sub_total",                            :default => 0.0
+    t.decimal  "total_disc_persen",                          :default => 0.0
+    t.decimal  "total_disc_nominal",                         :default => 0.0
+    t.decimal  "total_sub_total_kurang_disc",                :default => 0.0
+    t.decimal  "total_ppn_disc",                             :default => 0.0
+    t.decimal  "total_ppn_nominal",                          :default => 0.0
+    t.decimal  "total_grand_total",                          :default => 0.0
+    t.datetime "tgl_kirim"
+    t.datetime "tgl_jth_tempo"
+    t.string   "keterangan",                  :limit => 100
+    t.string   "keterangan_syarat_bayar",     :limit => 100
+    t.string   "updated_by",                  :limit => 30
+    t.integer  "status1",                                    :default => 0
+    t.string   "st_progress",                 :limit => 20
+    t.decimal  "qty_all_po",                                 :default => 0.0
+    t.decimal  "qty_all_btb",                                :default => 0.0
+    t.decimal  "qty_all_close",                              :default => 0.0
+    t.decimal  "total_nota",                                 :default => 0.0
+    t.decimal  "total_retur",                                :default => 0.0
+    t.integer  "is_close_btb",                               :default => 0
+    t.integer  "is_close_po",                                :default => 0
+    t.boolean  "is_drafted"
+    t.string   "id_gudang_kirim",             :limit => 10
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  create_table "m_beli_po_b_ds", :force => true do |t|
+    t.string   "kode_tmp",                         :limit => 20
+    t.string   "kode_brg",                         :limit => 20
+    t.string   "kode_brg_ext",                     :limit => 30
+    t.decimal  "qty_kemasan_unit",                               :default => 0.0
+    t.decimal  "qty_kemasan",                                    :default => 0.0
+    t.decimal  "qty",                                            :default => 0.0
+    t.decimal  "qty_btb",                                        :default => 0.0
+    t.string   "id_valuta",                        :limit => 10
+    t.decimal  "harga",                                          :default => 0.0
+    t.decimal  "diskon",                                         :default => 0.0
+    t.decimal  "total_qty_kali_harga",                           :default => 0.0
+    t.decimal  "total_qty_kali_harga_kali_diskon",               :default => 0.0
+    t.decimal  "total_kurang_diskon",                            :default => 0.0
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
+  end
+
+  create_table "m_beli_retur_a_hs", :force => true do |t|
+    t.string   "kode_tmp",                    :limit => 20
+    t.string   "kode_disp",                   :limit => 20
+    t.string   "id_cabang",                   :limit => 2
+    t.string   "simbol",                      :limit => 5
+    t.datetime "tanggal"
+    t.string   "no_po_disp",                  :limit => 20
+    t.string   "id_supplier",                 :limit => 10
+    t.string   "id_valuta",                   :limit => 2
+    t.decimal  "nilai_rate_kurs",                            :default => 0.0
+    t.decimal  "total_sub_total",                            :default => 0.0
+    t.decimal  "total_disc_persen",                          :default => 0.0
+    t.decimal  "total_disc_nominal",                         :default => 0.0
+    t.decimal  "total_sub_total_kurang_disc",                :default => 0.0
+    t.decimal  "total_ppn_disc",                             :default => 0.0
+    t.decimal  "total_ppn_nominal",                          :default => 0.0
+    t.decimal  "total_grand_total",                          :default => 0.0
+    t.decimal  "total_grand_total_po",                       :default => 0.0
+    t.decimal  "total_dp",                                   :default => 0.0
     t.datetime "tgl_kirim"
     t.string   "keterangan",                  :limit => 200
     t.string   "updated_by",                  :limit => 30
@@ -605,6 +587,9 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
   create_table "m_beli_retur_b_ds", :force => true do |t|
     t.string   "kode_tmp",                         :limit => 20
     t.string   "kode_brg",                         :limit => 20
+    t.string   "kode_brg_ext",                     :limit => 30
+    t.decimal  "qty_kemasan_unit",                               :default => 0.0
+    t.decimal  "qty_kemasan",                                    :default => 0.0
     t.decimal  "qty",                                            :default => 0.0
     t.string   "id_valuta",                        :limit => 2
     t.decimal  "harga",                                          :default => 0.0
@@ -612,48 +597,46 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.decimal  "total_qty_kali_harga",                           :default => 0.0
     t.decimal  "total_qty_kali_harga_kali_diskon",               :default => 0.0
     t.decimal  "total_kurang_diskon",                            :default => 0.0
-    t.string   "kode_brg_ext",                     :limit => 30
     t.datetime "created_at",                                                      :null => false
     t.datetime "updated_at",                                                      :null => false
   end
 
   create_table "m_warehouse_in_first_hs", :force => true do |t|
-    t.string   "kode_tmp"
-    t.string   "kode_disp"
+    t.string   "kode_tmp",          :limit => 20
+    t.string   "kode_disp",         :limit => 20
     t.datetime "tanggal"
-    t.string   "id_cabang"
-    t.string   "simbol"
+    t.string   "id_cabang",         :limit => 5
+    t.string   "simbol",            :limit => 5
     t.string   "jns_inv",           :limit => 15
-    t.string   "id_reff_disp"
-    t.string   "keterangan"
-    t.string   "id_surat_jalan"
-    t.string   "id_po_disp"
-    t.string   "id_supplier"
-    t.string   "id_customer"
-    t.string   "id_gudang_potong"
-    t.integer  "is_nota"
-    t.string   "id_nota_beli_disp"
-    t.decimal  "total_qty_in"
-    t.string   "updated_by"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.integer  "status1"
-    t.string   "st_progress"
+    t.string   "id_reff_disp",      :limit => 30
+    t.string   "keterangan",        :limit => 99
+    t.string   "nama_referensi",    :limit => 50
+    t.string   "id_surat_jalan",    :limit => 30
+    t.string   "id_po_disp",        :limit => 30
+    t.string   "id_supplier",       :limit => 10
+    t.string   "id_customer",       :limit => 10
+    t.string   "id_gudang_potong",  :limit => 10
+    t.integer  "is_nota",           :limit => 2,  :default => 0
+    t.string   "id_nota_beli_disp", :limit => 20
+    t.decimal  "total_qty_in",                    :default => 0.0
+    t.string   "updated_by",        :limit => 30
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+    t.integer  "status1",           :limit => 2,  :default => 0
+    t.string   "st_progress",       :limit => 20
     t.boolean  "is_drafted"
-    t.string   "nama_referensi",    :limit => 70
-    t.string   "no_revisi",         :limit => 2
   end
 
   create_table "m_warehouse_in_second_ds", :force => true do |t|
-    t.string   "kode_tmp",          :limit => 20
-    t.string   "kode_brg"
-    t.string   "kode_brg_ext"
-    t.string   "kode_brg_lot"
-    t.decimal  "qty"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.decimal  "qty_kemasan"
-    t.string   "id_satuan_kemasan", :limit => 5
+    t.string   "kode_tmp",         :limit => 20
+    t.string   "kode_brg",         :limit => 20
+    t.string   "kode_brg_ext",     :limit => 30
+    t.string   "kode_brg_lot",     :limit => 30
+    t.decimal  "qty_kemasan_unit",               :default => 0.0
+    t.decimal  "qty_kemasan",                    :default => 0.0
+    t.decimal  "qty",                            :default => 0.0
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
   create_table "m_warehouse_ks_brg_as", :force => true do |t|
@@ -672,6 +655,7 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.string   "tipe_stok",    :limit => 2
     t.string   "kode_brg",     :limit => 20
     t.string   "kode_brg_lot", :limit => 40
+    t.string   "no_reff",      :limit => 30
     t.datetime "tanggal"
     t.string   "simbol",       :limit => 5
     t.string   "keterangan",   :limit => 150
@@ -682,7 +666,6 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.decimal  "qty_saldo",                   :default => 0.0
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
-    t.string   "no_reff",      :limit => 30
   end
 
   create_table "m_warehouse_ks_brg_c_exts", :force => true do |t|
@@ -703,6 +686,7 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.string   "kode_brg",     :limit => 20
     t.string   "kode_brg_ext", :limit => 30
     t.string   "kode_brg_lot", :limit => 40
+    t.string   "no_reff",      :limit => 40
     t.datetime "tanggal"
     t.string   "simbol",       :limit => 5
     t.string   "keterangan",   :limit => 150
@@ -764,13 +748,15 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
   end
 
   create_table "m_warehouse_out_b_ds", :force => true do |t|
-    t.string   "kode_tmp",     :limit => 20
-    t.string   "kode_brg",     :limit => 20
-    t.string   "kode_brg_ext", :limit => 20
-    t.string   "kode_brg_lot", :limit => 30
-    t.decimal  "qty",                        :default => 0.0
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.string   "kode_tmp",         :limit => 20
+    t.string   "kode_brg",         :limit => 20
+    t.string   "kode_brg_ext",     :limit => 30
+    t.string   "kode_brg_lot",     :limit => 40
+    t.decimal  "qty_kemasan_unit",               :default => 0.0
+    t.decimal  "qty_kemasan",                    :default => 0.0
+    t.decimal  "qty",                            :default => 0.0
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
 end
