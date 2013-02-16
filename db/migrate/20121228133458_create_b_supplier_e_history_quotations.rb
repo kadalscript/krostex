@@ -4,6 +4,7 @@ class CreateBSupplierEHistoryQuotations < ActiveRecord::Migration
       t.string   :kode, limit: 10
       t.string   :kode_brg, limit: 10
       t.string   :kode_brg_ext, limit:20
+      t.string   :id_satuan_kemasan, limit:10
       t.integer  :status1, limit: 2
       t.string   :st_progress, limit: 20
       t.string   :updated_by, limit: 30

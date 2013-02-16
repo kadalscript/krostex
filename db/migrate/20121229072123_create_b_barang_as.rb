@@ -12,7 +12,8 @@ class CreateBBarangAs < ActiveRecord::Migration
       t.decimal :min_stok, default:0
       t.decimal :max_stok, default:0
       t.decimal :reorder_stok, default:0
-      t.string :updated_by, limit: 30
+      t.string  :updated_by, limit: 30
+      t.string  :count_id, limit:5
 
       t.timestamps
     end
