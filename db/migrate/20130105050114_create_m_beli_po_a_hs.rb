@@ -3,6 +3,7 @@ class CreateMBeliPoAHs < ActiveRecord::Migration
     create_table :m_beli_po_a_hs do |t|
       t.string :kode_tmp , limit:20
       t.string :kode_disp, limit:20
+      t.string :no_revisi, limit: 2
       t.string :id_cabang, limit:5
       t.string :simbol, limit:5
       t.datetime :tanggal
