@@ -1,0 +1,51 @@
+<h1>Listing m_warehouse_ks_brg_e_ext_lots</h1>
+
+<table>
+  <tr>
+    <th>Id cabang</th>
+    <th>Id gudang</th>
+    <th>Kode brg</th>
+    <th>Kode brg ext</th>
+    <th>Kode lot number</th>
+    <th>Tanggal</th>
+    <th>Simbol</th>
+    <th>Qty in</th>
+    <th>Qty out mc</th>
+    <th>Qty out real</th>
+    <th>Is close mc</th>
+    <th>Is close real</th>
+    <th>Status1</th>
+    <th>Updated by</th>
+    <th>St progress</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @m_warehouse_ks_brg_e_ext_lots.each do |m_warehouse_ks_brg_e_ext_lot| %>
+  <tr>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.id_cabang %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.id_gudang %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.kode_brg %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.kode_brg_ext %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.kode_lot_number %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.tanggal %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.simbol %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.qty_in %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.qty_out_mc %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.qty_out_real %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.is_close_mc %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.is_close_real %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.status1 %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.updated_by %></td>
+    <td><%= m_warehouse_ks_brg_e_ext_lot.st_progress %></td>
+    <td><%= link_to 'Show', m_warehouse_ks_brg_e_ext_lot %></td>
+    <td><%= link_to 'Edit', edit_m_warehouse_ks_brg_e_ext_lot_path(m_warehouse_ks_brg_e_ext_lot) %></td>
+    <td><%= link_to 'Destroy', m_warehouse_ks_brg_e_ext_lot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New M warehouse ks brg e ext lot', new_m_warehouse_ks_brg_e_ext_lot_path %>

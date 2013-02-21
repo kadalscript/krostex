@@ -1,0 +1,71 @@
+<h1>Listing m_warehouse_out_a_hs</h1>
+
+<table>
+  <tr>
+    <th>Kode tmp</th>
+    <th>Kode disp</th>
+    <th>Tanggal</th>
+    <th>Id cabang</th>
+    <th>Simbol</th>
+    <th>Jns inv</th>
+    <th>Id reff disp</th>
+    <th>Keterangan</th>
+    <th>Id surat jalan</th>
+    <th>Id so disp</th>
+    <th>Id po disp</th>
+    <th>Id supplier</th>
+    <th>Id customer</th>
+    <th>Id gudang out</th>
+    <th>Is invoice</th>
+    <th>Id invoice disp</th>
+    <th>Total qty out</th>
+    <th>Updated by</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Status1</th>
+    <th>St progress</th>
+    <th>Is drafted</th>
+    <th>Nama referensi</th>
+    <th>No revisi</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @m_warehouse_out_a_hs.each do |m_warehouse_out_a_h| %>
+  <tr>
+    <td><%= m_warehouse_out_a_h.kode_tmp %></td>
+    <td><%= m_warehouse_out_a_h.kode_disp %></td>
+    <td><%= m_warehouse_out_a_h.tanggal %></td>
+    <td><%= m_warehouse_out_a_h.id_cabang %></td>
+    <td><%= m_warehouse_out_a_h.simbol %></td>
+    <td><%= m_warehouse_out_a_h.jns_inv %></td>
+    <td><%= m_warehouse_out_a_h.id_reff_disp %></td>
+    <td><%= m_warehouse_out_a_h.keterangan %></td>
+    <td><%= m_warehouse_out_a_h.id_surat_jalan %></td>
+    <td><%= m_warehouse_out_a_h.id_so_disp %></td>
+    <td><%= m_warehouse_out_a_h.id_po_disp %></td>
+    <td><%= m_warehouse_out_a_h.id_supplier %></td>
+    <td><%= m_warehouse_out_a_h.id_customer %></td>
+    <td><%= m_warehouse_out_a_h.id_gudang_out %></td>
+    <td><%= m_warehouse_out_a_h.is_invoice %></td>
+    <td><%= m_warehouse_out_a_h.id_invoice_disp %></td>
+    <td><%= m_warehouse_out_a_h.total_qty_out %></td>
+    <td><%= m_warehouse_out_a_h.updated_by %></td>
+    <td><%= m_warehouse_out_a_h.created_at %></td>
+    <td><%= m_warehouse_out_a_h.updated_at %></td>
+    <td><%= m_warehouse_out_a_h.status1 %></td>
+    <td><%= m_warehouse_out_a_h.st_progress %></td>
+    <td><%= m_warehouse_out_a_h.is_drafted %></td>
+    <td><%= m_warehouse_out_a_h.nama_referensi %></td>
+    <td><%= m_warehouse_out_a_h.no_revisi %></td>
+    <td><%= link_to 'Show', m_warehouse_out_a_h %></td>
+    <td><%= link_to 'Edit', edit_m_warehouse_out_a_h_path(m_warehouse_out_a_h) %></td>
+    <td><%= link_to 'Destroy', m_warehouse_out_a_h, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New M warehouse out a h', new_m_warehouse_out_a_h_path %>

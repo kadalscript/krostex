@@ -1,0 +1,81 @@
+<h1>Listing m_beli_retur_a_hs</h1>
+
+<table>
+  <tr>
+    <th>Kode tmp</th>
+    <th>Kode disp</th>
+    <th>Id cabang</th>
+    <th>Simbol</th>
+    <th>Tanggal</th>
+    <th>No po disp</th>
+    <th>Id supplier</th>
+    <th>Id valuta</th>
+    <th>Nilai rate kurs</th>
+    <th>Total sub total</th>
+    <th>Total disc persen</th>
+    <th>Total disc nominal</th>
+    <th>Total sub total kurang disc</th>
+    <th>Total ppn disc</th>
+    <th>Total ppn nominal</th>
+    <th>Total grand total</th>
+    <th>Total grand total po</th>
+    <th>Total dp</th>
+    <th>Total grand total retur</th>
+    <th>Tgl kirim</th>
+    <th>Keterangan</th>
+    <th>Updated by</th>
+    <th>Status1</th>
+    <th>St progress</th>
+    <th>Qty all retur</th>
+    <th>Qty sj</th>
+    <th>Is ar</th>
+    <th>Id ar disp</th>
+    <th>Is drafted</th>
+    <th>No revisi</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @m_beli_retur_a_hs.each do |m_beli_retur_a_h| %>
+  <tr>
+    <td><%= m_beli_retur_a_h.kode_tmp %></td>
+    <td><%= m_beli_retur_a_h.kode_disp %></td>
+    <td><%= m_beli_retur_a_h.id_cabang %></td>
+    <td><%= m_beli_retur_a_h.simbol %></td>
+    <td><%= m_beli_retur_a_h.tanggal %></td>
+    <td><%= m_beli_retur_a_h.no_po_disp %></td>
+    <td><%= m_beli_retur_a_h.id_supplier %></td>
+    <td><%= m_beli_retur_a_h.id_valuta %></td>
+    <td><%= m_beli_retur_a_h.nilai_rate_kurs %></td>
+    <td><%= m_beli_retur_a_h.total_sub_total %></td>
+    <td><%= m_beli_retur_a_h.total_disc_persen %></td>
+    <td><%= m_beli_retur_a_h.total_disc_nominal %></td>
+    <td><%= m_beli_retur_a_h.total_sub_total_kurang_disc %></td>
+    <td><%= m_beli_retur_a_h.total_ppn_disc %></td>
+    <td><%= m_beli_retur_a_h.total_ppn_nominal %></td>
+    <td><%= m_beli_retur_a_h.total_grand_total %></td>
+    <td><%= m_beli_retur_a_h.total_grand_total_po %></td>
+    <td><%= m_beli_retur_a_h.total_dp %></td>
+    <td><%= m_beli_retur_a_h.total_grand_total_retur %></td>
+    <td><%= m_beli_retur_a_h.tgl_kirim %></td>
+    <td><%= m_beli_retur_a_h.keterangan %></td>
+    <td><%= m_beli_retur_a_h.updated_by %></td>
+    <td><%= m_beli_retur_a_h.status1 %></td>
+    <td><%= m_beli_retur_a_h.st_progress %></td>
+    <td><%= m_beli_retur_a_h.qty_all_retur %></td>
+    <td><%= m_beli_retur_a_h.qty_sj %></td>
+    <td><%= m_beli_retur_a_h.is_ar %></td>
+    <td><%= m_beli_retur_a_h.id_ar_disp %></td>
+    <td><%= m_beli_retur_a_h.is_drafted %></td>
+    <td><%= m_beli_retur_a_h.no_revisi %></td>
+    <td><%= link_to 'Show', m_beli_retur_a_h %></td>
+    <td><%= link_to 'Edit', edit_m_beli_retur_a_h_path(m_beli_retur_a_h) %></td>
+    <td><%= link_to 'Destroy', m_beli_retur_a_h, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New M beli retur a h', new_m_beli_retur_a_h_path %>

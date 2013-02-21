@@ -6,17 +6,17 @@ class DeviseCreateAdminMsUsers < ActiveRecord::Migration
       t.string :encrypted_password, :null => false, :default => ""
 
       ## Details
-      t.string :id_group
-      t.string :user_name
-      t.integer :status
-      t.integer :limitlogin
+      t.string :id_group, limit:5
+      t.string :user_name, limit:30
+      t.integer :status, limit:3, default:0
+      t.integer :limitlogin, limit:3, default:0
       t.datetime :tglcreate
       t.datetime :tglpasswordexpired
       t.datetime :tgllastlogin
-      t.string :pin
-      t.integer :is_level1
-      t.integer :is_level2
-      t.integer :is_level3
+      t.string :pin, limit:10
+      t.integer :is_level1, default:0
+      t.integer :is_level2, default:0
+      t.integer :is_level3, default:0
 
       t.timestamps
     end

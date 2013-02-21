@@ -1,7 +1,7 @@
 class CreateACompanyProfiles < ActiveRecord::Migration
   def change
     create_table :a_company_profiles do |t|
-      t.string :kode, limit: 1
+      t.string :kode, limit: 5
       t.string :nama_company, limit: 50
       t.string :contact_person, limit: 50
       t.string :alamat_title, limit: 90

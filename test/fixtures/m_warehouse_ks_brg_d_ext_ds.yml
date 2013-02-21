@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id_cabang: MyString
+  id_gudang: MyString
+  tipe_stok: MyString
+  kode_brg: MyString
+  kode_brg_ext: MyString
+  kode_brg_lot: MyString
+  tanggal: 2013-02-13 22:28:28
+  simbol: MyString
+  keterangan: MyString
+  catatan: MyString
+  qty_awal: 9.99
+  qty_masuk: 9.99
+  qty_keluar: 9.99
+  qty_saldo: 9.99
+
+two:
+  id_cabang: MyString
+  id_gudang: MyString
+  tipe_stok: MyString
+  kode_brg: MyString
+  kode_brg_ext: MyString
+  kode_brg_lot: MyString
+  tanggal: 2013-02-13 22:28:28
+  simbol: MyString
+  keterangan: MyString
+  catatan: MyString
+  qty_awal: 9.99
+  qty_masuk: 9.99
+  qty_keluar: 9.99
+  qty_saldo: 9.99

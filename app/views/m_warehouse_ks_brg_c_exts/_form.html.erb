@@ -1,0 +1,41 @@
+<%= form_for(@m_warehouse_ks_brg_c_ext) do |f| %>
+  <% if @m_warehouse_ks_brg_c_ext.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@m_warehouse_ks_brg_c_ext.errors.count, "error") %> prohibited this m_warehouse_ks_brg_c_ext from being saved:</h2>
+
+      <ul>
+      <% @m_warehouse_ks_brg_c_ext.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id_cabang %><br />
+    <%= f.text_field :id_cabang %>
+  </div>
+  <div class="field">
+    <%= f.label :id_gudang %><br />
+    <%= f.text_field :id_gudang %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_brg %><br />
+    <%= f.text_field :kode_brg %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_brg_ext %><br />
+    <%= f.text_field :kode_brg_ext %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_real %><br />
+    <%= f.text_field :qty_real %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_mc %><br />
+    <%= f.text_field :qty_mc %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

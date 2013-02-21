@@ -20,10 +20,10 @@
         <td><%= history.barang.blank? ? '-' : history.barang.kode %></td>
         <td><%= history.barang.blank? ? '-' : history.barang.nama %></td>
         <td><%= history.kemasan.blank? ? '-' : history.kemasan.nama %></td>
-        <td><%= harga_link(history.penawaran_harga_1, 1, history) %></td>
-        <td><%= harga_link(history.penawaran_harga_2, 2, history) %></td>
-        <td><%= harga_link(history.penawaran_harga_3, 3, history) %></td>
-        <td><%= harga_link(history.penawaran_harga_4, 4, history) %></td>
+        <td><%= harga_link(1, history) %></td>
+        <td><%= harga_link(2, history) %></td>
+        <td><%= harga_link(3, history) %></td>
+        <td><%= harga_link(4, history) %></td>
       </tr>
     <% end %>
   <% else %>
@@ -43,8 +43,6 @@ var harga = ["harga_1", "harga_2", "harga_3", "harga_4"];
 
 for (var i = 0; i <= harga.length; i++) {
   $('a#' + harga[i]).mouseenter(function() {
-    $.ajax({ url: '<%= get_self_data_b_supplier_history_quotations_path %>?id=' + $(this).attr('value'), });
-    
     $(this).popover('show');
   });
   

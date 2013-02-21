@@ -1,0 +1,33 @@
+<h1>Listing m_warehouse_ks_brg_c_exts</h1>
+
+<table>
+  <tr>
+    <th>Id cabang</th>
+    <th>Id gudang</th>
+    <th>Kode brg</th>
+    <th>Kode brg ext</th>
+    <th>Qty real</th>
+    <th>Qty mc</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @m_warehouse_ks_brg_c_exts.each do |m_warehouse_ks_brg_c_ext| %>
+  <tr>
+    <td><%= m_warehouse_ks_brg_c_ext.id_cabang %></td>
+    <td><%= m_warehouse_ks_brg_c_ext.id_gudang %></td>
+    <td><%= m_warehouse_ks_brg_c_ext.kode_brg %></td>
+    <td><%= m_warehouse_ks_brg_c_ext.kode_brg_ext %></td>
+    <td><%= m_warehouse_ks_brg_c_ext.qty_real %></td>
+    <td><%= m_warehouse_ks_brg_c_ext.qty_mc %></td>
+    <td><%= link_to 'Show', m_warehouse_ks_brg_c_ext %></td>
+    <td><%= link_to 'Edit', edit_m_warehouse_ks_brg_c_ext_path(m_warehouse_ks_brg_c_ext) %></td>
+    <td><%= link_to 'Destroy', m_warehouse_ks_brg_c_ext, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New M warehouse ks brg c ext', new_m_warehouse_ks_brg_c_ext_path %>

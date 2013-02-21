@@ -1,0 +1,77 @@
+<%= form_for(@m_warehouse_ks_brg_e_ext_lot) do |f| %>
+  <% if @m_warehouse_ks_brg_e_ext_lot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@m_warehouse_ks_brg_e_ext_lot.errors.count, "error") %> prohibited this m_warehouse_ks_brg_e_ext_lot from being saved:</h2>
+
+      <ul>
+      <% @m_warehouse_ks_brg_e_ext_lot.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id_cabang %><br />
+    <%= f.text_field :id_cabang %>
+  </div>
+  <div class="field">
+    <%= f.label :id_gudang %><br />
+    <%= f.text_field :id_gudang %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_brg %><br />
+    <%= f.text_field :kode_brg %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_brg_ext %><br />
+    <%= f.text_field :kode_brg_ext %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_lot_number %><br />
+    <%= f.text_field :kode_lot_number %>
+  </div>
+  <div class="field">
+    <%= f.label :tanggal %><br />
+    <%= f.datetime_select :tanggal %>
+  </div>
+  <div class="field">
+    <%= f.label :simbol %><br />
+    <%= f.text_field :simbol %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_in %><br />
+    <%= f.text_field :qty_in %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_out_mc %><br />
+    <%= f.text_field :qty_out_mc %>
+  </div>
+  <div class="field">
+    <%= f.label :qty_out_real %><br />
+    <%= f.text_field :qty_out_real %>
+  </div>
+  <div class="field">
+    <%= f.label :is_close_mc %><br />
+    <%= f.number_field :is_close_mc %>
+  </div>
+  <div class="field">
+    <%= f.label :is_close_real %><br />
+    <%= f.number_field :is_close_real %>
+  </div>
+  <div class="field">
+    <%= f.label :status1 %><br />
+    <%= f.number_field :status1 %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_by %><br />
+    <%= f.text_field :updated_by %>
+  </div>
+  <div class="field">
+    <%= f.label :st_progress %><br />
+    <%= f.text_field :st_progress %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
