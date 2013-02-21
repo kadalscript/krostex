@@ -1,4 +1,5 @@
 class BSupplier < ActiveRecord::Base
+  set_table_name :b_supplier_as
   attr_accessible :email, :homepage, :id_badan_usaha, :kode, :nama, :st_progress, :status1, :updated_by
   has_many    :alamat, class_name: 'BSupplierAlamat', foreign_key: 'b_supplier_id'
   has_many    :b_supplier_contacts
