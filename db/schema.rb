@@ -152,10 +152,10 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.string   "kode",       :limit => 10
     t.string   "nama",       :limit => 15
     t.decimal  "isi_volume"
-    t.integer  "id_satuan",                :default => 0
+    t.string   "id_satuan",  :limit => 5
     t.string   "updated_by", :limit => 30
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "a_mata_uangs", :force => true do |t|
@@ -314,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.decimal  "max_stok",                    :default => 0.0
     t.decimal  "reorder_stok",                :default => 0.0
     t.string   "updated_by",    :limit => 30
+    t.string   "count_id",      :limit => 5
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
   end
@@ -399,41 +400,42 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
     t.string   "kode",                      :limit => 10
     t.string   "kode_brg",                  :limit => 10
     t.string   "kode_brg_ext",              :limit => 20
+    t.string   "id_satuan_kemasan",         :limit => 10
     t.integer  "status1",                   :limit => 2
     t.string   "st_progress",               :limit => 20
     t.string   "updated_by",                :limit => 30
     t.integer  "pos_penawaran_x",           :limit => 2
     t.string   "penawaran_kode_cur",        :limit => 20
     t.datetime "penawaran_tgl_cur"
-    t.string   "penawaran_kode_valuta_cur", :limit => 2
+    t.string   "penawaran_kode_valuta_cur", :limit => 5
     t.decimal  "penawaran_harga_cur"
     t.decimal  "penawaran_min_order_cur"
     t.string   "penawaran_kode_satuan_cur", :limit => 5
     t.integer  "penawaran_waktu_kirim_cur"
     t.string   "penawaran_kode_1",          :limit => 20
     t.datetime "penawaran_tgl_1"
-    t.string   "penawaran_kode_valuta_1",   :limit => 2
+    t.string   "penawaran_kode_valuta_1",   :limit => 5
     t.decimal  "penawaran_harga_1"
     t.decimal  "penawaran_min_order_1"
     t.string   "penawaran_kode_satuan_1",   :limit => 5
     t.integer  "penawaran_waktu_kirim_1"
     t.string   "penawaran_kode_2",          :limit => 20
     t.datetime "penawaran_tgl_2"
-    t.string   "penawaran_kode_valuta_2",   :limit => 2
+    t.string   "penawaran_kode_valuta_2",   :limit => 5
     t.decimal  "penawaran_harga_2"
     t.decimal  "penawaran_min_order_2"
     t.string   "penawaran_kode_satuan_2",   :limit => 5
     t.integer  "penawaran_waktu_kirim_2"
     t.string   "penawaran_kode_3",          :limit => 20
     t.datetime "penawaran_tgl_3"
-    t.string   "penawaran_kode_valuta_3",   :limit => 2
+    t.string   "penawaran_kode_valuta_3",   :limit => 5
     t.decimal  "penawaran_harga_3"
     t.decimal  "penawaran_min_order_3"
     t.string   "penawaran_kode_satuan_3",   :limit => 5
     t.integer  "penawaran_waktu_kirim_3"
     t.string   "penawaran_kode_4",          :limit => 20
     t.datetime "penawaran_tgl_4"
-    t.string   "penawaran_kode_valuta_4",   :limit => 2
+    t.string   "penawaran_kode_valuta_4",   :limit => 5
     t.decimal  "penawaran_harga_4"
     t.decimal  "penawaran_min_order_4"
     t.string   "penawaran_kode_satuan_4",   :limit => 5
@@ -497,6 +499,7 @@ ActiveRecord::Schema.define(:version => 20130213170437) do
   create_table "m_beli_po_a_hs", :force => true do |t|
     t.string   "kode_tmp",                    :limit => 20
     t.string   "kode_disp",                   :limit => 20
+    t.string   "no_revisi",                   :limit => 2
     t.string   "id_cabang",                   :limit => 5
     t.string   "simbol",                      :limit => 5
     t.datetime "tanggal"
