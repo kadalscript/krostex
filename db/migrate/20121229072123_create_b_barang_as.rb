@@ -14,7 +14,13 @@ class CreateBBarangAs < ActiveRecord::Migration
       t.decimal :reorder_stok, default:0
       t.string  :updated_by, limit: 30
       t.string  :count_id, limit:5
-
+      t.datetime :tgl_mulai_konsumsi
+      t.decimal :total_qty_konsumsi, default:0
+      t.integer :is_konsumsi, limit:1, default:0
+      t.integer :is_outstd_po, limit:4, default:0
+      t.integer :is_eta, limit:4, default:0
+      t.decimal :qty_outstd_po, default:0
+      t.decimal :eta_brg, default:0
       t.timestamps
     end
   end

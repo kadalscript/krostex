@@ -10,6 +10,8 @@ class CreateMWarehouseOutBDs < ActiveRecord::Migration
       t.decimal :qty, default:0
       t.datetime :created_at
       t.datetime :updated_at
+      t.string :id_cabang  , limit:10
+      t.string :id_gudang  , limit:10
 
       t.timestamps
     end

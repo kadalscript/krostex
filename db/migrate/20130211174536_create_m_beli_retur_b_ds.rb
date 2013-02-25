@@ -7,7 +7,6 @@ class CreateMBeliReturBDs < ActiveRecord::Migration
       t.decimal:qty_kemasan_unit, default:0
       t.decimal:qty_kemasan     , default:0
       t.decimal :qty, default:0
-      t.string :id_valuta, limit:2
       t.decimal :harga, default:0
       t.decimal :diskon, default:0
       t.decimal :total_qty_kali_harga, default:0

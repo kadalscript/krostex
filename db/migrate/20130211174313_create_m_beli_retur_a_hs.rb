@@ -18,6 +18,7 @@ class CreateMBeliReturAHs < ActiveRecord::Migration
       t.decimal :total_ppn_nominal, default:0
       t.decimal :total_grand_total, default:0
       t.decimal :total_grand_total_po, default:0
+      t.decimal :total_grand_total_retur, default:0
       t.decimal :total_dp, default:0
       t.datetime :tgl_kirim
       t.string :keterangan, limit:200

@@ -35,6 +35,7 @@ class CreateMBeliPoAHs < ActiveRecord::Migration
       t.integer :is_close_po, default:0
       t.boolean :is_drafted
       t.string :id_gudang_kirim, limit: 10
+      t.integer :is_hitung_total, default:0
       t.timestamps
     end
   end
