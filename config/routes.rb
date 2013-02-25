@@ -104,6 +104,7 @@ Hermanstartup::Application.routes.draw do
       match :get_valuta
       match :get_satuan
       match :get_kemasan
+      match :get_self_data
     end
   end
 

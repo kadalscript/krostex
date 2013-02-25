@@ -93,7 +93,10 @@ class BSupplierHistoryQuotationsController < ApplicationController
   def get_kemasan
     @kemasan = AKemasan.find_by_kode(params[:kode])
   end
-  
+
+  def get_self_data
+  end
+
 private
 
   def miscellaneous

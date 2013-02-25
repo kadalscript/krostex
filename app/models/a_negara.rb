@@ -1,4 +1,5 @@
  class ANegara < ActiveRecord::Base
+  set_table_name :a_area_a_negaras
   attr_accessible :kode, :nama, :simbol, :updated_by, :created_at, :updated_at
   validates :kode, :simbol, presence: true, length: { maximum: 5, message: TOO_LONG_CHARACTER }
   validates :nama, presence: true, length: { maximum: 30, message: TOO_LONG_CHARACTER }
